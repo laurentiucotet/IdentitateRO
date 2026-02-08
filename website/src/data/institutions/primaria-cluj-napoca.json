@@ -1,26 +1,70 @@
 {
   "id": "primaria-cluj-napoca",
-  "name": "Primăria Municipiului Cluj-Napoca",
-  "shortName": "Primăria Cluj-Napoca",
-  "abbreviation": "PMCN",
-  "category": "primarie",
-  "region": "Cluj",
-  "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
-  "colors": [
-    { "name": "Albastru Cluj", "hex": "#003DA5", "pantone": "286 C" },
-    { "name": "Alb", "hex": "#FFFFFF" },
-    { "name": "Gri Secundar", "hex": "#6C757D" }
-  ],
-  "assets": [
-    { "variant": "principal", "format": "svg", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg" },
-    { "variant": "monocrom-alb", "format": "svg", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg" },
-    { "variant": "principal", "format": "png", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png", "width": 512, "height": 512 }
-  ],
-  "resources": {
-    "website": "https://pfrcluj.ro",
-    "fontPrimary": "Roboto"
+  "meta": {
+    "version": "1.0",
+    "lastUpdated": "2026-02-08",
+    "tags": ["administrație-locală", "cluj-napoca", "transilvania"],
+    "internalId": "RO-PMCN-001",
+    "quality": "community",
+    "source": "Website oficial"
   },
-  "updatedAt": "2026-02-08",
-  "source": "Website oficial",
-  "quality": "community"
+  "institution": {
+    "name": "Primăria Municipiului Cluj-Napoca",
+    "shortName": "Primăria Cluj-Napoca",
+    "acronym": "PMCN",
+    "category": "primarie",
+    "region": "Cluj",
+    "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
+    "website": "https://pfrcluj.ro",
+    "location": {
+      "locality": "Cluj-Napoca",
+      "county": "Cluj",
+      "countyCode": "CJ"
+    }
+  },
+  "visualIdentity": {
+    "colors": [
+      {
+        "name": "Albastru Cluj",
+        "hex": "#003DA5",
+        "rgb": [0, 61, 165],
+        "pantone": "286 C",
+        "usage": "primary"
+      },
+      {
+        "name": "Alb",
+        "hex": "#FFFFFF",
+        "rgb": [255, 255, 255],
+        "usage": "neutral"
+      },
+      {
+        "name": "Gri Secundar",
+        "hex": "#6C757D",
+        "rgb": [108, 117, 125],
+        "usage": "secondary"
+      }
+    ],
+    "typography": [
+      {
+        "family": "Roboto",
+        "role": "primary",
+        "url": "https://fonts.googleapis.com/css2?family=Roboto"
+      }
+    ]
+  },
+  "assets": {
+    "logos": {
+      "fullHorizontal": {
+        "variants": {
+          "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+        },
+        "png": {
+          "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+          "width": 512,
+          "height": 512
+        }
+      }
+    }
+  }
 }

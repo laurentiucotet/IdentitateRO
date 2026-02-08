@@ -1,32 +1,27 @@
 ---
-// Logo Card component - afișează un logo în grid
+/**
+ * LogoCard — Card pentru afișarea unui logo în grid (v2.0)
+ *
+ * Acceptă date din schema v2.0 (structură cu institution/meta/assets).
+ */
+import { CATEGORY_LABELS_SINGULAR, QUALITY_LABELS } from '../lib/labels';
+
 export interface Props {
   id: string;
   name: string;
   shortName?: string;
-  abbreviation?: string;
+  acronym?: string;
   category: string;
   logoPath: string;
   quality: string;
   hasSvg: boolean;
+  tags?: string[];
 }
 
-const { id, name, shortName, abbreviation, category, logoPath, quality, hasSvg } = Astro.props;
+const { id, name, shortName, acronym, category, logoPath, quality, hasSvg, tags } = Astro.props;
 
-const categoryLabels: Record<string, string> = {
-  'guvern': 'Guvern',
-  'minister': 'Minister',
-  'primarie': 'Primărie',
-  'consiliu-judetean': 'Consiliu Județean',
-  'prefectura': 'Prefectură',
-  'agentie': 'Agenție',
-  'autoritate': 'Autoritate',
-  'proiect-ue': 'Proiect UE',
-  'institutie-cultura': 'Cultură',
-  'altele': 'Altele',
-};
-
-const displayName = shortName || abbreviation || name;
+const displayName = shortName || acronym || name;
+const qualityInfo = QUALITY_LABELS[quality];
 ---
 
 <a
@@ -60,7 +55,7 @@ const displayName = shortName || abbreviation || name;
         <h3 class="font-semibold text-sm text-primary-900 truncate" title={name}>
           {displayName}
         </h3>
-        <span class="text-xs text-surface-500">{categoryLabels[category] || category}</span>
+        <span class="text-xs text-surface-500">{CATEGORY_LABELS_SINGULAR[category] || category}</span>
       </div>
       <div class="flex items-center gap-1.5 shrink-0">
         {hasSvg && (

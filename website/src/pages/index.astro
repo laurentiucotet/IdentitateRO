@@ -2,30 +2,25 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LogoCard from '../components/LogoCard.astro';
 import institutionIndex from '../data/institutions-index.json';
+import { getPrimaryLogoPath, hasSvg, getDisplayName } from '../lib/helpers';
+import { CATEGORY_LABELS, CATEGORY_ORDER } from '../lib/labels';
 
-const institutions = institutionIndex.institutions;
+const institutions = institutionIndex.institutions as any[];
+
+// Grupare pe categorii cu ordine prestabilită
+const grouped = new Map<string, typeof institutions>();
+for (const cat of CATEGORY_ORDER) {
+  const items = institutions.filter(i => i.institution.category === cat);
+  if (items.length > 0) grouped.set(cat, items);
+}
 
 // Categoriile active (cele care au cel puțin o instituție)
-const activeCategories = [...new Set(institutions.map(i => i.category))];
-
-const categoryLabels: Record<string, string> = {
-  'guvern': 'Guvern',
-  'minister': 'Ministere',
-  'primarie': 'Primării',
-  'consiliu-judetean': 'Consilii Județene',
-  'prefectura': 'Prefecturi',
-  'agentie': 'Agenții',
-  'autoritate': 'Autorități',
-  'proiect-ue': 'Proiecte UE',
-  'institutie-cultura': 'Cultură',
-  'altele': 'Altele',
-};
+const activeCategories = [...grouped.keys()];
 ---
 
 <BaseLayout>
   <!-- Hero Section -->
   <section class="relative overflow-hidden">
-    <!-- Subtle gradient background -->
     <div class="absolute inset-0 bg-gradient-to-b from-primary-50/50 to-surface-50 -z-10"></div>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
@@ -82,14 +77,14 @@ const categoryLabels: Record<string, string> = {
             class="category-chip category-chip--inactive shrink-0"
             data-category={cat}
           >
-            {categoryLabels[cat] || cat}
+            {CATEGORY_LABELS[cat] || cat}
           </button>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Logo Grid -->
+  <!-- Logo Grid — Grouped by Category -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Results info -->
     <div class="flex items-center justify-between mb-4">
@@ -101,21 +96,53 @@ const categoryLabels: Record<string, string> = {
       </div>
     </div>
 
-    <!-- Grid -->
-    <div id="logo-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-      {institutions.map(inst => {
-        const primarySvg = inst.assets.find(a => a.format === 'svg');
-        const primaryAsset = primarySvg || inst.assets[0];
+    <!-- Category Sections -->
+    <div id="category-sections">
+      {[...grouped.entries()].map(([cat, items]) => (
+        <div class="category-section mb-8" data-category-section={cat}>
+          <h2 class="text-lg font-semibold text-primary-900 mb-3 flex items-center gap-2">
+            {CATEGORY_LABELS[cat] || cat}
+            <span class="text-xs font-normal text-surface-400">({items.length})</span>
+          </h2>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            {items.map((inst: any) => {
+              const logoPath = getPrimaryLogoPath(inst) || '';
+              const hasSvgFlag = hasSvg(inst);
+              return (
+                <LogoCard
+                  id={inst.id}
+                  name={inst.institution.name}
+                  shortName={inst.institution.shortName}
+                  acronym={inst.institution.acronym}
+                  category={inst.institution.category}
+                  logoPath={logoPath}
+                  quality={inst.meta.quality}
+                  hasSvg={hasSvgFlag}
+                  tags={inst.meta.tags}
+                />
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Flat Grid (hidden by default, used when filtering/searching) -->
+    <div id="logo-grid" class="hidden grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+      {institutions.map((inst: any) => {
+        const logoPath = getPrimaryLogoPath(inst) || '';
+        const hasSvgFlag = hasSvg(inst);
         return (
           <LogoCard
             id={inst.id}
-            name={inst.name}
-            shortName={inst.shortName}
-            abbreviation={inst.abbreviation}
-            category={inst.category}
-            logoPath={primaryAsset?.path || ''}
-            quality={inst.quality}
-            hasSvg={!!primarySvg}
+            name={inst.institution.name}
+            shortName={inst.institution.shortName}
+            acronym={inst.institution.acronym}
+            category={inst.institution.category}
+            logoPath={logoPath}
+            quality={inst.meta.quality}
+            hasSvg={hasSvgFlag}
+            tags={inst.meta.tags}
           />
         );
       })}
@@ -133,53 +160,26 @@ const categoryLabels: Record<string, string> = {
   </section>
 </BaseLayout>
 
-<!-- Inline JSON data for client-side search & modal -->
+<!-- Inline JSON data for client-side search & filter -->
 <script define:vars={{ institutions: institutionIndex.institutions }}>
   window.__IDENTITATE_DATA__ = institutions;
 </script>
 
 <script>
   /**
-   * IdentitateRO - Client-side interactivity
-   * Search, filter, and modal logic
-   */
-
-  console.log('Script loaded and running');
-
-<script>
-  /**
-   * IdentitateRO - Client-side interactivity
-   * Search, filter, and modal logic
+   * IdentitateRO — Client-side interactivity (v2.0)
+   * Search, filter cu suport pentru schema v2.0 (nested structure)
    */
 
   document.addEventListener('DOMContentLoaded', () => {
 
-  interface InstitutionData {
-    id: string;
-    name: string;
-    shortName?: string;
-    abbreviation?: string;
-    category: string;
-    description?: string;
-    colors: Array<{ name: string; hex: string; pantone?: string; cmyk?: string; rgb?: string }>;
-    assets: Array<{ variant: string; format: string; path: string; width?: number; height?: number }>;
-    resources: {
-      website?: string;
-      brandManual?: string;
-      fontPrimary?: string;
-      fontSecondary?: string;
-      usageNotes?: string;
-    };
-    updatedAt: string;
-    quality: string;
-  }
-
-  const data: InstitutionData[] = (window as any).__IDENTITATE_DATA__;
+  const data: any[] = (window as any).__IDENTITATE_DATA__;
 
   // DOM elements
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
   const searchHint = document.getElementById('search-hint')!;
   const filterBar = document.getElementById('filter-bar')!;
+  const categorySections = document.getElementById('category-sections')!;
   const logoGrid = document.getElementById('logo-grid')!;
   const emptyState = document.getElementById('empty-state')!;
   const resultsCount = document.getElementById('results-count')!;
@@ -188,26 +188,58 @@ const categoryLabels: Record<string, string> = {
   let activeCategory = 'all';
   let searchQuery = '';
 
-  // ═══ SEARCH & FILTER ═══
+  /**
+   * Modul de afișare:
+   * - "grouped"  → secțiuni pe categorii (default, "Toate" fără search)
+   * - "flat"     → grid plat (când se filtrează sau se caută)
+   */
+  function getViewMode(): 'grouped' | 'flat' {
+    return (activeCategory === 'all' && !searchQuery.trim()) ? 'grouped' : 'flat';
+  }
 
   function filterAndSearch() {
+    const query = searchQuery.toLowerCase().trim();
+    const mode = getViewMode();
+
+    if (mode === 'grouped') {
+      // Afișăm secțiuni pe categorii, ascundem flat grid
+      categorySections.classList.remove('hidden');
+      logoGrid.classList.add('hidden');
+      emptyState.classList.add('hidden');
+      resultsCount.textContent = `${data.length} instituții disponibile`;
+      searchHint.classList.add('hidden');
+
+      // Afișăm toate secțiunile
+      categorySections.querySelectorAll<HTMLElement>('[data-category-section]').forEach(section => {
+        section.classList.remove('hidden');
+      });
+      return;
+    }
+
+    // Mod flat — ascundem secțiunile, arătăm grid-ul plat
+    categorySections.classList.add('hidden');
+    logoGrid.classList.remove('hidden');
+
     const cards = logoGrid.querySelectorAll<HTMLElement>('[data-institution-id]');
     let visibleCount = 0;
-    const query = searchQuery.toLowerCase().trim();
 
     cards.forEach(card => {
       const instId = card.dataset.institutionId!;
       const inst = data.find(d => d.id === instId);
       if (!inst) return;
 
-      const matchesCategory = activeCategory === 'all' || inst.category === activeCategory;
+      const info = inst.institution;
+      const meta = inst.meta;
+
+      const matchesCategory = activeCategory === 'all' || info.category === activeCategory;
       const matchesSearch = !query || [
-        inst.name,
-        inst.shortName || '',
-        inst.abbreviation || '',
-        inst.description || '',
-        inst.category,
-      ].some(field => field.toLowerCase().includes(query));
+        info.name,
+        info.shortName || '',
+        info.acronym || '',
+        info.description || '',
+        info.category,
+        ...(meta.tags || []),
+      ].some((field: string) => field.toLowerCase().includes(query));
 
       if (matchesCategory && matchesSearch) {
         card.classList.remove('hidden');
@@ -268,7 +300,7 @@ const categoryLabels: Record<string, string> = {
     }
   });
 
-  // Initial filter
+  // Initial state
   filterAndSearch();
   });
 </script>

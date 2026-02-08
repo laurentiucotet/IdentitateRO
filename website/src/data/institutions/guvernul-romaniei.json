@@ -1,26 +1,72 @@
 {
   "id": "guvernul-romaniei",
-  "name": "Guvernul României",
-  "shortName": "Guvernul",
-  "category": "guvern",
-  "description": "Organul executiv al statului român, condus de Primul Ministru.",
-  "colors": [
-    { "name": "Albastru Oficial", "hex": "#002F6C", "pantone": "648 C", "cmyk": "100, 65, 0, 43" },
-    { "name": "Auriu", "hex": "#C8A951", "pantone": "4015 C" },
-    { "name": "Alb", "hex": "#FFFFFF" }
-  ],
-  "assets": [
-    { "variant": "principal", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei.svg" },
-    { "variant": "monocrom", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg" },
-    { "variant": "monocrom-alb", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg" },
-    { "variant": "principal", "format": "png", "path": "/logos/guvernul-romaniei/guvernul-romaniei.png", "width": 512, "height": 512 }
-  ],
-  "resources": {
-    "website": "https://gov.ro",
-    "brandManual": "https://gov.ro/manual-identitate",
-    "fontPrimary": "Source Sans Pro"
+  "meta": {
+    "version": "1.0",
+    "lastUpdated": "2026-02-08",
+    "tags": ["guvernamental", "executiv", "administrație"],
+    "internalId": "RO-GOV-001",
+    "quality": "community",
+    "source": "Website oficial gov.ro"
   },
-  "updatedAt": "2026-02-08",
-  "source": "Website oficial gov.ro",
-  "quality": "community"
+  "institution": {
+    "name": "Guvernul României",
+    "shortName": "Guvernul",
+    "category": "guvern",
+    "description": "Organul executiv al statului român, condus de Primul Ministru.",
+    "website": "https://gov.ro",
+    "manualUrl": "https://gov.ro/manual-identitate",
+    "location": {
+      "locality": "București",
+      "county": "Municipiul București",
+      "countyCode": "B"
+    }
+  },
+  "visualIdentity": {
+    "colors": [
+      {
+        "name": "Albastru Oficial",
+        "hex": "#002F6C",
+        "rgb": [0, 47, 108],
+        "cmyk": [100, 65, 0, 43],
+        "pantone": "648 C",
+        "usage": "primary"
+      },
+      {
+        "name": "Auriu",
+        "hex": "#C8A951",
+        "rgb": [200, 169, 81],
+        "pantone": "4015 C",
+        "usage": "secondary"
+      },
+      {
+        "name": "Alb",
+        "hex": "#FFFFFF",
+        "rgb": [255, 255, 255],
+        "usage": "neutral"
+      }
+    ],
+    "typography": [
+      {
+        "family": "Source Sans Pro",
+        "role": "primary",
+        "url": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro"
+      }
+    ]
+  },
+  "assets": {
+    "logos": {
+      "fullHorizontal": {
+        "variants": {
+          "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
+          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+          "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg"
+        },
+        "png": {
+          "path": "/logos/guvernul-romaniei/guvernul-romaniei.png",
+          "width": 512,
+          "height": 512
+        }
+      }
+    }
+  }
 }

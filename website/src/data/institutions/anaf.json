@@ -1,23 +1,62 @@
 {
   "id": "anaf",
-  "name": "Agenția Națională de Administrare Fiscală",
-  "shortName": "ANAF",
-  "abbreviation": "ANAF",
-  "category": "agentie",
-  "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
-  "colors": [
-    { "name": "Albastru ANAF", "hex": "#1B3A6B" },
-    { "name": "Roșu Accent", "hex": "#C8102E", "pantone": "186 C" },
-    { "name": "Alb", "hex": "#FFFFFF" }
-  ],
-  "assets": [
-    { "variant": "principal", "format": "svg", "path": "/logos/anaf/anaf.svg" },
-    { "variant": "principal", "format": "png", "path": "/logos/anaf/anaf.png", "width": 512, "height": 512 }
-  ],
-  "resources": {
-    "website": "https://www.anaf.ro"
+  "meta": {
+    "version": "1.0",
+    "lastUpdated": "2026-02-08",
+    "tags": ["guvernamental", "taxe", "fiscalitate"],
+    "internalId": "RO-ANAF-001",
+    "quality": "draft",
+    "source": "Website oficial"
   },
-  "updatedAt": "2026-02-08",
-  "source": "Website oficial",
-  "quality": "draft"
+  "institution": {
+    "name": "Agenția Națională de Administrare Fiscală",
+    "shortName": "ANAF",
+    "acronym": "ANAF",
+    "category": "agentie",
+    "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
+    "website": "https://www.anaf.ro",
+    "location": {
+      "locality": "București",
+      "county": "Municipiul București",
+      "countyCode": "B"
+    }
+  },
+  "visualIdentity": {
+    "colors": [
+      {
+        "name": "Albastru ANAF",
+        "hex": "#1B3A6B",
+        "rgb": [27, 58, 107],
+        "usage": "primary"
+      },
+      {
+        "name": "Roșu Accent",
+        "hex": "#C8102E",
+        "rgb": [200, 16, 46],
+        "pantone": "186 C",
+        "usage": "accent"
+      },
+      {
+        "name": "Alb",
+        "hex": "#FFFFFF",
+        "rgb": [255, 255, 255],
+        "usage": "neutral"
+      }
+    ],
+    "typography": []
+  },
+  "assets": {
+    "logos": {
+      "fullHorizontal": {
+        "variants": {
+          "color": "/logos/anaf/anaf.svg"
+        },
+        "png": {
+          "path": "/logos/anaf/anaf.png",
+          "width": 512,
+          "height": 512
+        }
+      }
+    }
+  }
 }

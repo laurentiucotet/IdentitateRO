@@ -1,24 +1,45 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import institutionIndex from '../../data/institutions-index.json';
+import { getAllDownloadableAssets, getPrimaryLogoPath } from '../../lib/helpers';
+import {
+  CATEGORY_LABELS_SINGULAR,
+  LOGO_LAYOUT_LABELS,
+  LOGO_VARIANT_LABELS,
+  COLOR_USAGE_LABELS,
+  QUALITY_LABELS,
+  TYPOGRAPHY_ROLE_LABELS,
+} from '../../lib/labels';
+
+import type { Institution, LogoLayout } from '../../types/institution';
 
 export async function getStaticPaths() {
-  return institutionIndex.institutions.map(inst => ({
+  return (institutionIndex.institutions as any[]).map(inst => ({
     params: { id: inst.id },
-    props: { institution: inst }
+    props: { institution: inst as Institution }
   }));
 }
 
-const { institution } = Astro.props;
+const { institution: inst } = Astro.props;
+const info = inst.institution;
+const meta = inst.meta;
+const vis = inst.visualIdentity;
+const assets = inst.assets;
 
-const title = `${institution.name} — IdentitateRO`;
-const description = `Logo-uri și identitate vizuală pentru ${institution.name}. ${institution.description || ''}`;
+const title = `${info.name} — IdentitateRO`;
+const description = `Logo-uri și identitate vizuală pentru ${info.name}. ${info.description || ''}`;
+
+const primaryLogo = getPrimaryLogoPath(inst);
+const downloadables = getAllDownloadableAssets(inst);
+
+const logoLayouts: LogoLayout[] = ['fullHorizontal', 'fullVertical', 'symbolOnly'];
+const qualityInfo = QUALITY_LABELS[meta.quality];
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Header -->
-    <header class="mb-8">
+    <header class="mb-10">
       <div class="flex items-center gap-3 mb-4">
         <a href="/" class="text-primary-500 hover:text-primary-600 text-sm flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,40 +48,282 @@ const description = `Logo-uri și identitate vizuală pentru ${institution.name}
           Înapoi la toate
         </a>
       </div>
-      <h1 class="text-2xl sm:text-3xl font-bold text-primary-900 mb-2">{institution.name}</h1>
-      {institution.description && (
-        <p class="text-sm text-surface-500">{institution.description}</p>
+
+      <div class="flex flex-wrap items-start gap-4">
+        <div class="flex-1 min-w-0">
+          <h1 class="text-2xl sm:text-3xl font-bold text-primary-900 mb-2">{info.name}</h1>
+
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            {info.acronym && (
+              <span class="px-2 py-0.5 bg-primary-100 text-primary-700 rounded text-xs font-semibold">
+                {info.acronym}
+              </span>
+            )}
+            <span class="px-2 py-0.5 bg-surface-100 text-surface-600 rounded text-xs">
+              {CATEGORY_LABELS_SINGULAR[info.category] || info.category}
+            </span>
+            {qualityInfo && (
+              <span class={`px-2 py-0.5 rounded text-xs ${qualityInfo.class}`}>
+                {qualityInfo.label}
+              </span>
+            )}
+          </div>
+
+          {info.description && (
+            <p class="text-sm text-surface-500 mb-2">{info.description}</p>
+          )}
+
+          {info.location && (
+            <p class="text-xs text-surface-400 flex items-center gap-1">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {info.location.locality}, {info.location.county}
+            </p>
+          )}
+
+          {info.usageNotes && (
+            <div class="mt-3 p-3 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800">
+              <strong>Note de utilizare:</strong> {info.usageNotes}
+            </div>
+          )}
+        </div>
+
+        {/* Mini preview în header */}
+        {primaryLogo && (
+          <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-white border border-surface-200 rounded p-3 flex items-center justify-center">
+            <img src={primaryLogo} alt={`Logo ${info.name}`} class="max-w-full max-h-full object-contain" />
+          </div>
+        )}
+      </div>
+
+      {/* Tags */}
+      {meta.tags && meta.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mt-4">
+          {meta.tags.map((tag: string) => (
+            <span class="px-2 py-0.5 bg-surface-50 border border-surface-200 rounded-full text-[10px] text-surface-500">
+              {tag}
+            </span>
+          ))}
+        </div>
       )}
     </header>
 
+    <!-- ═══ LOGO-URI ═══ -->
+    <section class="mb-10">
+      <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Logo-uri
+      </h2>
+
+      {logoLayouts.map(layout => {
+        const group = assets.logos[layout];
+        if (!group) return null;
+
+        const layoutLabel = LOGO_LAYOUT_LABELS[layout] || layout;
+        const variants = Object.entries(group.variants).filter(([_, path]) => !!path) as [string, string][];
+
+        return (
+          <div class="mb-6">
+            <h3 class="text-sm font-medium text-primary-800 mb-3">{layoutLabel}</h3>
+
+            {/* Preview-uri variante */}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-3">
+              {variants.map(([variant, path]) => (
+                <div class="border border-surface-200 rounded overflow-hidden">
+                  <div class:list={[
+                    "aspect-[3/2] flex items-center justify-center p-6",
+                    variant === 'white' ? 'bg-gray-800' : 'checkerboard'
+                  ]}>
+                    <img
+                      src={path}
+                      alt={`${info.name} — ${layoutLabel} ${LOGO_VARIANT_LABELS[variant] || variant}`}
+                      class="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                  <div class="p-2 bg-white flex items-center justify-between">
+                    <div>
+                      <span class="text-xs font-medium text-primary-900">{LOGO_VARIANT_LABELS[variant] || variant}</span>
+                      <span class="text-[10px] text-surface-400 ml-1">SVG</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <a href={path} download class="p-1 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                      </a>
+                      <button
+                        type="button"
+                        class="copy-btn p-1 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors"
+                        data-asset-path={path}
+                        data-asset-format="svg"
+                        title="Copiază SVG"
+                      >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* PNG variant */}
+              {group.png && (
+                <div class="border border-surface-200 rounded overflow-hidden">
+                  <div class="checkerboard aspect-[3/2] flex items-center justify-center p-6">
+                    <img
+                      src={group.png.path}
+                      alt={`${info.name} — ${layoutLabel} PNG`}
+                      class="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                  <div class="p-2 bg-white flex items-center justify-between">
+                    <div>
+                      <span class="text-xs font-medium text-primary-900">PNG</span>
+                      <span class="text-[10px] text-surface-400 ml-1">{group.png.width} × {group.png.height}px</span>
+                    </div>
+                    <a href={group.png.path} download class="p-1 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă PNG">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </section>
+
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Logo Preview -->
-      <section>
-        <h2 class="text-lg font-semibold text-primary-900 mb-4">Logo</h2>
-        <div class="bg-white border border-surface-200 rounded p-6">
-          <div class="checkerboard aspect-square rounded flex items-center justify-center p-6 mb-4">
-            {institution.assets.some(a => a.format === 'svg') ? (
-              <img
-                src={institution.assets.find(a => a.format === 'svg')?.path}
-                alt={`Logo ${institution.name}`}
-                class="max-w-full max-h-full object-contain"
-              />
-            ) : (
-              <img
-                src={institution.assets[0]?.path}
-                alt={`Logo ${institution.name}`}
-                class="max-w-full max-h-full object-contain"
-              />
+      <!-- ═══ CULORI OFICIALE ═══ -->
+      {vis.colors && vis.colors.length > 0 && (
+        <section>
+          <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+            Paletă de Culori
+          </h2>
+          <div class="space-y-3">
+            {vis.colors.map((color: any) => (
+              <div class="bg-white border border-surface-200 rounded p-3 flex items-start gap-3">
+                <div
+                  class="w-12 h-12 rounded border border-surface-200 shrink-0"
+                  style={`background-color: ${color.hex}`}
+                ></div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="font-medium text-sm text-primary-900">{color.name}</span>
+                    {color.usage && (
+                      <span class="px-1.5 py-0.5 bg-surface-100 rounded text-[10px] text-surface-500">
+                        {COLOR_USAGE_LABELS[color.usage] || color.usage}
+                      </span>
+                    )}
+                  </div>
+                  <div class="grid grid-cols-2 gap-x-4 gap-y-0.5 text-xs text-surface-500">
+                    <div class="font-mono">{color.hex}</div>
+                    {color.rgb && <div>RGB: {color.rgb.join(', ')}</div>}
+                    {color.cmyk && <div>CMYK: {color.cmyk.join(', ')}</div>}
+                    {color.pantone && <div>Pantone {color.pantone}</div>}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- ═══ TIPOGRAFIE + RESURSE ═══ -->
+      <div class="space-y-8">
+        {/* Tipografie */}
+        {vis.typography && vis.typography.length > 0 && (
+          <section>
+            <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+              Tipografie
+            </h2>
+            <div class="space-y-2">
+              {vis.typography.map((font: any) => (
+                <div class="bg-white border border-surface-200 rounded p-3 flex items-center justify-between">
+                  <div>
+                    <div class="font-medium text-sm text-primary-900">{font.family}</div>
+                    <div class="text-xs text-surface-500">{TYPOGRAPHY_ROLE_LABELS[font.role] || font.role}</div>
+                  </div>
+                  {font.url && (
+                    <a
+                      href={font.url}
+                      target="_blank"
+                      rel="noopener"
+                      class="text-xs text-primary-500 hover:text-primary-600"
+                    >
+                      Google Fonts &rarr;
+                    </a>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Resurse */}
+        <section>
+          <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Resurse
+          </h2>
+          <div class="space-y-2">
+            {info.website && (
+              <a
+                href={info.website}
+                target="_blank"
+                rel="noopener"
+                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                Website Oficial
+              </a>
+            )}
+            {info.manualUrl && (
+              <a
+                href={info.manualUrl}
+                target="_blank"
+                rel="noopener"
+                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                Manual de Identitate Vizuală
+              </a>
             )}
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+    </div>
 
-      <!-- Downloads & Info -->
-      <section>
-        <h2 class="text-lg font-semibold text-primary-900 mb-4">Descărcări</h2>
-        <div class="space-y-3">
-          {institution.assets.map((asset, index) => (
+    <!-- ═══ DESCĂRCĂRI RAPIDE ═══ -->
+    {downloadables.length > 0 && (
+      <section class="mt-10">
+        <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Toate Descărcările
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {downloadables.map((asset: any) => (
             <a
               href={asset.path}
               download
@@ -68,131 +331,47 @@ const description = `Logo-uri și identitate vizuală pentru ${institution.name}
             >
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 bg-primary-50 rounded flex items-center justify-center">
-                  <svg class="w-4 h-4 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
+                  <span class="text-[10px] font-bold text-primary-600">{asset.format.toUpperCase()}</span>
                 </div>
                 <div>
-                  <div class="font-medium text-sm text-primary-900">
-                    {asset.variant || 'Principal'} ({asset.format.toUpperCase()})
-                  </div>
+                  <div class="font-medium text-sm text-primary-900">{asset.label}</div>
                   {asset.width && asset.height && (
-                    <div class="text-xs text-surface-500">
-                      {asset.width} × {asset.height}px
-                    </div>
+                    <div class="text-xs text-surface-500">{asset.width} × {asset.height}px</div>
                   )}
                 </div>
               </div>
-              <div class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-surface-400 group-hover:text-primary-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                <button
-                  type="button"
-                  class="copy-btn w-6 h-6 rounded flex items-center justify-center text-surface-400 hover:text-primary-500 hover:bg-primary-50 transition-all"
-                  data-asset-path={asset.path}
-                  data-asset-format={asset.format}
-                  title={`Copiază ${asset.format.toUpperCase()}`}
-                >
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                </button>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {institution.resources?.website && (
-          <div class="mt-6">
-            <a
-              href={institution.resources.website}
-              target="_blank"
-              rel="noopener"
-              class="btn-primary inline-flex items-center gap-2"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              <svg class="w-4 h-4 text-surface-400 group-hover:text-primary-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              Website Oficial
             </a>
-          </div>
-        )}
-      </section>
-    </div>
-
-    <!-- Colors -->
-    {institution.colors && institution.colors.length > 0 && (
-      <section class="mt-8">
-        <h2 class="text-lg font-semibold text-primary-900 mb-4">Paletă de Culori</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {institution.colors.map((color, index) => (
-            <div class="bg-white border border-surface-200 rounded p-3">
-              <div
-                class="w-full aspect-square rounded mb-2 border border-surface-200"
-                style={`background-color: ${color.hex}`}
-              ></div>
-              <div class="text-xs">
-                <div class="font-medium text-primary-900">{color.name}</div>
-                <div class="text-surface-500 font-mono">{color.hex}</div>
-                {color.pantone && <div class="text-surface-500">Pantone {color.pantone}</div>}
-              </div>
-            </div>
           ))}
         </div>
       </section>
     )}
 
-    <!-- Resources -->
-    {institution.resources && (institution.resources.brand_manual || institution.resources.font_primary) && (
-      <section class="mt-8">
-        <h2 class="text-lg font-semibold text-primary-900 mb-4">Resurse Suplimentare</h2>
-        <div class="space-y-2">
-          {institution.resources.brand_manual && (
-            <a
-              href={institution.resources.brand_manual}
-              target="_blank"
-              rel="noopener"
-              class="flex items-center gap-2 text-sm text-primary-500 hover:text-primary-600"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              Manual de Identitate Vizuală
-            </a>
-          )}
-          {institution.resources.font_primary && (
-            <div class="flex items-center gap-2 text-sm text-surface-600">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
-              </svg>
-              Font Principal: {institution.resources.font_primary}
-            </div>
-          )}
-        </div>
-      </section>
-    )}
-
-    <!-- Metadata -->
-    <section class="mt-8 pt-6 border-t border-surface-200">
-      <div class="text-xs text-surface-500 space-y-1">
-        <div>Ultima actualizare: {new Date(institution.updatedAt).toLocaleDateString('ro-RO')}</div>
-        <div>Sursă: {institution.source}</div>
-        <div>Calitate: {institution.quality}</div>
+    <!-- ═══ METADATA ═══ -->
+    <section class="mt-10 pt-6 border-t border-surface-200">
+      <div class="flex flex-wrap gap-x-8 gap-y-2 text-xs text-surface-500">
+        <div>Ultima actualizare: {new Date(meta.lastUpdated).toLocaleDateString('ro-RO')}</div>
+        {meta.source && <div>Sursă: {meta.source}</div>}
+        <div>Calitate: {qualityInfo?.label || meta.quality}</div>
+        <div>ID intern: <span class="font-mono">{meta.internalId}</span></div>
+        <div>Schema: v{meta.version}</div>
       </div>
     </section>
   </article>
 </BaseLayout>
 
 <script>
-  // Copy functionality for SVG/PNG assets
+  // Copy functionality for SVG assets
   document.addEventListener('DOMContentLoaded', () => {
     const copyButtons = document.querySelectorAll('.copy-btn');
 
     copyButtons.forEach(button => {
       button.addEventListener('click', async (e) => {
-        e.stopPropagation(); // Prevent event bubbling to parent <a> element
-        
+        e.stopPropagation();
+        e.preventDefault();
+
         const btn = e.currentTarget as HTMLButtonElement;
         const assetPath = btn.dataset.assetPath!;
         const assetFormat = btn.dataset.assetFormat!;
@@ -201,11 +380,9 @@ const description = `Logo-uri și identitate vizuală pentru ${institution.name}
           let textToCopy = '';
 
           if (assetFormat === 'svg') {
-            // For SVG, fetch the content and copy it
             const response = await fetch(assetPath);
             textToCopy = await response.text();
           } else {
-            // For PNG and other formats, copy the URL
             textToCopy = window.location.origin + assetPath;
           }
 
@@ -214,32 +391,21 @@ const description = `Logo-uri și identitate vizuală pentru ${institution.name}
           // Visual feedback
           const originalIcon = btn.innerHTML;
           btn.innerHTML = `
-            <svg class="w-3.5 h-3.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
           `;
-          btn.classList.add('text-green-500', 'bg-green-50');
-
-          setTimeout(() => {
-            btn.innerHTML = originalIcon;
-            btn.classList.remove('text-green-500', 'bg-green-50');
-          }, 2000);
+          setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
 
         } catch (err) {
           console.error('Failed to copy:', err);
-          // Fallback visual feedback for error
           const originalIcon = btn.innerHTML;
           btn.innerHTML = `
-            <svg class="w-3.5 h-3.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           `;
-          btn.classList.add('text-red-500', 'bg-red-50');
-
-          setTimeout(() => {
-            btn.innerHTML = originalIcon;
-            btn.classList.remove('text-red-500', 'bg-red-50');
-          }, 2000);
+          setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
         }
       });
     });
