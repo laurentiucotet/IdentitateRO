@@ -5,7 +5,6 @@
     "lastUpdated": "2026-02-08",
     "tags": ["guvernamental", "taxe", "fiscalitate"],
     "internalId": "RO-ANAF-001",
-    "quality": "draft",
     "source": "Website oficial"
   },
   "institution": {
@@ -24,17 +23,16 @@
   "visualIdentity": {
     "colors": [
       {
-        "name": "Albastru ANAF",
-        "hex": "#1B3A6B",
-        "rgb": [27, 58, 107],
+        "name": "Albastru Simbol",
+        "hex": "#2C2C76",
+        "rgb": [44, 44, 118],
         "usage": "primary"
       },
       {
-        "name": "Roșu Accent",
-        "hex": "#C8102E",
-        "rgb": [200, 16, 46],
-        "pantone": "186 C",
-        "usage": "accent"
+        "name": "Negru Text",
+        "hex": "#151515",
+        "rgb": [21, 21, 21],
+        "usage": "text"
       },
       {
         "name": "Alb",
@@ -43,18 +41,24 @@
         "usage": "neutral"
       }
     ],
-    "typography": []
+    "typography": [
+      {
+        "family": "Helvetica Neue LT Pro",
+        "weight": "Light",
+        "usage": "brand-font"
+      }
+    ]
   },
   "assets": {
     "logos": {
       "fullHorizontal": {
         "variants": {
           "color": "/logos/anaf/anaf.svg"
-        },
-        "png": {
-          "path": "/logos/anaf/anaf.png",
-          "width": 512,
-          "height": 512
+        }
+      },
+      "symbolOnly": {
+        "variants": {
+          "color": "/logos/anaf/simbol-anaf.svg"
         }
       }
     }

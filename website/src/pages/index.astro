@@ -104,7 +104,7 @@ const activeCategories = [...grouped.keys()];
             {CATEGORY_LABELS[cat] || cat}
             <span class="text-xs font-normal text-surface-400">({items.length})</span>
           </h2>
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+          <div class="flex flex-wrap gap-3 sm:gap-4">
             {items.map((inst: any) => {
               const logoPath = getPrimaryLogoPath(inst) || '';
               const hasSvgFlag = hasSvg(inst);
@@ -128,7 +128,7 @@ const activeCategories = [...grouped.keys()];
     </div>
 
     <!-- Flat Grid (hidden by default, used when filtering/searching) -->
-    <div id="logo-grid" class="hidden grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+    <div id="logo-grid" class="hidden flex flex-wrap gap-3 sm:gap-4">
       {institutions.map((inst: any) => {
         const logoPath = getPrimaryLogoPath(inst) || '';
         const hasSvgFlag = hasSvg(inst);
