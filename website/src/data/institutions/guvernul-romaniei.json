@@ -1,0 +1,26 @@
+{
+  "id": "guvernul-romaniei",
+  "name": "Guvernul României",
+  "shortName": "Guvernul",
+  "category": "guvern",
+  "description": "Organul executiv al statului român, condus de Primul Ministru.",
+  "colors": [
+    { "name": "Albastru Oficial", "hex": "#002F6C", "pantone": "648 C", "cmyk": "100, 65, 0, 43" },
+    { "name": "Auriu", "hex": "#C8A951", "pantone": "4015 C" },
+    { "name": "Alb", "hex": "#FFFFFF" }
+  ],
+  "assets": [
+    { "variant": "principal", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei.svg" },
+    { "variant": "monocrom", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg" },
+    { "variant": "monocrom-alb", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg" },
+    { "variant": "principal", "format": "png", "path": "/logos/guvernul-romaniei/guvernul-romaniei.png", "width": 512, "height": 512 }
+  ],
+  "resources": {
+    "website": "https://gov.ro",
+    "brandManual": "https://gov.ro/manual-identitate",
+    "fontPrimary": "Source Sans Pro"
+  },
+  "updatedAt": "2026-02-08",
+  "source": "Website oficial gov.ro",
+  "quality": "community"
+}

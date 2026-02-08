@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <circle cx="200" cy="160" r="80" fill="white" opacity="0.9"/>
+  <path d="M200 100l-12 36h-38l31 22-12 36 31-22 31 22-12-36 31-22h-38z" fill="white"/>
+  <text x="200" y="290" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="white">Guvernul</text>
+  <text x="200" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" fill="white">României</text>
+  <text x="200" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="rgba(255,255,255,0.5)">ALB — PLACEHOLDER</text>
+</svg>

@@ -1,0 +1,532 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LogoCard from '../components/LogoCard.astro';
+import institutionIndex from '../data/institutions-index.json';
+
+const institutions = institutionIndex.institutions;
+
+// Categoriile active (cele care au cel puțin o instituție)
+const activeCategories = [...new Set(institutions.map(i => i.category))];
+
+const categoryLabels: Record<string, string> = {
+  'guvern': 'Guvern',
+  'minister': 'Ministere',
+  'primarie': 'Primării',
+  'consiliu-judetean': 'Consilii Județene',
+  'prefectura': 'Prefecturi',
+  'agentie': 'Agenții',
+  'autoritate': 'Autorități',
+  'proiect-ue': 'Proiecte UE',
+  'institutie-cultura': 'Cultură',
+  'altele': 'Altele',
+};
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden">
+    <!-- Subtle gradient background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-primary-50/50 to-surface-50 -z-10"></div>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
+      <!-- Beta badge -->
+      <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-primary-50 border border-primary-100 mb-4">
+        <span class="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></span>
+        <span class="text-[10px] font-medium text-primary-700">Versiune Beta &middot; Proiect Civic Open-Source</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-900 leading-tight text-balance mb-4">
+        Identitatea Vizuală<br />a României, <span class="text-primary-500">digitalizată.</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-sm sm:text-base text-surface-500 max-w-xl mx-auto mb-8 text-balance">
+        Registrul open-source pentru logo-uri vectoriale (SVG) ale instituțiilor publice.
+        O singură sursă de adevăr.
+      </p>
+
+      <!-- Search Input -->
+      <div class="relative max-w-xl mx-auto" id="search-wrapper">
+        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+          <svg class="w-5 h-5 text-surface-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input
+          type="search"
+          id="search-input"
+          class="search-input pl-12"
+          placeholder="Caută „Primăria Iași", „Ministerul Educației"..."
+          autocomplete="off"
+        />
+        <div id="search-hint" class="mt-2 text-xs text-surface-400 hidden">
+          <kbd class="px-1.5 py-0.5 bg-surface-100 rounded text-surface-500 font-mono">ESC</kbd> pentru a reseta
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="sticky top-12 z-30 bg-white/80 backdrop-blur-md border-b border-surface-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" id="filter-bar">
+        <button
+          class="category-chip category-chip--active shrink-0"
+          data-category="all"
+        >
+          Toate ({institutions.length})
+        </button>
+        {activeCategories.map(cat => (
+          <button
+            class="category-chip category-chip--inactive shrink-0"
+            data-category={cat}
+          >
+            {categoryLabels[cat] || cat}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Logo Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Results info -->
+    <div class="flex items-center justify-between mb-4">
+      <p id="results-count" class="text-xs text-surface-500">
+        {institutions.length} instituții disponibile
+      </p>
+      <div class="text-xs text-surface-400 hidden sm:block">
+        Click pe un card pentru detalii și download
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div id="logo-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+      {institutions.map(inst => {
+        const primarySvg = inst.assets.find(a => a.format === 'svg');
+        const primaryAsset = primarySvg || inst.assets[0];
+        return (
+          <LogoCard
+            id={inst.id}
+            name={inst.name}
+            shortName={inst.shortName}
+            abbreviation={inst.abbreviation}
+            category={inst.category}
+            logoPath={primaryAsset?.path || ''}
+            quality={inst.quality}
+            hasSvg={!!primarySvg}
+          />
+        );
+      })}
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="hidden py-20 text-center">
+      <svg class="w-16 h-16 mx-auto mb-4 text-surface-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <h3 class="text-sm font-semibold text-primary-900 mb-2">Niciun rezultat</h3>
+      <p class="text-surface-500 text-xs mb-3">Nu am găsit nicio instituție care să corespundă căutării tale.</p>
+      <a href="/solicita" class="btn-primary">Solicită adăugarea</a>
+    </div>
+  </section>
+
+  <!-- Institution Detail Modal -->
+  <div id="modal-overlay" class="modal-overlay hidden" aria-hidden="true">
+    <div id="modal-content" class="modal-content flex flex-col md:flex-row">
+      <!-- Left: Logo Preview -->
+      <div class="md:w-2/5 p-4 flex flex-col">
+        <div id="modal-preview" class="checkerboard flex-1 rounded flex items-center justify-center p-6 min-h-[200px]">
+          <img id="modal-logo" src="" alt="" class="max-w-full max-h-full object-contain" />
+        </div>
+        <div class="flex items-center justify-center gap-2 mt-3">
+          <label class="inline-flex items-center gap-2 text-xs text-surface-500 cursor-pointer select-none">
+            <input type="checkbox" id="modal-dark-toggle" class="rounded border-surface-300 text-primary-500 focus:ring-primary-500" />
+            Preview Fundal Închis
+          </label>
+        </div>
+      </div>
+
+      <!-- Right: Info & Actions -->
+      <div class="md:w-3/5 p-4 border-t md:border-t-0 md:border-l border-surface-200 overflow-y-auto">
+        <!-- Header -->
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h2 id="modal-name" class="text-xl font-bold text-primary-900"></h2>
+            <div class="flex items-center gap-2 mt-1">
+              <span id="modal-category" class="text-sm text-surface-500"></span>
+              <span id="modal-quality-badge" class="badge"></span>
+            </div>
+          </div>
+          <button id="modal-close" class="btn-ghost p-2 -mr-2 -mt-2" aria-label="Închide">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Description -->
+        <p id="modal-description" class="text-sm text-surface-600 mb-6"></p>
+
+        <!-- Download Buttons -->
+        <div id="modal-downloads" class="flex flex-wrap gap-2 mb-6">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Official Colors -->
+        <div id="modal-colors-section" class="mb-6">
+          <h3 class="text-sm font-semibold text-primary-900 mb-3">Paleta Oficială de Culori</h3>
+          <div id="modal-colors" class="flex flex-wrap gap-3">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div id="modal-resources-section" class="mb-6">
+          <h3 class="text-sm font-semibold text-primary-900 mb-3">Resurse &amp; Informații</h3>
+          <ul id="modal-resources" class="space-y-2">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+        <!-- CDN usage -->
+        <div id="modal-cdn-section" class="mb-4">
+          <h3 class="text-sm font-semibold text-primary-900 mb-2">Utilizare CDN</h3>
+          <div class="bg-surface-50 rounded-lg p-3 font-mono text-xs text-surface-600 break-all">
+            <code id="modal-cdn-url"></code>
+          </div>
+          <button id="modal-copy-cdn" class="mt-2 text-xs text-primary-500 hover:text-primary-700 font-medium">
+            Copiază URL-ul
+          </button>
+        </div>
+
+        <!-- Last Update -->
+        <div class="text-xs text-surface-400 flex items-center gap-1 mt-4 pt-4 border-t border-surface-100">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <span id="modal-updated">Ultima actualizare: -</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<!-- Inline JSON data for client-side search & modal -->
+<script define:vars={{ institutions: institutionIndex.institutions }}>
+  window.__IDENTITATE_DATA__ = institutions;
+</script>
+
+<script>
+  /**
+   * IdentitateRO - Client-side interactivity
+   * Search, filter, and modal logic
+   */
+
+  interface InstitutionData {
+    id: string;
+    name: string;
+    shortName?: string;
+    abbreviation?: string;
+    category: string;
+    description?: string;
+    colors: Array<{ name: string; hex: string; pantone?: string; cmyk?: string; rgb?: string }>;
+    assets: Array<{ variant: string; format: string; path: string; width?: number; height?: number }>;
+    resources: {
+      website?: string;
+      brandManual?: string;
+      fontPrimary?: string;
+      fontSecondary?: string;
+      usageNotes?: string;
+    };
+    updatedAt: string;
+    quality: string;
+  }
+
+  const data: InstitutionData[] = (window as any).__IDENTITATE_DATA__;
+
+  // DOM elements
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchHint = document.getElementById('search-hint')!;
+  const filterBar = document.getElementById('filter-bar')!;
+  const logoGrid = document.getElementById('logo-grid')!;
+  const emptyState = document.getElementById('empty-state')!;
+  const resultsCount = document.getElementById('results-count')!;
+  const modalOverlay = document.getElementById('modal-overlay')!;
+  const modalContent = document.getElementById('modal-content')!;
+
+  // State
+  let activeCategory = 'all';
+  let searchQuery = '';
+
+  // ═══ SEARCH & FILTER ═══
+
+  function filterAndSearch() {
+    const cards = logoGrid.querySelectorAll<HTMLElement>('[data-institution-id]');
+    let visibleCount = 0;
+    const query = searchQuery.toLowerCase().trim();
+
+    cards.forEach(card => {
+      const instId = card.dataset.institutionId!;
+      const inst = data.find(d => d.id === instId);
+      if (!inst) return;
+
+      const matchesCategory = activeCategory === 'all' || inst.category === activeCategory;
+      const matchesSearch = !query || [
+        inst.name,
+        inst.shortName || '',
+        inst.abbreviation || '',
+        inst.description || '',
+        inst.category,
+      ].some(field => field.toLowerCase().includes(query));
+
+      if (matchesCategory && matchesSearch) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Update UI
+    resultsCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'instituție disponibilă' : 'instituții disponibile'}`;
+    emptyState.classList.toggle('hidden', visibleCount > 0);
+    logoGrid.classList.toggle('hidden', visibleCount === 0);
+    searchHint.classList.toggle('hidden', !query);
+  }
+
+  // Search input
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    filterAndSearch();
+  });
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      searchQuery = '';
+      filterAndSearch();
+      searchInput.blur();
+    }
+  });
+
+  // Category filter buttons
+  filterBar.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('[data-category]') as HTMLElement;
+    if (!btn) return;
+
+    activeCategory = btn.dataset.category!;
+
+    // Update active states
+    filterBar.querySelectorAll('[data-category]').forEach(chip => {
+      if (chip === btn) {
+        chip.classList.remove('category-chip--inactive');
+        chip.classList.add('category-chip--active');
+      } else {
+        chip.classList.remove('category-chip--active');
+        chip.classList.add('category-chip--inactive');
+      }
+    });
+
+    filterAndSearch();
+  });
+
+  // ═══ MODAL ═══
+
+  const categoryLabels: Record<string, string> = {
+    'guvern': 'Guvern',
+    'minister': 'Minister',
+    'primarie': 'Primărie',
+    'consiliu-judetean': 'Consiliu Județean',
+    'prefectura': 'Prefectură',
+    'agentie': 'Agenție',
+    'autoritate': 'Autoritate',
+    'proiect-ue': 'Proiect UE',
+    'institutie-cultura': 'Instituție de Cultură',
+    'altele': 'Altele',
+  };
+
+  const variantLabels: Record<string, string> = {
+    'principal': 'Principal',
+    'vertical': 'Vertical',
+    'horizontal': 'Orizontal',
+    'simbol': 'Simbol',
+    'monocrom': 'Monocrom',
+    'monocrom-alb': 'Monocrom Alb',
+    'inversata': 'Inversată',
+  };
+
+  const qualityConfig: Record<string, { label: string; cls: string }> = {
+    'verified': { label: 'Verificat', cls: 'badge-verified' },
+    'community': { label: 'Comunitate', cls: 'badge-community' },
+    'draft': { label: 'Draft', cls: 'badge-draft' },
+  };
+
+  function openModal(instId: string) {
+    const inst = data.find(d => d.id === instId);
+    if (!inst) return;
+
+    // Populate modal
+    const modalLogo = document.getElementById('modal-logo') as HTMLImageElement;
+    const primarySvg = inst.assets.find(a => a.format === 'svg');
+    const primaryAsset = primarySvg || inst.assets[0];
+    modalLogo.src = primaryAsset?.path || '';
+    modalLogo.alt = `Logo ${inst.name}`;
+
+    document.getElementById('modal-name')!.textContent = inst.name;
+    document.getElementById('modal-category')!.textContent = categoryLabels[inst.category] || inst.category;
+
+    const qualityBadge = document.getElementById('modal-quality-badge')!;
+    const qc = qualityConfig[inst.quality] || qualityConfig['draft'];
+    qualityBadge.textContent = qc.label;
+    qualityBadge.className = `badge ${qc.cls}`;
+
+    document.getElementById('modal-description')!.textContent = inst.description || '';
+
+    // Downloads
+    const downloadsContainer = document.getElementById('modal-downloads')!;
+    downloadsContainer.innerHTML = inst.assets.map(asset => {
+      const label = `${variantLabels[asset.variant] || asset.variant} (${asset.format.toUpperCase()})`;
+      const isPrimary = asset.variant === 'principal' && asset.format === 'svg';
+      return `<a href="${asset.path}" download class="${isPrimary ? 'btn-primary' : 'btn-secondary'} text-xs">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        ${label}
+      </a>`;
+    }).join('');
+
+    // Colors
+    const colorsContainer = document.getElementById('modal-colors')!;
+    const colorsSection = document.getElementById('modal-colors-section')!;
+    if (inst.colors?.length) {
+      colorsSection.classList.remove('hidden');
+      colorsContainer.innerHTML = inst.colors.map(color => `
+        <button
+          class="group flex items-center gap-2 p-2 rounded-lg hover:bg-surface-50 transition-colors"
+          data-hex="${color.hex}"
+          title="Click pentru a copia ${color.hex}"
+          onclick="navigator.clipboard.writeText('${color.hex}').then(() => {
+            const el = this.querySelector('.copy-feedback');
+            el.textContent = 'Copiat!';
+            setTimeout(() => el.textContent = '${color.hex}', 1500);
+          })"
+        >
+          <div class="color-swatch shrink-0" style="background-color: ${color.hex}; ${color.hex === '#FFFFFF' ? 'border-color: #e2e8f0;' : ''}"></div>
+          <div class="text-left">
+            <div class="text-xs font-medium text-primary-900">${color.name}</div>
+            <div class="copy-feedback text-xs font-mono text-surface-500">${color.hex}</div>
+            ${color.pantone ? `<div class="text-xs text-surface-400">Pantone ${color.pantone}</div>` : ''}
+          </div>
+        </button>
+      `).join('');
+    } else {
+      colorsSection.classList.add('hidden');
+    }
+
+    // Resources
+    const resourcesContainer = document.getElementById('modal-resources')!;
+    const resourcesSection = document.getElementById('modal-resources-section')!;
+    const resources = [];
+
+    if (inst.resources.brandManual) {
+      resources.push(`<li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-surface-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <a href="${inst.resources.brandManual}" target="_blank" rel="noopener" class="text-sm text-primary-500 hover:underline">Manual de Identitate Vizuală (PDF)</a>
+      </li>`);
+    }
+
+    if (inst.resources.website) {
+      resources.push(`<li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-surface-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        </svg>
+        <a href="${inst.resources.website}" target="_blank" rel="noopener" class="text-sm text-primary-500 hover:underline">Website Oficial</a>
+      </li>`);
+    }
+
+    if (inst.resources.fontPrimary) {
+      resources.push(`<li class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-surface-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+        </svg>
+        <span class="text-sm text-surface-600">Font: <strong>${inst.resources.fontPrimary}</strong></span>
+      </li>`);
+    }
+
+    if (inst.resources.usageNotes) {
+      resources.push(`<li class="bg-amber-50 border border-amber-200 rounded-lg p-3 mt-2">
+        <p class="text-xs text-amber-800">${inst.resources.usageNotes}</p>
+      </li>`);
+    }
+
+    if (resources.length) {
+      resourcesSection.classList.remove('hidden');
+      resourcesContainer.innerHTML = resources.join('');
+    } else {
+      resourcesSection.classList.add('hidden');
+    }
+
+    // CDN URL
+    const cdnUrl = `https://identitate.ro${primaryAsset?.path || ''}`;
+    document.getElementById('modal-cdn-url')!.textContent = cdnUrl;
+    document.getElementById('modal-copy-cdn')!.onclick = () => {
+      navigator.clipboard.writeText(cdnUrl);
+    };
+
+    // Updated
+    document.getElementById('modal-updated')!.textContent = `Ultima actualizare: ${inst.updatedAt}`;
+
+    // Reset dark toggle
+    const darkToggle = document.getElementById('modal-dark-toggle') as HTMLInputElement;
+    darkToggle.checked = false;
+    document.getElementById('modal-preview')!.className = 'checkerboard flex-1 rounded flex items-center justify-center p-6 min-h-[200px]';
+
+    // Show
+    modalOverlay.classList.remove('hidden');
+    modalOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modalOverlay.classList.add('hidden');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Card clicks
+  logoGrid.addEventListener('click', (e) => {
+    const card = (e.target as HTMLElement).closest('[data-institution-id]') as HTMLElement;
+    if (!card) return;
+    openModal(card.dataset.institutionId!);
+  });
+
+  // Modal close
+  document.getElementById('modal-close')!.addEventListener('click', closeModal);
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modalOverlay.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+
+  // Dark mode toggle in modal
+  document.getElementById('modal-dark-toggle')!.addEventListener('change', (e) => {
+    const isDark = (e.target as HTMLInputElement).checked;
+    const preview = document.getElementById('modal-preview')!;
+    preview.className = `${isDark ? 'checkerboard-dark' : 'checkerboard'} flex-1 rounded flex items-center justify-center p-6 min-h-[200px]`;
+  });
+
+  // Keyboard shortcut: focus search with /
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== searchInput) {
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+</script>

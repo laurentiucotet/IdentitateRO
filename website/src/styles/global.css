@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+  html {
+    font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-surface-50 text-primary-900 antialiased;
+  }
+}
+
+@layer components {
+  /* Checkerboard pattern for logo preview (transparent indication) */
+  .checkerboard {
+    background-image:
+      linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+      linear-gradient(-45deg, #e2e8f0 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e2e8f0 75%),
+      linear-gradient(-45deg, transparent 75%, #e2e8f0 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+
+  .checkerboard-dark {
+    background-image:
+      linear-gradient(45deg, #334155 25%, transparent 25%),
+      linear-gradient(-45deg, #334155 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #334155 75%),
+      linear-gradient(-45deg, transparent 75%, #334155 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    background-color: #1e293b;
+  }
+
+  /* Logo card in grid */
+  .logo-card {
+    @apply bg-white rounded shadow-card border border-surface-200 
+           transition-all duration-200 cursor-pointer
+           hover:shadow-card-hover hover:border-primary-500/30 hover:-translate-y-0.5;
+  }
+
+  /* Category chip/filter */
+  .category-chip {
+    @apply px-3 py-1.5 rounded text-xs font-medium transition-all duration-150
+           border cursor-pointer select-none;
+  }
+  .category-chip--active {
+    @apply bg-primary-500 text-white border-primary-500;
+  }
+  .category-chip--inactive {
+    @apply bg-white text-surface-600 border-surface-200 
+           hover:border-primary-500/40 hover:text-primary-700;
+  }
+
+  /* Color swatch */
+  .color-swatch {
+    @apply w-8 h-8 rounded border-2 border-white shadow-md 
+           cursor-pointer transition-transform duration-150
+           hover:scale-110 active:scale-95;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 px-4 py-2 
+           rounded font-medium text-xs transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-primary-500 text-white 
+           hover:bg-primary-600 focus:ring-primary-500
+           active:bg-primary-700;
+  }
+  .btn-secondary {
+    @apply btn bg-surface-100 text-primary-900
+           hover:bg-surface-200 focus:ring-surface-400
+           active:bg-surface-300;
+  }
+  .btn-outline {
+    @apply btn bg-transparent border border-surface-200 text-primary-900
+           hover:bg-surface-50 hover:border-surface-300 focus:ring-surface-400;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-surface-500
+           hover:bg-surface-100 hover:text-primary-900;
+  }
+
+  /* Quality badges */
+  .badge {
+    @apply inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium;
+  }
+  .badge-verified {
+    @apply badge bg-green-100 text-green-800;
+  }
+  .badge-community {
+    @apply badge bg-blue-100 text-blue-800;
+  }
+  .badge-draft {
+    @apply badge bg-amber-100 text-amber-800;
+  }
+
+  /* Search input */
+  .search-input {
+    @apply w-full px-5 py-3 text-sm rounded border border-surface-200 
+           bg-white placeholder-surface-400 
+           focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10
+           transition-all duration-200;
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4
+           bg-black/50 backdrop-blur-sm;
+  }
+  .modal-content {
+    @apply bg-white rounded-modal shadow-modal w-full max-w-4xl max-h-[90vh] 
+           overflow-hidden animate-scale-in;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Despre — IdentitateRO" description="De ce am creat IdentitateRO și cum poți contribui la registrul vizual al instituțiilor publice din România.">
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Page Header -->
+    <header class="mb-8">
+      <h1 class="text-2xl sm:text-3xl font-bold text-primary-900 mb-3">Despre Proiect</h1>
+      <p class="text-sm text-surface-500">Un registru civic, open-source, pentru identitatea vizuală a administrației publice românești.</p>
+    </header>
+
+    <!-- Two columns -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <!-- Column 1: Why -->
+      <section>
+        <h2 class="text-base font-bold text-primary-900 mb-3 flex items-center gap-2">
+          <svg class="w-4 h-4 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          De ce am creat asta?
+        </h2>
+        <div class="prose prose-slate text-sm leading-relaxed space-y-3">
+          <p>
+            Identitatea vizuală a statului român este <strong>descentralizată și haotică</strong>.
+            Funcționarii folosesc imagini pixelate de pe Google Images. Designerii pierd ore căutând
+            vectori prin PDF-uri obscure. Aceeași instituție apare cu nuanțe diferite pe site-uri diferite.
+          </p>
+          <p>
+            Am vrut să creăm o <strong>singură sursă de adevăr</strong> — un loc unde oricine poate
+            găsi logo-ul oficial al unei instituții publice în format vectorial (SVG), cu culorile
+            corecte și linkurile către manualele de brand.
+          </p>
+          <p>
+            Nu e vorba de birocrație. E vorba de <strong>respect pentru identitatea vizuală</strong>
+            a instituțiilor care ne reprezintă.
+          </p>
+        </div>
+      </section>
+
+      <!-- Column 2: How to help -->
+      <section>
+        <h2 class="text-base font-bold text-primary-900 mb-3 flex items-center gap-2">
+          <svg class="w-4 h-4 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Cum poți ajuta?
+        </h2>
+        <div class="prose prose-slate text-sm leading-relaxed space-y-3">
+          <p>
+            Proiectul este <strong>complet open-source</strong> și găzduit pe GitHub. Oricine poate contribui:
+          </p>
+          <ul class="list-disc list-inside space-y-1.5 text-surface-600">
+            <li>Adaugă logo-uri noi ale instituțiilor publice</li>
+            <li>Corectează culorile sau datele existente</li>
+            <li>Raportează erori prin GitHub Issues</li>
+            <li>Distribuie proiectul în comunitățile relevante</li>
+            <li>Contribuie la codul sursă al website-ului</li>
+          </ul>
+          <div class="mt-4">
+            <a
+              href="https://github.com/laurentiucotet/IdentitateRO"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary inline-flex"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub Repository
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="bg-amber-50 border border-amber-200 rounded p-4">
+      <h3 class="font-semibold text-amber-900 mb-2 flex items-center gap-2">
+        <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4.5c-.77-.833-2.694-.833-3.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+        </svg>
+        Avertisment Legal
+      </h3>
+      <p class="text-sm text-amber-800 leading-relaxed">
+        Acest proiect <strong>nu este afiliat oficial</strong> Guvernului României sau vreunei instituții publice.
+        Logo-urile și identitățile vizuale sunt proprietatea instituțiilor respective și sunt considerate
+        informații de interes public. Scopul proiectului este facilitarea accesului la materiale vizuale oficiale
+        în formate corecte (vectoriale), nu modificarea sau deturnarea identității vizuale a statului.
+      </p>
+    </div>
+
+    <!-- Tech Stack -->
+    <section class="mt-8 pt-8 border-t border-surface-200">
+      <h2 class="text-base font-bold text-primary-900 mb-3">Stack Tehnic</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-white rounded border border-surface-200 p-3 text-center">
+          <div class="text-xl mb-1">🚀</div>
+          <div class="text-xs font-medium">Astro</div>
+          <div class="text-[10px] text-surface-400">Static Site</div>
+        </div>
+        <div class="bg-white rounded border border-surface-200 p-3 text-center">
+          <div class="text-xl mb-1">🎨</div>
+          <div class="text-xs font-medium">Tailwind CSS</div>
+          <div class="text-[10px] text-surface-400">Styling</div>
+        </div>
+        <div class="bg-white rounded border border-surface-200 p-3 text-center">
+          <div class="text-xl mb-1">📦</div>
+          <div class="text-xs font-medium">GitHub</div>
+          <div class="text-[10px] text-surface-400">Data Backend</div>
+        </div>
+        <div class="bg-white rounded border border-surface-200 p-3 text-center">
+          <div class="text-xl mb-1">⚡</div>
+          <div class="text-xs font-medium">Vercel</div>
+          <div class="text-[10px] text-surface-400">CDN & Hosting</div>
+        </div>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

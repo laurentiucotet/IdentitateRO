@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-02-08T00:00:00.000Z",
+  "total": 5,
+  "stats": {
+    "byCategory": {
+      "guvern": 1,
+      "primarie": 1,
+      "proiect-ue": 1,
+      "agentie": 1,
+      "minister": 1
+    },
+    "withBrandManual": 2,
+    "withSvg": 5
+  },
+  "institutions": [
+    {
+      "id": "anaf",
+      "name": "Agenția Națională de Administrare Fiscală",
+      "shortName": "ANAF",
+      "abbreviation": "ANAF",
+      "category": "agentie",
+      "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
+      "colors": [
+        { "name": "Albastru ANAF", "hex": "#1B3A6B" },
+        { "name": "Roșu Accent", "hex": "#C8102E", "pantone": "186 C" },
+        { "name": "Alb", "hex": "#FFFFFF" }
+      ],
+      "assets": [
+        { "variant": "principal", "format": "svg", "path": "/logos/anaf/anaf.svg" },
+        { "variant": "principal", "format": "png", "path": "/logos/anaf/anaf.png", "width": 512, "height": 512 }
+      ],
+      "resources": { "website": "https://www.anaf.ro" },
+      "updatedAt": "2026-02-08",
+      "source": "Website oficial",
+      "quality": "draft"
+    },
+    {
+      "id": "guvernul-romaniei",
+      "name": "Guvernul României",
+      "shortName": "Guvernul",
+      "category": "guvern",
+      "description": "Organul executiv al statului român, condus de Primul Ministru.",
+      "colors": [
+        { "name": "Albastru Oficial", "hex": "#002F6C", "pantone": "648 C", "cmyk": "100, 65, 0, 43" },
+        { "name": "Auriu", "hex": "#C8A951", "pantone": "4015 C" },
+        { "name": "Alb", "hex": "#FFFFFF" }
+      ],
+      "assets": [
+        { "variant": "principal", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei.svg" },
+        { "variant": "monocrom", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg" },
+        { "variant": "monocrom-alb", "format": "svg", "path": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg" },
+        { "variant": "principal", "format": "png", "path": "/logos/guvernul-romaniei/guvernul-romaniei.png", "width": 512, "height": 512 }
+      ],
+      "resources": {
+        "website": "https://gov.ro",
+        "brandManual": "https://gov.ro/manual-identitate",
+        "fontPrimary": "Source Sans Pro"
+      },
+      "updatedAt": "2026-02-08",
+      "source": "Website oficial gov.ro",
+      "quality": "community"
+    },
+    {
+      "id": "ministerul-educatiei",
+      "name": "Ministerul Educației",
+      "shortName": "Min. Educației",
+      "abbreviation": "ME",
+      "category": "minister",
+      "description": "Ministerul responsabil cu politicile educaționale și sistemul de învățământ din România.",
+      "colors": [
+        { "name": "Albastru Educație", "hex": "#1A3C6E" },
+        { "name": "Auriu", "hex": "#D4A843" },
+        { "name": "Alb", "hex": "#FFFFFF" }
+      ],
+      "assets": [
+        { "variant": "principal", "format": "svg", "path": "/logos/ministerul-educatiei/ministerul-educatiei.svg" },
+        { "variant": "principal", "format": "png", "path": "/logos/ministerul-educatiei/ministerul-educatiei.png", "width": 512, "height": 512 }
+      ],
+      "resources": {
+        "website": "https://www.edu.ro",
+        "fontPrimary": "Times New Roman"
+      },
+      "updatedAt": "2026-02-08",
+      "source": "Website oficial",
+      "quality": "draft"
+    },
+    {
+      "id": "pnrr",
+      "name": "Planul Național de Redresare și Reziliență",
+      "shortName": "PNRR",
+      "abbreviation": "PNRR",
+      "category": "proiect-ue",
+      "description": "Programul de reforme și investiții al României, finanțat prin Mecanismul de Redresare și Reziliență al UE.",
+      "colors": [
+        { "name": "Albastru PNRR", "hex": "#003399", "pantone": "Reflex Blue C" },
+        { "name": "Galben UE", "hex": "#FFCC00", "pantone": "116 C" },
+        { "name": "Verde PNRR", "hex": "#429E3E" }
+      ],
+      "assets": [
+        { "variant": "principal", "format": "svg", "path": "/logos/pnrr/pnrr.svg" },
+        { "variant": "monocrom", "format": "svg", "path": "/logos/pnrr/pnrr-mono.svg" },
+        { "variant": "principal", "format": "png", "path": "/logos/pnrr/pnrr.png", "width": 800, "height": 400 }
+      ],
+      "resources": {
+        "website": "https://www.pnrr.ro",
+        "brandManual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/",
+        "fontPrimary": "Arial",
+        "usageNotes": "Obligatoriu pentru toate materialele finanțate din PNRR. Consultați ghidul de identitate vizuală."
+      },
+      "updatedAt": "2026-02-08",
+      "source": "Ministerul Fondurilor Europene",
+      "quality": "community"
+    },
+    {
+      "id": "primaria-cluj-napoca",
+      "name": "Primăria Municipiului Cluj-Napoca",
+      "shortName": "Primăria Cluj-Napoca",
+      "abbreviation": "PMCN",
+      "category": "primarie",
+      "region": "Cluj",
+      "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
+      "colors": [
+        { "name": "Albastru Cluj", "hex": "#003DA5", "pantone": "286 C" },
+        { "name": "Alb", "hex": "#FFFFFF" },
+        { "name": "Gri Secundar", "hex": "#6C757D" }
+      ],
+      "assets": [
+        { "variant": "principal", "format": "svg", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg" },
+        { "variant": "monocrom-alb", "format": "svg", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg" },
+        { "variant": "principal", "format": "png", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png", "width": 512, "height": 512 }
+      ],
+      "resources": {
+        "website": "https://pfrcluj.ro",
+        "fontPrimary": "Roboto"
+      },
+      "updatedAt": "2026-02-08",
+      "source": "Website oficial",
+      "quality": "community"
+    }
+  ]
+}

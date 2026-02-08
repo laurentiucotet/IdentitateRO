@@ -1,0 +1,24 @@
+{
+  "id": "ministerul-educatiei",
+  "name": "Ministerul Educației",
+  "shortName": "Min. Educației",
+  "abbreviation": "ME",
+  "category": "minister",
+  "description": "Ministerul responsabil cu politicile educaționale și sistemul de învățământ din România.",
+  "colors": [
+    { "name": "Albastru Educație", "hex": "#1A3C6E" },
+    { "name": "Auriu", "hex": "#D4A843" },
+    { "name": "Alb", "hex": "#FFFFFF" }
+  ],
+  "assets": [
+    { "variant": "principal", "format": "svg", "path": "/logos/ministerul-educatiei/ministerul-educatiei.svg" },
+    { "variant": "principal", "format": "png", "path": "/logos/ministerul-educatiei/ministerul-educatiei.png", "width": 512, "height": 512 }
+  ],
+  "resources": {
+    "website": "https://www.edu.ro",
+    "fontPrimary": "Times New Roman"
+  },
+  "updatedAt": "2026-02-08",
+  "source": "Website oficial",
+  "quality": "draft"
+}

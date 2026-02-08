@@ -1,0 +1,62 @@
+---
+// Footer component
+---
+
+<footer class="bg-white border-t border-surface-200 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-1.5 mb-3">
+          <div class="w-5 h-5 bg-primary-500 rounded flex items-center justify-center">
+            <span class="text-white font-bold text-[9px]">id</span>
+          </div>
+          <span class="text-sm font-bold text-primary-900">
+            Identitate<span class="text-primary-500">.RO</span>
+          </span>
+        </div>
+        <p class="text-xs text-surface-500 leading-relaxed">
+          Registru digital open-source pentru identitatea vizuală a instituțiilor publice din România.
+          Un proiect civic, community-driven.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h3 class="text-xs font-semibold text-primary-900 mb-2">Navigare</h3>
+        <ul class="space-y-1.5 text-xs">
+          <li><a href="/" class="text-surface-500 hover:text-primary-500 transition-colors">Acasă</a></li>
+          <li><a href="/despre" class="text-surface-500 hover:text-primary-500 transition-colors">Despre Proiect</a></li>
+          <li><a href="/solicita" class="text-surface-500 hover:text-primary-500 transition-colors">Solicită un Logo</a></li>
+          <li>
+            <a href="https://github.com/laurentiucotet/IdentitateRO" target="_blank" rel="noopener" class="text-surface-500 hover:text-primary-500 transition-colors">
+              GitHub Repository
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="text-xs font-semibold text-primary-900 mb-2">Informații Legale</h3>
+        <div class="bg-amber-50 border border-amber-200 rounded p-2.5">
+          <p class="text-[10px] text-amber-800 leading-relaxed">
+            Acest proiect nu este afiliat oficial Guvernului României sau vreunei instituții publice.
+            Logo-urile și identitățile vizuale sunt proprietatea instituțiilor respective.
+            Informațiile sunt de interes public.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 pt-6 border-t border-surface-200 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p class="text-[10px] text-surface-400">
+        &copy; 2026 IdentitateRO Contributors. Licență MIT.
+      </p>
+      <p class="text-[10px] text-surface-400">
+        Construit cu <a href="https://astro.build" target="_blank" class="underline hover:text-primary-500">Astro</a> &middot;
+        Găzduit pe <a href="https://vercel.com" target="_blank" class="underline hover:text-primary-500">Vercel</a>
+      </p>
+    </div>
+  </div>
+</footer>

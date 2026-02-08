@@ -1,0 +1,47 @@
+---
+// Header component - Navbar-ul aplicației
+---
+
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-surface-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex items-center justify-between h-12">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-1.5 group">
+        <div class="w-6 h-6 bg-primary-500 rounded flex items-center justify-center">
+          <span class="text-white font-bold text-[10px]">id</span>
+        </div>
+        <span class="text-sm font-bold text-primary-900">
+          Identitate<span class="text-primary-500">.RO</span>
+        </span>
+      </a>
+
+      <!-- Navigation Links -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="/" class="text-xs font-medium text-surface-600 hover:text-primary-900 transition-colors">
+          Acasă
+        </a>
+        <a href="/despre" class="text-xs font-medium text-surface-600 hover:text-primary-900 transition-colors">
+          Despre
+        </a>
+        <a
+          href="https://github.com/AdrianCDS/IdentitateRO"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-medium text-surface-600 hover:text-primary-900 transition-colors inline-flex items-center gap-1"
+        >
+          GitHub
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+
+      <!-- CTA Button -->
+      <div class="flex items-center gap-3">
+        <a href="/solicita" class="btn-outline text-xs sm:text-sm">
+          Solicită Logo
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>

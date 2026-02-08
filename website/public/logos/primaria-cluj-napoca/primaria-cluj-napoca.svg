@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="8" fill="#F8FAFC"/>
+  <rect x="120" y="100" width="160" height="120" rx="12" fill="#003DA5"/>
+  <text x="200" y="170" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" font-weight="700" fill="white">CJ</text>
+  <text x="200" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="#003DA5">Primăria</text>
+  <text x="200" y="310" text-anchor="middle" font-family="Inter, sans-serif" font-size="18" fill="#003DA5">Cluj-Napoca</text>
+  <text x="200" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">PLACEHOLDER — Înlocuiți cu logo-ul oficial</text>
+</svg>

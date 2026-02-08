@@ -1,0 +1,26 @@
+{
+  "id": "primaria-cluj-napoca",
+  "name": "Primăria Municipiului Cluj-Napoca",
+  "shortName": "Primăria Cluj-Napoca",
+  "abbreviation": "PMCN",
+  "category": "primarie",
+  "region": "Cluj",
+  "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
+  "colors": [
+    { "name": "Albastru Cluj", "hex": "#003DA5", "pantone": "286 C" },
+    { "name": "Alb", "hex": "#FFFFFF" },
+    { "name": "Gri Secundar", "hex": "#6C757D" }
+  ],
+  "assets": [
+    { "variant": "principal", "format": "svg", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg" },
+    { "variant": "monocrom-alb", "format": "svg", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg" },
+    { "variant": "principal", "format": "png", "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png", "width": 512, "height": 512 }
+  ],
+  "resources": {
+    "website": "https://pfrcluj.ro",
+    "fontPrimary": "Roboto"
+  },
+  "updatedAt": "2026-02-08",
+  "source": "Website oficial",
+  "quality": "community"
+}

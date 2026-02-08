@@ -1,0 +1,27 @@
+{
+  "id": "pnrr",
+  "name": "Planul Național de Redresare și Reziliență",
+  "shortName": "PNRR",
+  "abbreviation": "PNRR",
+  "category": "proiect-ue",
+  "description": "Programul de reforme și investiții al României, finanțat prin Mecanismul de Redresare și Reziliență al UE.",
+  "colors": [
+    { "name": "Albastru PNRR", "hex": "#003399", "pantone": "Reflex Blue C" },
+    { "name": "Galben UE", "hex": "#FFCC00", "pantone": "116 C" },
+    { "name": "Verde PNRR", "hex": "#429E3E" }
+  ],
+  "assets": [
+    { "variant": "principal", "format": "svg", "path": "/logos/pnrr/pnrr.svg" },
+    { "variant": "monocrom", "format": "svg", "path": "/logos/pnrr/pnrr-mono.svg" },
+    { "variant": "principal", "format": "png", "path": "/logos/pnrr/pnrr.png", "width": 800, "height": 400 }
+  ],
+  "resources": {
+    "website": "https://www.pnrr.ro",
+    "brandManual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/",
+    "fontPrimary": "Arial",
+    "usageNotes": "Obligatoriu pentru toate materialele finanțate din PNRR. Consultați ghidul de identitate vizuală."
+  },
+  "updatedAt": "2026-02-08",
+  "source": "Ministerul Fondurilor Europene",
+  "quality": "community"
+}

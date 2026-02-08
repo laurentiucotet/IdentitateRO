@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="8" fill="#F8FAFC"/>
+  <rect x="100" y="80" width="200" height="140" rx="16" fill="#1B3A6B"/>
+  <text x="200" y="165" text-anchor="middle" font-family="Inter, sans-serif" font-size="56" font-weight="900" fill="white">ANAF</text>
+  <line x1="150" y1="185" x2="250" y2="185" stroke="#C8102E" stroke-width="4"/>
+  <text x="200" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" fill="#1B3A6B">Agenția Națională de</text>
+  <text x="200" y="305" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" fill="#1B3A6B">Administrare Fiscală</text>
+  <text x="200" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">PLACEHOLDER — Înlocuiți cu logo-ul oficial</text>
+</svg>
