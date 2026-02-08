@@ -29,10 +29,10 @@ const categoryLabels: Record<string, string> = {
 const displayName = shortName || abbreviation || name;
 ---
 
-<button
-  class="logo-card w-full text-left group"
-  data-institution-id={id}
-  aria-label={`Deschide detalii pentru ${name}`}
+<a
+  href={`/institution/${id}`}
+  class="logo-card w-full text-left group block"
+  aria-label={`Vezi detalii pentru ${name}`}
 >
   <!-- Logo Preview Area -->
   <div class="checkerboard aspect-square rounded-t flex items-center justify-center p-6 overflow-hidden">
@@ -68,4 +68,4 @@ const displayName = shortName || abbreviation || name;
       </div>
     </div>
   </div>
-</button>
+</a>
