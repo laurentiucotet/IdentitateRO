@@ -191,6 +191,8 @@ const description = `Logo-uri și identitate vizuală pentru ${institution.name}
 
     copyButtons.forEach(button => {
       button.addEventListener('click', async (e) => {
+        e.stopPropagation(); // Prevent event bubbling to parent <a> element
+        
         const btn = e.currentTarget as HTMLButtonElement;
         const assetPath = btn.dataset.assetPath!;
         const assetFormat = btn.dataset.assetFormat!;
