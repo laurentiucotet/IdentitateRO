@@ -1,5 +1,4 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "rootDirectory": "website"
+  "buildCommand": "cd website && npm run build",
+  "outputDirectory": "website/dist"
 }
