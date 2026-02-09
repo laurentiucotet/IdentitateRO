@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IdentitateRO Web Component - Vanilla HTML</title>
+  
+  <!-- Load the Web Component -->
+  <script src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/identity-loader.js"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    h1 {
+      color: #1a202c;
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      color: #718096;
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+    
+    .section {
+      margin-bottom: 48px;
+    }
+    
+    .section h2 {
+      color: #2d3748;
+      margin-bottom: 20px;
+      font-size: 24px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+    
+    .logo-card {
+      padding: 24px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-card:hover {
+      border-color: #667eea;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .logo-card identity-icon {
+      display: block;
+      margin: 0 auto 16px;
+    }
+    
+    .logo-card .name {
+      font-size: 14px;
+      color: #4a5568;
+      font-weight: 500;
+    }
+    
+    /* Size variations */
+    .size-small { width: 32px; height: 32px; }
+    .size-medium { width: 64px; height: 64px; }
+    .size-large { width: 96px; height: 96px; }
+    
+    /* Color variations */
+    .color-blue { color: #003399; }
+    .color-red { color: #e53e3e; }
+    .color-green { color: #38a169; }
+    .color-purple { color: #805ad5; }
+    
+    /* Interactive effects */
+    .logo-interactive {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .logo-interactive:hover {
+      color: #ffcc00;
+      filter: drop-shadow(0 0 8px rgba(255, 204, 0, 0.6));
+      transform: scale(1.1);
+    }
+    
+    .dark-bg {
+      background: #1a202c;
+      padding: 24px;
+      border-radius: 8px;
+      margin-top: 24px;
+    }
+    
+    .dark-bg identity-icon {
+      color: white;
+    }
+    
+    code {
+      background: #f7fafc;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      color: #e53e3e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🇷🇴 IdentitateRO Web Component</h1>
+    <p class="subtitle">Framework-agnostic logo loader pentru instituții publice românești</p>
+    
+    <!-- Section 1: Basic Usage -->
+    <section class="section">
+      <h2>1. Utilizare Simplă</h2>
+      <p>Logo-uri încărcate automat din CDN cu caching inteligent:</p>
+      <div class="grid">
+        <div class="logo-card">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg"
+            class="size-large">
+          </identity-icon>
+          <div class="name">ANAF</div>
+        </div>
+        
+        <div class="logo-card">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei.svg"
+            class="size-large">
+          </identity-icon>
+          <div class="name">Guvernul României</div>
+        </div>
+        
+        <div class="logo-card">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/ministerul-educatiei/ministerul-educatiei.svg"
+            class="size-large">
+          </identity-icon>
+          <div class="name">Min. Educației</div>
+        </div>
+        
+        <div class="logo-card">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/pnrr/pnrr.svg"
+            class="size-large">
+          </identity-icon>
+          <div class="name">PNRR</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 2: Size Variations -->
+    <section class="section">
+      <h2>2. Dimensiuni Diferite</h2>
+      <p>Controlează dimensiunea cu CSS <code>width</code> și <code>height</code>:</p>
+      <div style="display: flex; align-items: center; gap: 32px; margin-top: 24px;">
+        <div style="text-align: center;">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/simbol-anaf.svg"
+            class="size-small">
+          </identity-icon>
+          <div style="font-size: 12px; margin-top: 8px; color: #718096;">32px</div>
+        </div>
+        
+        <div style="text-align: center;">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/simbol-anaf.svg"
+            class="size-medium">
+          </identity-icon>
+          <div style="font-size: 12px; margin-top: 8px; color: #718096;">64px</div>
+        </div>
+        
+        <div style="text-align: center;">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/simbol-anaf.svg"
+            class="size-large">
+          </identity-icon>
+          <div style="font-size: 12px; margin-top: 8px; color: #718096;">96px</div>
+        </div>
+        
+        <div style="text-align: center;">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/simbol-anaf.svg"
+            style="width: 128px; height: 128px;">
+          </identity-icon>
+          <div style="font-size: 12px; margin-top: 8px; color: #718096;">128px</div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 3: Color Control -->
+    <section class="section">
+      <h2>3. Control Culoare (CSS)</h2>
+      <p>Folosește proprietatea <code>color</code> pentru a schimba culoarea SVG-urilor:</p>
+      <div style="display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap;">
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+          class="size-large color-blue">
+        </identity-icon>
+        
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+          class="size-large color-red">
+        </identity-icon>
+        
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+          class="size-large color-green">
+        </identity-icon>
+        
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+          class="size-large color-purple">
+        </identity-icon>
+      </div>
+    </section>
+    
+    <!-- Section 4: Interactive Effects -->
+    <section class="section">
+      <h2>4. Efecte Interactive</h2>
+      <p>Adaugă tranziții CSS și efecte la hover:</p>
+      <div style="display: flex; gap: 32px; margin-top: 24px;">
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei.svg"
+          class="size-large logo-interactive color-blue">
+        </identity-icon>
+        
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/pnrr/pnrr-mono.svg"
+          class="size-large logo-interactive color-purple">
+        </identity-icon>
+      </div>
+    </section>
+    
+    <!-- Section 5: Dark Mode -->
+    <section class="section">
+      <h2>5. Dark Mode Support</h2>
+      <p>Logo-urile funcționează perfect pe fundal întunecat:</p>
+      <div class="dark-bg">
+        <div style="display: flex; gap: 32px; flex-wrap: wrap;">
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei-alb.svg"
+            class="size-large">
+          </identity-icon>
+          
+          <identity-icon 
+            src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+            class="size-large">
+          </identity-icon>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Section 6: Size Attribute -->
+    <section class="section">
+      <h2>6. Atribut Size (Shortcut)</h2>
+      <p>Folosește atributul <code>size</code> pentru a seta rapid dimensiunea:</p>
+      <div style="display: flex; gap: 32px; margin-top: 24px; align-items: center;">
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/simbol-anaf.svg"
+          size="48px">
+        </identity-icon>
+        
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/simbol-anaf.svg"
+          size="80px">
+        </identity-icon>
+        
+        <identity-icon 
+          src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/simbol-anaf.svg"
+          size="120px">
+        </identity-icon>
+      </div>
+    </section>
+    
+    <section class="section">
+      <h2>📚 Documentație</h2>
+      <p>Pentru mai multe informații, vizitează:</p>
+      <ul style="margin-top: 16px; line-height: 1.8; color: #4a5568;">
+        <li><a href="https://identitate.ro" style="color: #667eea;">identitate.ro</a> — Website oficial</li>
+        <li><a href="https://www.npmjs.com/package/@identitate-ro/logos" style="color: #667eea;">npm package</a> — Documentație completă</li>
+        <li><a href="https://github.com/laurentiucotet/IdentitateRO" style="color: #667eea;">GitHub</a> — Cod sursă</li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

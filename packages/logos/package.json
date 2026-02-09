@@ -23,10 +23,16 @@
   "files": [
     "logos/**/*",
     "index.json",
+    "identity-loader.js",
     "README.md",
     "LICENSE"
   ],
   "main": "index.json",
+  "exports": {
+    ".": "./index.json",
+    "./loader": "./identity-loader.js",
+    "./logos/*": "./logos/*"
+  },
   "type": "module",
   "publishConfig": {
     "access": "public"

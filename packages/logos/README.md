@@ -61,6 +61,238 @@ const logoPath = join(
 const logoContent = readFileSync(logoPath, 'utf8');
 ```
 
+### 🎯 Web Component (Recomandat pentru Aplicații Moderne)
+
+**Metoda profesională, framework-agnostic** — funcționează cu React, Vue, Angular, vanilla HTML, WordPress, etc.
+
+#### Cum funcționează?
+
+Web Component-ul `<identity-icon>` este un element HTML custom care:
+- ✅ Descarcă automat SVG-ul din CDN
+- ✅ Include caching inteligent (descarcă o singură dată)
+- ✅ Permite stilizare CSS (`color`, `width`, `height`, etc.)
+- ✅ Gestionează automat erorile și loading states
+- ✅ Este complet agnostic de framework
+
+#### Instalare și Setup
+
+**Pas 1: Instalează pachetul**
+
+```bash
+npm install @identitate-ro/logos
+```
+
+**Pas 2: Importă loader-ul** (o singură dată în aplicație)
+
+```javascript
+// În index.js, main.js, App.js, etc.
+import '@identitate-ro/logos/loader';
+```
+
+Sau în HTML:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/identity-loader.js"></script>
+```
+
+**Pas 3: Folosește tag-ul `<identity-icon>`**
+
+```html
+<identity-icon 
+  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg">
+</identity-icon>
+```
+
+#### Exemple Complete
+
+##### Vanilla HTML
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logo Instituții</title>
+  <script src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/identity-loader.js"></script>
+  <style>
+    .logo-guvern {
+      width: 64px;
+      height: 64px;
+      color: #003399; /* Albastru */
+      transition: color 0.3s;
+    }
+    
+    .logo-guvern:hover {
+      color: #ffcc00; /* Galben la hover */
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+    }
+  </style>
+</head>
+<body>
+  <identity-icon 
+    src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei.svg" 
+    class="logo-guvern">
+  </identity-icon>
+</body>
+</html>
+```
+
+##### React
+
+```jsx
+// App.js sau index.js
+import '@identitate-ro/logos/loader';
+
+function InstitutionLogo({ slug }) {
+  return (
+    <identity-icon 
+      src={`https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/${slug}/${slug}.svg`}
+      className="w-16 h-16 text-blue-600"
+    />
+  );
+}
+
+// Folosire
+<InstitutionLogo slug="anaf" />
+```
+
+##### Vue
+
+```vue
+<script setup>
+// În main.js sau App.vue
+import '@identitate-ro/logos/loader';
+
+const props = defineProps(['institution']);
+</script>
+
+<template>
+  <identity-icon 
+    :src="`https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/${institution}/${institution}.svg`"
+    class="logo-icon"
+  />
+</template>
+
+<style scoped>
+.logo-icon {
+  width: 64px;
+  height: 64px;
+  color: currentColor;
+}
+</style>
+```
+
+##### Angular
+
+```typescript
+// app.component.ts
+import '@identitate-ro/logos/loader';
+
+@Component({
+  selector: 'app-institution-logo',
+  template: `
+    <identity-icon 
+      [attr.src]="logoUrl"
+      class="institution-logo">
+    </identity-icon>
+  `,
+  styles: [`
+    .institution-logo {
+      width: 64px;
+      height: 64px;
+      color: #003399;
+    }
+  `]
+})
+export class InstitutionLogoComponent {
+  @Input() slug!: string;
+  
+  get logoUrl() {
+    return `https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/${this.slug}/${this.slug}.svg`;
+  }
+}
+```
+
+##### WordPress
+
+```php
+<!-- functions.php -->
+<?php
+function enqueue_identity_loader() {
+    wp_enqueue_script(
+        'identity-loader',
+        'https://cdn.jsdelivr.net/npm/@identitate-ro/logos/identity-loader.js',
+        array(),
+        '1.0.0',
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_identity_loader');
+?>
+
+<!-- În template (page.php, single.php, etc.) -->
+<identity-icon 
+  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
+  style="width: 100px; height: 100px; color: #2c5aa0;">
+</identity-icon>
+```
+
+#### Stilizare CSS
+
+Web Component-ul respectă complet CSS-ul:
+
+```css
+/* Dimensiuni */
+identity-icon {
+  width: 64px;
+  height: 64px;
+}
+
+/* Culoare (fill: currentColor activat automat) */
+identity-icon {
+  color: #003399;
+}
+
+identity-icon:hover {
+  color: #ffcc00;
+}
+
+/* Efecte */
+identity-icon {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  identity-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+```
+
+#### Atribute Suportate
+
+- `src` **(obligatoriu)** — URL-ul către logo-ul SVG
+- `size` *(opțional)* — Shortcut pentru width/height (ex: `size="64px"`)
+
+```html
+<!-- Cu size attribute -->
+<identity-icon 
+  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg"
+  size="128px">
+</identity-icon>
+```
+
+#### Avantaje Web Component
+
+1. **Semantic HTML**: `<identity-icon>` comunică clar ce face
+2. **Caching inteligent**: Descarcă fiecare SVG o singură dată, chiar dacă îl folosești în 100 de locuri
+3. **Stilizare ușoară**: Folosește CSS normal (`color`, `width`, `height`, etc.)
+4. **Framework-agnostic**: Funcționează oriunde rulează JavaScript
+5. **Loading states**: Gestionează automat stările de loading și eroare
+6. **Security**: Sanitizare automată a SVG-urilor (remove script tags)
+
 ### Metadata
 
 Pachetul include `index.json` cu metadata despre toate logo-urile:
