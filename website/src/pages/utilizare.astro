@@ -1,0 +1,342 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Header -->
+    <div class="mb-8">
+      <a href="/" class="inline-flex items-center gap-2 text-sm text-primary-600 hover:text-primary-700 mb-4">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Înapoi la pagina principală
+      </a>
+      
+      <h1 class="text-3xl font-bold text-primary-900 mb-3">
+        Cum să folosești <span class="text-primary-500">@identitate-ro/logos</span>
+      </h1>
+      <p class="text-surface-600">
+        Ghid complet de utilizare pentru pachetul npm și CDN
+      </p>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="bg-surface-50 border border-surface-200 rounded-lg p-6 mb-8">
+      <h2 class="text-sm font-semibold text-primary-900 mb-3">Cuprins</h2>
+      <nav class="space-y-1 text-sm">
+        <a href="#instalare" class="block text-primary-600 hover:text-primary-700">1. Instalare</a>
+        <a href="#cdn" class="block text-primary-600 hover:text-primary-700">2. Utilizare prin CDN (Recomandat)</a>
+        <a href="#npm" class="block text-primary-600 hover:text-primary-700">3. Utilizare prin NPM</a>
+        <a href="#exemple" class="block text-primary-600 hover:text-primary-700">4. Exemple de Cod</a>
+        <a href="#best-practices" class="block text-primary-600 hover:text-primary-700">5. Best Practices</a>
+        <a href="#metadata" class="block text-primary-600 hover:text-primary-700">6. Metadata și Căutare</a>
+      </nav>
+    </div>
+
+    <!-- Content Sections -->
+    <div class="prose prose-sm max-w-none space-y-12">
+      
+      <!-- 1. Instalare -->
+      <section id="instalare">
+        <h2 class="text-2xl font-bold text-primary-900 mb-4">1. Instalare</h2>
+        
+        <p class="text-surface-600 mb-4">
+          Instalează pachetul folosind npm sau yarn:
+        </p>
+
+        <div class="bg-surface-900 rounded-lg p-4 mb-4 overflow-x-auto">
+          <code class="text-green-400 font-mono text-sm">npm install</code>
+          <code class="text-white font-mono text-sm"> @identitate-ro/logos</code>
+        </div>
+
+        <p class="text-sm text-surface-500">sau</p>
+
+        <div class="bg-surface-900 rounded-lg p-4 mb-4 overflow-x-auto">
+          <code class="text-green-400 font-mono text-sm">yarn add</code>
+          <code class="text-white font-mono text-sm"> @identitate-ro/logos</code>
+        </div>
+      </section>
+
+      <!-- 2. CDN -->
+      <section id="cdn">
+        <h2 class="text-2xl font-bold text-primary-900 mb-4">2. Utilizare prin CDN (Recomandat)</h2>
+        
+        <p class="text-surface-600 mb-4">
+          Logo-urile sunt disponibile automat prin CDN-uri gratuite. Aceasta este metoda cea mai simplă și rapidă.
+        </p>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3">jsDelivr (CDN Primară)</h3>
+        
+        <div class="bg-surface-50 border border-surface-200 rounded-lg p-4 mb-4">
+          <p class="text-sm text-surface-700 mb-3">Pattern-ul URL:</p>
+          <code class="text-xs bg-surface-900 text-green-400 px-3 py-2 rounded block font-mono overflow-x-auto">
+            https://cdn.jsdelivr.net/npm/@identitate-ro/logos@{version}/logos/{slug}/{filename}.svg
+          </code>
+        </div>
+
+        <h4 class="font-semibold text-primary-900 mb-2">Exemple:</h4>
+        
+        <div class="space-y-3">
+          <div>
+            <p class="text-sm text-surface-600 mb-2">Versiune specifică (recomandată pentru producție):</p>
+            <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-xs"><code>&lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg" alt="ANAF"&gt;</code></pre>
+          </div>
+
+          <div>
+            <p class="text-sm text-surface-600 mb-2">Versiunea latest (se actualizează automat):</p>
+            <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-xs"><code>&lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei.svg" alt="Guvernul României"&gt;</code></pre>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3 mt-6">unpkg (CDN Fallback)</h3>
+        
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-xs mb-4"><code>&lt;img src="https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg" alt="PNRR"&gt;</code></pre>
+      </section>
+
+      <!-- 3. NPM -->
+      <section id="npm">
+        <h2 class="text-2xl font-bold text-primary-900 mb-4">3. Utilizare prin NPM</h2>
+        
+        <p class="text-surface-600 mb-4">
+          După instalarea pachetului, logo-urile sunt disponibile în directorul <code class="text-xs bg-surface-100 px-2 py-0.5 rounded">node_modules/@identitate-ro/logos/logos/</code>
+        </p>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3">În React/Next.js</h3>
+        
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import logoPath from '@identitate-ro/logos/logos/anaf/anaf.svg';
+
+function MyComponent() {
+  return &lt;img src={logoPath} alt="ANAF" /&gt;;
+}</code></pre>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3">În Vue</h3>
+        
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>&lt;template&gt;
+  &lt;img :src="logoUrl" :alt="institution" loading="lazy" /&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+import { computed } from 'vue';
+
+const props = defineProps(['institution']);
+
+const logoUrl = computed(() =&gt; 
+  \`https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/\${props.institution}/\${props.institution}.svg\`
+);
+&lt;/script&gt;</code></pre>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3">În Node.js</h3>
+        
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import { readFileSync } from 'fs';
+import { join } from 'path';
+
+const logoPath = join(
+  process.cwd(), 
+  'node_modules/@identitate-ro/logos/logos/anaf/anaf.svg'
+);
+const logoContent = readFileSync(logoPath, 'utf8');</code></pre>
+      </section>
+
+      <!-- 4. Exemple -->
+      <section id="exemple">
+        <h2 class="text-2xl font-bold text-primary-900 mb-4">4. Exemple de Cod</h2>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3">HTML Simplu</h3>
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-6"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Logo-uri Instituții&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;img 
+    src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg" 
+    alt="ANAF"
+    width="200"
+  &gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3">CSS Background</h3>
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-6"><code>.anaf-logo {
+  background-image: url('https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 100px;
+}</code></pre>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3">React Component Dinamic</h3>
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>export default function InstitutionLogo({ slug }) {
+  const cdnUrl = \`https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/\${slug}/\${slug}.svg\`;
+  
+  return (
+    &lt;img 
+      src={cdnUrl}
+      alt={slug}
+      loading="lazy"
+      className="w-auto h-12"
+    /&gt;
+  );
+}</code></pre>
+      </section>
+
+      <!-- 5. Best Practices -->
+      <section id="best-practices">
+        <h2 class="text-2xl font-bold text-primary-900 mb-4">5. Best Practices</h2>
+
+        <div class="space-y-4">
+          <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+            <h4 class="font-semibold text-green-900 mb-2 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Folosește versiuni specifice în producție
+            </h4>
+            <pre class="bg-white/50 text-green-800 p-3 rounded text-xs overflow-x-auto"><code>&lt;!-- ✅ Bine - versiune fixată --&gt;
+&lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg"&gt;</code></pre>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+            <h4 class="font-semibold text-amber-900 mb-2 flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              Evită în producție versiunea latest
+            </h4>
+            <pre class="bg-white/50 text-amber-800 p-3 rounded text-xs overflow-x-auto"><code>&lt;!-- ⚠️ Evită - poate schimba --&gt;
+&lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg"&gt;</code></pre>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <h4 class="font-semibold text-blue-900 mb-2">Optimizare Performanță</h4>
+            <pre class="bg-white/50 text-blue-800 p-3 rounded text-xs overflow-x-auto mb-3"><code>&lt;!-- Lazy loading --&gt;
+&lt;img 
+  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg"
+  loading="lazy"
+  alt="ANAF"
+&gt;</code></pre>
+            <pre class="bg-white/50 text-blue-800 p-3 rounded text-xs overflow-x-auto"><code>&lt;!-- Preload pentru logo-uri critice --&gt;
+&lt;link 
+  rel="preload" 
+  href="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei.svg"
+  as="image"
+&gt;</code></pre>
+          </div>
+
+          <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <h4 class="font-semibold text-purple-900 mb-2">Strategie Fallback</h4>
+            <pre class="bg-white/50 text-purple-800 p-3 rounded text-xs overflow-x-auto"><code>&lt;img 
+  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg"
+  onerror="this.src='https://unpkg.com/@identitate-ro/logos/logos/anaf/anaf.svg'"
+  alt="ANAF"
+&gt;</code></pre>
+          </div>
+
+          <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+            <h4 class="font-semibold text-indigo-900 mb-2">Accesibilitate</h4>
+            <pre class="bg-white/50 text-indigo-800 p-3 rounded text-xs overflow-x-auto"><code>&lt;!-- ✅ Include întotdeauna alt text descriptiv --&gt;
+&lt;img 
+  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg"
+  alt="Logo Agenția Națională de Administrare Fiscală"
+  role="img"
+&gt;</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Metadata -->
+      <section id="metadata">
+        <h2 class="text-2xl font-bold text-primary-900 mb-4">6. Metadata și Căutare</h2>
+        
+        <p class="text-surface-600 mb-4">
+          Pachetul include <code class="text-xs bg-surface-100 px-2 py-0.5 rounded">index.json</code> cu metadata despre toate logo-urile:
+        </p>
+
+        <pre class="bg-surface-900 text-white p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import metadata from '@identitate-ro/logos/index.json';
+
+console.log(metadata.institutions);
+// [
+//   {
+//     "id": "ro-anaf",
+//     "slug": "anaf",
+//     "name": "Agenția Națională de Administrare Fiscală",
+//     "logos": {
+//       "horizontal": {
+//         "color": "/logos/anaf/anaf.svg"
+//       },
+//       "symbol": {
+//         "color": "/logos/anaf/simbol-anaf.svg"
+//       }
+//     }
+//   },
+//   ...
+// ]</code></pre>
+
+        <h3 class="text-lg font-semibold text-primary-900 mb-3 mt-6">Instituții Disponibile</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div class="bg-surface-50 border border-surface-200 rounded-lg p-3">
+            <code class="text-sm text-primary-700">anaf</code>
+            <p class="text-xs text-surface-600 mt-1">Agenția Națională de Administrare Fiscală</p>
+          </div>
+          <div class="bg-surface-50 border border-surface-200 rounded-lg p-3">
+            <code class="text-sm text-primary-700">guvernul-romaniei</code>
+            <p class="text-xs text-surface-600 mt-1">Guvernul României</p>
+          </div>
+          <div class="bg-surface-50 border border-surface-200 rounded-lg p-3">
+            <code class="text-sm text-primary-700">ministerul-educatiei</code>
+            <p class="text-xs text-surface-600 mt-1">Ministerul Educației</p>
+          </div>
+          <div class="bg-surface-50 border border-surface-200 rounded-lg p-3">
+            <code class="text-sm text-primary-700">pnrr</code>
+            <p class="text-xs text-surface-600 mt-1">Plan Național de Redresare și Reziliență</p>
+          </div>
+          <div class="bg-surface-50 border border-surface-200 rounded-lg p-3">
+            <code class="text-sm text-primary-700">primaria-cluj-napoca</code>
+            <p class="text-xs text-surface-600 mt-1">Primăria Cluj-Napoca</p>
+          </div>
+        </div>
+
+        <p class="text-sm text-surface-500 mt-4">
+          Pentru lista completă și actualizată, consultă <a href="/" class="text-primary-600 hover:text-primary-700 underline">pagina principală</a>.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Footer Links -->
+    <div class="mt-12 pt-8 border-t border-surface-200">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h3 class="text-sm font-semibold text-primary-900 mb-2">Link-uri Utile</h3>
+          <ul class="space-y-2 text-sm text-surface-600">
+            <li><a href="https://www.npmjs.com/package/@identitate-ro/logos" target="_blank" rel="noopener" class="hover:text-primary-600">NPM Package</a></li>
+            <li><a href="https://github.com/laurentiucotet/IdentitateRO" target="_blank" rel="noopener" class="hover:text-primary-600">GitHub Repository</a></li>
+            <li><a href="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/" target="_blank" rel="noopener" class="hover:text-primary-600">jsDelivr CDN</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-primary-900 mb-2">Documentație</h3>
+          <ul class="space-y-2 text-sm text-surface-600">
+            <li><a href="/" class="hover:text-primary-600">Pagina Principală</a></li>
+            <li><a href="/despre" class="hover:text-primary-600">Despre Proiect</a></li>
+            <li><a href="/solicita" class="hover:text-primary-600">Solicită Adăugare</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-semibold text-primary-900 mb-2">Contribuie</h3>
+          <p class="text-sm text-surface-600 mb-2">
+            Acest proiect este open-source și primește contribuții.
+          </p>
+          <a href="https://github.com/laurentiucotet/IdentitateRO/blob/main/website/CONTRIBUTING.md" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm text-primary-600 hover:text-primary-700">
+            Cum să contribui
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

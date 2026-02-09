@@ -24,7 +24,7 @@ const activeCategories = [...grouped.keys()];
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-primary-50/50 to-surface-50 -z-10"></div>
 
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
       <!-- Beta badge -->
       <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-primary-50 border border-primary-100 mb-4">
         <span class="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></span>
@@ -41,6 +41,48 @@ const activeCategories = [...grouped.keys()];
         Registrul open-source pentru logo-uri vectoriale (SVG) ale instituțiilor publice.
         O singură sursă de adevăr.
       </p>
+
+      <!-- NPM Package Installation -->
+      <div class="mb-8 max-w-2xl mx-auto">
+        <div class="bg-gradient-to-br from-primary-50 to-white border border-primary-100 rounded-lg p-6 shadow-sm">
+          <div class="flex items-center justify-center gap-2 mb-3">
+            <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M0 10.041v3.833l6.171 3.333v-10l-6.171 3.334zm7.333 0l6.171-3.334v10l-6.171-3.333v-3.333zm6.172-3.333l6.171 3.333v3.334l-6.171-3.334v-3.333zm6.171 10l-6.171-3.333v-3.334l6.171 3.334v3.333z"/>
+            </svg>
+            <h2 class="text-sm font-semibold text-primary-900">Instalează via NPM</h2>
+          </div>
+          
+          <div class="bg-surface-900 rounded-md p-4 font-mono text-sm mb-3 overflow-x-auto">
+            <code class="text-green-400">npm install</code>
+            <code class="text-white"> @identitate-ro/logos</code>
+          </div>
+          
+          <p class="text-xs text-surface-600 mb-3">
+            Folosește logo-urile direct prin CDN sau instalează pachetul npm pentru integrare în proiectul tău.
+          </p>
+          
+          <div class="flex flex-wrap gap-2 justify-center">
+            <a href="/utilizare" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-primary-700 bg-white border border-primary-200 rounded-md hover:bg-primary-50 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Documentație
+            </a>
+            <a href="https://www.npmjs.com/package/@identitate-ro/logos" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-surface-700 bg-white border border-surface-200 rounded-md hover:bg-surface-50 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M0 10.041v3.833l6.171 3.333v-10l-6.171 3.334zm7.333 0l6.171-3.334v10l-6.171-3.333v-3.333zm6.172-3.333l6.171 3.333v3.334l-6.171-3.334v-3.333zm6.171 10l-6.171-3.333v-3.334l6.171 3.334v3.333z"/>
+              </svg>
+              Vezi pe NPM
+            </a>
+            <a href="https://github.com/laurentiucotet/IdentitateRO" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-surface-700 bg-white border border-surface-200 rounded-md hover:bg-surface-50 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+      </div>
 
       <!-- Search Input -->
       <div class="relative max-w-xl mx-auto" id="search-wrapper">

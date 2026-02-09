@@ -152,7 +152,7 @@ Instituțiile disponibile în v1.0.0:
 - `pnrr` — Plan Național de Redresare și Reziliență
 - `primaria-cluj-napoca` — Primăria Cluj-Napoca
 
-Pentru lista completă și actualizată, consultă [identitate.ro](https://identitate.ro).
+Pentru lista completă și actualizată, consultă [identitatero.vercel.app](https://identitatero.vercel.app).
 
 ## 💡 Exemple de Utilizare
 
@@ -293,7 +293,8 @@ Pentru a adăuga logo-uri noi sau pentru a raporta probleme:
 
 ## 🔗 Link-uri Utile
 
-- **Website**: [identitate.ro](https://identitate.ro)
+- **Website**: [identitatero.vercel.app](https://identitatero.vercel.app)
+- **Documentație**: [identitatero.vercel.app/utilizare](https://identitatero.vercel.app/utilizare)
 - **GitHub**: [github.com/laurentiucotet/IdentitateRO](https://github.com/laurentiucotet/IdentitateRO)
 - **npm Package**: [@identitate-ro/logos](https://www.npmjs.com/package/@identitate-ro/logos)
 - **jsDelivr CDN**: [cdn.jsdelivr.net/npm/@identitate-ro/logos](https://cdn.jsdelivr.net/npm/@identitate-ro/logos/)
