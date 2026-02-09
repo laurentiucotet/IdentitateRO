@@ -1,70 +1,113 @@
 {
-  "id": "pnrr",
+  "id": "ro-pnrr",
+  "slug": "pnrr",
+  "name": "Planul Național de Redresare și Reziliență",
+  "category": "proiect-ue",
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-08",
-    "tags": ["ue", "fonduri-europene", "investiții", "pnrr"],
-    "internalId": "RO-PNRR-001",
-    "source": "Ministerul Fondurilor Europene"
-  },
-  "institution": {
-    "name": "Planul Național de Redresare și Reziliență",
-    "shortName": "PNRR",
-    "acronym": "PNRR",
-    "category": "proiect-ue",
-    "description": "Programul de reforme și investiții al României, finanțat prin Mecanismul de Redresare și Reziliență al UE.",
-    "website": "https://www.pnrr.ro",
-    "manualUrl": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/",
-    "usageNotes": "Obligatoriu pentru toate materialele finanțate din PNRR. Consultați ghidul de identitate vizuală.",
-    "location": {
-      "locality": "București",
-      "county": "Municipiul București",
-      "countyCode": "B"
-    }
-  },
-  "visualIdentity": {
-    "colors": [
-      {
-        "name": "Albastru PNRR",
-        "hex": "#003399",
-        "rgb": [0, 51, 153],
-        "pantone": "Reflex Blue C",
-        "usage": "primary"
-      },
-      {
-        "name": "Galben UE",
-        "hex": "#FFCC00",
-        "rgb": [255, 204, 0],
-        "pantone": "116 C",
-        "usage": "secondary"
-      },
-      {
-        "name": "Verde PNRR",
-        "hex": "#429E3E",
-        "rgb": [66, 158, 62],
-        "usage": "accent"
-      }
-    ],
-    "typography": [
-      {
-        "family": "Arial",
-        "role": "primary"
-      }
+    "last_updated": "2026-02-08",
+    "keywords": [
+      "ue",
+      "fonduri-europene",
+      "investiții",
+      "pnrr"
     ]
   },
   "assets": {
-    "logos": {
-      "fullHorizontal": {
-        "variants": {
-          "color": "/logos/pnrr/pnrr.svg",
-          "monochrome": "/logos/pnrr/pnrr-mono.svg"
+    "main": {
+      "type": "horizontal",
+      "color": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+        "local": "/logos/pnrr/pnrr.svg"
+      },
+      "black": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+        "local": "/logos/pnrr/pnrr-mono.svg"
+      },
+      "png": {
+        "path": {
+          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+          "local": "/logos/pnrr/pnrr.png"
         },
-        "png": {
-          "path": "/logos/pnrr/pnrr.png",
-          "width": 800,
-          "height": 400
-        }
+        "width": 800,
+        "height": 400
+      }
+    },
+    "horizontal": {
+      "type": "horizontal",
+      "color": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+        "local": "/logos/pnrr/pnrr.svg"
+      },
+      "black": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+        "local": "/logos/pnrr/pnrr-mono.svg"
+      },
+      "png": {
+        "path": {
+          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+          "local": "/logos/pnrr/pnrr.png"
+        },
+        "width": 800,
+        "height": 400
       }
     }
+  },
+  "shortname": "pnrr",
+  "location": {
+    "country_code": "RO",
+    "county": "B",
+    "city": "București"
+  },
+  "description": "Programul de reforme și investiții al României, finanțat prin Mecanismul de Redresare și Reziliență al UE.",
+  "usage_notes": "Obligatoriu pentru toate materialele finanțate din PNRR. Consultați ghidul de identitate vizuală.",
+  "colors": [
+    {
+      "name": "Albastru PNRR",
+      "hex": "#003399",
+      "rgb": [
+        0,
+        51,
+        153
+      ],
+      "pantone": "Reflex Blue C",
+      "usage": "primary"
+    },
+    {
+      "name": "Galben UE",
+      "hex": "#FFCC00",
+      "rgb": [
+        255,
+        204,
+        0
+      ],
+      "pantone": "116 C",
+      "usage": "secondary"
+    },
+    {
+      "name": "Verde PNRR",
+      "hex": "#429E3E",
+      "rgb": [
+        66,
+        158,
+        62
+      ],
+      "usage": "accent"
+    }
+  ],
+  "typography": {
+    "primary": {
+      "family": "Arial"
+    }
+  },
+  "resources": {
+    "website": "https://www.pnrr.ro",
+    "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/"
   }
 }

@@ -1,69 +1,110 @@
 {
-  "id": "primaria-cluj-napoca",
+  "id": "ro-primaria-cluj-napoca",
+  "slug": "primaria-cluj-napoca",
+  "name": "Primăria Municipiului Cluj-Napoca",
+  "category": "primarie",
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-08",
-    "tags": ["administrație-locală", "cluj-napoca", "transilvania"],
-    "internalId": "RO-PMCN-001",
-    "source": "Website oficial"
-  },
-  "institution": {
-    "name": "Primăria Municipiului Cluj-Napoca",
-    "shortName": "Primăria Cluj-Napoca",
-    "acronym": "PMCN",
-    "category": "primarie",
-    "region": "Cluj",
-    "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
-    "website": "https://pfrcluj.ro",
-    "location": {
-      "locality": "Cluj-Napoca",
-      "county": "Cluj",
-      "countyCode": "CJ"
-    }
-  },
-  "visualIdentity": {
-    "colors": [
-      {
-        "name": "Albastru Cluj",
-        "hex": "#003DA5",
-        "rgb": [0, 61, 165],
-        "pantone": "286 C",
-        "usage": "primary"
-      },
-      {
-        "name": "Alb",
-        "hex": "#FFFFFF",
-        "rgb": [255, 255, 255],
-        "usage": "neutral"
-      },
-      {
-        "name": "Gri Secundar",
-        "hex": "#6C757D",
-        "rgb": [108, 117, 125],
-        "usage": "secondary"
-      }
-    ],
-    "typography": [
-      {
-        "family": "Roboto",
-        "role": "primary",
-        "url": "https://fonts.googleapis.com/css2?family=Roboto"
-      }
+    "last_updated": "2026-02-08",
+    "keywords": [
+      "administrație-locală",
+      "cluj-napoca",
+      "transilvania"
     ]
   },
   "assets": {
-    "logos": {
-      "fullHorizontal": {
-        "variants": {
-          "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+    "main": {
+      "type": "horizontal",
+      "color": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+        "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
+      },
+      "white": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+        "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+      },
+      "png": {
+        "path": {
+          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+          "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png"
         },
-        "png": {
-          "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
-          "width": 512,
-          "height": 512
-        }
+        "width": 512,
+        "height": 512
+      }
+    },
+    "horizontal": {
+      "type": "horizontal",
+      "color": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+        "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
+      },
+      "white": {
+        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+        "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+      },
+      "png": {
+        "path": {
+          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+          "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png"
+        },
+        "width": 512,
+        "height": 512
       }
     }
+  },
+  "shortname": "primăria cluj-napoca",
+  "location": {
+    "country_code": "RO",
+    "county": "CJ",
+    "city": "Cluj-Napoca"
+  },
+  "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
+  "colors": [
+    {
+      "name": "Albastru Cluj",
+      "hex": "#003DA5",
+      "rgb": [
+        0,
+        61,
+        165
+      ],
+      "pantone": "286 C",
+      "usage": "primary"
+    },
+    {
+      "name": "Alb",
+      "hex": "#FFFFFF",
+      "rgb": [
+        255,
+        255,
+        255
+      ],
+      "usage": "neutral"
+    },
+    {
+      "name": "Gri Secundar",
+      "hex": "#6C757D",
+      "rgb": [
+        108,
+        117,
+        125
+      ],
+      "usage": "secondary"
+    }
+  ],
+  "typography": {
+    "primary": {
+      "family": "Roboto",
+      "url": "https://fonts.googleapis.com/css2?family=Roboto"
+    }
+  },
+  "resources": {
+    "website": "https://pfrcluj.ro"
   }
 }

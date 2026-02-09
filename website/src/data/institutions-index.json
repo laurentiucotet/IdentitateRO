@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "2.0.0",
-  "generatedAt": "2026-02-08T22:04:01.137Z",
+  "schemaVersion": "3.0.0",
+  "generatedAt": "2026-02-09T13:54:50.788Z",
   "total": 5,
   "stats": {
     "byCategory": {
@@ -42,430 +42,535 @@
   ],
   "institutions": [
     {
-      "id": "anaf",
+      "id": "ro-anaf",
+      "slug": "anaf",
+      "name": "Agenția Națională de Administrare Fiscală",
+      "category": "agentie",
       "meta": {
         "version": "1.0",
-        "lastUpdated": "2026-02-08",
-        "tags": [
+        "last_updated": "2026-02-08",
+        "keywords": [
           "guvernamental",
           "taxe",
           "fiscalitate"
-        ],
-        "internalId": "RO-ANAF-001",
-        "source": "Website oficial"
-      },
-      "institution": {
-        "name": "Agenția Națională de Administrare Fiscală",
-        "shortName": "ANAF",
-        "acronym": "ANAF",
-        "category": "agentie",
-        "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
-        "website": "https://www.anaf.ro",
-        "location": {
-          "locality": "București",
-          "county": "Municipiul București",
-          "countyCode": "B"
-        }
-      },
-      "visualIdentity": {
-        "colors": [
-          {
-            "name": "Albastru Simbol",
-            "hex": "#2C2C76",
-            "rgb": [
-              44,
-              44,
-              118
-            ],
-            "usage": "primary"
-          },
-          {
-            "name": "Negru Text",
-            "hex": "#151515",
-            "rgb": [
-              21,
-              21,
-              21
-            ],
-            "usage": "text"
-          },
-          {
-            "name": "Alb",
-            "hex": "#FFFFFF",
-            "rgb": [
-              255,
-              255,
-              255
-            ],
-            "usage": "neutral"
-          }
-        ],
-        "typography": [
-          {
-            "family": "Helvetica Neue LT Pro",
-            "weight": "Light",
-            "usage": "brand-font"
-          }
         ]
       },
       "assets": {
-        "logos": {
-          "fullHorizontal": {
-            "variants": {
-              "color": "/logos/anaf/anaf.svg"
-            }
-          },
-          "symbolOnly": {
-            "variants": {
-              "color": "/logos/anaf/simbol-anaf.svg"
-            }
+        "main": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
+            "local": "/logos/anaf/anaf.svg"
+          }
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
+            "local": "/logos/anaf/anaf.svg"
+          }
+        },
+        "symbol": {
+          "type": "symbol",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/simbol-anaf.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/anaf/simbol-anaf.svg",
+            "local": "/logos/anaf/simbol-anaf.svg"
           }
         }
+      },
+      "shortname": "anaf",
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
+      "colors": [
+        {
+          "name": "Albastru Simbol",
+          "hex": "#2C2C76",
+          "rgb": [
+            44,
+            44,
+            118
+          ],
+          "usage": "primary"
+        },
+        {
+          "name": "Negru Text",
+          "hex": "#151515",
+          "rgb": [
+            21,
+            21,
+            21
+          ],
+          "usage": "text"
+        },
+        {
+          "name": "Alb",
+          "hex": "#FFFFFF",
+          "rgb": [
+            255,
+            255,
+            255
+          ],
+          "usage": "neutral"
+        }
+      ],
+      "resources": {
+        "website": "https://www.anaf.ro"
       }
     },
     {
-      "id": "guvernul-romaniei",
+      "id": "ro-guvernul-romaniei",
+      "slug": "guvernul-romaniei",
+      "name": "Guvernul României",
+      "category": "guvern",
       "meta": {
         "version": "1.0",
-        "lastUpdated": "2026-02-08",
-        "tags": [
+        "last_updated": "2026-02-08",
+        "keywords": [
           "guvernamental",
           "executiv",
           "administrație"
-        ],
-        "internalId": "RO-GOV-001",
-        "source": "Website oficial gov.ro"
-      },
-      "institution": {
-        "name": "Guvernul României",
-        "shortName": "Guvernul",
-        "category": "guvern",
-        "description": "Organul executiv al statului român, condus de Primul Ministru.",
-        "website": "https://gov.ro",
-        "manualUrl": "https://gov.ro/manual-identitate",
-        "location": {
-          "locality": "București",
-          "county": "Municipiul București",
-          "countyCode": "B"
-        }
-      },
-      "visualIdentity": {
-        "colors": [
-          {
-            "name": "Albastru Oficial",
-            "hex": "#002F6C",
-            "rgb": [
-              0,
-              47,
-              108
-            ],
-            "cmyk": [
-              100,
-              65,
-              0,
-              43
-            ],
-            "pantone": "648 C",
-            "usage": "primary"
-          },
-          {
-            "name": "Auriu",
-            "hex": "#C8A951",
-            "rgb": [
-              200,
-              169,
-              81
-            ],
-            "pantone": "4015 C",
-            "usage": "secondary"
-          },
-          {
-            "name": "Alb",
-            "hex": "#FFFFFF",
-            "rgb": [
-              255,
-              255,
-              255
-            ],
-            "usage": "neutral"
-          }
-        ],
-        "typography": [
-          {
-            "family": "Source Sans Pro",
-            "role": "primary",
-            "url": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro"
-          }
         ]
       },
       "assets": {
-        "logos": {
-          "fullHorizontal": {
-            "variants": {
-              "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
-              "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-              "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg"
+        "main": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
+            "local": "/logos/guvernul-romaniei/guvernul-romaniei.svg"
+          },
+          "white": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
+            "local": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg"
+          },
+          "black": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+            "local": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
+              "local": "/logos/guvernul-romaniei/guvernul-romaniei.png"
             },
-            "png": {
-              "path": "/logos/guvernul-romaniei/guvernul-romaniei.png",
-              "width": 512,
-              "height": 512
-            }
+            "width": 512,
+            "height": 512
+          }
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
+            "local": "/logos/guvernul-romaniei/guvernul-romaniei.svg"
+          },
+          "white": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
+            "local": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg"
+          },
+          "black": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+            "local": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
+              "local": "/logos/guvernul-romaniei/guvernul-romaniei.png"
+            },
+            "width": 512,
+            "height": 512
           }
         }
+      },
+      "shortname": "guvernul",
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Organul executiv al statului român, condus de Primul Ministru.",
+      "colors": [
+        {
+          "name": "Albastru Oficial",
+          "hex": "#002F6C",
+          "rgb": [
+            0,
+            47,
+            108
+          ],
+          "cmyk": [
+            100,
+            65,
+            0,
+            43
+          ],
+          "pantone": "648 C",
+          "usage": "primary"
+        },
+        {
+          "name": "Auriu",
+          "hex": "#C8A951",
+          "rgb": [
+            200,
+            169,
+            81
+          ],
+          "pantone": "4015 C",
+          "usage": "secondary"
+        },
+        {
+          "name": "Alb",
+          "hex": "#FFFFFF",
+          "rgb": [
+            255,
+            255,
+            255
+          ],
+          "usage": "neutral"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Source Sans Pro",
+          "url": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro"
+        }
+      },
+      "resources": {
+        "website": "https://gov.ro",
+        "branding_manual": "https://gov.ro/manual-identitate"
       }
     },
     {
-      "id": "ministerul-educatiei",
+      "id": "ro-ministerul-educatiei",
+      "slug": "ministerul-educatiei",
+      "name": "Ministerul Educației",
+      "category": "minister",
       "meta": {
         "version": "1.0",
-        "lastUpdated": "2026-02-08",
-        "tags": [
+        "last_updated": "2026-02-08",
+        "keywords": [
           "guvernamental",
           "educație",
           "minister"
-        ],
-        "internalId": "RO-ME-001",
-        "source": "Website oficial"
-      },
-      "institution": {
-        "name": "Ministerul Educației",
-        "shortName": "Min. Educației",
-        "acronym": "ME",
-        "category": "minister",
-        "description": "Ministerul responsabil cu politicile educaționale și sistemul de învățământ din România.",
-        "website": "https://www.edu.ro",
-        "location": {
-          "locality": "București",
-          "county": "Municipiul București",
-          "countyCode": "B"
-        }
-      },
-      "visualIdentity": {
-        "colors": [
-          {
-            "name": "Albastru Educație",
-            "hex": "#1A3C6E",
-            "rgb": [
-              26,
-              60,
-              110
-            ],
-            "usage": "primary"
-          },
-          {
-            "name": "Auriu",
-            "hex": "#D4A843",
-            "rgb": [
-              212,
-              168,
-              67
-            ],
-            "usage": "secondary"
-          },
-          {
-            "name": "Alb",
-            "hex": "#FFFFFF",
-            "rgb": [
-              255,
-              255,
-              255
-            ],
-            "usage": "neutral"
-          }
-        ],
-        "typography": [
-          {
-            "family": "Times New Roman",
-            "role": "primary"
-          }
         ]
       },
       "assets": {
-        "logos": {
-          "fullHorizontal": {
-            "variants": {
-              "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
+        "main": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
+            "local": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
+              "local": "/logos/ministerul-educatiei/ministerul-educatiei.png"
             },
-            "png": {
-              "path": "/logos/ministerul-educatiei/ministerul-educatiei.png",
-              "width": 512,
-              "height": 512
-            }
+            "width": 512,
+            "height": 512
+          }
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
+            "local": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
+              "local": "/logos/ministerul-educatiei/ministerul-educatiei.png"
+            },
+            "width": 512,
+            "height": 512
           }
         }
+      },
+      "shortname": "min. educației",
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Ministerul responsabil cu politicile educaționale și sistemul de învățământ din România.",
+      "colors": [
+        {
+          "name": "Albastru Educație",
+          "hex": "#1A3C6E",
+          "rgb": [
+            26,
+            60,
+            110
+          ],
+          "usage": "primary"
+        },
+        {
+          "name": "Auriu",
+          "hex": "#D4A843",
+          "rgb": [
+            212,
+            168,
+            67
+          ],
+          "usage": "secondary"
+        },
+        {
+          "name": "Alb",
+          "hex": "#FFFFFF",
+          "rgb": [
+            255,
+            255,
+            255
+          ],
+          "usage": "neutral"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Times New Roman"
+        }
+      },
+      "resources": {
+        "website": "https://www.edu.ro"
       }
     },
     {
-      "id": "pnrr",
+      "id": "ro-pnrr",
+      "slug": "pnrr",
+      "name": "Planul Național de Redresare și Reziliență",
+      "category": "proiect-ue",
       "meta": {
         "version": "1.0",
-        "lastUpdated": "2026-02-08",
-        "tags": [
+        "last_updated": "2026-02-08",
+        "keywords": [
           "ue",
           "fonduri-europene",
           "investiții",
           "pnrr"
-        ],
-        "internalId": "RO-PNRR-001",
-        "source": "Ministerul Fondurilor Europene"
-      },
-      "institution": {
-        "name": "Planul Național de Redresare și Reziliență",
-        "shortName": "PNRR",
-        "acronym": "PNRR",
-        "category": "proiect-ue",
-        "description": "Programul de reforme și investiții al României, finanțat prin Mecanismul de Redresare și Reziliență al UE.",
-        "website": "https://www.pnrr.ro",
-        "manualUrl": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/",
-        "usageNotes": "Obligatoriu pentru toate materialele finanțate din PNRR. Consultați ghidul de identitate vizuală.",
-        "location": {
-          "locality": "București",
-          "county": "Municipiul București",
-          "countyCode": "B"
-        }
-      },
-      "visualIdentity": {
-        "colors": [
-          {
-            "name": "Albastru PNRR",
-            "hex": "#003399",
-            "rgb": [
-              0,
-              51,
-              153
-            ],
-            "pantone": "Reflex Blue C",
-            "usage": "primary"
-          },
-          {
-            "name": "Galben UE",
-            "hex": "#FFCC00",
-            "rgb": [
-              255,
-              204,
-              0
-            ],
-            "pantone": "116 C",
-            "usage": "secondary"
-          },
-          {
-            "name": "Verde PNRR",
-            "hex": "#429E3E",
-            "rgb": [
-              66,
-              158,
-              62
-            ],
-            "usage": "accent"
-          }
-        ],
-        "typography": [
-          {
-            "family": "Arial",
-            "role": "primary"
-          }
         ]
       },
       "assets": {
-        "logos": {
-          "fullHorizontal": {
-            "variants": {
-              "color": "/logos/pnrr/pnrr.svg",
-              "monochrome": "/logos/pnrr/pnrr-mono.svg"
+        "main": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+            "local": "/logos/pnrr/pnrr.svg"
+          },
+          "black": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+            "local": "/logos/pnrr/pnrr-mono.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+              "local": "/logos/pnrr/pnrr.png"
             },
-            "png": {
-              "path": "/logos/pnrr/pnrr.png",
-              "width": 800,
-              "height": 400
-            }
+            "width": 800,
+            "height": 400
+          }
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
+            "local": "/logos/pnrr/pnrr.svg"
+          },
+          "black": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
+            "local": "/logos/pnrr/pnrr-mono.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
+              "local": "/logos/pnrr/pnrr.png"
+            },
+            "width": 800,
+            "height": 400
           }
         }
+      },
+      "shortname": "pnrr",
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Programul de reforme și investiții al României, finanțat prin Mecanismul de Redresare și Reziliență al UE.",
+      "usage_notes": "Obligatoriu pentru toate materialele finanțate din PNRR. Consultați ghidul de identitate vizuală.",
+      "colors": [
+        {
+          "name": "Albastru PNRR",
+          "hex": "#003399",
+          "rgb": [
+            0,
+            51,
+            153
+          ],
+          "pantone": "Reflex Blue C",
+          "usage": "primary"
+        },
+        {
+          "name": "Galben UE",
+          "hex": "#FFCC00",
+          "rgb": [
+            255,
+            204,
+            0
+          ],
+          "pantone": "116 C",
+          "usage": "secondary"
+        },
+        {
+          "name": "Verde PNRR",
+          "hex": "#429E3E",
+          "rgb": [
+            66,
+            158,
+            62
+          ],
+          "usage": "accent"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Arial"
+        }
+      },
+      "resources": {
+        "website": "https://www.pnrr.ro",
+        "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/"
       }
     },
     {
-      "id": "primaria-cluj-napoca",
+      "id": "ro-primaria-cluj-napoca",
+      "slug": "primaria-cluj-napoca",
+      "name": "Primăria Municipiului Cluj-Napoca",
+      "category": "primarie",
       "meta": {
         "version": "1.0",
-        "lastUpdated": "2026-02-08",
-        "tags": [
+        "last_updated": "2026-02-08",
+        "keywords": [
           "administrație-locală",
           "cluj-napoca",
           "transilvania"
-        ],
-        "internalId": "RO-PMCN-001",
-        "source": "Website oficial"
-      },
-      "institution": {
-        "name": "Primăria Municipiului Cluj-Napoca",
-        "shortName": "Primăria Cluj-Napoca",
-        "acronym": "PMCN",
-        "category": "primarie",
-        "region": "Cluj",
-        "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
-        "website": "https://pfrcluj.ro",
-        "location": {
-          "locality": "Cluj-Napoca",
-          "county": "Cluj",
-          "countyCode": "CJ"
-        }
-      },
-      "visualIdentity": {
-        "colors": [
-          {
-            "name": "Albastru Cluj",
-            "hex": "#003DA5",
-            "rgb": [
-              0,
-              61,
-              165
-            ],
-            "pantone": "286 C",
-            "usage": "primary"
-          },
-          {
-            "name": "Alb",
-            "hex": "#FFFFFF",
-            "rgb": [
-              255,
-              255,
-              255
-            ],
-            "usage": "neutral"
-          },
-          {
-            "name": "Gri Secundar",
-            "hex": "#6C757D",
-            "rgb": [
-              108,
-              117,
-              125
-            ],
-            "usage": "secondary"
-          }
-        ],
-        "typography": [
-          {
-            "family": "Roboto",
-            "role": "primary",
-            "url": "https://fonts.googleapis.com/css2?family=Roboto"
-          }
         ]
       },
       "assets": {
-        "logos": {
-          "fullHorizontal": {
-            "variants": {
-              "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-              "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+        "main": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+            "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
+          },
+          "white": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+            "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+              "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png"
             },
-            "png": {
-              "path": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
-              "width": 512,
-              "height": 512
-            }
+            "width": 512,
+            "height": 512
+          }
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
+            "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
+          },
+          "white": {
+            "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+            "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+            "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+          },
+          "png": {
+            "path": {
+              "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+              "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/primaria-cluj-napoca/primaria-cluj-napoca.png",
+              "local": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.png"
+            },
+            "width": 512,
+            "height": 512
           }
         }
+      },
+      "shortname": "primăria cluj-napoca",
+      "location": {
+        "country_code": "RO",
+        "county": "CJ",
+        "city": "Cluj-Napoca"
+      },
+      "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
+      "colors": [
+        {
+          "name": "Albastru Cluj",
+          "hex": "#003DA5",
+          "rgb": [
+            0,
+            61,
+            165
+          ],
+          "pantone": "286 C",
+          "usage": "primary"
+        },
+        {
+          "name": "Alb",
+          "hex": "#FFFFFF",
+          "rgb": [
+            255,
+            255,
+            255
+          ],
+          "usage": "neutral"
+        },
+        {
+          "name": "Gri Secundar",
+          "hex": "#6C757D",
+          "rgb": [
+            108,
+            117,
+            125
+          ],
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Roboto",
+          "url": "https://fonts.googleapis.com/css2?family=Roboto"
+        }
+      },
+      "resources": {
+        "website": "https://pfrcluj.ro"
       }
     }
   ]

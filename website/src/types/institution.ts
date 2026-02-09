@@ -1,14 +1,22 @@
 /**
- * IdentitateRO — Schema v2.0
- *
- * Tipuri de date pentru identitatea vizuală a instituțiilor publice
- * din România. Structură ierarhică: meta → instituție → identitate
- * vizuală → assets, cu logo-uri grupate pe layout + variantă cromatică.
+ * IdentitateRO Schema
+ * 
+ * Key features:
+ * - Flattened structure (all fields at top level)
+ * - Asset URLs are CDN-ready
+ * - 'main' shortcut for primary logo (developer experience)
+ * - Keywords for better search
+ * - Simplified location structure
+ * - Typography as object with primary/secondary
  */
 
-// ─── Enumerări ───────────────────────────────────
+// ============================================================================
+// ENUMS & CONSTANTS
+// ============================================================================
 
-/** Tipuri de instituții publice din România */
+/**
+ * Institution categories
+ */
 export type InstitutionCategory =
   | 'guvern'
   | 'minister'
@@ -21,182 +29,196 @@ export type InstitutionCategory =
   | 'institutie-cultura'
   | 'altele';
 
-/** Rolul culorii în identitatea vizuală */
+/**
+ * Logo color variants
+ */
+export type LogoColorVariant = 'color' | 'dark_mode' | 'white' | 'black' | 'monochrome';
+
+/**
+ * Logo layout types
+ */
+export type LogoLayout = 'horizontal' | 'vertical' | 'symbol';
+
+/**
+ * Color usage types
+ */
 export type ColorUsage = 'primary' | 'secondary' | 'accent' | 'neutral';
 
-/** Layout-ul logo-ului */
-export type LogoLayout = 'fullHorizontal' | 'fullVertical' | 'symbolOnly';
+// ============================================================================
+// INTERFACES
+// ============================================================================
 
-/** Varianta cromatică a logo-ului */
-export type LogoColorVariant = 'color' | 'white' | 'monochrome';
-
-/** Etichetă de calitate a datelor */
-export type QualityLevel = 'verified' | 'community' | 'draft';
-
-// ─── Meta ────────────────────────────────────────
-
-export interface InstitutionMeta {
-  /** Versiunea schemei (ex: "1.0") */
-  version: string;
-  /** Data ultimei actualizări (ISO 8601) */
-  lastUpdated: string;
-  /** Tag-uri descriptive */
-  tags: string[];
-  /** Identificator intern (ex: "RO-ANAF-001") */
-  internalId: string;
-  /** Calitatea datelor */
-  quality: QualityLevel;
-  /** Sursa datelor */
-  source?: string;
+/**
+ * Location information
+ */
+export interface Location {
+  country_code: string;    // "RO"
+  county?: string;         // County code (e.g., "B", "CJ")
+  city?: string;           // City name
 }
 
-// ─── Locație ─────────────────────────────────────
-
-export interface InstitutionLocation {
-  /** Localitatea (ex: "București") */
-  locality: string;
-  /** Județul (ex: "Municipiul București") */
-  county: string;
-  /** Codul județului (ex: "B", "CJ") */
-  countyCode: string;
-  /** Codul SIRUTA, opțional */
-  sirutaCode?: string;
+/**
+ * Color definition
+ */
+export interface Color {
+  name: string;                                  // Color name
+  hex: string;                                   // HEX code
+  rgb?: [number, number, number];                // RGB values
+  cmyk?: [number, number, number, number];       // CMYK values
+  pantone?: string;                              // Pantone reference
+  usage?: ColorUsage;                            // Color role
 }
 
-// ─── Instituție ──────────────────────────────────
-
-export interface InstitutionInfo {
-  /** Numele complet oficial */
-  name: string;
-  /** Numele scurt (ex: "ANAF", "Guvernul") */
-  shortName?: string;
-  /** Acronim (ex: "ANAF", "ME") */
-  acronym?: string;
-  /** Categoria instituției */
-  category: InstitutionCategory;
-  /** Descriere scurtă */
-  description?: string;
-  /** Website-ul oficial */
-  website?: string;
-  /** Link către manualul de identitate vizuală */
-  manualUrl?: string;
-  /** Regiunea / Județul (pentru primării) */
-  region?: string;
-  /** Locația sediului */
-  location?: InstitutionLocation;
-  /** Note de utilizare / restricții */
-  usageNotes?: string;
-}
-
-// ─── Identitate Vizuală ─────────────────────────
-
-export interface OfficialColor {
-  /** Numele culorii (ex: "Roșu Tricolor") */
-  name: string;
-  /** Codul HEX (ex: "#CE1126") */
-  hex: string;
-  /** Valori RGB ca array [r, g, b] */
-  rgb?: [number, number, number];
-  /** Valori CMYK ca array [c, m, y, k] */
-  cmyk?: [number, number, number, number];
-  /** Referință Pantone (ex: "186 C") */
-  pantone?: string;
-  /** Rolul culorii */
-  usage?: ColorUsage;
-}
-
+/**
+ * Typography definition
+ */
 export interface Typography {
-  /** Familia fontului (ex: "Roboto") */
-  family: string;
-  /** Rolul fontului */
-  role: 'primary' | 'secondary';
-  /** URL Google Fonts sau altă sursă */
-  url?: string;
-}
-
-export interface VisualIdentity {
-  /** Paleta de culori oficiale */
-  colors: OfficialColor[];
-  /** Fonturi folosite */
-  typography?: Typography[];
-}
-
-// ─── Assets ──────────────────────────────────────
-
-/** Variantele cromatice ale unui grup de logo */
-export interface LogoVariants {
-  /** Logo color (principal) — cale relativă față de /public */
-  color?: string;
-  /** Logo alb (pentru fundal închis) */
-  white?: string;
-  /** Logo monocrom (negru) */
-  monochrome?: string;
-}
-
-/** Versiunea PNG a logo-ului */
-export interface LogoPng {
-  /** Cale relativă față de /public */
-  path: string;
-  /** Lățime pixeli */
-  width: number;
-  /** Înălțime pixeli */
-  height: number;
-}
-
-/** Un grup de logo cu variantele sale */
-export interface LogoGroup {
-  /** Variante SVG (color, white, monochrome) */
-  variants: LogoVariants;
-  /** Versiune PNG opțională */
-  png?: LogoPng;
-}
-
-/** Toate asset-urile unei instituții */
-export interface InstitutionAssets {
-  /** Logo-uri grupate pe layout */
-  logos: Partial<Record<LogoLayout, LogoGroup>>;
-  /** Favicon, opțional */
-  favicon?: string;
-}
-
-// ─── Schema Principală ──────────────────────────
-
-export interface Institution {
-  /** Identificator unic (slug) — ex: "guvernul-romaniei" */
-  id: string;
-  /** Metadate */
-  meta: InstitutionMeta;
-  /** Informații despre instituție */
-  institution: InstitutionInfo;
-  /** Identitate vizuală (culori, fonturi) */
-  visualIdentity: VisualIdentity;
-  /** Asset-uri (logo-uri, favicon) */
-  assets: InstitutionAssets;
-}
-
-// ─── Index ───────────────────────────────────────
-
-export interface CategorySummary {
-  id: InstitutionCategory;
-  label: string;
-  count: number;
-}
-
-export interface InstitutionIndex {
-  /** Versiunea schemei */
-  schemaVersion: string;
-  /** Data generării */
-  generatedAt: string;
-  /** Total instituții */
-  total: number;
-  /** Statistici aggregate */
-  stats: {
-    byCategory: Partial<Record<InstitutionCategory, number>>;
-    withManual: number;
-    withSvg: number;
+  primary: {
+    family: string;
+    url?: string;
+    weights?: number[];
   };
-  /** Rezumat categorii (sortate) */
-  categories: CategorySummary[];
-  /** Lista instituțiilor */
-  institutions: Institution[];
+  secondary?: {
+    family: string;
+    url?: string;
+    weights?: number[];
+  };
+}
+
+/**
+ * Asset URLs with CDN support
+ * Can be either a simple string (backwards compatible) or an object with CDN URLs
+ */
+export type AssetUrls = string | {
+  cdn_primary?: string;      // Primary CDN (jsDelivr)
+  cdn_fallback?: string;     // Fallback CDN (unpkg)
+  local: string;             // Local path (always required)
+};
+
+/**
+ * Logo asset group with variants
+ * Each layout (horizontal, vertical, symbol) can have multiple color variants
+ * Supports both simple strings and CDN URLs for backwards compatibility
+ */
+export interface LogoAssetGroup {
+  type: LogoLayout;                              // Layout type
+  color?: AssetUrls;                             // Path to color variant
+  dark_mode?: AssetUrls;                         // Path to dark mode variant
+  white?: AssetUrls;                             // Path to white variant
+  black?: AssetUrls;                             // Path to black variant
+  monochrome?: AssetUrls;                        // Path to monochrome variant
+  png?: {                                        // Optional PNG version
+    path: AssetUrls;
+    width: number;
+    height: number;
+  };
+}
+
+/**
+ * Assets structure (flat with main shortcut)
+ */
+export interface Assets {
+  main: LogoAssetGroup;                          // Primary logo (shortcut for DX)
+  horizontal?: LogoAssetGroup;                   // Horizontal layout
+  vertical?: LogoAssetGroup;                     // Vertical layout
+  symbol?: LogoAssetGroup;                       // Symbol only
+  favicon?: string;                              // Favicon path
+}
+
+/**
+ * External resources
+ */
+export interface Resources {
+  website?: string;                              // Official website
+  branding_manual?: string;                      // Brand manual PDF/URL
+  social_media?: {
+    facebook?: string;
+    twitter?: string;
+    linkedin?: string;
+    instagram?: string;
+  };
+}
+
+/**
+ * Metadata about the data
+ */
+export interface Meta {
+  version: string;                               // Data version (e.g., "1.2.0")
+  last_updated: string;                          // ISO 8601 date
+  keywords: string[];                            // Keywords for search (was 'tags' in v2)
+  quality?: 'verified' | 'community' | 'draft';  // Optional quality level
+}
+
+/**
+ * Main Institution interface
+ */
+export interface Institution {
+  // Top-level identification
+  id: string;                                    // Unique ID: "ro-{slug}" format
+  slug: string;                                  // URL slug (e.g., "anaf")
+  name: string;                                  // Full official name
+  shortname?: string;                            // Short name (lowercase)
+  category: InstitutionCategory;                 // Institution type
+  
+  // Metadata
+  meta: Meta;
+  
+  // Location
+  location?: Location;
+  
+  // Description and notes
+  description?: string;                          // Brief description
+  usage_notes?: string;                          // Usage restrictions
+  
+  // Visual identity
+  colors?: Color[];
+  typography?: Typography;
+  
+  // Assets (with main shortcut)
+  assets: Assets;
+  
+  // External resources
+  resources?: Resources;
+}
+
+// ============================================================================
+// TYPE GUARDS
+// ============================================================================
+
+/**
+ * Check if an object is a valid Institution
+ */
+export function isInstitution(obj: any): obj is Institution {
+  return (
+    obj &&
+    typeof obj === 'object' &&
+    typeof obj.id === 'string' &&
+    obj.id.startsWith('ro-') &&
+    typeof obj.slug === 'string' &&
+    typeof obj.name === 'string' &&
+    typeof obj.category === 'string' &&
+    obj.meta &&
+    typeof obj.meta.version === 'string' &&
+    typeof obj.meta.last_updated === 'string' &&
+    Array.isArray(obj.meta.keywords) &&
+    obj.assets &&
+    obj.assets.main &&
+    typeof obj.assets.main.type === 'string'
+  );
+}
+
+/**
+ * Check if data has current schema markers
+ */
+export function hasCurrentSchema(obj: any): boolean {
+  return (
+    obj &&
+    typeof obj.id === 'string' &&
+    obj.id.startsWith('ro-') &&
+    typeof obj.slug === 'string' &&
+    obj.meta &&
+    Array.isArray(obj.meta.keywords) &&
+    obj.assets &&
+    obj.assets.main !== undefined
+  );
 }

@@ -4,13 +4,14 @@ import LogoCard from '../components/LogoCard.astro';
 import institutionIndex from '../data/institutions-index.json';
 import { getPrimaryLogoPath, hasSvg, getDisplayName } from '../lib/helpers';
 import { CATEGORY_LABELS, CATEGORY_ORDER } from '../lib/labels';
+import type { Institution } from '../types/institution';
 
-const institutions = institutionIndex.institutions as any[];
+const institutions = institutionIndex.institutions as Institution[];
 
 // Grupare pe categorii cu ordine prestabilită
 const grouped = new Map<string, typeof institutions>();
 for (const cat of CATEGORY_ORDER) {
-  const items = institutions.filter(i => i.institution.category === cat);
+  const items = institutions.filter(i => i.category === cat);
   if (items.length > 0) grouped.set(cat, items);
 }
 
@@ -105,20 +106,19 @@ const activeCategories = [...grouped.keys()];
             <span class="text-xs font-normal text-surface-400">({items.length})</span>
           </h2>
           <div class="flex flex-wrap gap-3 sm:gap-4">
-            {items.map((inst: any) => {
+            {items.map((inst) => {
               const logoPath = getPrimaryLogoPath(inst) || '';
               const hasSvgFlag = hasSvg(inst);
               return (
                 <LogoCard
-                  id={inst.id}
-                  name={inst.institution.name}
-                  shortName={inst.institution.shortName}
-                  acronym={inst.institution.acronym}
-                  category={inst.institution.category}
+                  slug={inst.slug}
+                  name={inst.name}
+                  shortname={inst.shortname}
+                  category={inst.category}
                   logoPath={logoPath}
                   quality={inst.meta.quality}
                   hasSvg={hasSvgFlag}
-                  tags={inst.meta.tags}
+                  keywords={inst.meta.keywords}
                 />
               );
             })}
@@ -129,20 +129,19 @@ const activeCategories = [...grouped.keys()];
 
     <!-- Flat Grid (hidden by default, used when filtering/searching) -->
     <div id="logo-grid" class="hidden flex flex-wrap gap-3 sm:gap-4">
-      {institutions.map((inst: any) => {
+      {institutions.map((inst) => {
         const logoPath = getPrimaryLogoPath(inst) || '';
         const hasSvgFlag = hasSvg(inst);
         return (
           <LogoCard
-            id={inst.id}
-            name={inst.institution.name}
-            shortName={inst.institution.shortName}
-            acronym={inst.institution.acronym}
-            category={inst.institution.category}
+            slug={inst.slug}
+            name={inst.name}
+            shortname={inst.shortname}
+            category={inst.category}
             logoPath={logoPath}
             quality={inst.meta.quality}
             hasSvg={hasSvgFlag}
-            tags={inst.meta.tags}
+            keywords={inst.meta.keywords}
           />
         );
       })}
@@ -167,13 +166,13 @@ const activeCategories = [...grouped.keys()];
 
 <script>
   /**
-   * IdentitateRO — Client-side interactivity (v2.0)
-   * Search, filter cu suport pentru schema v2.0 (nested structure)
+   * IdentitateRO — Client-side interactivity (v3.0)
+   * Search, filter cu suport pentru schema v3.0 (flat structure)
    */
 
   document.addEventListener('DOMContentLoaded', () => {
 
-  const data: any[] = (window as any).__IDENTITATE_DATA__;
+  const data = (window as any).__IDENTITATE_DATA__;
 
   // DOM elements
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
@@ -224,21 +223,17 @@ const activeCategories = [...grouped.keys()];
     let visibleCount = 0;
 
     cards.forEach(card => {
-      const instId = card.dataset.institutionId!;
-      const inst = data.find(d => d.id === instId);
+      const instSlug = card.dataset.institutionId!;
+      const inst = data.find(d => d.slug === instSlug);
       if (!inst) return;
 
-      const info = inst.institution;
-      const meta = inst.meta;
-
-      const matchesCategory = activeCategory === 'all' || info.category === activeCategory;
+      const matchesCategory = activeCategory === 'all' || inst.category === activeCategory;
       const matchesSearch = !query || [
-        info.name,
-        info.shortName || '',
-        info.acronym || '',
-        info.description || '',
-        info.category,
-        ...(meta.tags || []),
+        inst.name,
+        inst.shortname || '',
+        inst.description || '',
+        inst.category,
+        ...(inst.meta.keywords || []),
       ].some((field: string) => field.toLowerCase().includes(query));
 
       if (matchesCategory && matchesSearch) {

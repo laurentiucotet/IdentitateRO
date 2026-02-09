@@ -1,34 +1,34 @@
 ---
 /**
- * LogoCard — Card pentru afișarea unui logo în grid (v2.0)
+ * LogoCard — Card pentru afișarea unui logo în grid (v3.0)
  *
- * Acceptă date din schema v2.0 (structură cu institution/meta/assets).
+ * Acceptă date din schema v3.0 (structură plată cu slug/name/category).
  */
 import { CATEGORY_LABELS_SINGULAR, QUALITY_LABELS } from '../lib/labels';
+import { resolveAssetPath, getAssetFallbackUrls } from '../lib/cdn-helpers';
 
 export interface Props {
-  id: string;
+  slug: string;
   name: string;
-  shortName?: string;
-  acronym?: string;
+  shortname?: string;
   category: string;
   logoPath: string;
-  quality: string;
+  quality?: string;
   hasSvg: boolean;
-  tags?: string[];
+  keywords?: string[];
 }
 
-const { id, name, shortName, acronym, category, logoPath, quality, hasSvg, tags } = Astro.props;
+const { slug, name, shortname, category, logoPath, quality, hasSvg, keywords } = Astro.props;
 
-const displayName = shortName || acronym || name;
-const qualityInfo = QUALITY_LABELS[quality];
+const displayName = shortname || name;
+const qualityInfo = quality ? QUALITY_LABELS[quality] : undefined;
 ---
 
 <a
-  href={`/institution/${id}`}
+  href={`/institution/${slug}`}
   class="logo-card w-1/2 sm:w-1/3 lg:w-1/5 text-left group"
   aria-label={`Vezi detalii pentru ${name}`}
-  data-institution-id={id}
+  data-institution-id={slug}
 >
   <!-- Logo Preview Area -->
   <div class="checkerboard aspect-square rounded-t flex items-center justify-center p-6 overflow-hidden">

@@ -1,9 +1,10 @@
 /**
- * IdentitateRO — Funcții helper pentru schema v2.0
+ * IdentitateRO — Funcții helper
  */
 
 import type { Institution, LogoLayout, LogoColorVariant } from '../types/institution';
 import { LOGO_LAYOUT_LABELS, LOGO_VARIANT_LABELS } from './labels';
+import { resolveAssetPath } from './cdn-helpers';
 
 // ─── Tipuri helper ───────────────────────────────
 
@@ -27,21 +28,22 @@ export interface DownloadableAsset {
 
 /**
  * Returnează calea către logo-ul principal (pentru preview).
- * Caută primul SVG color disponibil, altfel primul asset găsit.
+ * Folosim direct assets.main (shortcut pentru DX).
  */
 export function getPrimaryLogoPath(inst: Institution): string | null {
-  const logos = inst.assets.logos;
-  const layoutOrder: LogoLayout[] = ['fullHorizontal', 'fullVertical', 'symbolOnly'];
-
-  for (const layout of layoutOrder) {
-    const group = logos[layout];
-    if (!group) continue;
-    if (group.variants.color) return group.variants.color;
-    if (group.variants.monochrome) return group.variants.monochrome;
-    if (group.variants.white) return group.variants.white;
-    if (group.png) return group.png.path;
-  }
-
+  const main = inst.assets.main;
+  
+  if (!main) return null;
+  
+  // Priority: color → dark_mode → black → white → monochrome → png
+  // Rezolvă AssetUrls la string folosind CDN sau local
+  if (main.color) return resolveAssetPath(main.color);
+  if (main.dark_mode) return resolveAssetPath(main.dark_mode);
+  if (main.black) return resolveAssetPath(main.black);
+  if (main.white) return resolveAssetPath(main.white);
+  if (main.monochrome) return resolveAssetPath(main.monochrome);
+  if (main.png) return resolveAssetPath(main.png.path);
+  
   return null;
 }
 
@@ -49,10 +51,12 @@ export function getPrimaryLogoPath(inst: Institution): string | null {
  * Verifică dacă instituția are cel puțin un SVG.
  */
 export function hasSvg(inst: Institution): boolean {
-  return Object.values(inst.assets.logos).some(group => {
-    if (!group) return false;
-    return !!(group.variants.color || group.variants.white || group.variants.monochrome);
-  });
+  const { main, horizontal, vertical, symbol } = inst.assets;
+  const groups = [main, horizontal, vertical, symbol].filter(Boolean);
+  
+  return groups.some(group => 
+    group && (group.color || group.dark_mode || group.white || group.black || group.monochrome)
+  );
 }
 
 /**
@@ -61,17 +65,32 @@ export function hasSvg(inst: Institution): boolean {
  */
 export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[] {
   const assets: DownloadableAsset[] = [];
-  const logos = inst.assets.logos;
-  const layouts: LogoLayout[] = ['fullHorizontal', 'fullVertical', 'symbolOnly'];
-
-  for (const layout of layouts) {
-    const group = logos[layout];
+  const { main, horizontal, vertical, symbol } = inst.assets;
+  
+  // Process each layout type
+  const layouts: Array<{ key: string; group: typeof main; layout: LogoLayout }> = [];
+  
+  if (horizontal) layouts.push({ key: 'horizontal', group: horizontal, layout: 'horizontal' });
+  if (vertical) layouts.push({ key: 'vertical', group: vertical, layout: 'vertical' });
+  if (symbol) layouts.push({ key: 'symbol', group: symbol, layout: 'symbol' });
+  
+  for (const { key, group, layout } of layouts) {
     if (!group) continue;
-
-    const layoutLabel = LOGO_LAYOUT_LABELS[layout] || layout;
-
+    
+    const layoutLabel = LOGO_LAYOUT_LABELS[key] || key;
+    
     // SVG variants
-    for (const [variant, path] of Object.entries(group.variants)) {
+    const variants: Array<{ variant: LogoColorVariant; asset: typeof group.color }> = [
+      { variant: 'color', asset: group.color },
+      { variant: 'dark_mode', asset: group.dark_mode },
+      { variant: 'white', asset: group.white },
+      { variant: 'black', asset: group.black },
+      { variant: 'monochrome', asset: group.monochrome },
+    ];
+    
+    for (const { variant, asset } of variants) {
+      if (!asset) continue;
+      const path = resolveAssetPath(asset);
       if (!path) continue;
       const variantLabel = LOGO_VARIANT_LABELS[variant] || variant;
       assets.push({
@@ -79,32 +98,42 @@ export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[]
         format: 'svg',
         path,
         layout,
-        variant: variant as LogoColorVariant,
+        variant,
       });
     }
-
+    
     // PNG
     if (group.png) {
-      assets.push({
-        label: `${layoutLabel} — PNG`,
-        format: 'png',
-        path: group.png.path,
-        layout,
-        variant: 'png',
-        width: group.png.width,
-        height: group.png.height,
-      });
+      const pngPath = resolveAssetPath(group.png.path);
+      if (pngPath) {
+        assets.push({
+          label: `${layoutLabel} — PNG`,
+          format: 'png',
+          path: pngPath,
+          layout,
+          variant: 'png',
+          width: group.png.width,
+          height: group.png.height,
+        });
+      }
     }
   }
-
+  
   return assets;
 }
 
 /**
- * Returnează numele de afișat al instituției (scurt → acronim → complet).
+ * Returnează numele de afișat al instituției (scurt → complet).
  */
 export function getDisplayName(inst: Institution): string {
-  return inst.institution.shortName || inst.institution.acronym || inst.institution.name;
+  return inst.shortname || inst.name;
+}
+
+/**
+ * Returnează numele complet pentru titluri.
+ */
+export function getFullName(inst: Institution): string {
+  return inst.name;
 }
 
 /**
@@ -119,4 +148,32 @@ export function formatRgb(rgb: [number, number, number]): string {
  */
 export function formatCmyk(cmyk: [number, number, number, number]): string {
   return `${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]}`;
+}
+
+/**
+ * Verifică dacă instituția are culori definite.
+ */
+export function hasColors(inst: Institution): boolean {
+  return !!(inst.colors && inst.colors.length > 0);
+}
+
+/**
+ * Verifică dacă instituția are tipografie definită.
+ */
+export function hasTypography(inst: Institution): boolean {
+  return !!(inst.typography && inst.typography.primary);
+}
+
+/**
+ * Returnează URL-ul site-ului oficial (dacă există).
+ */
+export function getWebsiteUrl(inst: Institution): string | undefined {
+  return inst.resources?.website;
+}
+
+/**
+ * Returnează URL-ul manualului de brand (dacă există).
+ */
+export function getBrandManualUrl(inst: Institution): string | undefined {
+  return inst.resources?.branding_manual;
 }

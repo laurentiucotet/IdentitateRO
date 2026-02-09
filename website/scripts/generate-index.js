@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * IdentitateRO — Generator index instituții (v2.0)
+ * IdentitateRO — Generator index instituții (v3.0)
  *
  * Citește toate fișierele JSON din src/data/institutions/
  * și generează un index central (institutions-index.json)
@@ -40,7 +40,7 @@ const CATEGORY_ORDER = [
 ];
 
 async function generateIndex() {
-  console.log('📊 Generare index instituții (v2.0)...\n');
+  console.log('📊 Generare index instituții (v3.0)...\n');
 
   const files = await readdir(INSTITUTIONS_DIR);
   const jsonFiles = files.filter(f => f.endsWith('.json'));
@@ -55,29 +55,35 @@ async function generateIndex() {
       const content = await readFile(join(INSTITUTIONS_DIR, file), 'utf-8');
       const data = JSON.parse(content);
 
-      // Validare structură minimă
-      if (!data.id || !data.institution?.name || !data.institution?.category) {
-        console.error(`  ⚠️  ${file}: structură invalidă (lipsește id, name sau category)`);
+      // Validare structură minimă v3
+      if (!data.id || !data.slug || !data.name || !data.category) {
+        console.error(`  ⚠️  ${file}: structură invalidă (lipsește id, slug, name sau category)`);
+        continue;
+      }
+
+      // Validate v3 schema markers
+      if (!data.id.startsWith('ro-') || !data.meta?.keywords || !data.assets?.main) {
+        console.error(`  ⚠️  ${file}: nu respectă schema v3.0 (lipsește ro- prefix, keywords sau assets.main)`);
         continue;
       }
 
       institutions.push(data);
 
       // Statistici
-      const cat = data.institution.category;
+      const cat = data.category;
       categoryStats[cat] = (categoryStats[cat] || 0) + 1;
 
-      if (data.institution.manualUrl) withManual++;
+      if (data.resources?.branding_manual) withManual++;
 
-      // Verifică dacă are cel puțin un SVG
-      const logos = data.assets?.logos || {};
-      const hasSvg = Object.values(logos).some(group => {
-        const g = /** @type {any} */ (group);
-        return g?.variants && (g.variants.color || g.variants.white || g.variants.monochrome);
-      });
+      // Verifică dacă are cel puțin un SVG (v3: verifică assets.main și layouturi)
+      const { main, horizontal, vertical, symbol } = data.assets;
+      const groups = [main, horizontal, vertical, symbol].filter(Boolean);
+      const hasSvg = groups.some(group => 
+        group && (group.color || group.dark_mode || group.white || group.black || group.monochrome)
+      );
       if (hasSvg) withSvg++;
 
-      console.log(`  ✅ ${data.institution.name} (${cat})`);
+      console.log(`  ✅ ${data.name} (${cat})`);
     } catch (err) {
       console.error(`  ❌ Eroare la ${file}:`, err.message);
     }
@@ -85,7 +91,7 @@ async function generateIndex() {
 
   // Sortare alfabetică după numele instituției
   institutions.sort((a, b) =>
-    a.institution.name.localeCompare(b.institution.name, 'ro')
+    a.name.localeCompare(b.name, 'ro')
   );
 
   // Generare rezumat categorii (doar cele active, sortate)
@@ -98,7 +104,7 @@ async function generateIndex() {
     }));
 
   const index = {
-    schemaVersion: '2.0.0',
+    schemaVersion: '3.0.0',
     generatedAt: new Date().toISOString(),
     total: institutions.length,
     stats: {
@@ -113,7 +119,7 @@ async function generateIndex() {
   await writeFile(OUTPUT_FILE, JSON.stringify(index, null, 2), 'utf-8');
 
   console.log(`\n📋 REZUMAT`);
-  console.log(`   Schema: v2.0.0`);
+  console.log(`   Schema: v3.0.0`);
   console.log(`   Total instituții: ${institutions.length}`);
   console.log(`   Categorii active: ${categories.length}`);
   console.log(`   Cu manual de brand: ${withManual}`);

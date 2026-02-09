@@ -1,0 +1,64 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-02-09T13:51:45.352Z",
+  "count": 5,
+  "institutions": [
+    {
+      "id": "ro-anaf",
+      "slug": "anaf",
+      "name": "Agenția Națională de Administrare Fiscală",
+      "logos": {
+        "horizontal": {
+          "color": "/logos/anaf/anaf.svg"
+        },
+        "symbol": {
+          "color": "/logos/anaf/simbol-anaf.svg"
+        }
+      }
+    },
+    {
+      "id": "ro-guvernul-romaniei",
+      "slug": "guvernul-romaniei",
+      "name": "Guvernul României",
+      "logos": {
+        "horizontal": {
+          "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
+          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+          "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg"
+        }
+      }
+    },
+    {
+      "id": "ro-ministerul-educatiei",
+      "slug": "ministerul-educatiei",
+      "name": "Ministerul Educației",
+      "logos": {
+        "horizontal": {
+          "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
+        }
+      }
+    },
+    {
+      "id": "ro-pnrr",
+      "slug": "pnrr",
+      "name": "Planul Național de Redresare și Reziliență",
+      "logos": {
+        "horizontal": {
+          "monochrome": "/logos/pnrr/pnrr-mono.svg",
+          "color": "/logos/pnrr/pnrr.svg"
+        }
+      }
+    },
+    {
+      "id": "ro-primaria-cluj-napoca",
+      "slug": "primaria-cluj-napoca",
+      "name": "Primăria Municipiului Cluj-Napoca",
+      "logos": {
+        "horizontal": {
+          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+          "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
+        }
+      }
+    }
+  ]
+}
