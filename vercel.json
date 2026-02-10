@@ -5,25 +5,25 @@
   "rewrites": [
     {
       "source": "/logos/:path*",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@latest/logos/:path*"
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.2.2/logos/:path*"
     },
     {
       "source": "/loader.js",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@latest/identity-loader.js"
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.2.2/identity-loader.js"
     }
   ],
   "headers": [
     {
       "source": "/logos/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=604800" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=3600" },
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     },
     {
       "source": "/loader.js",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=604800" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=3600" },
         { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     }
