@@ -1,6 +1,6 @@
 {
   "schemaVersion": "3.0.0",
-  "generatedAt": "2026-02-10T12:00:18.082Z",
+  "generatedAt": "2026-02-10T12:35:45.409Z",
   "total": 8,
   "stats": {
     "byCategory": {
@@ -504,7 +504,32 @@
       },
       "description": "Guvernul României este autoritatea executivă a statului român, responsabilă pentru conducerea politică și administrativă a țării. Coordonează implementarea politicilor publice și asigură funcționarea serviciilor publice la nivel național.",
       "usage_notes": null,
-      "colors": null,
+      "colors": [
+        {
+          "name": "S",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #58595B",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
       "typography": null,
       "resources": {
         "website": null,
