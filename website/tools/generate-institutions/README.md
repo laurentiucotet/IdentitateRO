@@ -12,32 +12,44 @@ fișierele JSON ale instituțiilor conform schemei v3 IdentitateRO.
 
 ## Structura folderelor de input
 
+Fiecare instituție are logo-urile organizate în subdirectoare pe layout:
+
 ```
 packages/logos/logos/
   anaf/
-    anaf.svg                  # logo principal
-    simbol-anaf.svg           # simbol
-    metadata.md               # opțional — informații suplimentare
-  primaria-timisoara/
-    primaria-timisoara.svg
-    primaria-timisoara-alb.svg
-    metadata.md
+    metadata.md               # informații instituție (gitignored)
+    horizontal/
+      color.svg               # variantă color
+      white.svg               # variantă alb (fundal închis)
+      dark.svg                # variantă dark mode
+    vertical/
+      color.svg
+      white.svg
+      dark.svg
+    symbol/
+      color.svg
+      white.svg
+      dark.svg
 ```
 
-### Convenții de numire fișiere SVG
+### Structura directoare
 
-Scriptul mapează automat sufixele la variante de culoare:
+| Director      | Descriere                  |
+|---------------|----------------------------|
+| `horizontal/` | Logo orizontal (complet)   |
+| `vertical/`   | Logo vertical (complet)    |
+| `symbol/`     | Simbol / icon              |
 
-| Sufix            | Variantă    |
-|------------------|-------------|
-| (fără sufix)     | `color`     |
-| `-alb`, `-white` | `white`     |
-| `-mono`          | `monochrome`|
-| `-negru`,`-black`| `black`     |
-| `-dark`          | `dark_mode` |
+### Variante fișiere
 
-Fișierele care conțin `simbol`, `symbol`, `icon` sau `sigla` sunt clasificate
-automat ca layout `symbol`. Restul sunt `horizontal` implicit.
+| Fișier      | Câmp JSON   | Descriere                      |
+|-------------|-------------|--------------------------------|
+| `color.svg` | `color`     | Variantă color (principală)    |
+| `white.svg` | `white`     | Variantă albă (fundal închis)  |
+| `dark.svg`  | `dark_mode` | Variantă dark mode             |
+
+Nu toate layout-urile sau variantele sunt obligatorii — scriptul detectează
+automat ce fișiere există și construiește obiectul `assets` corespunzător.
 
 ### metadata.md (opțional dar recomandat)
 
@@ -89,9 +101,14 @@ npm run data:generate:from-md -- --no-cache
 # Folosește un alt model OpenRouter
 npm run data:generate:from-md -- --model anthropic/claude-sonnet-4
 
-# Setează cheia API din env (nu va mai cere interactiv)
-OPENROUTER_API_KEY=sk-... npm run data:generate:from-md
+# La prima rulare, cheia se salvează automat în .env
+# La rulările următoare se citește din .env
+npm run data:generate:from-md
 ```
+
+> **Notă:** La prima rulare, scriptul cere cheia API interactiv și o salvează
+> în `tools/generate-institutions/.env` (ignorat de git). La rulările
+> următoare, cheia se citește automat din `.env`.
 
 ## Output
 
@@ -103,13 +120,10 @@ Răspunsurile AI sunt cache-uite în `tools/generate-institutions/ai-cache/`
 
 ## După generare
 
-Regenerează indexul agregat:
+Scriptul rulează automat `npm run data:generate` la final pentru a
+regenera indexul agregat. Nu mai este necesar un pas manual.
 
-```bash
-npm run data:generate
-```
-
-Apoi testează local:
+Testează local:
 
 ```bash
 npm run dev

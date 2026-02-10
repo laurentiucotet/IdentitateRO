@@ -1,80 +1,56 @@
 {
   "id": "ro-pnrr",
   "slug": "pnrr",
-  "name": "Planul Național de Redresare și Reziliență",
+  "name": "PNRR",
   "shortname": "pnrr",
   "category": "proiect-ue",
   "meta": {
     "version": "1.0",
-    "last_updated": "2026-02-08",
+    "last_updated": "2026-02-10",
     "keywords": [
-      "ue",
-      "fonduri-europene",
-      "investiții",
-      "pnrr"
-    ]
+      "pnrr",
+      "planul național de redresare și reziliență",
+      "românia",
+      "uniunea europeană",
+      "proiect ue"
+    ],
+    "quality": "draft"
   },
   "location": {
     "country_code": "RO",
-    "county": "B",
-    "city": "București"
+    "county": null,
+    "city": null
   },
-  "description": "Programul de reforme și investiții al României, finanțat prin Mecanismul de Redresare și Reziliență al UE.",
-  "usage_notes": "Obligatoriu pentru toate materialele finanțate din PNRR. Consultați ghidul de identitate vizuală.",
-  "colors": [
-    {
-      "name": "Albastru PNRR",
-      "hex": "#003399",
-      "rgb": [
-        0,
-        51,
-        153
-      ],
-      "pantone": "Reflex Blue C",
-      "usage": "primary"
-    },
-    {
-      "name": "Galben UE",
-      "hex": "#FFCC00",
-      "rgb": [
-        255,
-        204,
-        0
-      ],
-      "pantone": "116 C",
-      "usage": "secondary"
-    },
-    {
-      "name": "Verde PNRR",
-      "hex": "#429E3E",
-      "rgb": [
-        66,
-        158,
-        62
-      ],
-      "usage": "accent"
-    }
-  ],
-  "typography": {
-    "primary": {
-      "family": "Arial",
-      "weights": []
-    }
-  },
+  "description": "Planul Național de Redresare și Reziliență (PNRR) este un plan strategic al României pentru a accesa fonduri europene destinate redresării economice și creșterii rezilienței.",
+  "usage_notes": null,
+  "colors": null,
+  "typography": null,
   "assets": {
     "main": {
       "type": "horizontal",
       "color": "/logos/pnrr/pnrr.svg",
-      "black": "/logos/pnrr/pnrr-mono.svg"
+      "white": null,
+      "dark_mode": null,
+      "black": null,
+      "monochrome": "/logos/pnrr/pnrr-mono.svg",
+      "png": null
     },
     "horizontal": {
-      "type": "horizontal",
       "color": "/logos/pnrr/pnrr.svg",
-      "black": "/logos/pnrr/pnrr-mono.svg"
-    }
+      "white": null,
+      "dark_mode": null,
+      "black": null,
+      "monochrome": "/logos/pnrr/pnrr-mono.svg",
+      "type": "horizontal",
+      "png": null
+    },
+    "vertical": null,
+    "symbol": null,
+    "favicon": null
   },
   "resources": {
-    "website": "https://www.pnrr.ro",
-    "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/"
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
   }
 }

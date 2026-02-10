@@ -2,79 +2,55 @@
   "id": "ro-guvernul-romaniei",
   "slug": "guvernul-romaniei",
   "name": "Guvernul României",
-  "shortname": "guvernul",
+  "shortname": "guvern",
   "category": "guvern",
   "meta": {
     "version": "1.0",
-    "last_updated": "2026-02-08",
+    "last_updated": "2026-02-10",
     "keywords": [
-      "guvernamental",
+      "guvern",
+      "romania",
+      "guvernul romaniei",
       "executiv",
-      "administrație"
-    ]
+      "prim ministru"
+    ],
+    "quality": "draft"
   },
   "location": {
     "country_code": "RO",
-    "county": "B",
+    "county": null,
     "city": "București"
   },
-  "description": "Organul executiv al statului român, condus de Primul Ministru.",
-  "colors": [
-    {
-      "name": "Albastru Oficial",
-      "hex": "#002F6C",
-      "rgb": [
-        0,
-        47,
-        108
-      ],
-      "usage": "primary"
-    },
-    {
-      "name": "Auriu",
-      "hex": "#C8A951",
-      "rgb": [
-        200,
-        169,
-        81
-      ],
-      "pantone": "4015 C",
-      "usage": "secondary"
-    },
-    {
-      "name": "Alb",
-      "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
-      "usage": "neutral"
-    }
-  ],
-  "typography": {
-    "primary": {
-      "family": "Source Sans Pro",
-      "url": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro",
-      "weights": []
-    }
-  },
+  "description": "Guvernul României este autoritatea executivă a statului, responsabilă pentru implementarea politicilor și administrarea afacerilor publice.",
+  "usage_notes": null,
+  "colors": null,
+  "typography": null,
   "assets": {
     "main": {
       "type": "horizontal",
       "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
       "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-      "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+      "dark_mode": null,
+      "black": null,
+      "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+      "png": null
     },
     "horizontal": {
-      "type": "horizontal",
       "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
       "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-      "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
-    }
+      "dark_mode": null,
+      "black": null,
+      "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+      "type": "horizontal",
+      "png": null
+    },
+    "vertical": null,
+    "symbol": null,
+    "favicon": null
   },
   "resources": {
-    "website": "https://gov.ro",
-    "branding_manual": "https://gov.ro/manual-identitate"
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
   }
 }

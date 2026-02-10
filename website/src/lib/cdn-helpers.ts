@@ -45,7 +45,7 @@ export function getCdnUrls(localPath: string, version: string = CDN_VERSION): As
  * @param preferCdn - Dacă true, preferă CDN-ul; altfel folosește local (default: true)
  * @returns String URL
  */
-export function resolveAssetPath(asset: AssetUrls | undefined, preferCdn: boolean = true): string | null {
+export function resolveAssetPath(asset: AssetUrls | undefined, preferCdn: boolean = false): string | null {
   if (!asset) return null;
   
   // String path: generează CDN URL automat dacă e path local de logos

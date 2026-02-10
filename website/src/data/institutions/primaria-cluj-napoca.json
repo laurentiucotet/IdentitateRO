@@ -1,77 +1,57 @@
 {
   "id": "ro-primaria-cluj-napoca",
   "slug": "primaria-cluj-napoca",
-  "name": "Primăria Municipiului Cluj-Napoca",
-  "shortname": "primăria cluj-napoca",
+  "name": "Primăria Cluj-Napoca",
+  "shortname": "primaria cluj napoca",
   "category": "primarie",
   "meta": {
     "version": "1.0",
-    "last_updated": "2026-02-08",
+    "last_updated": "2026-02-10",
     "keywords": [
-      "administrație-locală",
+      "primărie",
       "cluj-napoca",
-      "transilvania"
-    ]
+      "administrație locală",
+      "primar",
+      "municipiu",
+      "cluj"
+    ],
+    "quality": "draft"
   },
   "location": {
     "country_code": "RO",
     "county": "CJ",
     "city": "Cluj-Napoca"
   },
-  "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
-  "colors": [
-    {
-      "name": "Albastru Cluj",
-      "hex": "#003DA5",
-      "rgb": [
-        0,
-        61,
-        165
-      ],
-      "pantone": "286 C",
-      "usage": "primary"
-    },
-    {
-      "name": "Alb",
-      "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
-      "usage": "neutral"
-    },
-    {
-      "name": "Gri Secundar",
-      "hex": "#6C757D",
-      "rgb": [
-        108,
-        117,
-        125
-      ],
-      "usage": "secondary"
-    }
-  ],
-  "typography": {
-    "primary": {
-      "family": "Roboto",
-      "url": "https://fonts.googleapis.com/css2?family=Roboto",
-      "weights": []
-    }
-  },
+  "description": "Primăria Cluj-Napoca este instituția care asigură administrația publică locală în municipiul Cluj-Napoca.",
+  "usage_notes": null,
+  "colors": null,
+  "typography": null,
   "assets": {
     "main": {
       "type": "horizontal",
       "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-      "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+      "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+      "black": null,
+      "dark_mode": null,
+      "monochrome": null,
+      "png": null
     },
     "horizontal": {
-      "type": "horizontal",
       "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-      "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
-    }
+      "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
+      "black": null,
+      "dark_mode": null,
+      "monochrome": null,
+      "type": "horizontal",
+      "png": null
+    },
+    "vertical": null,
+    "symbol": null,
+    "favicon": null
   },
   "resources": {
-    "website": "https://pfrcluj.ro"
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
   }
 }

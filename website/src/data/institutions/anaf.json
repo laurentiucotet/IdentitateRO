@@ -6,66 +6,60 @@
   "category": "agentie",
   "meta": {
     "version": "1.0",
-    "last_updated": "2026-02-08",
+    "last_updated": "2026-02-10",
     "keywords": [
-      "guvernamental",
+      "anaf",
+      "administrare fiscală",
+      "agenție",
       "taxe",
+      "impozite",
       "fiscalitate"
-    ]
+    ],
+    "quality": "draft"
   },
   "location": {
     "country_code": "RO",
-    "county": "B",
-    "city": "București"
+    "county": null,
+    "city": null
   },
-  "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
-  "colors": [
-    {
-      "name": "Albastru Simbol",
-      "hex": "#2C2C76",
-      "rgb": [
-        44,
-        44,
-        118
-      ],
-      "usage": "primary"
-    },
-    {
-      "name": "Negru Text",
-      "hex": "#151515",
-      "rgb": [
-        21,
-        21,
-        21
-      ],
-      "usage": "neutral"
-    },
-    {
-      "name": "Alb",
-      "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
-      "usage": "neutral"
-    }
-  ],
+  "description": "Agenția Națională de Administrare Fiscală este instituția publică din România responsabilă cu colectarea impozitelor și taxelor.",
+  "usage_notes": null,
+  "colors": null,
+  "typography": null,
   "assets": {
     "main": {
       "type": "horizontal",
-      "color": "/logos/anaf/anaf.svg"
+      "color": "/logos/anaf/anaf.svg",
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "dark_mode": null,
+      "png": null
     },
     "horizontal": {
+      "color": "/logos/anaf/anaf.svg",
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "dark_mode": null,
       "type": "horizontal",
-      "color": "/logos/anaf/anaf.svg"
+      "png": null
     },
+    "vertical": null,
     "symbol": {
+      "color": "/logos/anaf/simbol-anaf.svg",
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "dark_mode": null,
       "type": "symbol",
-      "color": "/logos/anaf/simbol-anaf.svg"
-    }
+      "png": null
+    },
+    "favicon": null
   },
   "resources": {
-    "website": "https://www.anaf.ro"
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
   }
 }

@@ -2,72 +2,56 @@
   "id": "ro-ministerul-educatiei",
   "slug": "ministerul-educatiei",
   "name": "Ministerul Educației",
-  "shortname": "min. educației",
+  "shortname": "medu",
   "category": "minister",
   "meta": {
     "version": "1.0",
-    "last_updated": "2026-02-08",
+    "last_updated": "2026-02-10",
     "keywords": [
-      "guvernamental",
       "educație",
-      "minister"
-    ]
+      "ministerul educației",
+      "învățământ",
+      "școală",
+      "liceu",
+      "universitate"
+    ],
+    "quality": "draft"
   },
   "location": {
     "country_code": "RO",
-    "county": "B",
+    "county": null,
     "city": "București"
   },
-  "description": "Ministerul responsabil cu politicile educaționale și sistemul de învățământ din România.",
-  "colors": [
-    {
-      "name": "Albastru Educație",
-      "hex": "#1A3C6E",
-      "rgb": [
-        26,
-        60,
-        110
-      ],
-      "usage": "primary"
-    },
-    {
-      "name": "Auriu",
-      "hex": "#D4A843",
-      "rgb": [
-        212,
-        168,
-        67
-      ],
-      "usage": "secondary"
-    },
-    {
-      "name": "Alb",
-      "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
-      "usage": "neutral"
-    }
-  ],
-  "typography": {
-    "primary": {
-      "family": "Times New Roman",
-      "weights": []
-    }
-  },
+  "description": "Ministerul Educației este instituția guvernamentală responsabilă cu administrarea sistemului de învățământ din România.",
+  "usage_notes": null,
+  "colors": null,
+  "typography": null,
   "assets": {
     "main": {
       "type": "horizontal",
-      "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
+      "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "dark_mode": null,
+      "png": null
     },
     "horizontal": {
+      "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "dark_mode": null,
       "type": "horizontal",
-      "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
-    }
+      "png": null
+    },
+    "vertical": null,
+    "symbol": null,
+    "favicon": null
   },
   "resources": {
-    "website": "https://www.edu.ro"
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
   }
 }
