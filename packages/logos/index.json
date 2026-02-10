@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2026-02-10T09:37:09.837Z",
-  "count": 6,
+  "generated": "2026-02-10T12:40:47.017Z",
+  "count": 8,
   "institutions": [
     {
       "id": "ro-ro-anaf",
@@ -12,7 +12,7 @@
     {
       "id": "ro-ro-anre",
       "slug": "ro-anre",
-      "name": "Autoritatea Națională de Reglementare în Energie",
+      "name": "Autoritatea Națională de Reglementare în Domeniul Energiei",
       "logos": {
         "symbol": {
           "black": "/logos/ro-anre/symbol_black.svg",
@@ -37,6 +37,18 @@
       "id": "ro-ro-cnas",
       "slug": "ro-cnas",
       "name": "Casa Națională de Asigurări de Sănătate",
+      "logos": {}
+    },
+    {
+      "id": "ro-ro-guvern",
+      "slug": "ro-guvern",
+      "name": "Guvernul României",
+      "logos": {}
+    },
+    {
+      "id": "ro-ro-ins",
+      "slug": "ro-ins",
+      "name": "Institutul Național de Statistică",
       "logos": {}
     },
     {

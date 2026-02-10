@@ -36,5 +36,8 @@
   "type": "module",
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "generate": "node scripts/generate-index.js"
   }
 }
