@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2026-02-10T08:19:20.331Z",
-  "count": 7,
+  "generated": "2026-02-10T08:54:04.676Z",
+  "count": 11,
   "institutions": [
     {
       "id": "ro-anaf",
@@ -61,6 +61,12 @@
       }
     },
     {
+      "id": "ro-ro-anaf",
+      "slug": "ro-anaf",
+      "name": "Agenția Națională de Administrare Fiscală",
+      "logos": {}
+    },
+    {
       "id": "ro-ro-anre",
       "slug": "ro-anre",
       "name": "Autoritatea Națională de Reglementare în Energie",
@@ -73,9 +79,27 @@
       }
     },
     {
+      "id": "ro-ro-bnr",
+      "slug": "ro-bnr",
+      "name": "Banca Națională a României",
+      "logos": {}
+    },
+    {
       "id": "ro-ro-cnair",
       "slug": "ro-cnair",
       "name": "Compania Națională de Administrare a Infrastructurii Rutiere",
+      "logos": {}
+    },
+    {
+      "id": "ro-ro-cnas",
+      "slug": "ro-cnas",
+      "name": "Casa Națională de Asigurări de Sănătate",
+      "logos": {}
+    },
+    {
+      "id": "ro-ro-monitorul-oficial",
+      "slug": "ro-monitorul-oficial",
+      "name": "Monitorul Oficial al României",
       "logos": {}
     }
   ]
