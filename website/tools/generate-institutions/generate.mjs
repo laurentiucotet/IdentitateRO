@@ -282,6 +282,10 @@ function parseMetadata(content) {
 
 function hexToRgb(hex) {
   hex = hex.replace(/^#/, '');
+  // Support 3-char shorthand hex (e.g. "ABC" → "AABBCC")
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
   if (hex.length !== 6) return null;
   const r = parseInt(hex.slice(0, 2), 16);
   const g = parseInt(hex.slice(2, 4), 16);
@@ -302,26 +306,36 @@ function extractColorsFromMetadata(rawContent) {
     neutral: 'neutral',
   };
 
-  // Pattern: "Name: #HEX (usage)" or "Name: HEX (usage)"
+  // Pattern: "Name: #HEX (usage)" or "Name: HEX trailing-text"
   //   e.g. "Albastru Simbol: #2C2C76 (primary)"
   //   e.g. "culori albastru: 374990"
   //   e.g. "rosu:E03544"
-  // Use [^\S\n] instead of \s to avoid matching across newlines
-  const namedPattern = /([\w\u00C0-\u024F\u00c0-\u00ff\t -]*):\s*#?([0-9A-Fa-f]{6})(?:\s*\(([^)]+)\))?/g;
+  //   e.g. "culori galben: F6C014 de accent"
+  // Captures: group1=name, group2=hex (3-6 chars), group3=parenthesized hint, group4=trailing text until comma/newline
+  const namedPattern = /([\w\u00C0-\u024F\u00c0-\u00ff\t -]*):\s*#?([0-9A-Fa-f]{3,6})(?:\s*\(([^)]+)\))?([^,\n]*)?/g;
   let match;
 
   while ((match = namedPattern.exec(rawContent)) !== null) {
+    let rawHex = match[2];
+    // Expand 3-char hex to 6-char
+    if (rawHex.length === 3) rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
+    // Reject 4 or 5 char hex (only 3 and 6 are valid)
+    if (rawHex.length !== 6) continue;
+
     const rawName = match[1].trim();
-    const hex = match[2].toUpperCase();
-    const usageHint = (match[3] || '').trim().toLowerCase();
+    const hex = rawHex.toUpperCase();
+    const usageHintParen = (match[3] || '').trim().toLowerCase();
+    const trailingText = (match[4] || '').trim().toLowerCase();
 
     if (seenHex.has(hex)) continue;
     seenHex.add(hex);
 
     const rgb = hexToRgb(hex);
+    // Check usage from parenthesized hint AND trailing text (e.g. "de accent", "primara")
+    const combinedHint = usageHintParen + ' ' + trailingText;
     let usage = null;
     for (const [kw, val] of Object.entries(USAGE_KEYWORDS)) {
-      if (usageHint.includes(kw)) { usage = val; break; }
+      if (combinedHint.includes(kw)) { usage = val; break; }
     }
     // Auto-assign first color as primary if no usage specified
     if (!usage && colors.length === 0) usage = 'primary';
@@ -343,10 +357,13 @@ function extractColorsFromMetadata(rawContent) {
     });
   }
 
-  // Fallback: look for standalone 6-char hex not yet captured
-  const standalonePattern = /(?:^|[\s,;])#?([0-9A-Fa-f]{6})(?=[\s,;]|$)/g;
+  // Fallback: look for standalone 3-6 char hex not yet captured
+  const standalonePattern = /(?:^|[\s,;])#?([0-9A-Fa-f]{3,6})(?=[\s,;]|$)/g;
   while ((match = standalonePattern.exec(rawContent)) !== null) {
-    const hex = match[1].toUpperCase();
+    let rawHex = match[1];
+    if (rawHex.length === 3) rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
+    if (rawHex.length !== 6) continue;
+    const hex = rawHex.toUpperCase();
     if (seenHex.has(hex)) continue;
     seenHex.add(hex);
 
@@ -368,17 +385,98 @@ function extractColorsFromMetadata(rawContent) {
   return colors.length > 0 ? colors : null;
 }
 
-// ── Discover assets in the new folder structure ──────────────────────────────
+// ── Extract typography from metadata text ────────────────────────────────────
 //
-//  [slug]/
-//    horizontal/  color.svg  white.svg  dark.svg
-//    vertical/    color.svg  white.svg  dark.svg
-//    symbol/      color.svg  white.svg  dark.svg
+// Detects font references in metadata.md body text:
+//   "font Arial"                                         → family only
+//   "font: open sans https://fonts.google.com/..."       → family + URL
+//   "font: helvetica neue pro lt url: https://..."       → family + URL
+
+function extractTypographyFromMetadata(rawContent) {
+  // Pattern 1: "font: FAMILY url: URL" or "font: FAMILY URL"
+  const withUrlPattern = /font\s*:?\s+([a-zA-Z0-9][a-zA-Z0-9 +\-]*)(?:\s+url\s*:\s*|\s+)(https?:\/\/\S+)/i;
+  const withUrlMatch = rawContent.match(withUrlPattern);
+  if (withUrlMatch) {
+    const family = withUrlMatch[1].trim();
+    const url = withUrlMatch[2].trim().replace(/[).,;]+$/, '');
+    return {
+      primary: { family, url, weights: [] },
+      secondary: null,
+    };
+  }
+
+  // Pattern 2: "font: FAMILY" or "font FAMILY" (no URL)
+  const familyOnlyPattern = /font\s*:?\s+([a-zA-Z][a-zA-Z0-9 +\-]{1,40})(?:\s*$|\s*\n)/im;
+  const familyOnlyMatch = rawContent.match(familyOnlyPattern);
+  if (familyOnlyMatch) {
+    const family = familyOnlyMatch[1].trim();
+    // Reject if the "family" looks like a sentence (too many words)
+    if (family.split(/\s+/).length <= 5) {
+      return {
+        primary: { family, url: null, weights: [] },
+        secondary: null,
+      };
+    }
+  }
+
+  return null;
+}
+
+// ── Extract website URL from metadata text ───────────────────────────────────
+//
+// Detects website links in metadata.md body text:
+//   "website oficial: https://www.anaf.ro/"
+//   "website oficial anaf: https://www.anaf.ro/"
+//   "site: https://insse.ro/"
+//   bare https:// URLs on their own line
+
+function extractWebsiteFromMetadata(rawContent) {
+  // Pattern 1: "website/site/web" keyword followed by URL
+  // Note: deliberately excludes bare "url" to avoid catching font URLs like "url: https://myfonts.com/..."
+  const labelledPattern = /(?:website|site\s+oficial|site|web\s+oficial)\s*[^:]*:\s*(https?:\/\/\S+)/i;
+  const labelledMatch = rawContent.match(labelledPattern);
+  if (labelledMatch) {
+    return labelledMatch[1].trim().replace(/[).,;]+$/, '');
+  }
+
+  // Pattern 2: standalone URL on its own line (not a font URL)
+  const lines = rawContent.split('\n');
+  for (const line of lines) {
+    const trimmed = line.trim();
+    // Skip lines that are font/typography references
+    if (/font/i.test(trimmed)) continue;
+    // Match a line that contains a URL (possibly with prefix text)
+    const urlMatch = trimmed.match(/(https?:\/\/\S+)/);
+    if (urlMatch) {
+      const url = urlMatch[1].replace(/[).,;]+$/, '');
+      // Skip known font/typography URLs
+      if (/fonts?\.google|myfonts\.com|fontlibrary|fontsquirrel|adobe.*fonts/i.test(url)) continue;
+      return url;
+    }
+  }
+
+  return null;
+}
+
+// ── Discover assets in the folder structure ──────────────────────────────────
+//
+// Preferred layout (subdirs):
+//   [slug]/
+//     horizontal/  color.svg  white.svg  dark.svg
+//     vertical/    color.svg  white.svg  dark.svg
+//     symbol/      color.svg  white.svg  dark.svg
+//
+// Flat layout fallback (legacy, e.g. ro-anre):
+//   [slug]/
+//     symbol_color.svg  symbol_white.svg  symbol_black.svg
+//     horizontal_color.svg  ...
 
 function discoverAssets(slugDir) {
   const found = {};
   let totalFiles = 0;
+  let isFlat = false;
 
+  // 1. Try subdirectory layout first
   for (const layout of LAYOUTS) {
     const layoutDir = path.join(slugDir, layout);
     if (!fs.existsSync(layoutDir)) continue;
@@ -393,12 +491,33 @@ function discoverAssets(slugDir) {
     }
   }
 
-  return { found, totalFiles };
+  // 2. Fallback: flat files like symbol_color.svg, horizontal_dark.svg
+  if (totalFiles === 0) {
+    const rootFiles = fs.readdirSync(slugDir)
+      .filter(f => (f.endsWith('.svg') || f.endsWith('.png')) && f !== 'favicon.svg');
+
+    for (const file of rootFiles) {
+      const baseName = path.basename(file, path.extname(file)).toLowerCase();
+      // Try pattern: layout_variant (e.g. symbol_color, horizontal_white)
+      for (const layout of LAYOUTS) {
+        for (const variant of VARIANTS) {
+          if (baseName === layout + '_' + variant || baseName === layout + '-' + variant) {
+            if (!found[layout]) found[layout] = [];
+            found[layout].push(file);
+            totalFiles++;
+          }
+        }
+      }
+    }
+    if (totalFiles > 0) isFlat = true;
+  }
+
+  return { found, totalFiles, isFlat };
 }
 
 //  Build assets object programmatically from discovered files 
 
-function buildAssetsFromFiles(slug, discovered) {
+function buildAssetsFromFiles(slug, discovered, isFlat = false) {
   const assets = {
     main: null,
     horizontal: null,
@@ -422,17 +541,28 @@ function buildAssetsFromFiles(slug, discovered) {
     };
 
     for (const file of files) {
-      const baseName = path.basename(file, path.extname(file));
-      const fieldName = VARIANT_TO_FIELD[baseName];
-      if (fieldName) {
-        group[fieldName] = '/logos/' + slug + '/' + layout + '/' + file;
+      const baseName = path.basename(file, path.extname(file)).toLowerCase();
+
+      if (isFlat) {
+        // Flat: file is like "symbol_color.svg" — extract variant from compound name
+        for (const [variant, fieldName] of Object.entries(VARIANT_TO_FIELD)) {
+          if (baseName === layout + '_' + variant || baseName === layout + '-' + variant) {
+            group[fieldName] = '/logos/' + slug + '/' + file;
+          }
+        }
+      } else {
+        // Subdirectory: file is like "color.svg" inside layout dir
+        const fieldName = VARIANT_TO_FIELD[baseName];
+        if (fieldName) {
+          group[fieldName] = '/logos/' + slug + '/' + layout + '/' + file;
+        }
       }
     }
 
     assets[layout] = group;
   }
 
-  // Set main: prefer horizontal  symbol  vertical
+  // Set main: prefer horizontal → symbol → vertical
   if (assets.horizontal)      assets.main = { ...assets.horizontal };
   else if (assets.symbol)     assets.main = { ...assets.symbol, type: 'symbol' };
   else if (assets.vertical)   assets.main = { ...assets.vertical, type: 'vertical' };
@@ -449,9 +579,9 @@ function buildSystemPrompt() {
 '  2. Available logo layouts and their SVG/PNG variant files\n' +
 '  3. Optional metadata from a markdown file (frontmatter + body text)\n' +
 '\n' +
-'Your task: produce a SINGLE valid JSON object for this institution following the IdentitateRO v3 schema.Respond in Romanian\n' +
+'Your task: produce a SINGLE valid JSON object for this institution following the IdentitateRO v3 schema. Respond in Romanian where appropriate.\n' +
 '\n' +
-'IMPORTANT: Do NOT include the "assets" field  it will be built automatically from the file structure.\n' +
+'IMPORTANT: Do NOT include the "assets" field — it will be built automatically from the file structure.\n' +
 '\n' +
 'RULES:\n' +
 '- "id" must be "ro-{slug}"\n' +
@@ -466,9 +596,26 @@ function buildSystemPrompt() {
 '- "location": { "country_code": "RO", "county": county code or null, "city": city name or null }\n' +
 '- "description": 1-2 sentences in Romanian describing the institution\n' +
 '- "usage_notes": null unless explicitly mentioned\n' +
-'- "colors": extract from metadata if provided. Each color: { "name": string, "hex": "#RRGGBB", "rgb": [r,g,b] or null, "cmyk": null, "pantone": string or null, "usage": "primary"|"secondary"|"accent"|"neutral" }. Colors are often HEX codes with or without # marker If no colors known, set to null.\n' +
-'- "typography": { "primary": { "family": string, "url": string or null, "weights": [] } or null, "secondary": null }. Search for text font or typography keywords , they are often attached next to a link. If unknown, set entire object to null.\n' +
-'- "resources.website": URL if provided, search for keywords like website oficial, site, or simply a link that resembles the slug, with "https://" else null\n' +
+'\n' +
+'COLORS (IMPORTANT — extract carefully):\n' +
+'- Look for lines containing "culori", "culoare", "color", hex codes (#RRGGBB or RRGGBB without #).\n' +
+'- Formats vary:  "culori: #232048 , #C2423A"  or  "culori albastru: 374990 , rosu:E03544"  or  "culoare: gri inchis: 34495E primara"\n' +
+'- Each color object: { "name": string, "hex": "#RRGGBB" (always 6-digit with #), "rgb": [r,g,b], "cmyk": null, "pantone": null, "usage": "primary"|"secondary"|"accent"|"neutral" }\n' +
+'- If hex is provided WITHOUT #, add the # prefix. Always uppercase hex.\n' +
+'- If no colors found at all, set "colors" to null.\n' +
+'\n' +
+'TYPOGRAPHY (IMPORTANT — extract carefully):\n' +
+'- Look for lines containing "font", "tipografie", "typography", font family names.\n' +
+'- Formats vary:  "font Arial"  or  "font: open sans https://fonts.google.com/..."  or  "font: helvetica neue pro lt url: https://..."\n' +
+'- Structure: { "primary": { "family": "Font Name", "url": "https://..." or null, "weights": [] }, "secondary": null }\n' +
+'- ALWAYS return the typography object if a font name is found, even without a URL.\n' +
+'- If no font/typography info at all, set "typography" to null.\n' +
+'\n' +
+'RESOURCES (IMPORTANT — extract carefully):\n' +
+'- "resources.website": Look for lines containing "website", "site", or standalone https:// URLs that are NOT font URLs.\n' +
+'  Formats:  "website oficial: https://www.anaf.ro/"  or  "site: https://insse.ro/"\n' +
+'  ALWAYS include "https://" protocol. If domain-only found, prepend "https://".\n' +
+'  If no website found, set to null.\n' +
 '- "resources.branding_manual": URL if provided, else null\n' +
 '- "resources.social_media": null\n' +
 '\n' +
@@ -566,6 +713,27 @@ function normalizeAiResponse(data, slug) {
     if (!('website' in d.resources)) d.resources.website = null;
     if (!('branding_manual' in d.resources)) d.resources.branding_manual = null;
     if (!('social_media' in d.resources)) d.resources.social_media = null;
+
+    // Normalize website URL — add protocol if missing
+    if (d.resources.website && typeof d.resources.website === 'string') {
+      let url = d.resources.website.trim();
+      if (url && !/^https?:\/\//i.test(url)) {
+        url = 'https://' + url;
+      }
+      d.resources.website = url || null;
+    }
+  } else {
+    d.resources = { website: null, branding_manual: null, social_media: null };
+  }
+
+  // Map alternate AI font keys ("font", "fonts") → typography.primary.family
+  if (!d.typography && (d.font || d.fonts)) {
+    const fontVal = d.font || d.fonts;
+    if (typeof fontVal === 'string') {
+      d.typography = { primary: { family: fontVal, url: null, weights: [] }, secondary: null };
+    }
+    delete d.font;
+    delete d.fonts;
   }
 
   // Remove assets  they will be built programmatically
@@ -580,17 +748,17 @@ async function processSlug(slug, apiKey) {
   const slugDir = path.join(LOGOS_DIR, slug);
 
   // Discover assets in new folder structure
-  const { found: discovered, totalFiles } = discoverAssets(slugDir);
+  const { found: discovered, totalFiles, isFlat } = discoverAssets(slugDir);
 
   if (totalFiles === 0) {
-    warn(slug + ': no SVG/PNG files found in layout subdirs (horizontal/, vertical/, symbol/), skipping.');
+    warn(slug + ': no SVG/PNG files found in layout subdirs or flat naming, skipping.');
     return null;
   }
 
   const layoutSummary = Object.entries(discovered)
     .map(([layout, files]) => layout + '(' + files.length + ')')
     .join(', ');
-  log(slug + ': found ' + totalFiles + ' asset(s) in ' + layoutSummary);
+  log(slug + ': found ' + totalFiles + ' asset(s) in ' + layoutSummary + (isFlat ? ' [flat layout]' : ''));
 
   // Load metadata.md if present
   const mdPath = path.join(slugDir, 'metadata.md');
@@ -624,15 +792,33 @@ async function processSlug(slug, apiKey) {
   const normalized = normalizeAiResponse(aiData, slug);
 
   // Build assets programmatically from discovered files
-  normalized.assets = buildAssetsFromFiles(slug, discovered);
+  normalized.assets = buildAssetsFromFiles(slug, discovered, isFlat);
 
-  // Extract colors programmatically from metadata.md (overrides AI if found)
+  // Extract colors, typography, and website programmatically from metadata.md
+  // These override AI-returned values when found (more reliable than LLM extraction)
   if (fs.existsSync(mdPath)) {
     const rawMd = fs.readFileSync(mdPath, 'utf-8');
+
+    // Colors
     const extractedColors = extractColorsFromMetadata(rawMd);
     if (extractedColors) {
       log(slug + ': extracted ' + extractedColors.length + ' color(s) from metadata.md');
       normalized.colors = extractedColors;
+    }
+
+    // Typography
+    const extractedTypo = extractTypographyFromMetadata(rawMd);
+    if (extractedTypo) {
+      log(slug + ': extracted typography ("' + extractedTypo.primary.family + '") from metadata.md');
+      normalized.typography = extractedTypo;
+    }
+
+    // Website
+    const extractedUrl = extractWebsiteFromMetadata(rawMd);
+    if (extractedUrl) {
+      log(slug + ': extracted website ("' + extractedUrl + '") from metadata.md');
+      if (!normalized.resources) normalized.resources = { website: null, branding_manual: null, social_media: null };
+      normalized.resources.website = extractedUrl;
     }
   }
 

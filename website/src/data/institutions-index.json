@@ -1,24 +1,36 @@
 {
   "schemaVersion": "3.0.0",
-  "generatedAt": "2026-02-10T11:05:36.150Z",
-  "total": 7,
+  "generatedAt": "2026-02-10T12:00:18.082Z",
+  "total": 8,
   "stats": {
     "byCategory": {
-      "agentie": 6,
-      "autoritate": 1
+      "agentie": 3,
+      "autoritate": 3,
+      "guvern": 1,
+      "altele": 1
     },
     "withManual": 0,
-    "withSvg": 7
+    "withSvg": 8
   },
   "categories": [
     {
+      "id": "guvern",
+      "label": "Guvern",
+      "count": 1
+    },
+    {
       "id": "agentie",
       "label": "Agenții",
-      "count": 6
+      "count": 3
     },
     {
       "id": "autoritate",
       "label": "Autorități",
+      "count": 3
+    },
+    {
+      "id": "altele",
+      "label": "Altele",
       "count": 1
     }
   ],
@@ -33,10 +45,11 @@
         "version": "1.0",
         "last_updated": "2026-02-10",
         "keywords": [
-          "administrație fiscală",
+          "anaf",
           "taxe",
-          "fiscul",
-          "venituri statului"
+          "fiscal",
+          "administrare fiscală",
+          "venituri"
         ],
         "quality": "draft"
       },
@@ -45,7 +58,7 @@
         "county": null,
         "city": "București"
       },
-      "description": "Agenția Națională de Administrare Fiscală (ANAF) este un organ de specialitate al administrației publice centrale, responsabil pentru administrarea veniturilor statului și colectarea taxelor. A fost înființată în 2003 și funcționează în subordinea Ministerului Finanțelor.",
+      "description": "Agenția Națională de Administrare Fiscală (ANAF) este un organ de specialitate al administrației publice centrale responsabil cu administrarea veniturilor statului și colectarea taxelor. A fost înființată în 2003 și funcționează în subordinea Ministerului Finanțelor.",
       "usage_notes": null,
       "colors": [
         {
@@ -75,7 +88,7 @@
       ],
       "typography": {
         "primary": {
-          "family": "Helvetica Neue Pro LT",
+          "family": "helvetica neue pro lt",
           "url": "https://www.myfonts.com/collections/neue-helvetica-font-linotype",
           "weights": []
         },
@@ -121,9 +134,9 @@
     {
       "id": "ro-anre",
       "slug": "anre",
-      "name": "Autoritatea Națională de Reglementare în Energie",
+      "name": "Autoritatea Națională de Reglementare în Domeniul Energiei",
       "shortname": "anre",
-      "category": "agentie",
+      "category": "autoritate",
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
@@ -131,8 +144,9 @@
           "energie",
           "reglementare",
           "anre",
-          "autoritate",
-          "nationala"
+          "electricitate",
+          "gaze",
+          "consumatori"
         ],
         "quality": "draft"
       },
@@ -141,17 +155,66 @@
         "county": null,
         "city": null
       },
-      "description": "Autoritatea Națională de Reglementare în Energie (ANRE) este instituția responsabilă cu reglementarea pieței de energie din România.",
-      "usage_notes": null,
-      "colors": null,
-      "typography": null,
+      "description": "Autoritatea Națională de Reglementare în Domeniul Energiei (ANRE) este o instituție publică autonomă responsabilă pentru reglementarea și supravegherea piețelor de energie electrică, energie termică și gaze naturale din România, având în vedere eficiența, concurența și protecția consumatorilor.",
+      "usage_notes": "În prezent sunt disponibile doar variantele de simbol (fără logotip complet).",
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#374990",
+          "rgb": [
+            55,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Rosu",
+          "hex": "#E03544",
+          "rgb": [
+            224,
+            53,
+            68
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        },
+        {
+          "name": "Galben",
+          "hex": "#F3EC44",
+          "rgb": [
+            243,
+            236,
+            68
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Arial",
+          "url": null,
+          "weights": []
+        },
+        "secondary": null
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
       "assets": {
         "main": {
           "type": "symbol",
           "color": "/logos/ro-anre/symbol_color.svg",
+          "dark_mode": null,
           "white": "/logos/ro-anre/symbol_white.svg",
           "black": "/logos/ro-anre/symbol_black.svg",
-          "dark_mode": null,
           "monochrome": null,
           "png": null
         },
@@ -160,18 +223,13 @@
         "symbol": {
           "type": "symbol",
           "color": "/logos/ro-anre/symbol_color.svg",
+          "dark_mode": null,
           "white": "/logos/ro-anre/symbol_white.svg",
           "black": "/logos/ro-anre/symbol_black.svg",
-          "dark_mode": null,
           "monochrome": null,
           "png": null
         },
         "favicon": null
-      },
-      "resources": {
-        "website": null,
-        "branding_manual": null,
-        "social_media": null
       }
     },
     {
@@ -184,12 +242,11 @@
         "version": "1.0",
         "last_updated": "2026-02-10",
         "keywords": [
-          "banca",
-          "națională",
+          "banca națională",
           "bnr",
-          "monedă",
-          "politică-monetară",
-          "stabilitate"
+          "bancă centrală",
+          "politică monetară",
+          "stabilitate financiară"
         ],
         "quality": "draft"
       },
@@ -198,12 +255,12 @@
         "county": null,
         "city": "București"
       },
-      "description": "Banca Națională a României (BNR) este banca centrală a României, responsabilă pentru politica monetară și stabilitatea prețurilor. De asemenea gestionează rezervele valutare și supraveghează sistemul bancar.",
+      "description": "Banca Națională a României este banca centrală a României, responsabilă de politica monetară și de menținerea stabilității prețurilor. Supraveghează sistemul bancar și emite moneda națională.",
       "usage_notes": null,
       "colors": null,
       "typography": null,
       "resources": {
-        "website": null,
+        "website": "https://www.bnr.ro",
         "branding_manual": null,
         "social_media": null
       },
@@ -244,25 +301,26 @@
       "slug": "cnas",
       "name": "Casa Națională de Asigurări de Sănătate",
       "shortname": "cnas",
-      "category": "agentie",
+      "category": "autoritate",
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
         "keywords": [
           "sănătate",
-          "asigurări sociale",
+          "asigurări-sănătate",
           "cnas",
-          "finanțare sănătate",
-          "servicii medicale"
+          "finanțare-sănătate",
+          "servicii-medicale",
+          "asigurări-sociale"
         ],
         "quality": "draft"
       },
       "location": {
         "country_code": "RO",
-        "county": "B",
+        "county": null,
         "city": "București"
       },
-      "description": "Casa Națională de Asigurări de Sănătate (CNAS) este autoritatea națională responsabilă pentru gestionarea și coordonarea sistemului de asigurări sociale de sănătate din România, având ca scop asigurarea accesului echitabil al populației la servicii de sănătate. Sistemul oferă un pachet de servicii de bază care include servicii medicale, medicamente și dispozitive medicale.",
+      "description": "Casa Națională de Asigurări de Sănătate (CNAS) este autoritatea națională responsabilă pentru gestionarea și coordonarea sistemului de asigurări sociale de sănătate din România, având ca scop asigurarea accesului echitabil al populației la servicii medicale. Sistemul oferă un pachet de bază ce include servicii medicale, medicamente și dispozitive medicale.",
       "usage_notes": null,
       "colors": [
         {
@@ -292,7 +350,7 @@
       ],
       "typography": null,
       "resources": {
-        "website": "https://www.cnas.ro",
+        "website": null,
         "branding_manual": null,
         "social_media": null
       },
@@ -351,7 +409,7 @@
         "county": null,
         "city": "București"
       },
-      "description": "Compania Națională de Administrare a Infrastructurii Rutiere (CNAIR) este o companie de interes strategic național, care funcționează sub autoritatea Ministerului Transporturilor și Infrastructurii. Are ca misiune planificarea, implementarea și administrarea programelor de dezvoltare a rețelei de drumuri și autostrăzi din România.",
+      "description": "Compania Națională de Administrare a Infrastructurii Rutiere (CNAIR) este o companie de interes strategic național care funcționează sub autoritatea Ministerului Transporturilor și Infrastructurii. Are ca misiune implementarea programelor de dezvoltare a rețelei de drumuri publice și administrarea infrastructurii rutiere.",
       "usage_notes": null,
       "colors": [
         {
@@ -371,10 +429,7 @@
         "primary": {
           "family": "Arial",
           "url": null,
-          "weights": [
-            400,
-            700
-          ]
+          "weights": []
         },
         "secondary": null
       },
@@ -424,6 +479,63 @@
       }
     },
     {
+      "id": "ro-guvern",
+      "slug": "guvern",
+      "name": "Guvernul României",
+      "shortname": "guvern",
+      "category": "guvern",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-10",
+        "keywords": [
+          "guvern",
+          "administratie",
+          "executiv",
+          "românia",
+          "politică",
+          "servicii publice"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Guvernul României este autoritatea executivă a statului român, responsabilă pentru conducerea politică și administrativă a țării. Coordonează implementarea politicilor publice și asigură funcționarea serviciilor publice la nivel național.",
+      "usage_notes": null,
+      "colors": null,
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-guvern/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-guvern/symbol/white.svg",
+          "black": "/logos/ro-guvern/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": null,
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-guvern/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-guvern/symbol/white.svg",
+          "black": "/logos/ro-guvern/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
       "id": "ro-ins",
       "slug": "ins",
       "name": "Institutul Național de Statistică",
@@ -435,9 +547,9 @@
         "keywords": [
           "statistică",
           "date",
-          "ins",
-          "recensământ",
-          "indicatori"
+          "populație",
+          "cercetare",
+          "institut"
         ],
         "quality": "draft"
       },
@@ -446,7 +558,7 @@
         "county": null,
         "city": "București"
       },
-      "description": "Institutul Național de Statistică (INS) este instituția publică responsabilă de colectarea, prelucrarea și diseminarea statisticilor oficiale la nivel național. Furnizează date privind populația, economia, piața muncii și alte domenii esențiale pentru politici publice și cercetare.",
+      "description": "Institutul Național de Statistică (I.N.S.) este organ de specialitate al administrației publice centrale din România, responsabil cu colectarea, prelucrarea și publicarea datelor statistice oficiale. Funcționează în subordinea Guvernului și furnizează date esențiale pentru politici publice, cercetare și informarea publicului.",
       "usage_notes": null,
       "colors": [
         {
@@ -459,7 +571,7 @@
           ],
           "cmyk": null,
           "pantone": null,
-          "usage": "primary"
+          "usage": "accent"
         },
         {
           "name": "Gri inchis",
@@ -486,9 +598,16 @@
           "usage": null
         }
       ],
-      "typography": null,
+      "typography": {
+        "primary": {
+          "family": "open sans",
+          "url": "https://fonts.google.com/specimen/Open+Sans",
+          "weights": []
+        },
+        "secondary": null
+      },
       "resources": {
-        "website": null,
+        "website": "https://insse.ro/",
         "branding_manual": null,
         "social_media": null
       },
@@ -529,26 +648,24 @@
       "slug": "monitorul-oficial",
       "name": "Monitorul Oficial al României",
       "shortname": "monitorul oficial",
-      "category": "agentie",
+      "category": "altele",
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
         "keywords": [
           "monitorul oficial",
+          "legi",
           "publicare",
-          "legislație",
-          "acte normative",
-          "transparență",
-          "publicație oficială"
+          "acte normative"
         ],
         "quality": "draft"
       },
       "location": {
         "country_code": "RO",
         "county": null,
-        "city": "București"
+        "city": null
       },
-      "description": "Monitorul Oficial al României este publicația oficială a statului în care se publică legi, decrete, hotărâri și alte acte normative. Asigură comunicarea oficială și intrarea în vigoare a actelor normative.",
+      "description": "Monitorul Oficial al României este publicația oficială a Statului român. Publică legile, decretele, hotărârile, ordonanțele şi deciziile care intră în vigoare după publicare.",
       "usage_notes": null,
       "colors": [
         {

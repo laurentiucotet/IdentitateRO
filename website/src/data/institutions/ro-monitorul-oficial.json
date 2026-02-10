@@ -3,26 +3,24 @@
   "slug": "monitorul-oficial",
   "name": "Monitorul Oficial al României",
   "shortname": "monitorul oficial",
-  "category": "agentie",
+  "category": "altele",
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
     "keywords": [
       "monitorul oficial",
+      "legi",
       "publicare",
-      "legislație",
-      "acte normative",
-      "transparență",
-      "publicație oficială"
+      "acte normative"
     ],
     "quality": "draft"
   },
   "location": {
     "country_code": "RO",
     "county": null,
-    "city": "București"
+    "city": null
   },
-  "description": "Monitorul Oficial al României este publicația oficială a statului în care se publică legi, decrete, hotărâri și alte acte normative. Asigură comunicarea oficială și intrarea în vigoare a actelor normative.",
+  "description": "Monitorul Oficial al României este publicația oficială a Statului român. Publică legile, decretele, hotărârile, ordonanțele şi deciziile care intră în vigoare după publicare.",
   "usage_notes": null,
   "colors": [
     {

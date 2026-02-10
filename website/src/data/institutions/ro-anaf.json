@@ -8,10 +8,11 @@
     "version": "1.0",
     "last_updated": "2026-02-10",
     "keywords": [
-      "administrație fiscală",
+      "anaf",
       "taxe",
-      "fiscul",
-      "venituri statului"
+      "fiscal",
+      "administrare fiscală",
+      "venituri"
     ],
     "quality": "draft"
   },
@@ -20,7 +21,7 @@
     "county": null,
     "city": "București"
   },
-  "description": "Agenția Națională de Administrare Fiscală (ANAF) este un organ de specialitate al administrației publice centrale, responsabil pentru administrarea veniturilor statului și colectarea taxelor. A fost înființată în 2003 și funcționează în subordinea Ministerului Finanțelor.",
+  "description": "Agenția Națională de Administrare Fiscală (ANAF) este un organ de specialitate al administrației publice centrale responsabil cu administrarea veniturilor statului și colectarea taxelor. A fost înființată în 2003 și funcționează în subordinea Ministerului Finanțelor.",
   "usage_notes": null,
   "colors": [
     {
@@ -50,7 +51,7 @@
   ],
   "typography": {
     "primary": {
-      "family": "Helvetica Neue Pro LT",
+      "family": "helvetica neue pro lt",
       "url": "https://www.myfonts.com/collections/neue-helvetica-font-linotype",
       "weights": []
     },

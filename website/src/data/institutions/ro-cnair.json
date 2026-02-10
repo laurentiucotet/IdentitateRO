@@ -21,7 +21,7 @@
     "county": null,
     "city": "București"
   },
-  "description": "Compania Națională de Administrare a Infrastructurii Rutiere (CNAIR) este o companie de interes strategic național, care funcționează sub autoritatea Ministerului Transporturilor și Infrastructurii. Are ca misiune planificarea, implementarea și administrarea programelor de dezvoltare a rețelei de drumuri și autostrăzi din România.",
+  "description": "Compania Națională de Administrare a Infrastructurii Rutiere (CNAIR) este o companie de interes strategic național care funcționează sub autoritatea Ministerului Transporturilor și Infrastructurii. Are ca misiune implementarea programelor de dezvoltare a rețelei de drumuri publice și administrarea infrastructurii rutiere.",
   "usage_notes": null,
   "colors": [
     {
@@ -41,10 +41,7 @@
     "primary": {
       "family": "Arial",
       "url": null,
-      "weights": [
-        400,
-        700
-      ]
+      "weights": []
     },
     "secondary": null
   },

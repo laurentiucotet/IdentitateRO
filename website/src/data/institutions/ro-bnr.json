@@ -8,12 +8,11 @@
     "version": "1.0",
     "last_updated": "2026-02-10",
     "keywords": [
-      "banca",
-      "națională",
+      "banca națională",
       "bnr",
-      "monedă",
-      "politică-monetară",
-      "stabilitate"
+      "bancă centrală",
+      "politică monetară",
+      "stabilitate financiară"
     ],
     "quality": "draft"
   },
@@ -22,12 +21,12 @@
     "county": null,
     "city": "București"
   },
-  "description": "Banca Națională a României (BNR) este banca centrală a României, responsabilă pentru politica monetară și stabilitatea prețurilor. De asemenea gestionează rezervele valutare și supraveghează sistemul bancar.",
+  "description": "Banca Națională a României este banca centrală a României, responsabilă de politica monetară și de menținerea stabilității prețurilor. Supraveghează sistemul bancar și emite moneda națională.",
   "usage_notes": null,
   "colors": null,
   "typography": null,
   "resources": {
-    "website": null,
+    "website": "https://www.bnr.ro",
     "branding_manual": null,
     "social_media": null
   },

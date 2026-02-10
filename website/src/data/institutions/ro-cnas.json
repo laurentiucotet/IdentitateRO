@@ -3,25 +3,26 @@
   "slug": "cnas",
   "name": "Casa Națională de Asigurări de Sănătate",
   "shortname": "cnas",
-  "category": "agentie",
+  "category": "autoritate",
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
     "keywords": [
       "sănătate",
-      "asigurări sociale",
+      "asigurări-sănătate",
       "cnas",
-      "finanțare sănătate",
-      "servicii medicale"
+      "finanțare-sănătate",
+      "servicii-medicale",
+      "asigurări-sociale"
     ],
     "quality": "draft"
   },
   "location": {
     "country_code": "RO",
-    "county": "B",
+    "county": null,
     "city": "București"
   },
-  "description": "Casa Națională de Asigurări de Sănătate (CNAS) este autoritatea națională responsabilă pentru gestionarea și coordonarea sistemului de asigurări sociale de sănătate din România, având ca scop asigurarea accesului echitabil al populației la servicii de sănătate. Sistemul oferă un pachet de servicii de bază care include servicii medicale, medicamente și dispozitive medicale.",
+  "description": "Casa Națională de Asigurări de Sănătate (CNAS) este autoritatea națională responsabilă pentru gestionarea și coordonarea sistemului de asigurări sociale de sănătate din România, având ca scop asigurarea accesului echitabil al populației la servicii medicale. Sistemul oferă un pachet de bază ce include servicii medicale, medicamente și dispozitive medicale.",
   "usage_notes": null,
   "colors": [
     {
@@ -51,7 +52,7 @@
   ],
   "typography": null,
   "resources": {
-    "website": "https://www.cnas.ro",
+    "website": null,
     "branding_manual": null,
     "social_media": null
   },
