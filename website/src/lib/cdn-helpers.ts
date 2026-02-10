@@ -9,7 +9,7 @@ import type { AssetUrls } from '../types/institution';
 /**
  * Versiunea pachetului npm pentru CDN URLs
  */
-export const CDN_VERSION = '1.1.0';
+export const CDN_VERSION = '1.2.2';
 
 /**
  * Pattern-uri CDN
