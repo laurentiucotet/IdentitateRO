@@ -238,10 +238,18 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
           <div class="space-y-3">
             {inst.colors.map((color: any) => (
               <div class="bg-white border border-surface-200 rounded p-3 flex items-start gap-3 group">
-                <div
-                  class="w-12 h-12 rounded border border-surface-200 shrink-0"
-                  style={`background-color: ${color.hex}`}
-                ></div>
+                <div class="relative w-12 h-12 rounded border border-surface-200 shrink-0">
+                  <div
+                    class="w-full h-full rounded"
+                    style={`background-color: ${color.hex}`}
+                  ></div>
+                  <span class="accessibility-badge absolute -top-1 -right-1 text-[8px] font-bold px-1 py-0.5 rounded-full bg-white border border-gray-300 shadow-sm flex items-center gap-0.5 z-10" data-hex={color.hex} title="Nivel de accesibilitate WCAG: AA (contrast ≥4.5:1) sau AAA (≥7:1) pentru text pe fundal alb/negru">
+                    <span class="level-text"></span>
+                    <svg class="w-2 h-2 opacity-75" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center gap-2 mb-1">
                     <span class="font-medium text-sm text-primary-900">{color.name}</span>
@@ -378,6 +386,52 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       </div>
     </div>
 
+    <!-- ═══ CUM SĂ FOLOSEȘTI ═══ -->
+    <section class="mt-8">
+      <h2 class="text-lg font-semibold text-primary-900 mb-6 flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+        Cum să folosești
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white border border-surface-200 rounded-lg p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-primary-900">Via CDN (jsDelivr)</h3>
+          </div>
+          <p class="text-sm text-surface-600 mb-4">Include logo-ul direct în HTML folosind URL-ul CDN:</p>
+          <div class="bg-gray-50 p-4 rounded-lg font-mono text-sm overflow-x-auto border">
+            &lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/{inst.slug}/{inst.slug}.svg" alt="{inst.name} Logo"&gt;
+          </div>
+        </div>
+        <div class="bg-white border border-surface-200 rounded-lg p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+              </svg>
+            </div>
+            <h3 class="font-semibold text-primary-900">Via NPM Package</h3>
+          </div>
+          <p class="text-sm text-surface-600 mb-4">Instalează pachetul și folosește funcțiile helper:</p>
+          <div class="space-y-3">
+            <div class="bg-gray-50 p-3 rounded-lg font-mono text-sm border">
+              npm install @identitate-ro/logos
+            </div>
+            <div class="bg-gray-50 p-3 rounded-lg font-mono text-sm border overflow-x-auto">
+              import &#123; getLogoUrl &#125; from '@identitate-ro/logos';<br>
+              const logoUrl = getLogoUrl('{inst.id}', 'horizontal', 'color');
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ DESCĂRCĂRI RAPIDE ═══ -->
     {downloadables.length > 0 && (
       <section class="mt-10">
@@ -387,6 +441,12 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
           </svg>
           Toate Descărcările
         </h2>
+        <button id="download-zip" data-downloadables={JSON.stringify(downloadables)} data-slug={inst.slug} class="mb-4 px-4 py-2 border border-primary-500 text-primary-500 rounded hover:bg-primary-50 transition-colors flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Descarcă toate ca ZIP
+        </button>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {downloadables.map((asset: any) => (
             <a
@@ -406,7 +466,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
                 </div>
               </div>
               <svg class="w-4 h-4 text-surface-400 group-hover:text-primary-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </a>
           ))}
@@ -426,6 +486,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
   </article>
 </BaseLayout>
 
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script>
   // Copy functionality for SVG assets and colors
   document.addEventListener('DOMContentLoaded', () => {
@@ -481,6 +542,120 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
         }
       });
     });
+
+    // Accessibility contrast checker
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? [
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16)
+      ] : null;
+    }
+
+    function getRelativeLuminance(r, g, b) {
+      const [rs, gs, bs] = [r, g, b].map(c => {
+        c = c / 255;
+        return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+    }
+
+    function getContrastRatio(hex1, hex2) {
+      const rgb1 = hexToRgb(hex1);
+      const rgb2 = hexToRgb(hex2);
+      if (!rgb1 || !rgb2) return 1;
+      const l1 = getRelativeLuminance(...rgb1);
+      const l2 = getRelativeLuminance(...rgb2);
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    const badges = document.querySelectorAll('.accessibility-badge');
+    badges.forEach(badge => {
+      const hex = badge.dataset.hex;
+      if (!hex) return;
+      const contrastWhite = getContrastRatio(hex, '#FFFFFF');
+      const contrastBlack = getContrastRatio(hex, '#000000');
+      const maxContrast = Math.max(contrastWhite, contrastBlack);
+      let level = '';
+      let textClass = '';
+      if (maxContrast >= 7) {
+        level = 'AAA';
+        textClass = 'text-blue-600';
+      } else if (maxContrast >= 4.5) {
+        level = 'AA';
+        textClass = 'text-green-600';
+      }
+      if (level) {
+        const levelText = badge.querySelector('.level-text');
+        if (levelText) {
+          levelText.textContent = level;
+          levelText.classList.add(textClass);
+        }
+      }
+    });
+
+    // ZIP download functionality
+    const downloadZipBtn = document.getElementById('download-zip') as HTMLButtonElement;
+    if (downloadZipBtn) {
+      downloadZipBtn.addEventListener('click', async () => {
+        const downloadables = JSON.parse(downloadZipBtn.dataset.downloadables || '[]');
+        const slug = downloadZipBtn.dataset.slug || 'logos';
+        const zip = new JSZip();
+
+        // Show loading state
+        const originalText = downloadZipBtn.innerHTML;
+        downloadZipBtn.innerHTML = `
+          <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          Se pregătește ZIP...
+        `;
+        downloadZipBtn.disabled = true;
+
+        try {
+          for (const asset of downloadables) {
+            const response = await fetch(asset.path);
+            const blob = await response.blob();
+            zip.file(asset.label + '.' + asset.format, blob);
+          }
+
+          const content = await zip.generateAsync({ type: 'blob' });
+          const url = URL.createObjectURL(content);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `${slug}-logos.zip`;
+          a.click();
+          URL.revokeObjectURL(url);
+
+          // Success feedback
+          downloadZipBtn.innerHTML = `
+            <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            ZIP descărcat!
+          `;
+          setTimeout(() => {
+            downloadZipBtn.innerHTML = originalText;
+            downloadZipBtn.disabled = false;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to create ZIP:', err);
+          downloadZipBtn.innerHTML = `
+            <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            Eroare
+          `;
+          setTimeout(() => {
+            downloadZipBtn.innerHTML = originalText;
+            downloadZipBtn.disabled = false;
+          }, 2000);
+        }
+      });
+    }
   });
 </script>
 

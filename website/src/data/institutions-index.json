@@ -1,117 +1,28 @@
 {
   "schemaVersion": "3.0.0",
-  "generatedAt": "2026-02-10T09:19:17.752Z",
-  "total": 11,
+  "generatedAt": "2026-02-10T09:47:22.057Z",
+  "total": 6,
   "stats": {
     "byCategory": {
-      "agentie": 6,
-      "guvern": 1,
-      "minister": 1,
-      "proiect-ue": 1,
-      "primarie": 1,
+      "agentie": 5,
       "autoritate": 1
     },
     "withManual": 0,
-    "withSvg": 11
+    "withSvg": 6
   },
   "categories": [
     {
-      "id": "guvern",
-      "label": "Guvern",
-      "count": 1
-    },
-    {
-      "id": "minister",
-      "label": "Ministere",
-      "count": 1
-    },
-    {
       "id": "agentie",
       "label": "Agenții",
-      "count": 6
+      "count": 5
     },
     {
       "id": "autoritate",
       "label": "Autorități",
       "count": 1
-    },
-    {
-      "id": "primarie",
-      "label": "Primării",
-      "count": 1
-    },
-    {
-      "id": "proiect-ue",
-      "label": "Proiecte UE / PNRR",
-      "count": 1
     }
   ],
   "institutions": [
-    {
-      "id": "ro-anaf",
-      "slug": "anaf",
-      "name": "Agenția Națională de Administrare Fiscală",
-      "shortname": "anaf",
-      "category": "agentie",
-      "meta": {
-        "version": "1.0",
-        "last_updated": "2026-02-10",
-        "keywords": [
-          "anaf",
-          "administrare fiscală",
-          "agenție",
-          "taxe",
-          "impozite",
-          "fiscalitate"
-        ],
-        "quality": "draft"
-      },
-      "location": {
-        "country_code": "RO",
-        "county": null,
-        "city": null
-      },
-      "description": "Agenția Națională de Administrare Fiscală este instituția publică din România responsabilă cu colectarea impozitelor și taxelor.",
-      "usage_notes": null,
-      "colors": null,
-      "typography": null,
-      "assets": {
-        "main": {
-          "type": "horizontal",
-          "color": "/logos/anaf/anaf.svg",
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "dark_mode": null,
-          "png": null
-        },
-        "horizontal": {
-          "color": "/logos/anaf/anaf.svg",
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "dark_mode": null,
-          "type": "horizontal",
-          "png": null
-        },
-        "vertical": null,
-        "symbol": {
-          "color": "/logos/anaf/simbol-anaf.svg",
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "dark_mode": null,
-          "type": "symbol",
-          "png": null
-        },
-        "favicon": null
-      },
-      "resources": {
-        "website": null,
-        "branding_manual": null,
-        "social_media": null
-      }
-    },
     {
       "id": "ro-anaf",
       "slug": "anaf",
@@ -513,119 +424,6 @@
       }
     },
     {
-      "id": "ro-guvernul-romaniei",
-      "slug": "guvernul-romaniei",
-      "name": "Guvernul României",
-      "shortname": "guvern",
-      "category": "guvern",
-      "meta": {
-        "version": "1.0",
-        "last_updated": "2026-02-10",
-        "keywords": [
-          "guvern",
-          "romania",
-          "guvernul romaniei",
-          "executiv",
-          "prim ministru"
-        ],
-        "quality": "draft"
-      },
-      "location": {
-        "country_code": "RO",
-        "county": null,
-        "city": "București"
-      },
-      "description": "Guvernul României este autoritatea executivă a statului, responsabilă pentru implementarea politicilor și administrarea afacerilor publice.",
-      "usage_notes": null,
-      "colors": null,
-      "typography": null,
-      "assets": {
-        "main": {
-          "type": "horizontal",
-          "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
-          "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-          "dark_mode": null,
-          "black": null,
-          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-          "png": null
-        },
-        "horizontal": {
-          "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
-          "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-          "dark_mode": null,
-          "black": null,
-          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-          "type": "horizontal",
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
-      },
-      "resources": {
-        "website": null,
-        "branding_manual": null,
-        "social_media": null
-      }
-    },
-    {
-      "id": "ro-ministerul-educatiei",
-      "slug": "ministerul-educatiei",
-      "name": "Ministerul Educației",
-      "shortname": "medu",
-      "category": "minister",
-      "meta": {
-        "version": "1.0",
-        "last_updated": "2026-02-10",
-        "keywords": [
-          "educație",
-          "ministerul educației",
-          "învățământ",
-          "școală",
-          "liceu",
-          "universitate"
-        ],
-        "quality": "draft"
-      },
-      "location": {
-        "country_code": "RO",
-        "county": null,
-        "city": "București"
-      },
-      "description": "Ministerul Educației este instituția guvernamentală responsabilă cu administrarea sistemului de învățământ din România.",
-      "usage_notes": null,
-      "colors": null,
-      "typography": null,
-      "assets": {
-        "main": {
-          "type": "horizontal",
-          "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "dark_mode": null,
-          "png": null
-        },
-        "horizontal": {
-          "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "dark_mode": null,
-          "type": "horizontal",
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
-      },
-      "resources": {
-        "website": null,
-        "branding_manual": null,
-        "social_media": null
-      }
-    },
-    {
       "id": "ro-monitorul-oficial",
       "slug": "monitorul-oficial",
       "name": "Monitorul Oficial al României",
@@ -693,119 +491,6 @@
           "png": null
         },
         "favicon": null
-      }
-    },
-    {
-      "id": "ro-pnrr",
-      "slug": "pnrr",
-      "name": "PNRR",
-      "shortname": "pnrr",
-      "category": "proiect-ue",
-      "meta": {
-        "version": "1.0",
-        "last_updated": "2026-02-10",
-        "keywords": [
-          "pnrr",
-          "planul național de redresare și reziliență",
-          "românia",
-          "uniunea europeană",
-          "proiect ue"
-        ],
-        "quality": "draft"
-      },
-      "location": {
-        "country_code": "RO",
-        "county": null,
-        "city": null
-      },
-      "description": "Planul Național de Redresare și Reziliență (PNRR) este un plan strategic al României pentru a accesa fonduri europene destinate redresării economice și creșterii rezilienței.",
-      "usage_notes": null,
-      "colors": null,
-      "typography": null,
-      "assets": {
-        "main": {
-          "type": "horizontal",
-          "color": "/logos/pnrr/pnrr.svg",
-          "white": null,
-          "dark_mode": null,
-          "black": null,
-          "monochrome": "/logos/pnrr/pnrr-mono.svg",
-          "png": null
-        },
-        "horizontal": {
-          "color": "/logos/pnrr/pnrr.svg",
-          "white": null,
-          "dark_mode": null,
-          "black": null,
-          "monochrome": "/logos/pnrr/pnrr-mono.svg",
-          "type": "horizontal",
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
-      },
-      "resources": {
-        "website": null,
-        "branding_manual": null,
-        "social_media": null
-      }
-    },
-    {
-      "id": "ro-primaria-cluj-napoca",
-      "slug": "primaria-cluj-napoca",
-      "name": "Primăria Cluj-Napoca",
-      "shortname": "primaria cluj napoca",
-      "category": "primarie",
-      "meta": {
-        "version": "1.0",
-        "last_updated": "2026-02-10",
-        "keywords": [
-          "primărie",
-          "cluj-napoca",
-          "administrație locală",
-          "primar",
-          "municipiu",
-          "cluj"
-        ],
-        "quality": "draft"
-      },
-      "location": {
-        "country_code": "RO",
-        "county": "CJ",
-        "city": "Cluj-Napoca"
-      },
-      "description": "Primăria Cluj-Napoca este instituția care asigură administrația publică locală în municipiul Cluj-Napoca.",
-      "usage_notes": null,
-      "colors": null,
-      "typography": null,
-      "assets": {
-        "main": {
-          "type": "horizontal",
-          "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
-          "black": null,
-          "dark_mode": null,
-          "monochrome": null,
-          "png": null
-        },
-        "horizontal": {
-          "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
-          "black": null,
-          "dark_mode": null,
-          "monochrome": null,
-          "type": "horizontal",
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
-      },
-      "resources": {
-        "website": null,
-        "branding_manual": null,
-        "social_media": null
       }
     }
   ]
