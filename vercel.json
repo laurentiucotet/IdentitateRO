@@ -1,12 +1,8 @@
 {
   "installCommand": "cd website && npm install",
-  "buildCommand": "cd website && npm run build",
+  "buildCommand": "cd website && npm run data:generate && npm run build",
   "outputDirectory": "website/dist",
   "rewrites": [
-    {
-      "source": "/logos/:path*",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.2.2/logos/:path*"
-    },
     {
       "source": "/loader.js",
       "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.2.2/identity-loader.js"
