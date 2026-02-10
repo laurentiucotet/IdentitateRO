@@ -1,0 +1,65 @@
+{
+  "id": "ro-bnr",
+  "slug": "bnr",
+  "name": "Banca Națională a României",
+  "shortname": "bnr",
+  "category": "autoritate",
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-02-10",
+    "keywords": [
+      "banca",
+      "națională",
+      "bnr",
+      "monedă",
+      "politică-monetară",
+      "stabilitate"
+    ],
+    "quality": "draft"
+  },
+  "location": {
+    "country_code": "RO",
+    "county": null,
+    "city": "București"
+  },
+  "description": "Banca Națională a României (BNR) este banca centrală a României, responsabilă pentru politica monetară și stabilitatea prețurilor. De asemenea gestionează rezervele valutare și supraveghează sistemul bancar.",
+  "usage_notes": null,
+  "colors": null,
+  "typography": null,
+  "resources": {
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
+  },
+  "assets": {
+    "main": {
+      "type": "horizontal",
+      "color": "/logos/ro-bnr/horizontal/color.svg",
+      "dark_mode": null,
+      "white": "/logos/ro-bnr/horizontal/white.svg",
+      "black": "/logos/ro-bnr/horizontal/black.svg",
+      "monochrome": null,
+      "png": null
+    },
+    "horizontal": {
+      "type": "horizontal",
+      "color": "/logos/ro-bnr/horizontal/color.svg",
+      "dark_mode": null,
+      "white": "/logos/ro-bnr/horizontal/white.svg",
+      "black": "/logos/ro-bnr/horizontal/black.svg",
+      "monochrome": null,
+      "png": null
+    },
+    "vertical": null,
+    "symbol": {
+      "type": "symbol",
+      "color": "/logos/ro-bnr/symbol/color.svg",
+      "dark_mode": null,
+      "white": "/logos/ro-bnr/symbol/white.svg",
+      "black": "/logos/ro-bnr/symbol/black.svg",
+      "monochrome": null,
+      "png": null
+    },
+    "favicon": null
+  }
+}
