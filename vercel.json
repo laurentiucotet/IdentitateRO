@@ -1,5 +1,31 @@
 {
   "installCommand": "cd website && npm install",
   "buildCommand": "cd website && npm run build",
-  "outputDirectory": "website/dist"
+  "outputDirectory": "website/dist",
+  "rewrites": [
+    {
+      "source": "/logos/:path*",
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@latest/logos/:path*"
+    },
+    {
+      "source": "/loader.js",
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@latest/identity-loader.js"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/logos/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=604800" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/loader.js",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, s-maxage=604800" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    }
+  ]
 }
