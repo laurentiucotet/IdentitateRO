@@ -1,17 +1,17 @@
 {
   "schemaVersion": "3.0.0",
-  "generatedAt": "2026-02-10T06:23:57.478Z",
-  "total": 5,
+  "generatedAt": "2026-02-10T07:37:56.449Z",
+  "total": 6,
   "stats": {
     "byCategory": {
-      "agentie": 1,
+      "agentie": 2,
       "guvern": 1,
       "minister": 1,
       "proiect-ue": 1,
       "primarie": 1
     },
     "withManual": 2,
-    "withSvg": 5
+    "withSvg": 6
   },
   "categories": [
     {
@@ -27,7 +27,7 @@
     {
       "id": "agentie",
       "label": "Agenții",
-      "count": 1
+      "count": 2
     },
     {
       "id": "primarie",
@@ -54,8 +54,7 @@
           "guvernamental",
           "taxe",
           "fiscalitate"
-        ],
-        "quality": "draft"
+        ]
       },
       "location": {
         "country_code": "RO",
@@ -63,7 +62,6 @@
         "city": "București"
       },
       "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
-      "usage_notes": null,
       "colors": [
         {
           "name": "Albastru Simbol",
@@ -73,8 +71,6 @@
             44,
             118
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "primary"
         },
         {
@@ -85,8 +81,6 @@
             21,
             21
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "neutral"
         },
         {
@@ -97,48 +91,79 @@
             255,
             255
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "neutral"
         }
       ],
-      "typography": {
-        "primary": null,
-        "secondary": null
-      },
       "assets": {
         "main": {
           "type": "horizontal",
-          "color": "/logos/anaf/anaf.svg",
-          "dark_mode": null,
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "png": null
+          "color": "/logos/anaf/anaf.svg"
         },
         "horizontal": {
           "type": "horizontal",
-          "color": "/logos/anaf/anaf.svg",
+          "color": "/logos/anaf/anaf.svg"
+        },
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/anaf/simbol-anaf.svg"
+        }
+      },
+      "resources": {
+        "website": "https://www.anaf.ro"
+      }
+    },
+    {
+      "id": "ro-anre",
+      "slug": "anre",
+      "name": "Autoritatea Națională de Reglementare în Energie",
+      "shortname": "anre",
+      "category": "agentie",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-10",
+        "keywords": [
+          "energie",
+          "reglementare",
+          "anre",
+          "autoritate",
+          "nationala"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": null
+      },
+      "description": "Autoritatea Națională de Reglementare în Energie (ANRE) este instituția responsabilă cu reglementarea pieței de energie din România.",
+      "usage_notes": null,
+      "colors": null,
+      "typography": null,
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-anre/symbol_color.svg",
+          "white": "/logos/ro-anre/symbol_white.svg",
+          "black": "/logos/ro-anre/symbol_black.svg",
           "dark_mode": null,
-          "white": null,
-          "black": null,
           "monochrome": null,
           "png": null
         },
+        "horizontal": null,
         "vertical": null,
         "symbol": {
           "type": "symbol",
-          "color": "/logos/anaf/simbol-anaf.svg",
+          "color": "/logos/ro-anre/symbol_color.svg",
+          "white": "/logos/ro-anre/symbol_white.svg",
+          "black": "/logos/ro-anre/symbol_black.svg",
           "dark_mode": null,
-          "white": null,
-          "black": null,
           "monochrome": null,
           "png": null
         },
         "favicon": null
       },
       "resources": {
-        "website": "https://www.anaf.ro",
+        "website": null,
         "branding_manual": null,
         "social_media": null
       }
@@ -156,8 +181,7 @@
           "guvernamental",
           "executiv",
           "administrație"
-        ],
-        "quality": "draft"
+        ]
       },
       "location": {
         "country_code": "RO",
@@ -165,7 +189,6 @@
         "city": "București"
       },
       "description": "Organul executiv al statului român, condus de Primul Ministru.",
-      "usage_notes": null,
       "colors": [
         {
           "name": "Albastru Oficial",
@@ -175,8 +198,6 @@
             47,
             108
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "primary"
         },
         {
@@ -187,7 +208,6 @@
             169,
             81
           ],
-          "cmyk": null,
           "pantone": "4015 C",
           "usage": "secondary"
         },
@@ -199,8 +219,6 @@
             255,
             255
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "neutral"
         }
       ],
@@ -209,36 +227,25 @@
           "family": "Source Sans Pro",
           "url": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro",
           "weights": []
-        },
-        "secondary": null
+        }
       },
       "assets": {
         "main": {
           "type": "horizontal",
           "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
-          "dark_mode": null,
           "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-          "black": null,
-          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-          "png": null
+          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
         },
         "horizontal": {
           "type": "horizontal",
           "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
-          "dark_mode": null,
           "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-          "black": null,
-          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
+          "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
+        }
       },
       "resources": {
         "website": "https://gov.ro",
-        "branding_manual": "https://gov.ro/manual-identitate",
-        "social_media": null
+        "branding_manual": "https://gov.ro/manual-identitate"
       }
     },
     {
@@ -254,8 +261,7 @@
           "guvernamental",
           "educație",
           "minister"
-        ],
-        "quality": "draft"
+        ]
       },
       "location": {
         "country_code": "RO",
@@ -263,7 +269,6 @@
         "city": "București"
       },
       "description": "Ministerul responsabil cu politicile educaționale și sistemul de învățământ din România.",
-      "usage_notes": null,
       "colors": [
         {
           "name": "Albastru Educație",
@@ -273,8 +278,6 @@
             60,
             110
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "primary"
         },
         {
@@ -285,8 +288,6 @@
             168,
             67
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "secondary"
         },
         {
@@ -297,46 +298,27 @@
             255,
             255
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "neutral"
         }
       ],
       "typography": {
         "primary": {
           "family": "Times New Roman",
-          "url": null,
           "weights": []
-        },
-        "secondary": null
+        }
       },
       "assets": {
         "main": {
           "type": "horizontal",
-          "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
-          "dark_mode": null,
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "png": null
+          "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
         },
         "horizontal": {
           "type": "horizontal",
-          "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
-          "dark_mode": null,
-          "white": null,
-          "black": null,
-          "monochrome": null,
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
+          "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
+        }
       },
       "resources": {
-        "website": "https://www.edu.ro",
-        "branding_manual": null,
-        "social_media": null
+        "website": "https://www.edu.ro"
       }
     },
     {
@@ -353,8 +335,7 @@
           "fonduri-europene",
           "investiții",
           "pnrr"
-        ],
-        "quality": "draft"
+        ]
       },
       "location": {
         "country_code": "RO",
@@ -372,7 +353,6 @@
             51,
             153
           ],
-          "cmyk": null,
           "pantone": "Reflex Blue C",
           "usage": "primary"
         },
@@ -384,7 +364,6 @@
             204,
             0
           ],
-          "cmyk": null,
           "pantone": "116 C",
           "usage": "secondary"
         },
@@ -396,46 +375,30 @@
             158,
             62
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "accent"
         }
       ],
       "typography": {
         "primary": {
           "family": "Arial",
-          "url": null,
           "weights": []
-        },
-        "secondary": null
+        }
       },
       "assets": {
         "main": {
           "type": "horizontal",
           "color": "/logos/pnrr/pnrr.svg",
-          "dark_mode": null,
-          "white": null,
-          "black": "/logos/pnrr/pnrr-mono.svg",
-          "monochrome": null,
-          "png": null
+          "black": "/logos/pnrr/pnrr-mono.svg"
         },
         "horizontal": {
           "type": "horizontal",
           "color": "/logos/pnrr/pnrr.svg",
-          "dark_mode": null,
-          "white": null,
-          "black": "/logos/pnrr/pnrr-mono.svg",
-          "monochrome": null,
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
+          "black": "/logos/pnrr/pnrr-mono.svg"
+        }
       },
       "resources": {
         "website": "https://www.pnrr.ro",
-        "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/",
-        "social_media": null
+        "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/"
       }
     },
     {
@@ -451,8 +414,7 @@
           "administrație-locală",
           "cluj-napoca",
           "transilvania"
-        ],
-        "quality": "draft"
+        ]
       },
       "location": {
         "country_code": "RO",
@@ -460,7 +422,6 @@
         "city": "Cluj-Napoca"
       },
       "description": "Administrația locală a municipiului Cluj-Napoca, al doilea cel mai mare oraș din România.",
-      "usage_notes": null,
       "colors": [
         {
           "name": "Albastru Cluj",
@@ -470,7 +431,6 @@
             61,
             165
           ],
-          "cmyk": null,
           "pantone": "286 C",
           "usage": "primary"
         },
@@ -482,8 +442,6 @@
             255,
             255
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "neutral"
         },
         {
@@ -494,8 +452,6 @@
             117,
             125
           ],
-          "cmyk": null,
-          "pantone": null,
           "usage": "secondary"
         }
       ],
@@ -504,36 +460,22 @@
           "family": "Roboto",
           "url": "https://fonts.googleapis.com/css2?family=Roboto",
           "weights": []
-        },
-        "secondary": null
+        }
       },
       "assets": {
         "main": {
           "type": "horizontal",
           "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-          "dark_mode": null,
-          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
-          "black": null,
-          "monochrome": null,
-          "png": null
+          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
         },
         "horizontal": {
           "type": "horizontal",
           "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg",
-          "dark_mode": null,
-          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
-          "black": null,
-          "monochrome": null,
-          "png": null
-        },
-        "vertical": null,
-        "symbol": null,
-        "favicon": null
+          "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg"
+        }
       },
       "resources": {
-        "website": "https://pfrcluj.ro",
-        "branding_manual": null,
-        "social_media": null
+        "website": "https://pfrcluj.ro"
       }
     }
   ]

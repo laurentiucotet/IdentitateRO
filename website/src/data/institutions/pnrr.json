@@ -7,8 +7,12 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-08",
-    "keywords": ["ue", "fonduri-europene", "investiții", "pnrr"],
-    "quality": "draft"
+    "keywords": [
+      "ue",
+      "fonduri-europene",
+      "investiții",
+      "pnrr"
+    ]
   },
   "location": {
     "country_code": "RO",
@@ -21,62 +25,56 @@
     {
       "name": "Albastru PNRR",
       "hex": "#003399",
-      "rgb": [0, 51, 153],
-      "cmyk": null,
+      "rgb": [
+        0,
+        51,
+        153
+      ],
       "pantone": "Reflex Blue C",
       "usage": "primary"
     },
     {
       "name": "Galben UE",
       "hex": "#FFCC00",
-      "rgb": [255, 204, 0],
-      "cmyk": null,
+      "rgb": [
+        255,
+        204,
+        0
+      ],
       "pantone": "116 C",
       "usage": "secondary"
     },
     {
       "name": "Verde PNRR",
       "hex": "#429E3E",
-      "rgb": [66, 158, 62],
-      "cmyk": null,
-      "pantone": null,
+      "rgb": [
+        66,
+        158,
+        62
+      ],
       "usage": "accent"
     }
   ],
   "typography": {
     "primary": {
       "family": "Arial",
-      "url": null,
       "weights": []
-    },
-    "secondary": null
+    }
   },
   "assets": {
     "main": {
       "type": "horizontal",
       "color": "/logos/pnrr/pnrr.svg",
-      "dark_mode": null,
-      "white": null,
-      "black": "/logos/pnrr/pnrr-mono.svg",
-      "monochrome": null,
-      "png": null
+      "black": "/logos/pnrr/pnrr-mono.svg"
     },
     "horizontal": {
       "type": "horizontal",
       "color": "/logos/pnrr/pnrr.svg",
-      "dark_mode": null,
-      "white": null,
-      "black": "/logos/pnrr/pnrr-mono.svg",
-      "monochrome": null,
-      "png": null
-    },
-    "vertical": null,
-    "symbol": null,
-    "favicon": null
+      "black": "/logos/pnrr/pnrr-mono.svg"
+    }
   },
   "resources": {
     "website": "https://www.pnrr.ro",
-    "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/",
-    "social_media": null
+    "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/"
   }
 }

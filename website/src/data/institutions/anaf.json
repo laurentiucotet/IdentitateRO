@@ -7,8 +7,11 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-08",
-    "keywords": ["guvernamental", "taxe", "fiscalitate"],
-    "quality": "draft"
+    "keywords": [
+      "guvernamental",
+      "taxe",
+      "fiscalitate"
+    ]
   },
   "location": {
     "country_code": "RO",
@@ -16,71 +19,53 @@
     "city": "București"
   },
   "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
-  "usage_notes": null,
   "colors": [
     {
       "name": "Albastru Simbol",
       "hex": "#2C2C76",
-      "rgb": [44, 44, 118],
-      "cmyk": null,
-      "pantone": null,
+      "rgb": [
+        44,
+        44,
+        118
+      ],
       "usage": "primary"
     },
     {
       "name": "Negru Text",
       "hex": "#151515",
-      "rgb": [21, 21, 21],
-      "cmyk": null,
-      "pantone": null,
+      "rgb": [
+        21,
+        21,
+        21
+      ],
       "usage": "neutral"
     },
     {
       "name": "Alb",
       "hex": "#FFFFFF",
-      "rgb": [255, 255, 255],
-      "cmyk": null,
-      "pantone": null,
+      "rgb": [
+        255,
+        255,
+        255
+      ],
       "usage": "neutral"
     }
   ],
-  "typography": {
-    "primary": null,
-    "secondary": null
-  },
   "assets": {
     "main": {
       "type": "horizontal",
-      "color": "/logos/anaf/anaf.svg",
-      "dark_mode": null,
-      "white": null,
-      "black": null,
-      "monochrome": null,
-      "png": null
+      "color": "/logos/anaf/anaf.svg"
     },
     "horizontal": {
       "type": "horizontal",
-      "color": "/logos/anaf/anaf.svg",
-      "dark_mode": null,
-      "white": null,
-      "black": null,
-      "monochrome": null,
-      "png": null
+      "color": "/logos/anaf/anaf.svg"
     },
-    "vertical": null,
     "symbol": {
       "type": "symbol",
-      "color": "/logos/anaf/simbol-anaf.svg",
-      "dark_mode": null,
-      "white": null,
-      "black": null,
-      "monochrome": null,
-      "png": null
-    },
-    "favicon": null
+      "color": "/logos/anaf/simbol-anaf.svg"
+    }
   },
   "resources": {
-    "website": "https://www.anaf.ro",
-    "branding_manual": null,
-    "social_media": null
+    "website": "https://www.anaf.ro"
   }
 }

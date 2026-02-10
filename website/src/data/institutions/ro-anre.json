@@ -1,0 +1,56 @@
+{
+  "id": "ro-anre",
+  "slug": "anre",
+  "name": "Autoritatea Națională de Reglementare în Energie",
+  "shortname": "anre",
+  "category": "agentie",
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-02-10",
+    "keywords": [
+      "energie",
+      "reglementare",
+      "anre",
+      "autoritate",
+      "nationala"
+    ],
+    "quality": "draft"
+  },
+  "location": {
+    "country_code": "RO",
+    "county": null,
+    "city": null
+  },
+  "description": "Autoritatea Națională de Reglementare în Energie (ANRE) este instituția responsabilă cu reglementarea pieței de energie din România.",
+  "usage_notes": null,
+  "colors": null,
+  "typography": null,
+  "assets": {
+    "main": {
+      "type": "symbol",
+      "color": "/logos/ro-anre/symbol_color.svg",
+      "white": "/logos/ro-anre/symbol_white.svg",
+      "black": "/logos/ro-anre/symbol_black.svg",
+      "dark_mode": null,
+      "monochrome": null,
+      "png": null
+    },
+    "horizontal": null,
+    "vertical": null,
+    "symbol": {
+      "type": "symbol",
+      "color": "/logos/ro-anre/symbol_color.svg",
+      "white": "/logos/ro-anre/symbol_white.svg",
+      "black": "/logos/ro-anre/symbol_black.svg",
+      "dark_mode": null,
+      "monochrome": null,
+      "png": null
+    },
+    "favicon": null
+  },
+  "resources": {
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
+  }
+}

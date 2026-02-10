@@ -1,0 +1,13 @@
+# Secrets
+.env
+*.key
+
+# AI response cache
+ai-cache/
+
+# Temp files
+tmp/
+*.tmp
+
+# Node
+node_modules/
