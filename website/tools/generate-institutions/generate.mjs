@@ -449,7 +449,7 @@ function buildSystemPrompt() {
 '  2. Available logo layouts and their SVG/PNG variant files\n' +
 '  3. Optional metadata from a markdown file (frontmatter + body text)\n' +
 '\n' +
-'Your task: produce a SINGLE valid JSON object for this institution following the IdentitateRO v3 schema.\n' +
+'Your task: produce a SINGLE valid JSON object for this institution following the IdentitateRO v3 schema.Respond in Romanian\n' +
 '\n' +
 'IMPORTANT: Do NOT include the "assets" field  it will be built automatically from the file structure.\n' +
 '\n' +
@@ -466,9 +466,9 @@ function buildSystemPrompt() {
 '- "location": { "country_code": "RO", "county": county code or null, "city": city name or null }\n' +
 '- "description": 1-2 sentences in Romanian describing the institution\n' +
 '- "usage_notes": null unless explicitly mentioned\n' +
-'- "colors": extract from metadata if provided. Each color: { "name": string, "hex": "#RRGGBB", "rgb": [r,g,b] or null, "cmyk": null, "pantone": string or null, "usage": "primary"|"secondary"|"accent"|"neutral" }. If no colors known, set to null.\n' +
-'- "typography": { "primary": { "family": string, "url": string or null, "weights": [] } or null, "secondary": null }. If unknown, set entire object to null.\n' +
-'- "resources.website": URL if provided, else null\n' +
+'- "colors": extract from metadata if provided. Each color: { "name": string, "hex": "#RRGGBB", "rgb": [r,g,b] or null, "cmyk": null, "pantone": string or null, "usage": "primary"|"secondary"|"accent"|"neutral" }. Colors are often HEX codes with or without # marker If no colors known, set to null.\n' +
+'- "typography": { "primary": { "family": string, "url": string or null, "weights": [] } or null, "secondary": null }. Search for text font or typography keywords , they are often attached next to a link. If unknown, set entire object to null.\n' +
+'- "resources.website": URL if provided, search for keywords like website oficial, site, or simply a link that resembles the slug, with "https://" else null\n' +
 '- "resources.branding_manual": URL if provided, else null\n' +
 '- "resources.social_media": null\n' +
 '\n' +

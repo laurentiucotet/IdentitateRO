@@ -243,10 +243,13 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
                     class="w-full h-full rounded"
                     style={`background-color: ${color.hex}`}
                   ></div>
-                  <span class="accessibility-badge absolute -top-1 -right-1 text-[8px] font-bold px-1 py-0.5 rounded-full bg-white border border-gray-300 shadow-sm flex items-center gap-0.5 z-10" data-hex={color.hex} title="Nivel de accesibilitate WCAG: AA (contrast ≥4.5:1) sau AAA (≥7:1) pentru text pe fundal alb/negru">
+                  <span class="accessibility-badge absolute -top-1 -right-1 text-xs font-bold px-1.5 py-0.5 rounded-full bg-white border border-gray-300 shadow-sm flex items-center gap-0.5 z-10" data-hex={color.hex} title="">
                     <span class="level-text"></span>
-                    <svg class="w-2 h-2 opacity-75" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="info-icon w-3 h-3 opacity-75" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd" />
+                    </svg>
+                    <svg class="warning-icon w-3 h-3 opacity-75 hidden" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                     </svg>
                   </span>
                 </div>
@@ -345,44 +348,6 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
             </div>
           </section>
         )}
-
-        {/* Resurse */}
-        <section>
-          <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
-            <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-            Resurse
-          </h2>
-          <div class="space-y-2">
-            {inst.resources?.website && (
-              <a
-                href={inst.resources.website}
-                target="_blank"
-                rel="noopener"
-                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-                Website Oficial
-              </a>
-            )}
-            {inst.resources?.branding_manual && (
-              <a
-                href={inst.resources.branding_manual}
-                target="_blank"
-                rel="noopener"
-                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                Manual de Identitate Vizuală
-              </a>
-            )}
-          </div>
-        </section>
       </div>
     </div>
 
@@ -405,8 +370,18 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
             <h3 class="font-semibold text-primary-900">Via CDN (jsDelivr)</h3>
           </div>
           <p class="text-sm text-surface-600 mb-4">Include logo-ul direct în HTML folosind URL-ul CDN:</p>
-          <div class="bg-gray-50 p-4 rounded-lg font-mono text-sm overflow-x-auto border">
+          <div class="relative bg-gray-50 p-4 rounded-lg font-mono text-sm overflow-x-auto border">
             &lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/{inst.slug}/{inst.slug}.svg" alt="{inst.name} Logo"&gt;
+            <button
+              type="button"
+              class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
+              data-value={`&lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/${inst.slug}/${inst.slug}.svg" alt="${inst.name} Logo"&gt;`}
+              title="Copiază codul"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </button>
           </div>
         </div>
         <div class="bg-white border border-surface-200 rounded-lg p-6">
@@ -420,12 +395,32 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
           </div>
           <p class="text-sm text-surface-600 mb-4">Instalează pachetul și folosește funcțiile helper:</p>
           <div class="space-y-3">
-            <div class="bg-gray-50 p-3 rounded-lg font-mono text-sm border">
+            <div class="relative bg-gray-50 p-3 rounded-lg font-mono text-sm border">
               npm install @identitate-ro/logos
+              <button
+                type="button"
+                class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
+                data-value="npm install @identitate-ro/logos"
+                title="Copiază codul"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </button>
             </div>
-            <div class="bg-gray-50 p-3 rounded-lg font-mono text-sm border overflow-x-auto">
+            <div class="relative bg-gray-50 p-3 rounded-lg font-mono text-sm border overflow-x-auto">
               import &#123; getLogoUrl &#125; from '@identitate-ro/logos';<br>
               const logoUrl = getLogoUrl('{inst.id}', 'horizontal', 'color');
+              <button
+                type="button"
+                class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
+                data-value={`import { getLogoUrl } from '@identitate-ro/logos';\nconst logoUrl = getLogoUrl('${inst.id}', 'horizontal', 'color');`}
+                title="Copiază codul"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -474,6 +469,46 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       </section>
     )}
 
+    <!-- ═══ RESURSE ═══ -->
+    {inst.resources && (inst.resources.website || inst.resources.branding_manual) && (
+      <section class="mt-10">
+        <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          Resurse
+        </h2>
+        <div class="space-y-2">
+          {inst.resources.website && (
+            <a
+              href={inst.resources.website}
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              Website Oficial
+            </a>
+          )}
+          {inst.resources.branding_manual && (
+            <a
+              href={inst.resources.branding_manual}
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              Manual de Identitate Vizuală
+            </a>
+          )}
+        </div>
+      </section>
+    )}
+
     <!-- ═══ METADATA ═══ -->
     <section class="mt-10 pt-6 border-t border-surface-200">
       <div class="flex flex-wrap gap-x-8 gap-y-2 text-xs text-surface-500">
@@ -490,7 +525,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
 <script>
   // Copy functionality for SVG assets and colors
   document.addEventListener('DOMContentLoaded', () => {
-    const copyButtons = document.querySelectorAll('.copy-btn, .copy-color-btn');
+    const copyButtons = document.querySelectorAll('.copy-btn, .copy-color-btn, .copy-code-btn');
 
     copyButtons.forEach(button => {
       button.addEventListener('click', async (e) => {
@@ -499,12 +534,16 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
 
         const btn = e.currentTarget as HTMLButtonElement;
         const isColorBtn = btn.classList.contains('copy-color-btn');
+        const isCodeBtn = btn.classList.contains('copy-code-btn');
         
         try {
           let textToCopy = '';
 
           if (isColorBtn) {
             // Copy color value directly from data-value
+            textToCopy = btn.dataset.value!;
+          } else if (isCodeBtn) {
+            // Copy code snippet directly from data-value
             textToCopy = btn.dataset.value!;
           } else {
             // Copy asset (existing logic)
@@ -577,24 +616,38 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       const hex = badge.dataset.hex;
       if (!hex) return;
       const contrastWhite = getContrastRatio(hex, '#FFFFFF');
-      const contrastBlack = getContrastRatio(hex, '#000000');
-      const maxContrast = Math.max(contrastWhite, contrastBlack);
       let level = '';
       let textClass = '';
-      if (maxContrast >= 7) {
+      let title = '';
+      let showInfo = true;
+      if (contrastWhite >= 7) {
         level = 'AAA';
         textClass = 'text-blue-600';
-      } else if (maxContrast >= 4.5) {
+        title = 'Contrast AAA (≥7:1) - Excelent pentru text pe fundal alb';
+      } else if (contrastWhite >= 4.5) {
         level = 'AA';
         textClass = 'text-green-600';
+        title = 'Contrast AA (≥4.5:1) - Acceptabil pentru text pe fundal alb';
+      } else {
+        level = 'N/A';
+        textClass = 'text-red-600';
+        title = 'Contrast insuficient (<4.5:1) - Nu este potrivit pentru text pe fundal alb';
+        showInfo = false;
       }
-      if (level) {
-        const levelText = badge.querySelector('.level-text');
-        if (levelText) {
-          levelText.textContent = level;
-          levelText.classList.add(textClass);
-        }
+      const levelText = badge.querySelector('.level-text');
+      const infoIcon = badge.querySelector('.info-icon');
+      const warningIcon = badge.querySelector('.warning-icon');
+      if (levelText) {
+        levelText.textContent = level;
+        levelText.classList.add(textClass);
       }
+      if (infoIcon) {
+        infoIcon.classList.toggle('hidden', !showInfo);
+      }
+      if (warningIcon) {
+        warningIcon.classList.toggle('hidden', showInfo);
+      }
+      badge.title = title;
     });
 
     // ZIP download functionality
