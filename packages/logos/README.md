@@ -21,10 +21,10 @@ Logo-urile sunt disponibile automat prin CDN-uri gratuite:
 
 ```html
 <!-- Logo complet -->
-<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg" alt="ANAF">
+<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.0/logos/anaf/anaf.svg" alt="ANAF">
 
 <!-- Simbol -->
-<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/simbol-anaf.svg" alt="ANAF Simbol">
+<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.0/logos/anaf/simbol-anaf.svg" alt="ANAF Simbol">
 
 <!-- Versiunea latest (se actualizează automat) -->
 <img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei.svg" alt="Guvernul României">
@@ -33,7 +33,7 @@ Logo-urile sunt disponibile automat prin CDN-uri gratuite:
 #### unpkg (CDN Fallback)
 
 ```html
-<img src="https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg" alt="PNRR">
+<img src="https://unpkg.com/@identitate-ro/logos@1.3.0/logos/pnrr/pnrr.svg" alt="PNRR">
 ```
 
 ### Via npm Package
