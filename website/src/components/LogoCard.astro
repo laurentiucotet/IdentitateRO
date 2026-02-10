@@ -20,7 +20,7 @@ export interface Props {
 
 const { slug, name, shortname, category, logoPath, quality, hasSvg, keywords } = Astro.props;
 
-const displayName = shortname || name;
+const displayName = name;
 const qualityInfo = quality ? QUALITY_LABELS[quality] : undefined;
 ---
 

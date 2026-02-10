@@ -123,10 +123,10 @@ export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[]
 }
 
 /**
- * Returnează numele de afișat al instituției (scurt → complet).
+ * Returnează numele de afișat al instituției (numele complet).
  */
 export function getDisplayName(inst: Institution): string {
-  return inst.shortname || inst.name;
+  return inst.name;
 }
 
 /**
