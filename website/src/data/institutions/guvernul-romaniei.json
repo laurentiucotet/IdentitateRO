@@ -2,127 +2,81 @@
   "id": "ro-guvernul-romaniei",
   "slug": "guvernul-romaniei",
   "name": "Guvernul României",
+  "shortname": "guvernul",
   "category": "guvern",
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-08",
-    "keywords": [
-      "guvernamental",
-      "executiv",
-      "administrație"
-    ]
+    "keywords": ["guvernamental", "executiv", "administrație"],
+    "quality": "draft"
   },
-  "assets": {
-    "main": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
-        "local": "/logos/guvernul-romaniei/guvernul-romaniei.svg"
-      },
-      "white": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-        "local": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg"
-      },
-      "black": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-        "local": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
-      },
-      "png": {
-        "path": {
-          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
-          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
-          "local": "/logos/guvernul-romaniei/guvernul-romaniei.png"
-        },
-        "width": 512,
-        "height": 512
-      }
-    },
-    "horizontal": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.svg",
-        "local": "/logos/guvernul-romaniei/guvernul-romaniei.svg"
-      },
-      "white": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
-        "local": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg"
-      },
-      "black": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
-        "local": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg"
-      },
-      "png": {
-        "path": {
-          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
-          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/guvernul-romaniei/guvernul-romaniei.png",
-          "local": "/logos/guvernul-romaniei/guvernul-romaniei.png"
-        },
-        "width": 512,
-        "height": 512
-      }
-    }
-  },
-  "shortname": "guvernul",
   "location": {
     "country_code": "RO",
     "county": "B",
     "city": "București"
   },
   "description": "Organul executiv al statului român, condus de Primul Ministru.",
+  "usage_notes": null,
   "colors": [
     {
       "name": "Albastru Oficial",
       "hex": "#002F6C",
-      "rgb": [
-        0,
-        47,
-        108
-      ],
-      "cmyk": [
-        100,
-        65,
-        0,
-        43
-      ],
-      "pantone": "648 C",
+      "rgb": [0, 47, 108],
+      "cmyk": null,
+      "pantone": null,
       "usage": "primary"
     },
     {
       "name": "Auriu",
       "hex": "#C8A951",
-      "rgb": [
-        200,
-        169,
-        81
-      ],
+      "rgb": [200, 169, 81],
+      "cmyk": null,
       "pantone": "4015 C",
       "usage": "secondary"
     },
     {
       "name": "Alb",
       "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
+      "rgb": [255, 255, 255],
+      "cmyk": null,
+      "pantone": null,
       "usage": "neutral"
     }
   ],
   "typography": {
     "primary": {
       "family": "Source Sans Pro",
-      "url": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro"
-    }
+      "url": "https://fonts.googleapis.com/css2?family=Source+Sans+Pro",
+      "weights": []
+    },
+    "secondary": null
+  },
+  "assets": {
+    "main": {
+      "type": "horizontal",
+      "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
+      "dark_mode": null,
+      "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
+      "black": null,
+      "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+      "png": null
+    },
+    "horizontal": {
+      "type": "horizontal",
+      "color": "/logos/guvernul-romaniei/guvernul-romaniei.svg",
+      "dark_mode": null,
+      "white": "/logos/guvernul-romaniei/guvernul-romaniei-alb.svg",
+      "black": null,
+      "monochrome": "/logos/guvernul-romaniei/guvernul-romaniei-mono.svg",
+      "png": null
+    },
+    "vertical": null,
+    "symbol": null,
+    "favicon": null
   },
   "resources": {
     "website": "https://gov.ro",
-    "branding_manual": "https://gov.ro/manual-identitate"
+    "branding_manual": "https://gov.ro/manual-identitate",
+    "social_media": null
   }
 }

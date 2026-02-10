@@ -2,64 +2,14 @@
   "id": "ro-pnrr",
   "slug": "pnrr",
   "name": "Planul Național de Redresare și Reziliență",
+  "shortname": "pnrr",
   "category": "proiect-ue",
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-08",
-    "keywords": [
-      "ue",
-      "fonduri-europene",
-      "investiții",
-      "pnrr"
-    ]
+    "keywords": ["ue", "fonduri-europene", "investiții", "pnrr"],
+    "quality": "draft"
   },
-  "assets": {
-    "main": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
-        "local": "/logos/pnrr/pnrr.svg"
-      },
-      "black": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
-        "local": "/logos/pnrr/pnrr-mono.svg"
-      },
-      "png": {
-        "path": {
-          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
-          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
-          "local": "/logos/pnrr/pnrr.png"
-        },
-        "width": 800,
-        "height": 400
-      }
-    },
-    "horizontal": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.svg",
-        "local": "/logos/pnrr/pnrr.svg"
-      },
-      "black": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr-mono.svg",
-        "local": "/logos/pnrr/pnrr-mono.svg"
-      },
-      "png": {
-        "path": {
-          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
-          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/pnrr/pnrr.png",
-          "local": "/logos/pnrr/pnrr.png"
-        },
-        "width": 800,
-        "height": 400
-      }
-    }
-  },
-  "shortname": "pnrr",
   "location": {
     "country_code": "RO",
     "county": "B",
@@ -71,43 +21,62 @@
     {
       "name": "Albastru PNRR",
       "hex": "#003399",
-      "rgb": [
-        0,
-        51,
-        153
-      ],
+      "rgb": [0, 51, 153],
+      "cmyk": null,
       "pantone": "Reflex Blue C",
       "usage": "primary"
     },
     {
       "name": "Galben UE",
       "hex": "#FFCC00",
-      "rgb": [
-        255,
-        204,
-        0
-      ],
+      "rgb": [255, 204, 0],
+      "cmyk": null,
       "pantone": "116 C",
       "usage": "secondary"
     },
     {
       "name": "Verde PNRR",
       "hex": "#429E3E",
-      "rgb": [
-        66,
-        158,
-        62
-      ],
+      "rgb": [66, 158, 62],
+      "cmyk": null,
+      "pantone": null,
       "usage": "accent"
     }
   ],
   "typography": {
     "primary": {
-      "family": "Arial"
-    }
+      "family": "Arial",
+      "url": null,
+      "weights": []
+    },
+    "secondary": null
+  },
+  "assets": {
+    "main": {
+      "type": "horizontal",
+      "color": "/logos/pnrr/pnrr.svg",
+      "dark_mode": null,
+      "white": null,
+      "black": "/logos/pnrr/pnrr-mono.svg",
+      "monochrome": null,
+      "png": null
+    },
+    "horizontal": {
+      "type": "horizontal",
+      "color": "/logos/pnrr/pnrr.svg",
+      "dark_mode": null,
+      "white": null,
+      "black": "/logos/pnrr/pnrr-mono.svg",
+      "monochrome": null,
+      "png": null
+    },
+    "vertical": null,
+    "symbol": null,
+    "favicon": null
   },
   "resources": {
     "website": "https://www.pnrr.ro",
-    "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/"
+    "branding_manual": "https://mfe.gov.ro/ghid-identitate-vizuala-pnrr/",
+    "social_media": null
   }
 }

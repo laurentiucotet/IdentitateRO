@@ -38,7 +38,8 @@ export function getCdnUrls(localPath: string, version: string = CDN_VERSION): As
 
 /**
  * Rezolvă AssetUrls la un string URL
- * Logică de fallback: CDN primary -> CDN fallback -> Local
+ * Dacă asset e string (path local), generează automat CDN URL dacă preferCdn=true
+ * Dacă asset e object cu cdn_primary/cdn_fallback/local, folosește logica de fallback
  * 
  * @param asset - AssetUrls sau string
  * @param preferCdn - Dacă true, preferă CDN-ul; altfel folosește local (default: true)
@@ -47,22 +48,25 @@ export function getCdnUrls(localPath: string, version: string = CDN_VERSION): As
 export function resolveAssetPath(asset: AssetUrls | undefined, preferCdn: boolean = true): string | null {
   if (!asset) return null;
   
-  // Backwards compatibility: dacă e string, returnează direct
+  // String path: generează CDN URL automat dacă e path local de logos
   if (typeof asset === 'string') {
+    if (preferCdn && asset.startsWith('/logos/')) {
+      return CDN_PATTERNS.jsdelivr(CDN_VERSION, asset);
+    }
     return asset;
   }
   
-  // Dacă preferăm CDN și avem CDN URLs
+  // Object cu CDN URLs explicite
   if (preferCdn) {
     return asset.cdn_primary || asset.cdn_fallback || asset.local;
   }
   
-  // Altfel folosește local
   return asset.local;
 }
 
 /**
  * Extrage toate URL-urile disponibile pentru fallback
+ * Dacă asset e string (path local), generează automat CDN URLs + local
  * 
  * @param asset - AssetUrls sau string
  * @returns Array cu toate URL-urile disponibile în ordinea fallback-ului
@@ -70,11 +74,19 @@ export function resolveAssetPath(asset: AssetUrls | undefined, preferCdn: boolea
 export function getAssetFallbackUrls(asset: AssetUrls | undefined): string[] {
   if (!asset) return [];
   
-  // Backwards compatibility: dacă e string, returnează array cu un singur element
+  // String path: generează CDN fallback chain automat
   if (typeof asset === 'string') {
+    if (asset.startsWith('/logos/')) {
+      return [
+        CDN_PATTERNS.jsdelivr(CDN_VERSION, asset),
+        CDN_PATTERNS.unpkg(CDN_VERSION, asset),
+        asset
+      ];
+    }
     return [asset];
   }
   
+  // Object cu CDN URLs explicite
   const urls: string[] = [];
   if (asset.cdn_primary) urls.push(asset.cdn_primary);
   if (asset.cdn_fallback) urls.push(asset.cdn_fallback);

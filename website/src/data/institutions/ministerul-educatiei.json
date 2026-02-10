@@ -2,97 +2,81 @@
   "id": "ro-ministerul-educatiei",
   "slug": "ministerul-educatiei",
   "name": "Ministerul Educației",
+  "shortname": "min. educației",
   "category": "minister",
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-08",
-    "keywords": [
-      "guvernamental",
-      "educație",
-      "minister"
-    ]
+    "keywords": ["guvernamental", "educație", "minister"],
+    "quality": "draft"
   },
-  "assets": {
-    "main": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
-        "local": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
-      },
-      "png": {
-        "path": {
-          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
-          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
-          "local": "/logos/ministerul-educatiei/ministerul-educatiei.png"
-        },
-        "width": 512,
-        "height": 512
-      }
-    },
-    "horizontal": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.svg",
-        "local": "/logos/ministerul-educatiei/ministerul-educatiei.svg"
-      },
-      "png": {
-        "path": {
-          "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
-          "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/ministerul-educatiei/ministerul-educatiei.png",
-          "local": "/logos/ministerul-educatiei/ministerul-educatiei.png"
-        },
-        "width": 512,
-        "height": 512
-      }
-    }
-  },
-  "shortname": "min. educației",
   "location": {
     "country_code": "RO",
     "county": "B",
     "city": "București"
   },
   "description": "Ministerul responsabil cu politicile educaționale și sistemul de învățământ din România.",
+  "usage_notes": null,
   "colors": [
     {
       "name": "Albastru Educație",
       "hex": "#1A3C6E",
-      "rgb": [
-        26,
-        60,
-        110
-      ],
+      "rgb": [26, 60, 110],
+      "cmyk": null,
+      "pantone": null,
       "usage": "primary"
     },
     {
       "name": "Auriu",
       "hex": "#D4A843",
-      "rgb": [
-        212,
-        168,
-        67
-      ],
+      "rgb": [212, 168, 67],
+      "cmyk": null,
+      "pantone": null,
       "usage": "secondary"
     },
     {
       "name": "Alb",
       "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
+      "rgb": [255, 255, 255],
+      "cmyk": null,
+      "pantone": null,
       "usage": "neutral"
     }
   ],
   "typography": {
     "primary": {
-      "family": "Times New Roman"
-    }
+      "family": "Times New Roman",
+      "url": null,
+      "weights": []
+    },
+    "secondary": null
+  },
+  "assets": {
+    "main": {
+      "type": "horizontal",
+      "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
+      "dark_mode": null,
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "png": null
+    },
+    "horizontal": {
+      "type": "horizontal",
+      "color": "/logos/ministerul-educatiei/ministerul-educatiei.svg",
+      "dark_mode": null,
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "png": null
+    },
+    "vertical": null,
+    "symbol": null,
+    "favicon": null
   },
   "resources": {
-    "website": "https://www.edu.ro"
+    "website": "https://www.edu.ro",
+    "branding_manual": null,
+    "social_media": null
   }
 }

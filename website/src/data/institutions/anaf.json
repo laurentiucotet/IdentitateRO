@@ -2,82 +2,85 @@
   "id": "ro-anaf",
   "slug": "anaf",
   "name": "Agenția Națională de Administrare Fiscală",
+  "shortname": "anaf",
   "category": "agentie",
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-08",
-    "keywords": [
-      "guvernamental",
-      "taxe",
-      "fiscalitate"
-    ]
+    "keywords": ["guvernamental", "taxe", "fiscalitate"],
+    "quality": "draft"
   },
-  "assets": {
-    "main": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
-        "local": "/logos/anaf/anaf.svg"
-      }
-    },
-    "horizontal": {
-      "type": "horizontal",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg",
-        "local": "/logos/anaf/anaf.svg"
-      }
-    },
-    "symbol": {
-      "type": "symbol",
-      "color": {
-        "cdn_primary": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/simbol-anaf.svg",
-        "cdn_fallback": "https://unpkg.com/@identitate-ro/logos@1.0.0/logos/anaf/simbol-anaf.svg",
-        "local": "/logos/anaf/simbol-anaf.svg"
-      }
-    }
-  },
-  "shortname": "anaf",
   "location": {
     "country_code": "RO",
     "county": "B",
     "city": "București"
   },
   "description": "Autoritatea responsabilă cu colectarea veniturilor bugetare și administrarea fiscală.",
+  "usage_notes": null,
   "colors": [
     {
       "name": "Albastru Simbol",
       "hex": "#2C2C76",
-      "rgb": [
-        44,
-        44,
-        118
-      ],
+      "rgb": [44, 44, 118],
+      "cmyk": null,
+      "pantone": null,
       "usage": "primary"
     },
     {
       "name": "Negru Text",
       "hex": "#151515",
-      "rgb": [
-        21,
-        21,
-        21
-      ],
-      "usage": "text"
+      "rgb": [21, 21, 21],
+      "cmyk": null,
+      "pantone": null,
+      "usage": "neutral"
     },
     {
       "name": "Alb",
       "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
+      "rgb": [255, 255, 255],
+      "cmyk": null,
+      "pantone": null,
       "usage": "neutral"
     }
   ],
+  "typography": {
+    "primary": null,
+    "secondary": null
+  },
+  "assets": {
+    "main": {
+      "type": "horizontal",
+      "color": "/logos/anaf/anaf.svg",
+      "dark_mode": null,
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "png": null
+    },
+    "horizontal": {
+      "type": "horizontal",
+      "color": "/logos/anaf/anaf.svg",
+      "dark_mode": null,
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "png": null
+    },
+    "vertical": null,
+    "symbol": {
+      "type": "symbol",
+      "color": "/logos/anaf/simbol-anaf.svg",
+      "dark_mode": null,
+      "white": null,
+      "black": null,
+      "monochrome": null,
+      "png": null
+    },
+    "favicon": null
+  },
   "resources": {
-    "website": "https://www.anaf.ro"
+    "website": "https://www.anaf.ro",
+    "branding_manual": null,
+    "social_media": null
   }
 }
