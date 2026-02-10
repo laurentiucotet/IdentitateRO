@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "generated": "2026-02-09T13:51:45.352Z",
-  "count": 5,
+  "generated": "2026-02-10T08:19:20.331Z",
+  "count": 7,
   "institutions": [
     {
       "id": "ro-anaf",
@@ -41,7 +41,7 @@
     {
       "id": "ro-pnrr",
       "slug": "pnrr",
-      "name": "Planul Național de Redresare și Reziliență",
+      "name": "PNRR",
       "logos": {
         "horizontal": {
           "monochrome": "/logos/pnrr/pnrr-mono.svg",
@@ -52,13 +52,31 @@
     {
       "id": "ro-primaria-cluj-napoca",
       "slug": "primaria-cluj-napoca",
-      "name": "Primăria Municipiului Cluj-Napoca",
+      "name": "Primăria Cluj-Napoca",
       "logos": {
         "horizontal": {
           "white": "/logos/primaria-cluj-napoca/primaria-cluj-napoca-alb.svg",
           "color": "/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
         }
       }
+    },
+    {
+      "id": "ro-ro-anre",
+      "slug": "ro-anre",
+      "name": "Autoritatea Națională de Reglementare în Energie",
+      "logos": {
+        "symbol": {
+          "black": "/logos/ro-anre/symbol_black.svg",
+          "color": "/logos/ro-anre/symbol_color.svg",
+          "white": "/logos/ro-anre/symbol_white.svg"
+        }
+      }
+    },
+    {
+      "id": "ro-ro-cnair",
+      "slug": "ro-cnair",
+      "name": "Compania Națională de Administrare a Infrastructurii Rutiere",
+      "logos": {}
     }
   ]
 }
