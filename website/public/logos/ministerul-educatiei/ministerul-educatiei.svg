@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
-  <rect width="400" height="400" rx="8" fill="#F8FAFC"/>
-  <circle cx="200" cy="140" r="70" fill="#1A3C6E"/>
-  <path d="M170 130h60v5h-60z M185 110h30v40h-30z" fill="#D4A843"/>
-  <text x="200" y="145" text-anchor="middle" font-family="serif" font-size="28" font-weight="700" fill="white">ME</text>
-  <text x="200" y="270" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" font-weight="700" fill="#1A3C6E">Ministerul</text>
-  <text x="200" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="20" fill="#1A3C6E">Educației</text>
-  <text x="200" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">PLACEHOLDER — Înlocuiți cu logo-ul oficial</text>
-</svg>

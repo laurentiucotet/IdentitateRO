@@ -24,7 +24,20 @@
   },
   "description": "Monitorul Oficial al României este publicația oficială a statului în care se publică legi, decrete, hotărâri și alte acte normative. Asigură comunicarea oficială și intrarea în vigoare a actelor normative.",
   "usage_notes": null,
-  "colors": null,
+  "colors": [
+    {
+      "name": "Color #003A81",
+      "hex": "#003A81",
+      "rgb": [
+        0,
+        58,
+        129
+      ],
+      "cmyk": null,
+      "pantone": null,
+      "usage": "primary"
+    }
+  ],
   "typography": null,
   "resources": {
     "website": null,

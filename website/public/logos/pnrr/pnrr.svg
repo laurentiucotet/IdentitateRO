@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" fill="none">
-  <rect width="600" height="300" rx="8" fill="#F8FAFC"/>
-  <circle cx="150" cy="150" r="60" fill="#003399"/>
-  <path d="M150 105l-8 24h-25l20 15-8 24 21-15 21 15-8-24 20-15h-25z" fill="#FFCC00"/>
-  <text x="350" y="140" text-anchor="middle" font-family="Inter, sans-serif" font-size="36" font-weight="700" fill="#003399">PNRR</text>
-  <text x="350" y="175" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#64748B">Planul Național de Redresare</text>
-  <text x="350" y="197" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" fill="#64748B">și Reziliență</text>
-  <text x="300" y="275" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">PLACEHOLDER — Înlocuiți cu logo-ul oficial</text>
-</svg>

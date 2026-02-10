@@ -91,6 +91,8 @@ npm run data:generate:from-md
 
 # Generare doar pentru un slug specific
 npm run data:generate:from-md -- --slug anaf
+# Sau mai simplu:
+npm run data:generate:from-md -- anaf
 
 # Forțează scrierea chiar dacă validarea eșuează
 npm run data:generate:from-md -- --force

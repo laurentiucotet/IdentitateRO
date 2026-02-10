@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
-  <rect width="400" height="400" rx="8" fill="#F8FAFC"/>
-  <circle cx="200" cy="160" r="80" fill="#002F6C" opacity="0.9"/>
-  <path d="M200 100l-12 36h-38l31 22-12 36 31-22 31 22-12-36 31-22h-38z" fill="#333"/>
-  <text x="200" y="290" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="#1a1a1a">Guvernul</text>
-  <text x="200" y="325" text-anchor="middle" font-family="Inter, sans-serif" font-size="22" fill="#1a1a1a">României</text>
-  <text x="200" y="370" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#94a3b8">MONOCROM — PLACEHOLDER</text>
-</svg>

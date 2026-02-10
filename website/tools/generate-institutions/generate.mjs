@@ -33,6 +33,7 @@
  *   node generate.mjs                     # interactive  asks for API key
  *   node generate.mjs --dry-run           # preview output, no writes
  *   node generate.mjs --slug anaf         # process only one slug
+ *   node generate.mjs anaf                # same as above (for npm scripts)
  *   node generate.mjs --no-cache          # skip cached AI responses
  *
  * Env:
@@ -93,7 +94,16 @@ const args = process.argv.slice(2);
 const DRY_RUN   = args.includes('--dry-run');
 const NO_CACHE  = args.includes('--no-cache');
 const FORCE     = args.includes('--force');
-const SLUG_ONLY = args.includes('--slug') ? args[args.indexOf('--slug') + 1] : null;
+
+// Handle slug argument - can be --slug value or just value
+let SLUG_ONLY = null;
+if (args.includes('--slug')) {
+  SLUG_ONLY = args[args.indexOf('--slug') + 1];
+} else if (args.length > 0 && !args[0].startsWith('--')) {
+  // If first arg is not a flag, treat it as slug
+  SLUG_ONLY = args[0];
+}
+
 const MODEL     = getArgValue('--model') || 'openai/gpt-5-mini';
 
 function getArgValue(flag) {
@@ -504,9 +514,12 @@ function buildUserPrompt(slug, discovered, metadata) {
 function normalizeAiResponse(data, slug) {
   const d = JSON.parse(JSON.stringify(data));
 
+  // Fix slug - remove "ro-" prefix if present
   if (d.slug && d.slug.startsWith('ro-')) {
     d.slug = d.slug.replace(/^ro-/, '');
   }
+  
+  // Fix ID - ensure it's "ro-{slug}"
   d.id = 'ro-' + (d.slug || slug);
   d.slug = d.slug || slug;
 
@@ -514,6 +527,40 @@ function normalizeAiResponse(data, slug) {
   if (!('colors' in d)) d.colors = null;
   if (!('typography' in d)) d.typography = null;
   if (!('resources' in d)) d.resources = null;
+
+  // Normalize typography weights to integers
+  if (d.typography && typeof d.typography === 'object') {
+    const WEIGHT_MAP = {
+      'thin': 100, 'hairline': 100,
+      'extralight': 200, 'ultralight': 200,
+      'light': 300,
+      'regular': 400, 'normal': 400,
+      'medium': 500,
+      'semibold': 600, 'demibold': 600,
+      'bold': 700,
+      'extrabold': 800, 'ultrabold': 800,
+      'black': 900, 'heavy': 900
+    };
+
+    function normalizeWeights(weights) {
+      if (!Array.isArray(weights)) return [];
+      return weights.map(w => {
+        if (typeof w === 'number') return w;
+        if (typeof w === 'string') {
+          const lower = w.toLowerCase().replace(/\s+/g, '');
+          return WEIGHT_MAP[lower] || 400; // default to regular
+        }
+        return 400;
+      });
+    }
+
+    if (d.typography.primary && d.typography.primary.weights) {
+      d.typography.primary.weights = normalizeWeights(d.typography.primary.weights);
+    }
+    if (d.typography.secondary && d.typography.secondary.weights) {
+      d.typography.secondary.weights = normalizeWeights(d.typography.secondary.weights);
+    }
+  }
 
   if (d.resources && typeof d.resources === 'object') {
     if (!('website' in d.resources)) d.resources.website = null;

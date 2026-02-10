@@ -1,6 +1,6 @@
 {
   "schemaVersion": "3.0.0",
-  "generatedAt": "2026-02-10T08:39:57.101Z",
+  "generatedAt": "2026-02-10T09:19:17.752Z",
   "total": 11,
   "stats": {
     "byCategory": {
@@ -122,25 +122,56 @@
         "version": "1.0",
         "last_updated": "2026-02-10",
         "keywords": [
-          "fisc",
+          "administrație fiscală",
           "taxe",
-          "impozite",
-          "anaf",
-          "administrare fiscală"
+          "fiscul",
+          "venituri statului"
         ],
         "quality": "draft"
       },
       "location": {
         "country_code": "RO",
-        "county": "B",
+        "county": null,
         "city": "București"
       },
-      "description": "Agenția Națională de Administrare Fiscală (ANAF) este instituția publică centrală responsabilă cu administrarea, colectarea și controlul obligațiilor fiscale la nivel național. Asigură aplicarea legislației fiscale și gestionează încasările bugetare.",
+      "description": "Agenția Națională de Administrare Fiscală (ANAF) este un organ de specialitate al administrației publice centrale, responsabil pentru administrarea veniturilor statului și colectarea taxelor. A fost înființată în 2003 și funcționează în subordinea Ministerului Finanțelor.",
       "usage_notes": null,
-      "colors": null,
-      "typography": null,
+      "colors": [
+        {
+          "name": "Principala",
+          "hex": "#2C2C76",
+          "rgb": [
+            44,
+            44,
+            118
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Text",
+          "hex": "#151515",
+          "rgb": [
+            21,
+            21,
+            21
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Helvetica Neue Pro LT",
+          "url": "https://www.myfonts.com/collections/neue-helvetica-font-linotype",
+          "weights": []
+        },
+        "secondary": null
+      },
       "resources": {
-        "website": null,
+        "website": "https://www.anaf.ro/",
         "branding_manual": null,
         "social_media": null
       },
@@ -620,7 +651,20 @@
       },
       "description": "Monitorul Oficial al României este publicația oficială a statului în care se publică legi, decrete, hotărâri și alte acte normative. Asigură comunicarea oficială și intrarea în vigoare a actelor normative.",
       "usage_notes": null,
-      "colors": null,
+      "colors": [
+        {
+          "name": "Color #003A81",
+          "hex": "#003A81",
+          "rgb": [
+            0,
+            58,
+            129
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        }
+      ],
       "typography": null,
       "resources": {
         "website": null,
