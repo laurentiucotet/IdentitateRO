@@ -170,7 +170,7 @@ async function callOpenRouter(apiKey, systemPrompt, userPrompt, attempt = 1) {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`,
-      'HTTP-Referer': 'https://identitate.ro',
+      'HTTP-Referer': 'https://identitate.eu',
       'X-Title': 'IdentitateRO Generator',
     },
     body: JSON.stringify({

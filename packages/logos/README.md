@@ -21,14 +21,14 @@ Logo-urile sunt disponibile automat prin CDN-uri gratuite:
 
 ```html
 <!-- Logo complet -->
-<img src="https://identitate.ro/logos/anaf/anaf.svg" alt="ANAF">
+<img src="https://identitate.eu/logos/anaf/anaf.svg" alt="ANAF">
 
 <!-- Simbol -->
-<img src="https://identitate.ro/logos/anaf/simbol-anaf.svg" alt="ANAF Simbol">
+<img src="https://identitate.eu/logos/anaf/simbol-anaf.svg" alt="ANAF Simbol">
 
 <!-- Alte instituții -->
-<img src="https://identitate.ro/logos/guvernul-romaniei/guvernul-romaniei.svg" alt="Guvernul României">
-<img src="https://identitate.ro/logos/pnrr/pnrr.svg" alt="PNRR">
+<img src="https://identitate.eu/logos/guvernul-romaniei/guvernul-romaniei.svg" alt="Guvernul României">
+<img src="https://identitate.eu/logos/pnrr/pnrr.svg" alt="PNRR">
 ```
 
 #### jsDelivr (CDN Primară)
@@ -113,7 +113,7 @@ Sau în HTML:
 
 ```html
 <identity-icon 
-  src="https://identitate.ro/logos/anaf/anaf.svg">
+  src="https://identitate.eu/logos/anaf/anaf.svg">
 </identity-icon>
 ```
 
@@ -143,7 +143,7 @@ Sau în HTML:
 </head>
 <body>
   <identity-icon 
-    src="https://identitate.ro/logos/guvernul-romaniei/guvernul-romaniei.svg" 
+    src="https://identitate.eu/logos/guvernul-romaniei/guvernul-romaniei.svg" 
     class="logo-guvern">
   </identity-icon>
 </body>
@@ -159,7 +159,7 @@ import '@identitate-ro/logos/loader';
 function InstitutionLogo({ slug }) {
   return (
     <identity-icon 
-      src={`https://identitate.ro/logos/${slug}/${slug}.svg`}
+      src={`https://identitate.eu/logos/${slug}/${slug}.svg`}
       className="w-16 h-16 text-blue-600"
     />
   );
@@ -181,7 +181,7 @@ const props = defineProps(['institution']);
 
 <template>
   <identity-icon 
-    :src="`https://identitate.ro/logos/${institution}/${institution}.svg`"
+    :src="`https://identitate.eu/logos/${institution}/${institution}.svg`"
     class="logo-icon"
   />
 </template>

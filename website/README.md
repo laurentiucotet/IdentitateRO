@@ -136,11 +136,11 @@ Logo-urile se accesează direct ca fișiere statice:
 
 ```html
 <!-- SVG direct -->
-<img src="https://identitate.ro/logos/guvernul-romaniei/guvernul-romaniei.svg"
+<img src="https://identitate.eu/logos/guvernul-romaniei/guvernul-romaniei.svg"
      alt="Guvernul României" width="200" />
 
 <!-- PNG -->
-<img src="https://identitate.ro/logos/pnrr/pnrr.png"
+<img src="https://identitate.eu/logos/pnrr/pnrr.png"
      alt="PNRR" width="400" />
 ```
 

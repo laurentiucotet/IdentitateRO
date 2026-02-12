@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://identitate.ro/schemas/institution-v3.json",
+  "$id": "https://identitate.eu/schemas/institution-v3.json",
   "title": "IdentitateRO Institution v3",
   "description": "Schema for a Romanian public institution visual identity record (v3.0)",
   "type": "object",

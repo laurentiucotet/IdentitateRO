@@ -278,7 +278,7 @@ interface InstitutionV3 {
 ### Configuration Files
 
 **astro.config.mjs**:
-- Sets site URL: `https://identitate.ro`
+- Sets site URL: `https://identitate.eu`
 - Integrates Tailwind CSS
 - Configures static output
 - Custom asset file naming for cache busting
