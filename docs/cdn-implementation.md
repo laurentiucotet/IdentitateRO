@@ -191,7 +191,7 @@ npm install @identitate-ro/logos
 <img src="https://unpkg.com/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg">
 
 # Latest version
-<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg">
+<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/logos/anaf/anaf.svg">
 ```
 
 ## Scripts
