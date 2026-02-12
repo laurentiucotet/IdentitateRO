@@ -1,6 +1,6 @@
 {
-  "installCommand": "cd website && npm install",
-  "buildCommand": "cd website && npm run data:generate && npm run build",
+  "installCommand": "npm --prefix website install",
+  "buildCommand": "npm --prefix website run data:generate && npm --prefix website run build",
   "outputDirectory": "website/dist",
   "rewrites": [
     {
