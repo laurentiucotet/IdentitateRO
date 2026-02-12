@@ -29,9 +29,7 @@ const displayName = shortname ? shortname.charAt(0).toUpperCase() + shortname.sl
 >
   <!-- Logo Preview Area -->
   <div class="checkerboard aspect-square rounded-t flex items-center justify-center p-6 overflow-hidden relative">
-    {hasSvg && (
-      <span class="absolute top-2 right-2 px-1.5 py-0.5 bg-green-100 text-green-700 text-[9px] font-bold rounded z-10">SVG</span>
-    )}
+
     <img
       src={logoPath}
       alt={`Logo ${name}`}
@@ -52,8 +50,8 @@ const displayName = shortname ? shortname.charAt(0).toUpperCase() + shortname.sl
   <div class="p-3 border-t border-surface-100">
     <div class="flex items-start justify-between gap-2">
       <div class="min-w-0">
-        <h3 class="font-semibold text-sm text-primary-900 truncate" title={name}>
-          {displayName}
+        <h3 class="font-semibold text-sm text-primary-900 truncate uppercase" title={name}>
+          {displayName.toUpperCase()}
         </h3>
         <span class="text-xs text-surface-500">{CATEGORY_LABELS_SINGULAR[category] || category}</span>
       </div>
