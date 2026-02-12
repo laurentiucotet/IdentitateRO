@@ -47,16 +47,18 @@ export const CATEGORY_ORDER = [
 // ─── Logo layout-uri ─────────────────────────────
 
 export const LOGO_LAYOUT_LABELS: Record<string, string> = {
-  'fullHorizontal': 'Orizontal',
-  'fullVertical': 'Vertical',
-  'symbolOnly': 'Doar Simbol',
+  'horizontal': 'Orizontal',
+  'vertical': 'Vertical',
+  'symbol': 'Simbol',
 };
 
 // ─── Logo variante cromatice ─────────────────────
 
 export const LOGO_VARIANT_LABELS: Record<string, string> = {
   'color': 'Color',
+  'dark_mode': 'Dark Mode',
   'white': 'Alb',
+  'black': 'Negru',
   'monochrome': 'Monocrom',
 };
 

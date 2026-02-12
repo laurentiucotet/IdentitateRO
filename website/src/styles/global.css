@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap');
-
   html {
     font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
     scroll-behavior: smooth;
@@ -58,13 +56,6 @@
            hover:border-primary-500/40 hover:text-primary-700;
   }
 
-  /* Color swatch */
-  .color-swatch {
-    @apply w-8 h-8 rounded border-2 border-white shadow-md 
-           cursor-pointer transition-transform duration-150
-           hover:scale-110 active:scale-95;
-  }
-
   /* Buttons */
   .btn {
     @apply inline-flex items-center justify-center gap-1.5 px-4 py-2 
@@ -112,15 +103,6 @@
            transition-all duration-200;
   }
 
-  /* Modal overlay */
-  .modal-overlay {
-    @apply fixed inset-0 z-50 flex items-center justify-center p-4
-           bg-black/50 backdrop-blur-sm;
-  }
-  .modal-content {
-    @apply bg-white rounded-modal shadow-modal w-full max-w-4xl max-h-[90vh] 
-           overflow-hidden animate-scale-in;
-  }
 }
 
 @layer utilities {

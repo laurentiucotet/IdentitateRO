@@ -2,14 +2,13 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import institutionIndex from '../../data/institutions-index.json';
 import { getAllDownloadableAssets, getPrimaryLogoPath } from '../../lib/helpers';
-import { resolveAssetPath, getAssetFallbackUrls } from '../../lib/cdn-helpers';
+import { resolveAssetPath } from '../../lib/cdn-helpers';
 import {
   CATEGORY_LABELS_SINGULAR,
   LOGO_LAYOUT_LABELS,
   LOGO_VARIANT_LABELS,
   COLOR_USAGE_LABELS,
   QUALITY_LABELS,
-  TYPOGRAPHY_ROLE_LABELS,
 } from '../../lib/labels';
 
 import type { Institution, LogoLayout } from '../../types/institution';
@@ -35,6 +34,11 @@ const logoLayouts: Array<{key: string; layout: LogoLayout}> = [
   { key: 'symbol', layout: 'symbol' }
 ];
 const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : undefined;
+
+// Compute CDN path dynamically based on actual main asset
+const cdnBasePath = `https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/${inst.id}`;
+const mainLayout = inst.assets.main?.type || 'horizontal';
+const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -63,11 +67,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
             <span class="px-2 py-0.5 bg-surface-100 text-surface-600 rounded text-xs">
               {CATEGORY_LABELS_SINGULAR[inst.category] || inst.category}
             </span>
-            {qualityInfo && (
-              <span class={`px-2 py-0.5 rounded text-xs ${qualityInfo.class}`}>
-                {qualityInfo.label}
-              </span>
-            )}
+
           </div>
 
           {inst.description && (
@@ -80,7 +80,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              {inst.location.city}, {inst.location.county}
+              {[inst.location.city, inst.location.county].filter(Boolean).join(', ')}
             </p>
           )}
 
@@ -266,7 +266,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
                     <div class="font-mono flex items-center gap-1">
                       {color.hex}
                       <button
-                        class="copy-color-btn p-0.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors opacity-0 group-hover:opacity-100"
+                        class="copy-color-btn p-0.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors max-sm:opacity-100 opacity-0 group-hover:opacity-100"
                         data-value={color.hex}
                         title="Copiază HEX"
                       >
@@ -279,7 +279,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
                       <div class="flex items-center gap-1">
                         RGB: {color.rgb.join(', ')}
                         <button
-                          class="copy-color-btn p-0.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors opacity-0 group-hover:opacity-100"
+                          class="copy-color-btn p-0.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors max-sm:opacity-100 opacity-0 group-hover:opacity-100"
                           data-value={`rgb(${color.rgb.join(', ')})`}
                           title="Copiază RGB"
                         >
@@ -323,7 +323,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
                     rel="noopener"
                     class="text-xs text-primary-500 hover:text-primary-600"
                   >
-                    link &rarr;
+                    Vezi font &rarr;
                   </a>
                 )}
               </div>
@@ -340,7 +340,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
                       rel="noopener"
                       class="text-xs text-primary-500 hover:text-primary-600"
                     >
-                      link &rarr;
+                      Vezi font &rarr;
                     </a>
                   )}
                 </div>
@@ -351,82 +351,6 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       </div>
     </div>
 
-    <!-- ═══ CUM SĂ FOLOSEȘTI ═══ -->
-    <section class="mt-8">
-      <h2 class="text-lg font-semibold text-primary-900 mb-6 flex items-center gap-2">
-        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-        </svg>
-        Cum să folosești
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white border border-surface-200 rounded-lg p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-              </svg>
-            </div>
-            <h3 class="font-semibold text-primary-900">Via CDN (jsDelivr)</h3>
-          </div>
-          <p class="text-sm text-surface-600 mb-4">Include logo-ul direct în HTML folosind URL-ul CDN:</p>
-          <div class="relative bg-gray-50 p-4 rounded-lg font-mono text-sm overflow-x-auto border">
-            &lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/{inst.slug}/{inst.slug}.svg" alt="{inst.name} Logo"&gt;
-            <button
-              type="button"
-              class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
-              data-value={`&lt;img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/${inst.slug}/${inst.slug}.svg" alt="${inst.name} Logo"&gt;`}
-              title="Copiază codul"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="bg-white border border-surface-200 rounded-lg p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
-              <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-              </svg>
-            </div>
-            <h3 class="font-semibold text-primary-900">Via NPM Package</h3>
-          </div>
-          <p class="text-sm text-surface-600 mb-4">Instalează pachetul și folosește funcțiile helper:</p>
-          <div class="space-y-3">
-            <div class="relative bg-gray-50 p-3 rounded-lg font-mono text-sm border">
-              npm install @identitate-ro/logos
-              <button
-                type="button"
-                class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
-                data-value="npm install @identitate-ro/logos"
-                title="Copiază codul"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </button>
-            </div>
-            <div class="relative bg-gray-50 p-3 rounded-lg font-mono text-sm border overflow-x-auto">
-              import &#123; getLogoUrl &#125; from '@identitate-ro/logos';<br>
-              const logoUrl = getLogoUrl('{inst.id}', 'horizontal', 'color');
-              <button
-                type="button"
-                class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
-                data-value={`import { getLogoUrl } from '@identitate-ro/logos';\nconst logoUrl = getLogoUrl('${inst.id}', 'horizontal', 'color');`}
-                title="Copiază codul"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ═══ DESCĂRCĂRI RAPIDE ═══ -->
     {downloadables.length > 0 && (
       <section class="mt-10">
@@ -436,7 +360,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
           </svg>
           Toate Descărcările
         </h2>
-        <button id="download-zip" data-downloadables={JSON.stringify(downloadables)} data-slug={inst.slug} class="mb-4 px-4 py-2 border border-primary-500 text-primary-500 rounded hover:bg-primary-50 transition-colors flex items-center gap-2">
+        <button id="download-zip" data-downloadables={JSON.stringify(downloadables)} data-slug={inst.slug} class="mb-4 px-4 py-2 bg-primary-500 text-white rounded hover:bg-primary-600 transition-colors flex items-center gap-2">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
@@ -468,6 +392,67 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
         </div>
       </section>
     )}
+
+    <!-- ═══ INTEGRARE (tabs) ═══ -->
+    <section class="mt-10">
+      <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+        Integrare
+      </h2>
+      <!-- Tab buttons -->
+      <div class="flex border-b border-surface-200">
+        <button type="button" data-tab-btn="cdn" class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-primary-500 text-primary-700 -mb-px">CDN</button>
+        <button type="button" data-tab-btn="npm" class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-surface-500 hover:text-surface-700 -mb-px">NPM</button>
+        <button type="button" data-tab-btn="direct" class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-surface-500 hover:text-surface-700 -mb-px">URL Direct</button>
+      </div>
+      <!-- Tab panels -->
+      <div class="bg-white border border-t-0 border-surface-200 rounded-b-lg p-4">
+        <!-- CDN Panel -->
+        <div data-tab-panel="cdn" class="tab-panel">
+          <p class="text-sm text-surface-600 mb-3">Include logo-ul direct în HTML:</p>
+          <div class="relative bg-gray-50 p-3 rounded font-mono text-sm overflow-x-auto border">
+            <span class="text-pink-600">&lt;img</span> <span class="text-blue-600">src</span>=<span class="text-green-600">"{cdnLogoPath}"</span> <span class="text-blue-600">alt</span>=<span class="text-green-600">"{inst.name}"</span><span class="text-pink-600">&gt;</span>
+            <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`<img src="${cdnLogoPath}" alt="${inst.name}">`} title="Copiază">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            </button>
+          </div>
+        </div>
+        <!-- NPM Panel -->
+        <div data-tab-panel="npm" class="tab-panel hidden">
+          <p class="text-sm text-surface-600 mb-3">Instalează pachetul și importă datele:</p>
+          <div class="space-y-2">
+            <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border">
+              <span class="text-surface-500">$</span> npm install @identitate-ro/logos
+              <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value="npm install @identitate-ro/logos" title="Copiază">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              </button>
+            </div>
+            <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border overflow-x-auto">
+              <span class="text-pink-600">import</span> logos <span class="text-pink-600">from</span> <span class="text-green-600">'@identitate-ro/logos'</span>;<br>
+              <span class="text-pink-600">const</span> logo = logos.institutions.<span class="text-blue-600">find</span>(i =&gt; i.id === <span class="text-green-600">'{inst.id}'</span>);
+              <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`import logos from '@identitate-ro/logos';\nconst logo = logos.institutions.find(i => i.id === '${inst.id}');`} title="Copiază">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- URL Direct Panel -->
+        <div data-tab-panel="direct" class="tab-panel hidden">
+          <p class="text-sm text-surface-600 mb-3">Copiază URL-ul pentru Figma, Canva sau alte aplicații:</p>
+          <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border break-all">
+            {cdnLogoPath}
+            <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={cdnLogoPath} title="Copiază URL">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3 text-right">
+        <a href="/utilizare" class="text-sm text-primary-500 hover:text-primary-600">Documentație completă &rarr;</a>
+      </div>
+    </section>
 
     <!-- ═══ RESURSE ═══ -->
     {inst.resources && (inst.resources.website || inst.resources.branding_manual) && (
@@ -509,22 +494,106 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       </section>
     )}
 
-    <!-- ═══ METADATA ═══ -->
+    <!-- ═══ METADATA (info popover) ═══ -->
     <section class="mt-10 pt-6 border-t border-surface-200">
-      <div class="flex flex-wrap gap-x-8 gap-y-2 text-xs text-surface-500">
-        <div>Ultima actualizare: {new Date(inst.meta.last_updated).toLocaleDateString('ro-RO')}</div>
-        {inst.meta.quality && <div>Calitate: {qualityInfo?.label || inst.meta.quality}</div>}
-        <div>ID: <span class="font-mono">{inst.id}</span></div>
-        <div>Schema: v3.0.0</div>
+      <div class="flex items-center justify-between">
+        <span class="text-xs text-surface-400">
+          Actualizat {new Date(inst.meta.last_updated).toLocaleDateString('ro-RO')}
+        </span>
+        <div class="relative">
+          <button
+            type="button"
+            id="meta-info-btn"
+            class="p-1.5 rounded-full text-surface-400 hover:text-surface-600 hover:bg-surface-100 transition-colors"
+            title="Detalii tehnice"
+            aria-expanded="false"
+            aria-controls="meta-info-popover"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+          <div
+            id="meta-info-popover"
+            class="hidden absolute right-0 bottom-full mb-2 w-56 bg-white border border-surface-200 rounded-lg shadow-lg p-3 z-10"
+          >
+            <div class="text-xs text-surface-500 space-y-1.5">
+              <div class="font-medium text-surface-700 mb-2">Detalii tehnice</div>
+              <div class="flex justify-between">
+                <span>Actualizat</span>
+                <span class="text-surface-700">{new Date(inst.meta.last_updated).toLocaleDateString('ro-RO')}</span>
+              </div>
+              {inst.meta.quality && (
+                <div class="flex justify-between">
+                  <span>Calitate</span>
+                  <span class="text-surface-700">{qualityInfo?.label || inst.meta.quality}</span>
+                </div>
+              )}
+              <div class="flex justify-between">
+                <span>ID</span>
+                <span class="font-mono text-surface-700">{inst.id}</span>
+              </div>
+              <div class="flex justify-between">
+                <span>Schema</span>
+                <span class="text-surface-700">v3.0.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </article>
 </BaseLayout>
 
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script>
   // Copy functionality for SVG assets and colors
   document.addEventListener('DOMContentLoaded', () => {
+    // Meta info popover toggle
+    const metaBtn = document.getElementById('meta-info-btn');
+    const metaPopover = document.getElementById('meta-info-popover');
+    if (metaBtn && metaPopover) {
+      metaBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = !metaPopover.classList.contains('hidden');
+        metaPopover.classList.toggle('hidden');
+        metaBtn.setAttribute('aria-expanded', String(!isOpen));
+      });
+      document.addEventListener('click', () => {
+        metaPopover.classList.add('hidden');
+        metaBtn.setAttribute('aria-expanded', 'false');
+      });
+      metaPopover.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Tab switching for Integrare section
+    const tabBtns = document.querySelectorAll('[data-tab-btn]');
+    const tabPanels = document.querySelectorAll('[data-tab-panel]');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = (btn as HTMLElement).dataset.tabBtn;
+        // Update buttons
+        tabBtns.forEach(b => {
+          const el = b as HTMLElement;
+          if (el.dataset.tabBtn === tabId) {
+            el.classList.add('border-primary-500', 'text-primary-700');
+            el.classList.remove('border-transparent', 'text-surface-500');
+          } else {
+            el.classList.remove('border-primary-500', 'text-primary-700');
+            el.classList.add('border-transparent', 'text-surface-500');
+          }
+        });
+        // Update panels
+        tabPanels.forEach(p => {
+          const el = p as HTMLElement;
+          if (el.dataset.tabPanel === tabId) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        });
+      });
+    });
+
     const copyButtons = document.querySelectorAll('.copy-btn, .copy-color-btn, .copy-code-btn');
 
     copyButtons.forEach(button => {
@@ -583,7 +652,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
     });
 
     // Accessibility contrast checker
-    function hexToRgb(hex) {
+    function hexToRgb(hex: string): [number, number, number] | null {
       const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
       return result ? [
         parseInt(result[1], 16),
@@ -592,7 +661,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       ] : null;
     }
 
-    function getRelativeLuminance(r, g, b) {
+    function getRelativeLuminance(r: number, g: number, b: number): number {
       const [rs, gs, bs] = [r, g, b].map(c => {
         c = c / 255;
         return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
@@ -600,18 +669,18 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
     }
 
-    function getContrastRatio(hex1, hex2) {
+    function getContrastRatio(hex1: string, hex2: string): number {
       const rgb1 = hexToRgb(hex1);
       const rgb2 = hexToRgb(hex2);
       if (!rgb1 || !rgb2) return 1;
-      const l1 = getRelativeLuminance(...rgb1);
-      const l2 = getRelativeLuminance(...rgb2);
+      const l1 = getRelativeLuminance(rgb1[0], rgb1[1], rgb1[2]);
+      const l2 = getRelativeLuminance(rgb2[0], rgb2[1], rgb2[2]);
       const lighter = Math.max(l1, l2);
       const darker = Math.min(l1, l2);
       return (lighter + 0.05) / (darker + 0.05);
     }
 
-    const badges = document.querySelectorAll('.accessibility-badge');
+    const badges = document.querySelectorAll<HTMLElement>('.accessibility-badge');
     badges.forEach(badge => {
       const hex = badge.dataset.hex;
       if (!hex) return;
@@ -656,7 +725,10 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
       downloadZipBtn.addEventListener('click', async () => {
         const downloadables = JSON.parse(downloadZipBtn.dataset.downloadables || '[]');
         const slug = downloadZipBtn.dataset.slug || 'logos';
-        const zip = new JSZip();
+
+        // Lazy-load JSZip
+        // @ts-ignore - CDN dynamic import
+        const { default: JSZip } = await import('https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm');
 
         // Show loading state
         const originalText = downloadZipBtn.innerHTML;
@@ -669,6 +741,7 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
         downloadZipBtn.disabled = true;
 
         try {
+          const zip = new JSZip();
           for (const asset of downloadables) {
             const response = await fetch(asset.path);
             const blob = await response.blob();
@@ -712,14 +785,4 @@ const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : unde
   });
 </script>
 
-<style>
-  .checkerboard {
-    background-image:
-      linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
-      linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
-      linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
-    background-size: 20px 20px;
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  }
-</style>
+

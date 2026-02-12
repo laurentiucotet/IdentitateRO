@@ -4,8 +4,7 @@
  *
  * Acceptă date din schema v3.0 (structură plată cu slug/name/category).
  */
-import { CATEGORY_LABELS_SINGULAR, QUALITY_LABELS } from '../lib/labels';
-import { resolveAssetPath, getAssetFallbackUrls } from '../lib/cdn-helpers';
+import { CATEGORY_LABELS_SINGULAR } from '../lib/labels';
 
 export interface Props {
   slug: string;
@@ -13,15 +12,13 @@ export interface Props {
   shortname?: string;
   category: string;
   logoPath: string;
-  quality?: string;
   hasSvg: boolean;
   keywords?: string[];
 }
 
-const { slug, name, shortname, category, logoPath, quality, hasSvg, keywords } = Astro.props;
+const { slug, name, shortname, category, logoPath, hasSvg, keywords } = Astro.props;
 
-const displayName = name;
-const qualityInfo = quality ? QUALITY_LABELS[quality] : undefined;
+const displayName = shortname ? shortname.charAt(0).toUpperCase() + shortname.slice(1).toLowerCase() : name;
 ---
 
 <a
@@ -31,7 +28,10 @@ const qualityInfo = quality ? QUALITY_LABELS[quality] : undefined;
   data-institution-id={slug}
 >
   <!-- Logo Preview Area -->
-  <div class="checkerboard aspect-square rounded-t flex items-center justify-center p-6 overflow-hidden">
+  <div class="checkerboard aspect-square rounded-t flex items-center justify-center p-6 overflow-hidden relative">
+    {hasSvg && (
+      <span class="absolute top-2 right-2 px-1.5 py-0.5 bg-green-100 text-green-700 text-[9px] font-bold rounded z-10">SVG</span>
+    )}
     <img
       src={logoPath}
       alt={`Logo ${name}`}

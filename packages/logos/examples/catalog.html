@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IdentitateRO — Catalog Logo-uri</title>
+
+  <!-- Load the Web Component (local, relative path) -->
+  <script src="../identity-loader.js"></script>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1a202c;
+      --text-muted: #718096;
+      --border: #e2e8f0;
+      --accent: #003399;
+      --accent-light: #667eea;
+      --dark-bg: #1a202c;
+      --checker-size: 12px;
+      --checker-a: #e2e8f0;
+      --checker-b: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Header ──────────────────────────────────────────── */
+    .header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .header h1 { font-size: 20px; }
+    .header h1 span { color: var(--accent); }
+
+    /* ── Stats bar ───────────────────────────────────────── */
+    .stats {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .stats strong { color: var(--text); }
+
+    /* ── Controls ─────────────────────────────────────────── */
+    .controls {
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .controls input[type="text"] {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      width: 240px;
+    }
+    .controls select {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 14px;
+      background: white;
+    }
+    .btn-toggle {
+      margin-left: auto;
+      padding: 6px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-toggle:hover { border-color: var(--accent-light); }
+    .btn-toggle.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+    /* ── Main grid ────────────────────────────────────────── */
+    .catalog {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+
+    /* ── Institution section ──────────────────────────────── */
+    .institution {
+      margin-bottom: 40px;
+    }
+    .institution-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .institution-header h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .institution-header .slug {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+    .institution-header .badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #edf2f7;
+      color: var(--text-muted);
+    }
+
+    /* ── Logo matrix ──────────────────────────────────────── */
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .logo-cell {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .logo-cell:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+
+    /* Checkerboard background for transparency preview */
+    .preview-checker {
+      background-image:
+        linear-gradient(45deg, var(--checker-a) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--checker-a) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--checker-a) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--checker-a) 75%);
+      background-size: var(--checker-size) var(--checker-size);
+      background-position: 0 0, 0 calc(var(--checker-size)/2),
+        calc(var(--checker-size)/2) calc(-1 * var(--checker-size)/2),
+        calc(-1 * var(--checker-size)/2) 0;
+      background-color: var(--checker-b);
+    }
+    .preview-dark {
+      background: var(--dark-bg) !important;
+      background-image: none !important;
+    }
+    .preview-white {
+      background: #ffffff !important;
+      background-image: none !important;
+    }
+
+    .preview-area {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .preview-area identity-icon {
+      max-width: 180px;
+      max-height: 88px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .cell-label {
+      padding: 8px 12px;
+      background: white;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cell-label .layout-name {
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    .cell-label .variant-name {
+      color: var(--text-muted);
+      font-family: monospace;
+      font-size: 11px;
+    }
+    .cell-label .path-copy {
+      cursor: pointer;
+      opacity: 0.4;
+      transition: opacity 0.2s;
+      font-size: 14px;
+      border: none;
+      background: none;
+      padding: 2px;
+    }
+    .cell-label .path-copy:hover { opacity: 1; }
+
+    /* ── Empty state ──────────────────────────────────────── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .matrix { grid-template-columns: 1fr 1fr; }
+      .header-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-inner">
+      <h1>🇷🇴 <span>IdentitateRO</span> — Catalog Logo-uri</h1>
+      <div class="stats" id="stats"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Caută instituție…" />
+    <select id="filterLayout">
+      <option value="">Toate layout-urile</option>
+      <option value="horizontal">Horizontal</option>
+      <option value="vertical">Vertical</option>
+      <option value="symbol">Symbol</option>
+    </select>
+    <select id="filterVariant">
+      <option value="">Toate variantele</option>
+      <option value="color">Color</option>
+      <option value="white">White</option>
+      <option value="black">Black</option>
+      <option value="monochrome">Monochrome</option>
+      <option value="dark_mode">Dark Mode</option>
+    </select>
+
+    <div style="display:flex; gap:8px; align-items:center; font-size:13px;">
+      <label style="color:var(--text-muted);">Sursă:</label>
+      <select id="cdnBase" style="font-size:12px; padding:4px 8px;">
+        <option value="../logos/" selected>Local (relativ)</option>
+        <option value="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/">jsDelivr CDN</option>
+        <option value="https://unpkg.com/@identitate-ro/logos/logos/">unpkg CDN</option>
+      </select>
+    </div>
+
+    <button class="btn-toggle" id="toggleBg" title="Comută fundalul de previzualizare">
+      🌓 Fundal
+    </button>
+  </div>
+
+  <div class="catalog" id="catalog">
+    <div class="empty-state">Se încarcă index.json…</div>
+  </div>
+
+  <script>
+    // ── State ──
+    let indexData = null;
+    let bgMode = 'checker'; // 'checker' | 'dark' | 'white'
+
+    // ── Elements ──
+    const $catalog = document.getElementById('catalog');
+    const $stats = document.getElementById('stats');
+    const $search = document.getElementById('search');
+    const $filterLayout = document.getElementById('filterLayout');
+    const $filterVariant = document.getElementById('filterVariant');
+    const $cdnBase = document.getElementById('cdnBase');
+    const $toggleBg = document.getElementById('toggleBg');
+
+    // ── Load index ──
+    async function loadIndex() {
+      try {
+        const res = await fetch('../index.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        indexData = await res.json();
+        updateStats();
+        render();
+      } catch (err) {
+        $catalog.innerHTML = `<div class="empty-state">
+          <p>⚠️ Nu s-a putut încărca <code>index.json</code></p>
+          <p style="margin-top:8px;font-size:13px;">Rulează: <code>npm run generate</code> în <code>packages/logos/</code></p>
+          <p style="margin-top:4px;font-size:12px;color:#a0aec0;">${err.message}</p>
+        </div>`;
+      }
+    }
+
+    // ── Stats ──
+    function updateStats() {
+      if (!indexData) return;
+      $stats.innerHTML = `
+        <span><strong>${indexData.count}</strong> instituții</span>
+        <span><strong>${indexData.totalLogos || '?'}</strong> logo-uri</span>
+        <span>v${indexData.version}</span>
+      `;
+    }
+
+    // ── Build src for an identity-icon ──
+    function buildSrc(logoPath) {
+      const base = $cdnBase.value;
+      // logoPath starts with /logos/{slug}/... — strip "/logos/" prefix
+      const rel = logoPath.replace(/^\/logos\//, '');
+      return base + rel;
+    }
+
+    // ── Background class for preview ──
+    function bgClass() {
+      if (bgMode === 'dark') return 'preview-dark';
+      if (bgMode === 'white') return 'preview-white';
+      return 'preview-checker';
+    }
+
+    // ── Render ──
+    function render() {
+      if (!indexData) return;
+
+      const query = $search.value.toLowerCase().trim();
+      const layoutFilter = $filterLayout.value;
+      const variantFilter = $filterVariant.value;
+
+      const filtered = indexData.institutions.filter(inst => {
+        if (query && !inst.name.toLowerCase().includes(query) && !inst.slug.toLowerCase().includes(query)) return false;
+        if (layoutFilter && !inst.logos[layoutFilter]) return false;
+        if (variantFilter) {
+          const hasVariant = Object.values(inst.logos).some(l => l[variantFilter]);
+          if (!hasVariant) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        $catalog.innerHTML = `<div class="empty-state">Niciun rezultat pentru „${query || layoutFilter || variantFilter}"</div>`;
+        return;
+      }
+
+      $catalog.innerHTML = filtered.map(inst => {
+        // Collect all cells: layout × variant
+        const cells = [];
+        for (const [layout, variants] of Object.entries(inst.logos)) {
+          if (layoutFilter && layout !== layoutFilter) continue;
+          for (const [variant, path] of Object.entries(variants)) {
+            if (variantFilter && variant !== variantFilter) continue;
+            cells.push({ layout, variant, path });
+          }
+        }
+
+        if (cells.length === 0) return '';
+
+        const cellsHtml = cells.map(c => {
+          const src = buildSrc(c.path);
+          // Auto-pick background: dark for white variant, white for black, checker otherwise
+          let autoBg = bgClass();
+          if (bgMode === 'checker') {
+            if (c.variant === 'white') autoBg = 'preview-dark';
+            else if (c.variant === 'black') autoBg = 'preview-white';
+          }
+
+          return `
+            <div class="logo-cell">
+              <div class="preview-area ${autoBg}">
+                <identity-icon src="${src}"></identity-icon>
+              </div>
+              <div class="cell-label">
+                <span>
+                  <span class="layout-name">${c.layout}</span>
+                  <span class="variant-name">${c.variant}</span>
+                </span>
+                <button class="path-copy" data-path="${c.path}" title="Copiază calea">📋</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <div class="institution" data-slug="${inst.slug}">
+            <div class="institution-header">
+              <h2>${inst.name}</h2>
+              <span class="slug">${inst.slug}</span>
+              <span class="badge">${inst.logoCount} logo${inst.logoCount !== 1 ? '-uri' : ''}</span>
+            </div>
+            <div class="matrix">${cellsHtml}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ── Events ──
+    $search.addEventListener('input', render);
+    $filterLayout.addEventListener('change', render);
+    $filterVariant.addEventListener('change', render);
+    $cdnBase.addEventListener('change', render);
+
+    $toggleBg.addEventListener('click', () => {
+      if (bgMode === 'checker') bgMode = 'dark';
+      else if (bgMode === 'dark') bgMode = 'white';
+      else bgMode = 'checker';
+      $toggleBg.textContent = bgMode === 'dark' ? '🌑 Dark' : bgMode === 'white' ? '☀️ Light' : '🌓 Fundal';
+      render();
+    });
+
+    // Copy path on click
+    $catalog.addEventListener('click', (e) => {
+      const btn = e.target.closest('.path-copy');
+      if (!btn) return;
+      const path = btn.dataset.path;
+      navigator.clipboard.writeText(path).then(() => {
+        btn.textContent = '✅';
+        setTimeout(() => btn.textContent = '📋', 1500);
+      });
+    });
+
+    // ── Init ──
+    loadIndex();
+  </script>
+</body>
+</html>

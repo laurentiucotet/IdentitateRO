@@ -1,18 +1,39 @@
 {
-  "version": "1.0.0",
-  "generated": "2026-02-10T12:40:47.017Z",
+  "version": "1.1.0",
+  "generated": "2026-02-12T17:49:25.335Z",
   "count": 8,
+  "totalLogos": 42,
   "institutions": [
     {
-      "id": "ro-ro-anaf",
+      "id": "ro-anaf",
       "slug": "ro-anaf",
       "name": "Agenția Națională de Administrare Fiscală",
-      "logos": {}
+      "layouts": [
+        "horizontal",
+        "symbol"
+      ],
+      "logoCount": 6,
+      "logos": {
+        "horizontal": {
+          "black": "/logos/ro-anaf/horizontal/black.svg",
+          "color": "/logos/ro-anaf/horizontal/color.svg",
+          "white": "/logos/ro-anaf/horizontal/white.svg"
+        },
+        "symbol": {
+          "black": "/logos/ro-anaf/symbol/black.svg",
+          "color": "/logos/ro-anaf/symbol/color.svg",
+          "white": "/logos/ro-anaf/symbol/white.svg"
+        }
+      }
     },
     {
-      "id": "ro-ro-anre",
+      "id": "ro-anre",
       "slug": "ro-anre",
       "name": "Autoritatea Națională de Reglementare în Domeniul Energiei",
+      "layouts": [
+        "symbol"
+      ],
+      "logoCount": 3,
       "logos": {
         "symbol": {
           "black": "/logos/ro-anre/symbol_black.svg",
@@ -22,40 +43,130 @@
       }
     },
     {
-      "id": "ro-ro-bnr",
+      "id": "ro-bnr",
       "slug": "ro-bnr",
       "name": "Banca Națională a României",
-      "logos": {}
+      "layouts": [
+        "horizontal",
+        "symbol"
+      ],
+      "logoCount": 6,
+      "logos": {
+        "horizontal": {
+          "black": "/logos/ro-bnr/horizontal/black.svg",
+          "color": "/logos/ro-bnr/horizontal/color.svg",
+          "white": "/logos/ro-bnr/horizontal/white.svg"
+        },
+        "symbol": {
+          "black": "/logos/ro-bnr/symbol/black.svg",
+          "color": "/logos/ro-bnr/symbol/color.svg",
+          "white": "/logos/ro-bnr/symbol/white.svg"
+        }
+      }
     },
     {
-      "id": "ro-ro-cnair",
+      "id": "ro-cnair",
       "slug": "ro-cnair",
       "name": "Compania Națională de Administrare a Infrastructurii Rutiere",
-      "logos": {}
+      "layouts": [
+        "horizontal",
+        "vertical",
+        "symbol"
+      ],
+      "logoCount": 9,
+      "logos": {
+        "horizontal": {
+          "black": "/logos/ro-cnair/horizontal/black.svg",
+          "color": "/logos/ro-cnair/horizontal/color.svg",
+          "white": "/logos/ro-cnair/horizontal/white.svg"
+        },
+        "vertical": {
+          "black": "/logos/ro-cnair/vertical/black.svg",
+          "color": "/logos/ro-cnair/vertical/color.svg",
+          "white": "/logos/ro-cnair/vertical/white.svg"
+        },
+        "symbol": {
+          "black": "/logos/ro-cnair/symbol/black.svg",
+          "color": "/logos/ro-cnair/symbol/color.svg",
+          "white": "/logos/ro-cnair/symbol/white.svg"
+        }
+      }
     },
     {
-      "id": "ro-ro-cnas",
+      "id": "ro-cnas",
       "slug": "ro-cnas",
       "name": "Casa Națională de Asigurări de Sănătate",
-      "logos": {}
+      "layouts": [
+        "horizontal",
+        "symbol"
+      ],
+      "logoCount": 6,
+      "logos": {
+        "horizontal": {
+          "black": "/logos/ro-cnas/horizontal/black.svg",
+          "color": "/logos/ro-cnas/horizontal/color.svg",
+          "white": "/logos/ro-cnas/horizontal/white.svg"
+        },
+        "symbol": {
+          "black": "/logos/ro-cnas/symbol/black.svg",
+          "color": "/logos/ro-cnas/symbol/color.svg",
+          "white": "/logos/ro-cnas/symbol/white.svg"
+        }
+      }
     },
     {
-      "id": "ro-ro-guvern",
+      "id": "ro-guvern",
       "slug": "ro-guvern",
       "name": "Guvernul României",
-      "logos": {}
+      "layouts": [
+        "symbol"
+      ],
+      "logoCount": 3,
+      "logos": {
+        "symbol": {
+          "black": "/logos/ro-guvern/symbol/black.svg",
+          "color": "/logos/ro-guvern/symbol/color.svg",
+          "white": "/logos/ro-guvern/symbol/white.svg"
+        }
+      }
     },
     {
-      "id": "ro-ro-ins",
+      "id": "ro-ins",
       "slug": "ro-ins",
       "name": "Institutul Național de Statistică",
-      "logos": {}
+      "layouts": [
+        "horizontal",
+        "symbol"
+      ],
+      "logoCount": 6,
+      "logos": {
+        "horizontal": {
+          "black": "/logos/ro-ins/horizontal/black.svg",
+          "color": "/logos/ro-ins/horizontal/color.svg",
+          "white": "/logos/ro-ins/horizontal/white.svg"
+        },
+        "symbol": {
+          "black": "/logos/ro-ins/symbol/black.svg",
+          "color": "/logos/ro-ins/symbol/color.svg",
+          "white": "/logos/ro-ins/symbol/white.svg"
+        }
+      }
     },
     {
-      "id": "ro-ro-monitorul-oficial",
+      "id": "ro-monitorul-oficial",
       "slug": "ro-monitorul-oficial",
       "name": "Monitorul Oficial al României",
-      "logos": {}
+      "layouts": [
+        "symbol"
+      ],
+      "logoCount": 3,
+      "logos": {
+        "symbol": {
+          "black": "/logos/ro-monitorul-oficial/symbol/black.svg",
+          "color": "/logos/ro-monitorul-oficial/symbol/color.svg",
+          "white": "/logos/ro-monitorul-oficial/symbol/white.svg"
+        }
+      }
     }
   ]
 }

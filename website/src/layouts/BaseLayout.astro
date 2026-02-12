@@ -6,12 +6,15 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { title, description }: Props = Astro.props;
+const { title, description, ogImage }: Props = Astro.props;
 
-const pageTitle = title || 'IdentitateRO - Registrul Vizual al Institutiei Publice';
-const pageDescription = description || 'Registru digital open-source pentru logo-uri vectoriale (SVG) ale institutiilor publice din Romania. O singura sursa de adevar.';
+const pageTitle = title || 'IdentitateRO — Registrul Vizual al Instituțiilor Publice';
+const pageDescription = description || 'Registru digital open-source pentru logo-uri vectoriale (SVG) ale instituțiilor publice din România. O singură sursă de adevăr.';
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = ogImage || new URL('/og-image.png', Astro.site).href;
 ---
 
 <!doctype html>
@@ -22,12 +25,50 @@ const pageDescription = description || 'Registru digital open-source pentru logo
     <meta name="description" content={pageDescription} />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalUrl} />
+
     <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ro_RO" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="IdentitateRO" />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#004990" />
+
+    <!-- Font: Public Sans (preconnect + non-blocking load) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "IdentitateRO",
+      "url": "https://identitate.eu",
+      "description": "Registru digital open-source pentru identitatea vizuală a instituțiilor publice din România.",
+      "inLanguage": "ro",
+      "publisher": {
+        "@type": "Organization",
+        "name": "IdentitateRO Contributors",
+        "url": "https://identitate.eu"
+      }
+    })} />
+
     <title>{pageTitle}</title>
   </head>
   <body class="min-h-screen flex flex-col">

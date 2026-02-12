@@ -41,7 +41,7 @@ Logo-urile sunt disponibile automat prin CDN-uri gratuite:
 <img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/logos/anaf/simbol-anaf.svg" alt="ANAF Simbol">
 
 <!-- Versiunea latest (se actualizează automat) -->
-<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/guvernul-romaniei/guvernul-romaniei.svg" alt="Guvernul României">
+<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/logos/guvernul-romaniei/guvernul-romaniei.svg" alt="Guvernul României">
 ```
 
 #### unpkg (CDN Fallback)
@@ -245,7 +245,7 @@ add_action('wp_enqueue_scripts', 'enqueue_identity_loader');
 
 <!-- În template (page.php, single.php, etc.) -->
 <identity-icon 
-  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
+  src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/logos/primaria-cluj-napoca/primaria-cluj-napoca.svg"
   style="width: 100px; height: 100px; color: #2c5aa0;">
 </identity-icon>
 ```
@@ -462,7 +462,7 @@ const logoUrl = computed(() =>
 
 ```css
 .anaf-logo {
-  background-image: url('https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg');
+  background-image: url('https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/logos/anaf/anaf.svg');
   background-size: contain;
   background-repeat: no-repeat;
   width: 200px;
@@ -479,7 +479,7 @@ const logoUrl = computed(() =>
 <img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg">
 
 <!-- ⚠️ Evită în producție - poate schimba -->
-<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/anaf/anaf.svg">
+<img src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/logos/anaf/anaf.svg">
 ```
 
 ### 2. Optimizare Performanță

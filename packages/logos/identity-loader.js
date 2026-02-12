@@ -54,17 +54,21 @@ class IdentityIcon extends HTMLElement {
    * Main rendering logic
    */
   async render() {
-    const url = this.getAttribute('src');
+    let url = this.getAttribute('src');
     
     if (!url) {
       this.showError('Missing src attribute');
       return;
     }
 
-    // Validate URL format
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-      this.showError('Invalid URL format');
-      return;
+    // Resolve relative paths to absolute URLs (for local dev / same-origin usage)
+    if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:')) {
+      try {
+        url = new URL(url, document.baseURI).href;
+      } catch (e) {
+        this.showError('Invalid URL: ' + url);
+        return;
+      }
     }
 
     // Check cache first
@@ -85,8 +89,9 @@ class IdentityIcon extends HTMLElement {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('svg')) {
+      const contentType = response.headers.get('content-type') || '';
+      const isSvg = contentType.includes('svg') || contentType.includes('xml') || url.endsWith('.svg');
+      if (!isSvg) {
         throw new Error('Response is not an SVG file');
       }
 

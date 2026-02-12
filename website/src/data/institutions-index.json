@@ -1,6 +1,6 @@
 {
   "schemaVersion": "3.0.0",
-  "generatedAt": "2026-02-10T12:35:45.409Z",
+  "generatedAt": "2026-02-12T20:18:17.705Z",
   "total": 8,
   "stats": {
     "byCategory": {
@@ -9,7 +9,7 @@
       "guvern": 1,
       "altele": 1
     },
-    "withManual": 0,
+    "withManual": 1,
     "withSvg": 8
   },
   "categories": [
@@ -506,7 +506,7 @@
       "usage_notes": null,
       "colors": [
         {
-          "name": "S",
+          "name": "Albastru",
           "hex": "#004990",
           "rgb": [
             0,
@@ -518,7 +518,7 @@
           "usage": "primary"
         },
         {
-          "name": "Color #58595B",
+          "name": "Gri",
           "hex": "#58595B",
           "rgb": [
             88,
@@ -532,8 +532,8 @@
       ],
       "typography": null,
       "resources": {
-        "website": null,
-        "branding_manual": null,
+        "website": "https://www.gov.ro/",
+        "branding_manual": "https://mfinante.gov.ro/static/10/Mfp/Licitatii/ghid-identitate-vizualasi682878_18062024.pdf",
         "social_media": null
       },
       "assets": {

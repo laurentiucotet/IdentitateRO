@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Pagina nu a fost găsită — IdentitateRO" description="Pagina pe care o cauți nu există sau a fost mutată.">
+  <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <!-- 404 Icon -->
+    <div class="mb-6">
+      <svg class="w-24 h-24 mx-auto text-surface-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+
+    <!-- Message -->
+    <h1 class="text-4xl font-bold text-primary-900 mb-3">404</h1>
+    <p class="text-lg text-surface-600 mb-2">Pagina nu a fost găsită</p>
+    <p class="text-sm text-surface-500 mb-8">
+      Pagina pe care o cauți nu există, a fost mutată sau a fost ștearsă.
+    </p>
+
+    <!-- Actions -->
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="/" class="btn-primary">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        Pagina Principală
+      </a>
+      <a href="/solicita" class="btn-outline">
+        Solicită un Logo
+      </a>
+    </div>
+
+    <!-- Helpful links -->
+    <div class="mt-12 pt-8 border-t border-surface-200">
+      <h2 class="text-sm font-semibold text-primary-900 mb-3">Pagini utile</h2>
+      <div class="flex flex-wrap gap-4 justify-center text-xs">
+        <a href="/" class="text-primary-600 hover:text-primary-700 underline">Acasă</a>
+        <a href="/despre" class="text-primary-600 hover:text-primary-700 underline">Despre Proiect</a>
+        <a href="/utilizare" class="text-primary-600 hover:text-primary-700 underline">Documentație NPM</a>
+        <a href="/solicita" class="text-primary-600 hover:text-primary-700 underline">Solicită Logo</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

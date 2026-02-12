@@ -1,5 +1,17 @@
 ---
 // Header component - Navbar-ul aplicației
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Acasă' },
+  { href: '/despre', label: 'Despre' },
+  { href: '/utilizare', label: 'Documentație' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
 ---
 
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-surface-200">
@@ -15,14 +27,20 @@
         </span>
       </a>
 
-      <!-- Navigation Links -->
+      <!-- Navigation Links (Desktop) -->
       <div class="hidden md:flex items-center gap-4">
-        <a href="/" class="text-xs font-medium text-surface-600 hover:text-primary-900 transition-colors">
-          Acasă
-        </a>
-        <a href="/despre" class="text-xs font-medium text-surface-600 hover:text-primary-900 transition-colors">
-          Despre
-        </a>
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'text-xs font-medium transition-colors',
+              isActive(link.href) ? 'text-primary-600' : 'text-surface-600 hover:text-primary-900',
+            ]}
+            aria-current={isActive(link.href) ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
         <a
           href="https://github.com/laurentiucotet/IdentitateRO"
           target="_blank"
@@ -36,12 +54,68 @@
         </a>
       </div>
 
-      <!-- CTA Button -->
-      <div class="flex items-center gap-3">
+      <!-- CTA + Mobile Toggle -->
+      <div class="flex items-center gap-2">
         <a href="/solicita" class="btn-outline text-xs sm:text-sm">
           Solicită Logo
         </a>
+        <!-- Mobile Hamburger -->
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="md:hidden p-1.5 rounded text-surface-600 hover:bg-surface-100 transition-colors"
+          aria-label="Deschide meniul"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg class="w-5 h-5 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="w-5 h-5 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </nav>
   </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-surface-200 bg-white">
+    <div class="px-4 py-3 space-y-1">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            'block px-3 py-2 rounded text-sm font-medium transition-colors',
+            isActive(link.href) ? 'bg-primary-50 text-primary-600' : 'text-surface-600 hover:bg-surface-50 hover:text-primary-900',
+          ]}
+          aria-current={isActive(link.href) ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="https://github.com/laurentiucotet/IdentitateRO"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block px-3 py-2 rounded text-sm font-medium text-surface-600 hover:bg-surface-50 hover:text-primary-900 transition-colors"
+      >
+        GitHub &nearr;
+      </a>
+    </div>
+  </div>
 </header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.querySelector('.menu-icon')?.classList.toggle('hidden');
+      menuBtn.querySelector('.close-icon')?.classList.toggle('hidden');
+    });
+  }
+</script>
