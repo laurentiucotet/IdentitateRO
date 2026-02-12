@@ -1,6 +1,6 @@
 # IdentitateRO
 
-[![Website](https://img.shields.io/badge/website-identitatero.vercel.app-blue)](https://identitatero.vercel.app)
+[![Website](https://img.shields.io/badge/website-identitate.eu-blue)](https://identitate.eu)
 [![npm version](https://img.shields.io/npm/v/@identitate-ro/logos.svg)](https://www.npmjs.com/package/@identitate-ro/logos)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
@@ -8,7 +8,7 @@ Registru digital open-source pentru identitatea vizuală a instituțiilor public
 
 Logo-uri vectoriale (SVG), palete de culori oficiale și manuale de brand — o singură sursă de adevăr.
 
-🌐 **Website**: [identitatero.vercel.app](https://identitatero.vercel.app)  
+🌐 **Website**: [identitate.eu](https://identitate.eu)  
 📦 **NPM Package**: [@identitate-ro/logos](https://www.npmjs.com/package/@identitate-ro/logos)
 
 ## 🚀 Utilizare Rapidă
@@ -29,7 +29,7 @@ npm install @identitate-ro/logos
 import logoPath from '@identitate-ro/logos/logos/anaf/anaf.svg';
 ```
 
-📖 **Documentație completă**: [identitatero.vercel.app/utilizare](https://identitatero.vercel.app/utilizare)
+📖 **Documentație completă**: [identitate.eu/utilizare](https://identitate.eu/utilizare)
 
 ## 📁 Structură Proiect
 
@@ -40,7 +40,7 @@ IdentitateRO/
 │   ├── index.json          # Metadata pentru toate logo-urile
 │   └── package.json
 │
-├── website/                # Site-ul Astro (identitatero.vercel.app)
+├── website/                # Site-ul Astro (identitate.eu)
 │   ├── src/
 │   │   ├── data/          # Date JSON per instituție
 │   │   ├── pages/         # Pagini Astro (index, utilizare, despre, etc.)
@@ -121,11 +121,11 @@ Toate logo-urile sunt proprietatea instituțiilor respective și sunt disponibil
 
 ## 🔗 Link-uri Utile
 
-- **Website**: [identitatero.vercel.app](https://identitatero.vercel.app)
+- **Website**: [identitate.eu](https://identitate.eu)
 - **NPM Package**: [@identitate-ro/logos](https://www.npmjs.com/package/@identitate-ro/logos)
 - **CDN (jsDelivr)**: [cdn.jsdelivr.net/npm/@identitate-ro/logos](https://cdn.jsdelivr.net/npm/@identitate-ro/logos/)
 - **CDN (unpkg)**: [unpkg.com/@identitate-ro/logos](https://unpkg.com/@identitate-ro/logos/)
-- **Documentație**: [identitatero.vercel.app/utilizare](https://identitatero.vercel.app/utilizare)
+- **Documentație**: [identitate.eu/utilizare](https://identitate.eu/utilizare)
 
 ---
 
