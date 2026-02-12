@@ -17,11 +17,13 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.0",
+    "@vercel/analytics": "^1.6.1",
     "astro": "^5.2.0",
     "fuse.js": "^7.0.0",
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@types/node": "^22.0.0",
     "ajv": "^8.17.1",
     "typescript": "^5.7.0"
