@@ -10,9 +10,10 @@
     "keywords": [
       "statistică",
       "date",
-      "ins",
       "recensământ",
-      "indicatori"
+      "analiză",
+      "institut",
+      "public"
     ],
     "quality": "draft"
   },
@@ -21,7 +22,7 @@
     "county": null,
     "city": "București"
   },
-  "description": "Institutul Național de Statistică (INS) este instituția publică responsabilă de colectarea, prelucrarea și diseminarea statisticilor oficiale la nivel național. Furnizează date privind populația, economia, piața muncii și alte domenii esențiale pentru politici publice și cercetare.",
+  "description": "Institutul Național de Statistică (INS) este organ de specialitate al administrației publice centrale din România, responsabil cu colectarea, prelucrarea și diseminarea datelor statistice oficiale. Funcționează în subordinea Guvernului și în coordonarea prim-ministrului.",
   "usage_notes": null,
   "colors": [
     {
@@ -34,7 +35,7 @@
       ],
       "cmyk": null,
       "pantone": null,
-      "usage": "primary"
+      "usage": "accent"
     },
     {
       "name": "Gri inchis",
@@ -61,9 +62,16 @@
       "usage": null
     }
   ],
-  "typography": null,
+  "typography": {
+    "primary": {
+      "family": "open sans",
+      "url": "https://fonts.google.com/specimen/Open+Sans",
+      "weights": []
+    },
+    "secondary": null
+  },
   "resources": {
-    "website": null,
+    "website": "https://insse.ro/",
     "branding_manual": null,
     "social_media": null
   },

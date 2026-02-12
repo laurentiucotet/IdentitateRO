@@ -1,0 +1,82 @@
+{
+  "id": "ro-guvern",
+  "slug": "guvern",
+  "name": "Guvernul României",
+  "shortname": "guvern",
+  "category": "guvern",
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-02-10",
+    "keywords": [
+      "guvern",
+      "administratie",
+      "executiv",
+      "românia",
+      "politică",
+      "servicii publice"
+    ],
+    "quality": "draft"
+  },
+  "location": {
+    "country_code": "RO",
+    "county": null,
+    "city": "București"
+  },
+  "description": "Guvernul României este autoritatea executivă a statului român, responsabilă pentru conducerea politică și administrativă a țării. Coordonează implementarea politicilor publice și asigură funcționarea serviciilor publice la nivel național.",
+  "usage_notes": null,
+  "colors": [
+    {
+      "name": "S",
+      "hex": "#004990",
+      "rgb": [
+        0,
+        73,
+        144
+      ],
+      "cmyk": null,
+      "pantone": null,
+      "usage": "primary"
+    },
+    {
+      "name": "Color #58595B",
+      "hex": "#58595B",
+      "rgb": [
+        88,
+        89,
+        91
+      ],
+      "cmyk": null,
+      "pantone": null,
+      "usage": "secondary"
+    }
+  ],
+  "typography": null,
+  "resources": {
+    "website": null,
+    "branding_manual": null,
+    "social_media": null
+  },
+  "assets": {
+    "main": {
+      "type": "symbol",
+      "color": "/logos/ro-guvern/symbol/color.svg",
+      "dark_mode": null,
+      "white": "/logos/ro-guvern/symbol/white.svg",
+      "black": "/logos/ro-guvern/symbol/black.svg",
+      "monochrome": null,
+      "png": null
+    },
+    "horizontal": null,
+    "vertical": null,
+    "symbol": {
+      "type": "symbol",
+      "color": "/logos/ro-guvern/symbol/color.svg",
+      "dark_mode": null,
+      "white": "/logos/ro-guvern/symbol/white.svg",
+      "black": "/logos/ro-guvern/symbol/black.svg",
+      "monochrome": null,
+      "png": null
+    },
+    "favicon": null
+  }
+}
