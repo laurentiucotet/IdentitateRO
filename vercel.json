@@ -5,11 +5,11 @@
   "rewrites": [
     {
       "source": "/loader.js",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.2.2/identity-loader.js"
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/identity-loader.js"
     },
     {
       "source": "/logos/:institution/:filename",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.0/logos/:institution/:filename"
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.1/logos/:institution/:filename"
     }
   ],
   "headers": [
