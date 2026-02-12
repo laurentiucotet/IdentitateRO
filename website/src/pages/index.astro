@@ -6,7 +6,7 @@ import { getPrimaryLogoPath, hasSvg, getDisplayName } from '../lib/helpers';
 import { CATEGORY_LABELS, CATEGORY_ORDER } from '../lib/labels';
 import type { Institution } from '../types/institution';
 
-const institutions = institutionIndex.institutions as Institution[];
+const institutions = institutionIndex.institutions as unknown as Institution[];
 
 // Grupare pe categorii cu ordine prestabilită
 const grouped = new Map<string, typeof institutions>();
@@ -42,55 +42,32 @@ const activeCategories = [...grouped.keys()];
         O singură sursă de adevăr.
       </p>
 
-      <!-- NPM Package Installation -->
-      <div class="mb-8 max-w-2xl mx-auto">
-        <div class="bg-gradient-to-br from-primary-50 to-white border border-primary-100 rounded-lg p-6 shadow-sm">
-          <div class="flex items-center justify-center gap-2 mb-3">
-            <svg class="w-5 h-5 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M0 10.041v3.833l6.171 3.333v-10l-6.171 3.334zm7.333 0l6.171-3.334v10l-6.171-3.333v-3.333zm6.172-3.333l6.171 3.333v3.334l-6.171-3.334v-3.333zm6.171 10l-6.171-3.333v-3.334l6.171 3.334v3.333z"/>
+      <!-- NPM / CDN quick access -->
+      <div class="mb-6 max-w-xl mx-auto">
+        <div class="inline-flex items-center gap-3 bg-surface-900 rounded-lg px-4 py-2.5 font-mono text-sm">
+          <code class="text-green-400">npm i</code>
+          <code class="text-white">@identitate-ro/logos</code>
+          <button
+            type="button"
+            class="copy-npm-btn p-1 rounded hover:bg-gray-700 text-gray-400 hover:text-gray-200 transition-colors"
+            data-value="npm install @identitate-ro/logos"
+            title="Copiază comanda"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
-            <h2 class="text-sm font-semibold text-primary-900">Instalează via NPM</h2>
-          </div>
-          
-          <div class="bg-surface-900 rounded-md p-4 font-mono text-sm mb-3 overflow-x-auto relative">
-            <code class="text-green-400">npm install</code>
-            <code class="text-white"> @identitate-ro/logos</code>
-            <button
-              type="button"
-              class="copy-npm-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-700 text-gray-400 hover:text-gray-200 transition-colors"
-              data-value="npm install @identitate-ro/logos"
-              title="Copiază comanda"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </button>
-          </div>
-          
-          <p class="text-xs text-surface-600 mb-3">
-            Folosește logo-urile direct prin CDN sau instalează pachetul npm pentru integrare în proiectul tău.
-          </p>
-          
-          <div class="flex flex-wrap gap-2 justify-center">
-            <a href="/utilizare" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-primary-700 bg-white border border-primary-200 rounded-md hover:bg-primary-50 transition-colors">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Documentație
-            </a>
-            <a href="https://www.npmjs.com/package/@identitate-ro/logos" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-surface-700 bg-white border border-surface-200 rounded-md hover:bg-surface-50 transition-colors">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M0 10.041v3.833l6.171 3.333v-10l-6.171 3.334zm7.333 0l6.171-3.334v10l-6.171-3.333v-3.333zm6.172-3.333l6.171 3.333v3.334l-6.171-3.334v-3.333zm6.171 10l-6.171-3.333v-3.334l6.171 3.334v3.333z"/>
-              </svg>
-              Vezi pe NPM
-            </a>
-            <a href="https://github.com/laurentiucotet/IdentitateRO" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-surface-700 bg-white border border-surface-200 rounded-md hover:bg-surface-50 transition-colors">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-              </svg>
-              GitHub
-            </a>
-          </div>
+          </button>
+        </div>
+        <div class="flex flex-wrap gap-2 justify-center mt-3">
+          <a href="/utilizare" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-primary-700 bg-white border border-primary-200 rounded-md hover:bg-primary-50 transition-colors">
+            Documentație
+          </a>
+          <a href="https://www.npmjs.com/package/@identitate-ro/logos" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-surface-700 bg-white border border-surface-200 rounded-md hover:bg-surface-50 transition-colors">
+            NPM
+          </a>
+          <a href="https://github.com/laurentiucotet/IdentitateRO" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-surface-700 bg-white border border-surface-200 rounded-md hover:bg-surface-50 transition-colors">
+            GitHub
+          </a>
         </div>
       </div>
 
@@ -104,10 +81,13 @@ const activeCategories = [...grouped.keys()];
         <input
           type="search"
           id="search-input"
-          class="search-input pl-12"
-          placeholder="Caută „Primăria Iași", „Ministerul Educației"..."
+          class="search-input pl-12 pr-12"
+          placeholder={'Caută „Primăria Iași", „Ministerul Educației"...'}
           autocomplete="off"
         />
+        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none" id="search-shortcut">
+          <kbd class="px-1.5 py-0.5 bg-surface-100 border border-surface-200 rounded text-[10px] text-surface-400 font-mono">/</kbd>
+        </div>
         <div id="search-hint" class="mt-2 text-xs text-surface-400 hidden">
           <kbd class="px-1.5 py-0.5 bg-surface-100 rounded text-surface-500 font-mono">ESC</kbd> pentru a reseta
         </div>
@@ -118,7 +98,7 @@ const activeCategories = [...grouped.keys()];
   <!-- Filter Bar -->
   <section class="sticky top-12 z-30 bg-white/80 backdrop-blur-md border-b border-surface-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" id="filter-bar">
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" id="filter-bar" role="tablist" aria-label="Filtrare după categorie">
         <button
           class="category-chip category-chip--active shrink-0"
           data-category="all"
@@ -130,7 +110,7 @@ const activeCategories = [...grouped.keys()];
             class="category-chip category-chip--inactive shrink-0"
             data-category={cat}
           >
-            {CATEGORY_LABELS[cat] || cat}
+            {CATEGORY_LABELS[cat] || cat} ({grouped.get(cat)?.length || 0})
           </button>
         ))}
       </div>
@@ -144,8 +124,8 @@ const activeCategories = [...grouped.keys()];
       <p id="results-count" class="text-xs text-surface-500">
         {institutions.length} instituții disponibile
       </p>
-      <div class="text-xs text-surface-400 hidden sm:block">
-        Click pe un card pentru detalii și download
+      <div class="text-xs text-surface-400">
+        Apasă pe un card pentru detalii și download
       </div>
     </div>
 
@@ -153,9 +133,8 @@ const activeCategories = [...grouped.keys()];
     <div id="category-sections">
       {[...grouped.entries()].map(([cat, items]) => (
         <div class="category-section mb-8" data-category-section={cat}>
-          <h2 class="text-lg font-semibold text-primary-900 mb-3 flex items-center gap-2">
+          <h2 class="text-lg font-semibold text-primary-900 mb-3">
             {CATEGORY_LABELS[cat] || cat}
-            <span class="text-xs font-normal text-surface-400">({items.length})</span>
           </h2>
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             {items.map((inst) => {
@@ -168,7 +147,6 @@ const activeCategories = [...grouped.keys()];
                   shortname={inst.shortname}
                   category={inst.category}
                   logoPath={logoPath}
-                  quality={inst.meta.quality}
                   hasSvg={hasSvgFlag}
                   keywords={inst.meta.keywords}
                 />
@@ -180,7 +158,7 @@ const activeCategories = [...grouped.keys()];
     </div>
 
     <!-- Flat Grid (hidden by default, used when filtering/searching) -->
-    <div id="logo-grid" class="hidden grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+    <div id="logo-grid" class="hidden grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
       {institutions.map((inst) => {
         const logoPath = getPrimaryLogoPath(inst) || '';
         const hasSvgFlag = hasSvg(inst);
@@ -191,7 +169,6 @@ const activeCategories = [...grouped.keys()];
             shortname={inst.shortname}
             category={inst.category}
             logoPath={logoPath}
-            quality={inst.meta.quality}
             hasSvg={hasSvgFlag}
             keywords={inst.meta.keywords}
           />
@@ -219,21 +196,42 @@ const activeCategories = [...grouped.keys()];
 <script>
   /**
    * IdentitateRO — Client-side interactivity (v3.0)
-   * Search, filter cu suport pentru schema v3.0 (flat structure)
+   * Fuzzy search via Fuse.js, category filter cu suport pentru schema v3.0
    */
+  import Fuse from 'fuse.js';
 
   document.addEventListener('DOMContentLoaded', () => {
 
-  const data = (window as any).__IDENTITATE_DATA__;
+  const data = (window as any).__IDENTITATE_DATA__ as Array<{slug: string; name: string; shortname?: string; category: string; meta: {keywords: string[]}; description?: string}>;
+
+  // Initialize Fuse.js for fuzzy search with diacritics support
+  const fuse = new Fuse(data, {
+    keys: [
+      { name: 'name', weight: 0.4 },
+      { name: 'shortname', weight: 0.3 },
+      { name: 'meta.keywords', weight: 0.2 },
+      { name: 'description', weight: 0.1 },
+    ],
+    threshold: 0.35,
+    ignoreLocation: true,
+    useExtendedSearch: false,
+  });
 
   // DOM elements
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
   const searchHint = document.getElementById('search-hint')!;
+  const searchShortcut = document.getElementById('search-shortcut')!;
   const filterBar = document.getElementById('filter-bar')!;
   const categorySections = document.getElementById('category-sections')!;
   const logoGrid = document.getElementById('logo-grid')!;
   const emptyState = document.getElementById('empty-state')!;
   const resultsCount = document.getElementById('results-count')!;
+
+  // Hide / shortcut indicator when input is focused
+  searchInput.addEventListener('focus', () => searchShortcut.classList.add('hidden'));
+  searchInput.addEventListener('blur', () => {
+    if (!searchInput.value) searchShortcut.classList.remove('hidden');
+  });
 
   // State
   let activeCategory = 'all';
@@ -256,6 +254,7 @@ const activeCategories = [...grouped.keys()];
       // Afișăm secțiuni pe categorii, ascundem flat grid
       categorySections.classList.remove('hidden');
       logoGrid.classList.add('hidden');
+      logoGrid.classList.remove('grid');
       emptyState.classList.add('hidden');
       resultsCount.textContent = `${data.length} instituții disponibile`;
       searchHint.classList.add('hidden');
@@ -270,9 +269,15 @@ const activeCategories = [...grouped.keys()];
     // Mod flat — ascundem secțiunile, arătăm grid-ul plat
     categorySections.classList.add('hidden');
     logoGrid.classList.remove('hidden');
+    logoGrid.classList.add('grid');
 
     const cards = logoGrid.querySelectorAll<HTMLElement>('[data-institution-id]');
     let visibleCount = 0;
+
+    // Get search results via Fuse.js (or all data if no query)
+    const matchingSlugs = query
+      ? new Set(fuse.search(query).map(r => r.item.slug))
+      : null;
 
     cards.forEach(card => {
       const instSlug = card.dataset.institutionId!;
@@ -280,13 +285,7 @@ const activeCategories = [...grouped.keys()];
       if (!inst) return;
 
       const matchesCategory = activeCategory === 'all' || inst.category === activeCategory;
-      const matchesSearch = !query || [
-        inst.name,
-        inst.shortname || '',
-        inst.description || '',
-        inst.category,
-        ...(inst.meta.keywords || []),
-      ].some((field: string) => field.toLowerCase().includes(query));
+      const matchesSearch = !query || (matchingSlugs && matchingSlugs.has(instSlug));
 
       if (matchesCategory && matchesSearch) {
         card.classList.remove('hidden');
@@ -300,12 +299,14 @@ const activeCategories = [...grouped.keys()];
     resultsCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'instituție disponibilă' : 'instituții disponibile'}`;
     emptyState.classList.toggle('hidden', visibleCount > 0);
     logoGrid.classList.toggle('hidden', visibleCount === 0);
+    logoGrid.classList.toggle('grid', visibleCount > 0);
     searchHint.classList.toggle('hidden', !query);
   }
 
   // Search input
   searchInput.addEventListener('input', (e) => {
     searchQuery = (e.target as HTMLInputElement).value;
+    searchShortcut.classList.toggle('hidden', !!searchQuery);
     filterAndSearch();
   });
 
