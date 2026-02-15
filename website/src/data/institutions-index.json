@@ -1,16 +1,19 @@
 {
   "schemaVersion": "3.0.0",
-  "generatedAt": "2026-02-12T20:18:17.705Z",
-  "total": 8,
+  "generatedAt": "2026-02-15T10:44:24.325Z",
+  "total": 36,
   "stats": {
     "byCategory": {
-      "agentie": 3,
-      "autoritate": 3,
+      "altele": 5,
+      "agentie": 7,
+      "autoritate": 4,
+      "consiliu-judetean": 1,
+      "proiect-ue": 2,
       "guvern": 1,
-      "altele": 1
+      "minister": 16
     },
-    "withManual": 1,
-    "withSvg": 8
+    "withManual": 0,
+    "withSvg": 36
   },
   "categories": [
     {
@@ -19,19 +22,34 @@
       "count": 1
     },
     {
+      "id": "minister",
+      "label": "Ministere",
+      "count": 16
+    },
+    {
       "id": "agentie",
       "label": "Agenții",
-      "count": 3
+      "count": 7
     },
     {
       "id": "autoritate",
       "label": "Autorități",
-      "count": 3
+      "count": 4
+    },
+    {
+      "id": "consiliu-judetean",
+      "label": "Consilii Județene",
+      "count": 1
+    },
+    {
+      "id": "proiect-ue",
+      "label": "Proiecte UE / PNRR",
+      "count": 2
     },
     {
       "id": "altele",
       "label": "Altele",
-      "count": 1
+      "count": 5
     }
   ],
   "institutions": [
@@ -257,7 +275,20 @@
       },
       "description": "Banca Națională a României este banca centrală a României, responsabilă de politica monetară și de menținerea stabilității prețurilor. Supraveghează sistemul bancar și emite moneda națională.",
       "usage_notes": null,
-      "colors": null,
+      "colors": [
+        {
+          "name": "Color #1C449C",
+          "hex": "#1C449C",
+          "rgb": [
+            28,
+            68,
+            156
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        }
+      ],
       "typography": null,
       "resources": {
         "website": "https://www.bnr.ro",
@@ -290,6 +321,147 @@
           "dark_mode": null,
           "white": "/logos/ro-bnr/symbol/white.svg",
           "black": "/logos/ro-bnr/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-camera-deputatilor",
+      "slug": "camera-deputatilor",
+      "name": "Camera Deputaților",
+      "shortname": "camera deputaților",
+      "category": "altele",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "parlament",
+          "legislativ",
+          "deputați",
+          "camera deputaților",
+          "bucurești"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Camera Deputaților este una dintre cele două camere ale Parlamentului României, având rol legislativ în elaborarea și adoptarea legilor. Instituția reprezintă corpul deputaților aleși și funcționează în sediul său din București.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #F5CE67",
+          "hex": "#F5CE67",
+          "rgb": [
+            245,
+            206,
+            103
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #F5CE66",
+          "hex": "#F5CE66",
+          "rgb": [
+            245,
+            206,
+            102
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        },
+        {
+          "name": "Color #E31E24",
+          "hex": "#E31E24",
+          "rgb": [
+            227,
+            30,
+            36
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #505E5F",
+          "hex": "#505E5F",
+          "rgb": [
+            80,
+            94,
+            95
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #0777CF",
+          "hex": "#0777CF",
+          "rgb": [
+            7,
+            119,
+            207
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #AF0000",
+          "hex": "#AF0000",
+          "rgb": [
+            175,
+            0,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #FFED00",
+          "hex": "#FFED00",
+          "rgb": [
+            255,
+            237,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-camera-deputatilor/symbol/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": null,
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-camera-deputatilor/symbol/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
           "monochrome": null,
           "png": null
         },
@@ -380,6 +552,204 @@
           "dark_mode": null,
           "white": "/logos/ro-cnas/symbol/white.svg",
           "black": "/logos/ro-cnas/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-cfr",
+      "slug": "cfr",
+      "name": "Căile Ferate Române",
+      "shortname": "cfr",
+      "category": "altele",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "cale ferată",
+          "transport feroviar",
+          "infrastructură",
+          "trenuri",
+          "cfr"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Căile Ferate Române (CFR) este compania națională de transport feroviar a României, administratorul infrastructurii feroviare pentru circulația trenurilor de călători și marfă. Sediul central este în București, în Palatul CFR.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #B42059",
+          "hex": "#B42059",
+          "rgb": [
+            180,
+            32,
+            89
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #1B1918",
+          "hex": "#1B1918",
+          "rgb": [
+            27,
+            25,
+            24
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": "https://cfr.ro/",
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-cfr/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-cfr/symbol/white.svg",
+          "black": "/logos/ro-cfr/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": null,
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-cfr/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-cfr/symbol/white.svg",
+          "black": "/logos/ro-cfr/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-cfr-marfa",
+      "slug": "cfr-marfa",
+      "name": "CFR Marfă SA",
+      "shortname": "cfr marfă",
+      "category": "agentie",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "cfr",
+          "transport",
+          "feroviar",
+          "marfă",
+          "logistică"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": null
+      },
+      "description": "CFR Marfă SA este operator național de transport feroviar de marfă în România, responsabil pentru transportul și logistica mărfurilor pe calea ferată. Compania gestionează serviciile de freight rail și infrastructura operațională necesară pentru circulația trenurilor de marfă.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #0D3567",
+          "hex": "#0D3567",
+          "rgb": [
+            13,
+            53,
+            103
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #972B2D",
+          "hex": "#972B2D",
+          "rgb": [
+            151,
+            43,
+            45
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        },
+        {
+          "name": "Color #1D3766",
+          "hex": "#1D3766",
+          "rgb": [
+            29,
+            55,
+            102
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #D82927",
+          "hex": "#D82927",
+          "rgb": [
+            216,
+            41,
+            39
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #FAE600",
+          "hex": "#FAE600",
+          "rgb": [
+            250,
+            230,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-cfr-marfa/symbol/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": null,
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-cfr-marfa/symbol/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
           "monochrome": null,
           "png": null
         },
@@ -479,6 +849,281 @@
       }
     },
     {
+      "id": "ro-consiliul-timis",
+      "slug": "consiliul-timis",
+      "name": "Consiliul Județean Timiș",
+      "shortname": "cjt",
+      "category": "consiliu-judetean",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "consiliul județean",
+          "timiș",
+          "timișoara",
+          "administrație publică",
+          "dezvoltare regională"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "TM",
+        "city": "Timișoara"
+      },
+      "description": "Consiliul Județean Timiș este autoritatea deliberativă a județului Timiș, responsabilă pentru gestionarea resurselor și coordonarea politicilor publice la nivel județean. Coordonează proiecte de dezvoltare, infrastructură și servicii publice în interesul comunității locale.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #D2AC67",
+          "hex": "#D2AC67",
+          "rgb": [
+            210,
+            172,
+            103
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #ED1C24",
+          "hex": "#ED1C24",
+          "rgb": [
+            237,
+            28,
+            36
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        },
+        {
+          "name": "Color #16547C",
+          "hex": "#16547C",
+          "rgb": [
+            22,
+            84,
+            124
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-consiliul-timis/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-consiliul-timis/horizontal/white.svg",
+          "black": "/logos/ro-consiliul-timis/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-consiliul-timis/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-consiliul-timis/horizontal/white.svg",
+          "black": "/logos/ro-consiliul-timis/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": {
+          "type": "vertical",
+          "color": "/logos/ro-consiliul-timis/vertical/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-consiliul-timis/vertical/white.svg",
+          "black": "/logos/ro-consiliul-timis/vertical/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-consiliul-timis/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-consiliul-timis/symbol/white.svg",
+          "black": "/logos/ro-consiliul-timis/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-dna",
+      "slug": "dna",
+      "name": "Direcția Națională Anticorupție",
+      "shortname": "dna",
+      "category": "autoritate",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "anticorupție",
+          "procuratură",
+          "justiție",
+          "investigații",
+          "integritate"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Direcția Națională Anticorupție (DNA) este instituția responsabilă cu prevenirea, investigarea și combaterea faptelor de corupție la nivel înalt. Coordonează anchete penale și acțiuni judiciare pentru tragerea la răspundere a celor implicați în infracțiuni de corupție.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #002B7F",
+          "hex": "#002B7F",
+          "rgb": [
+            0,
+            43,
+            127
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-dna/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-dna/symbol/white.svg",
+          "black": "/logos/ro-dna/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": {
+          "type": "vertical",
+          "color": "/logos/ro-dna/vertical/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-dna/vertical/white.svg",
+          "black": "/logos/ro-dna/vertical/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-dna/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-dna/symbol/white.svg",
+          "black": "/logos/ro-dna/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-finantat-de-ue",
+      "slug": "finantat-de-ue",
+      "name": "Finanțat de Uniunea Europeană",
+      "shortname": "finanțat de ue",
+      "category": "proiect-ue",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "finanțare",
+          "uniunea europeană",
+          "proiecte",
+          "fonduri",
+          "co-finanțare"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": null
+      },
+      "description": "Siglă utilizată pentru a indica finanțarea acordată de Uniunea Europeană în cadrul proiectelor. Poate fi aplicată în materiale de comunicare și documentaţie pentru a semnala sprijinul financiar european.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #FBCA07",
+          "hex": "#FBCA07",
+          "rgb": [
+            251,
+            202,
+            7
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #2A3C93",
+          "hex": "#2A3C93",
+          "rgb": [
+            42,
+            60,
+            147
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-finantat-de-ue/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-finantat-de-ue/horizontal/white.svg",
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-finantat-de-ue/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-finantat-de-ue/horizontal/white.svg",
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": {
+          "type": "vertical",
+          "color": "/logos/ro-finantat-de-ue/vertical/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-finantat-de-ue/vertical/white.svg",
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
       "id": "ro-guvern",
       "slug": "guvern",
       "name": "Guvernul României",
@@ -530,10 +1175,17 @@
           "usage": "secondary"
         }
       ],
-      "typography": null,
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        },
+        "secondary": {
+          "family": "Trebuchet MS"
+        }
+      },
       "resources": {
-        "website": "https://www.gov.ro/",
-        "branding_manual": "https://mfinante.gov.ro/static/10/Mfp/Licitatii/ghid-identitate-vizualasi682878_18062024.pdf",
+        "website": null,
+        "branding_manual": null,
         "social_media": null
       },
       "assets": {
@@ -669,6 +1321,1370 @@
       }
     },
     {
+      "id": "ro-ministerul-afacerilor-externe",
+      "slug": "ministerul-afacerilor-externe",
+      "name": "Ministerul Afacerilor Externe",
+      "shortname": "mae",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "minister",
+          "afaceri externe",
+          "diplomație",
+          "relații internaționale",
+          "consular"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Ministerul Afacerilor Externe (MAE) este instituția guvernamentală responsabilă de politica externă a României, diplomație și protecția cetățenilor români în străinătate. Coordonează relațiile internaționale, negocierile diplomatice și activitățile consulare.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-afacerilor-externe/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-afacerilor-externe/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-afacerilor-externe/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-afacerilor-externe/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-afacerilor-externe/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-afacerilor-externe/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-afacerilor-interne",
+      "slug": "ministerul-afacerilor-interne",
+      "name": "Ministerul Afacerilor Interne",
+      "shortname": "mai",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "minister",
+          "ordine publică",
+          "securitate",
+          "poliție",
+          "jandarmerie"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Afacerilor Interne (MAI) este instituția guvernamentală responsabilă pentru asigurarea ordinii publice, protecția cetățenilor și coordonarea structurilor de poliție, jandarmerie şi protecţie civilă din România.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-afacerilor-interne/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-afacerilor-interne/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-afacerilor-interne/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-afacerilor-interne/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-afacerilor-interne/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-afacerilor-interne/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-agriculturii",
+      "slug": "ministerul-agriculturii",
+      "name": "Ministerul Agriculturii şi Dezvoltării Rurale",
+      "shortname": "madr",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "agricultură",
+          "dezvoltare-rurală",
+          "fermier",
+          "subvenții",
+          "politică-agricolă"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Agriculturii şi Dezvoltării Rurale este instituția guvernamentală responsabilă de elaborarea și implementarea politicilor agricole și de dezvoltare rurală în România. Coordonează programe de sprijin pentru fermieri, gestionarea subvențiilor și reglementările privind producția agricolă și resursele rurale.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-agriculturii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-agriculturii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-agriculturii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-agriculturii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-agriculturii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-agriculturii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-apararii",
+      "slug": "ministerul-apararii",
+      "name": "Ministerul Apărării Naționale",
+      "shortname": "mapn",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "apărare",
+          "minister",
+          "armată",
+          "securitate",
+          "forțe",
+          "național"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": null
+      },
+      "description": "Ministerul Apărării Naționale este instituția guvernamentală responsabilă cu apărarea națională și organizarea forțelor armate ale României. Coordonează politica de securitate, pregătirea și operațiunile militare ale statului.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-apararii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-apararii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-apararii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-apararii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-apararii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-apararii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-culturii",
+      "slug": "ministerul-culturii",
+      "name": "Ministerul Culturii",
+      "shortname": "mc",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "minister",
+          "cultură",
+          "patrimoniu",
+          "arte",
+          "guvern"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Culturii este instituția guvernamentală responsabilă de politici publice în domeniul culturii, patrimoniului și industriilor culturale din România. Promovează, protejează și valorifică patrimoniul cultural și susține dezvoltarea creației artistice.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-culturii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-culturii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-culturii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-culturii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-culturii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-culturii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-dezvoltarii",
+      "slug": "ministerul-dezvoltarii",
+      "name": "Ministerul Dezvoltării",
+      "shortname": "md",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "dezvoltare",
+          "minister",
+          "infrastructură",
+          "politici publice",
+          "fonduri europene"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Dezvoltării este instituția guvernamentală responsabilă cu planificarea și implementarea politicilor de dezvoltare regională, urbană și de infrastructură. Coordonează programe de finanțare și proiecte de investiții publice.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-dezvoltarii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-dezvoltarii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-dezvoltarii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-dezvoltarii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-dezvoltarii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-dezvoltarii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-economiei",
+      "slug": "ministerul-economiei",
+      "name": "Ministerul Economiei",
+      "shortname": "me",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "minister",
+          "economie",
+          "politici economice",
+          "industrie",
+          "antreprenoriat"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Economiei este instituția guvernamentală responsabilă pentru elaborarea și implementarea politicilor economice, industriale și pentru dezvoltarea mediului de afaceri în România. Coordonează inițiative pentru competitivitate, atragerea investițiilor și reglementări sectoriale.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-economiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-economiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-economiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-economiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-economiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-economiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-educatiei",
+      "slug": "ministerul-educatiei",
+      "name": "Ministerul Educației",
+      "shortname": "me",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "educație",
+          "minister",
+          "învățământ",
+          "politici-educaționale",
+          "guvern"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Educației este instituția guvernamentală responsabilă cu elaborarea și coordonarea politicilor publice în domeniul învățământului și educației din România. Asigură gestionarea sistemului național de învățământ preuniversitar și universitar și dezvoltarea resurselor educaționale.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-educatiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-educatiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-educatiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-educatiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-educatiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-educatiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-energiei",
+      "slug": "ministerul-energiei",
+      "name": "Ministerul Energiei",
+      "shortname": "me",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "energie",
+          "minister",
+          "guvern",
+          "energie-electrică",
+          "resurse-energetice"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Energiei este instituția guvernamentală responsabilă pentru elaborarea și implementarea politicilor naționale în domeniul energiei, inclusiv energie electrică, gaze și resurse energetice. Coordonează reglementările, proiectele strategice și cooperarea internațională în sectorul energetic.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-energiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-energiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-energiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-energiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-energiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-energiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-finantelor",
+      "slug": "ministerul-finantelor",
+      "name": "Ministerul Finanțelor",
+      "shortname": "mf",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "finanțe",
+          "buget",
+          "taxe",
+          "fiscalitate",
+          "minister"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Finanțelor elaborează și coordonează politica fiscală, bugetară și financiară a României și gestionează resursele publice. Instituția are responsabilități privind colectarea veniturilor la buget și administrarea datoriei publice.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-finantelor/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-finantelor/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-finantelor/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-finantelor/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-finantelor/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-finantelor/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-investitiilor-europene",
+      "slug": "ministerul-investitiilor-europene",
+      "name": "Ministerul Investițiilor și Proiectelor Europene",
+      "shortname": "mipe",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "investiții",
+          "proiecte europene",
+          "fonduri europene",
+          "minister",
+          "dezvoltare",
+          "absorbție fonduri"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Investițiilor și Proiectelor Europene este instituția guvernamentală responsabilă de gestionarea, coordonarea și implementarea investițiilor și proiectelor finanțate din fonduri europene în România. Asigură absorbția fondurilor UE și elaborează strategii pentru dezvoltare regională și proiecte de infrastructură.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-investitiilor-europene/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-investitiilor-europene/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-investitiilor-europene/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-investitiilor-europene/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-investitiilor-europene/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-investitiilor-europene/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-justitiei",
+      "slug": "ministerul-justitiei",
+      "name": "Ministerul Justiției",
+      "shortname": "mj",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "justiție",
+          "minister",
+          "drept",
+          "legislație",
+          "sistem judiciar"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Justiției este instituția guvernamentală responsabilă cu elaborarea politicilor în domeniul justiției, elaborarea de acte normative și coordonarea activităților care privesc funcționarea sistemului judiciar. Asigură cadrul legal pentru organizarea și funcționarea instanțelor și parchetelor din România.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-justitiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-justitiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-justitiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-justitiei/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-justitiei/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-justitiei/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-mediului",
+      "slug": "ministerul-mediului",
+      "name": "Ministerul Mediului",
+      "shortname": "mm",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "mediu",
+          "protecția mediului",
+          "conservare",
+          "poluare",
+          "resurse naturale"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Ministerul Mediului este autoritatea publică centrală responsabilă cu elaborarea şi implementarea politicilor privind protecția mediului, gestionarea resurselor naturale și combaterea schimbărilor climatice în România.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-mediului/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-mediului/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-mediului/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-mediului/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-mediului/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-mediului/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-muncii",
+      "slug": "ministerul-muncii",
+      "name": "Ministerul Muncii",
+      "shortname": "mm",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "ministerul muncii",
+          "muncă",
+          "protecție socială",
+          "piața muncii",
+          "locuri de muncă",
+          "asigurări sociale"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Muncii elaborează și implementează politici publice privind piața muncii, ocuparea forței de muncă și protecția socială. Coordonează programe și reglementări pentru drepturile angajaților și sistemele de asigurări sociale.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-muncii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-muncii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-sanatatii",
+      "slug": "ministerul-sanatatii",
+      "name": "Ministerul Sănătății",
+      "shortname": "ms",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "minister",
+          "sănătate",
+          "sănătate publică",
+          "politici",
+          "servicii medicale"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": "București"
+      },
+      "description": "Ministerul Sănătății este autoritatea guvernamentală responsabilă de politica națională în domeniul sănătății și de organizarea serviciilor medicale. Coordonează programe de sănătate publică, legislația și reglementările din domeniul sănătății.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-sanatatii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-sanatatii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-sanatatii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-sanatatii/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-sanatatii/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-sanatatii/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-ministerul-transporturilor",
+      "slug": "ministerul-transporturilor",
+      "name": "Ministerul Transporturilor",
+      "shortname": "mt",
+      "category": "minister",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "transporturi",
+          "minister",
+          "infrastructură",
+          "autostrăzi",
+          "căi ferate",
+          "porturi"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Ministerul Transporturilor este responsabil cu elaborarea și implementarea politicilor publice în domeniul transporturilor rutiere, feroviare, maritime și aeriene. Coordonează proiecte de infrastructură și reglementează activitățile din sectorul transporturilor la nivel național.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Albastru",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Gri",
+          "hex": "#58595B",
+          "rgb": [
+            88,
+            89,
+            91
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": {
+        "primary": {
+          "family": "Trajan Pro"
+        }
+      },
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-transporturilor/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-transporturilor/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-transporturilor/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-ministerul-transporturilor/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-ministerul-transporturilor/horizontal/white.svg",
+          "black": "/logos/ro-ministerul-transporturilor/horizontal/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
       "id": "ro-monitorul-oficial",
       "slug": "monitorul-oficial",
       "name": "Monitorul Oficial al României",
@@ -730,6 +2746,606 @@
           "dark_mode": null,
           "white": "/logos/ro-monitorul-oficial/symbol/white.svg",
           "black": "/logos/ro-monitorul-oficial/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-registrul-comertului",
+      "slug": "registrul-comertului",
+      "name": "Oficiul Național al Registrului Comerțului",
+      "shortname": "onrc",
+      "category": "agentie",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "registrul comerțului",
+          "înmatriculare firme",
+          "companii",
+          "extrase",
+          "certificate",
+          "registru comercial"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Oficiul Național al Registrului Comerțului (ONRC) este instituția responsabilă cu înregistrarea și evidența societăților comerciale și a celorlalte persoane juridice supuse înregistrării. Oferă servicii de înmatriculare, înregistrare a modificărilor și eliberare de extrase și certificate oficiale.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #972B2D",
+          "hex": "#972B2D",
+          "rgb": [
+            151,
+            43,
+            45
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-registrul-comertului/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-registrul-comertului/symbol/white.svg",
+          "black": "/logos/ro-registrul-comertului/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": {
+          "type": "vertical",
+          "color": "/logos/ro-registrul-comertului/vertical/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-registrul-comertului/vertical/white.svg",
+          "black": "/logos/ro-registrul-comertului/vertical/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-registrul-comertului/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-registrul-comertului/symbol/white.svg",
+          "black": "/logos/ro-registrul-comertului/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-pnrr",
+      "slug": "pnrr",
+      "name": "Planul Național de Redresare și Reziliență",
+      "shortname": "pnrr",
+      "category": "proiect-ue",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "pnrr",
+          "plan național",
+          "redresare",
+          "reziliență",
+          "fonduri europene",
+          "investiții"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": null
+      },
+      "description": "Planul Național de Redresare și Reziliență (PNRR) este strategia națională pentru gestionarea fondurilor europene destinate redresării și consolidării rezilienței economice după crize. Coordonează reformele și investițiile finanțate prin Mecanismul de Redresare și Reziliență.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #FBCA07",
+          "hex": "#FBCA07",
+          "rgb": [
+            251,
+            202,
+            7
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #002B7F",
+          "hex": "#002B7F",
+          "rgb": [
+            0,
+            43,
+            127
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        },
+        {
+          "name": "Color #CE1126",
+          "hex": "#CE1126",
+          "rgb": [
+            206,
+            17,
+            38
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #FFCE00",
+          "hex": "#FFCE00",
+          "rgb": [
+            255,
+            206,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #003399",
+          "hex": "#003399",
+          "rgb": [
+            0,
+            51,
+            153
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #004990",
+          "hex": "#004990",
+          "rgb": [
+            0,
+            73,
+            144
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "horizontal",
+          "color": "/logos/ro-pnrr/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-pnrr/horizontal/white.svg",
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": {
+          "type": "horizontal",
+          "color": "/logos/ro-pnrr/horizontal/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-pnrr/horizontal/white.svg",
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "vertical": null,
+        "symbol": null,
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-sie",
+      "slug": "sie",
+      "name": "Serviciul de Informații Externe",
+      "shortname": "sie",
+      "category": "agentie",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "serviciu",
+          "informații",
+          "externe",
+          "securitate",
+          "intelligence"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Serviciul de Informații Externe (SIE) este instituția responsabilă cu culegerea, analiza și furnizarea de informații de securitate din mediul extern pentru protejarea intereselor naționale. Oferă sprijin informativ decidenților și dezvoltă cooperări internaționale în domeniul informațiilor.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "black",
+          "hex": "#000000",
+          "rgb": [
+            0,
+            0,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "white",
+          "hex": "#FFFFFF",
+          "rgb": [
+            255,
+            255,
+            255
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "neutral"
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-sie/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-sie/symbol/white.svg",
+          "black": "/logos/ro-sie/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": null,
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-sie/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-sie/symbol/white.svg",
+          "black": "/logos/ro-sie/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-sri",
+      "slug": "sri",
+      "name": "Serviciul Român de Informații",
+      "shortname": "sri",
+      "category": "agentie",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "securitate",
+          "informații",
+          "inteligență",
+          "contrainformații",
+          "serviciu"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": "B",
+        "city": "București"
+      },
+      "description": "Serviciul Român de Informații este instituția națională responsabilă cu prevenirea și contracararea amenințărilor la adresa securității naționale. Activează în culegerea, analiza și protecția informațiilor de interes pentru stat.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #091739",
+          "hex": "#091739",
+          "rgb": [
+            9,
+            23,
+            57
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-sri/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-sri/symbol/white.svg",
+          "black": "/logos/ro-sri/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": {
+          "type": "vertical",
+          "color": "/logos/ro-sri/vertical/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-sri/vertical/white.svg",
+          "black": "/logos/ro-sri/vertical/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-sri/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/ro-sri/symbol/white.svg",
+          "black": "/logos/ro-sri/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-eu-flag",
+      "slug": "eu-flag",
+      "name": "Steagul Uniunii Europene",
+      "shortname": "ue",
+      "category": "altele",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "uniunea europeană",
+          "steag",
+          "steagul european",
+          "simbol",
+          "ue"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": null
+      },
+      "description": "Steagul Uniunii Europene este simbolul oficial al Uniunii, reprezentat printr-un cerc de 12 stele aurii pe un fond albastru. Este utilizat pentru identificarea instituţiilor şi iniţiativelor asociate Uniunii Europene.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #FFCC00",
+          "hex": "#FFCC00",
+          "rgb": [
+            255,
+            204,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #003399",
+          "hex": "#003399",
+          "rgb": [
+            0,
+            51,
+            153
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/eu-flag/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/eu-flag/symbol/white.svg",
+          "black": "/logos/eu-flag/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": null,
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/eu-flag/symbol/color.svg",
+          "dark_mode": null,
+          "white": "/logos/eu-flag/symbol/white.svg",
+          "black": "/logos/eu-flag/symbol/black.svg",
+          "monochrome": null,
+          "png": null
+        },
+        "favicon": null
+      }
+    },
+    {
+      "id": "ro-stema",
+      "slug": "stema",
+      "name": "Stema României",
+      "shortname": "stema",
+      "category": "altele",
+      "meta": {
+        "version": "1.0",
+        "last_updated": "2026-02-15",
+        "keywords": [
+          "stemă",
+          "emblemă",
+          "heraldică",
+          "simbol național",
+          "sigiliu"
+        ],
+        "quality": "draft"
+      },
+      "location": {
+        "country_code": "RO",
+        "county": null,
+        "city": null
+      },
+      "description": "Stema României este simbolul heraldic oficial al României, utilizat pentru reprezentare oficială. Pachetul curent conține versiunea color a simbolului.",
+      "usage_notes": null,
+      "colors": [
+        {
+          "name": "Color #C40000",
+          "hex": "#C40000",
+          "rgb": [
+            196,
+            0,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "primary"
+        },
+        {
+          "name": "Color #DA251D",
+          "hex": "#DA251D",
+          "rgb": [
+            218,
+            37,
+            29
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": "secondary"
+        },
+        {
+          "name": "Color #1C63B7",
+          "hex": "#1C63B7",
+          "rgb": [
+            28,
+            99,
+            183
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #FCCB06",
+          "hex": "#FCCB06",
+          "rgb": [
+            252,
+            203,
+            6
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #920000",
+          "hex": "#920000",
+          "rgb": [
+            146,
+            0,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #F8C300",
+          "hex": "#F8C300",
+          "rgb": [
+            248,
+            195,
+            0
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #F6E078",
+          "hex": "#F6E078",
+          "rgb": [
+            246,
+            224,
+            120
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        },
+        {
+          "name": "Color #E9001A",
+          "hex": "#E9001A",
+          "rgb": [
+            233,
+            0,
+            26
+          ],
+          "cmyk": null,
+          "pantone": null,
+          "usage": null
+        }
+      ],
+      "typography": null,
+      "resources": {
+        "website": null,
+        "branding_manual": null,
+        "social_media": null
+      },
+      "assets": {
+        "main": {
+          "type": "symbol",
+          "color": "/logos/ro-stema/symbol/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
+          "monochrome": null,
+          "png": null
+        },
+        "horizontal": null,
+        "vertical": null,
+        "symbol": {
+          "type": "symbol",
+          "color": "/logos/ro-stema/symbol/color.svg",
+          "dark_mode": null,
+          "white": null,
+          "black": null,
           "monochrome": null,
           "png": null
         },

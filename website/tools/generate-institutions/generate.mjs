@@ -385,6 +385,115 @@ function extractColorsFromMetadata(rawContent) {
   return colors.length > 0 ? colors : null;
 }
 
+// ── Extract hex colors from SVG files ─────────────────────────────────────────
+//
+// Scans SVG files in the institution's logo folder for hex colors used in
+// fill, stroke, stop-color, flood-color, lighting-color attributes.
+// Filters out generic non-brand colors (pure black/white, near-black/near-white,
+// grays, "none", "transparent") and returns the most frequently used colors,
+// sorted by occurrence count.
+//
+// Used as a fallback when metadata.md does not specify colors.
+
+/** Colors considered generic / non-brand (uppercase, no #) */
+const IGNORED_COLORS = new Set([
+  'FFFFFF', '000000', 'NONE',
+  // near-blacks commonly used for text
+  '1A1A1A', '111111', '222222', '333333', '0D0D0D',
+  // near-white / light grays
+  'FAFAFA', 'F5F5F5', 'EEEEEE', 'E0E0E0',
+]);
+
+function isIgnoredColor(hex6) {
+  if (IGNORED_COLORS.has(hex6)) return true;
+  // Skip grays (R≈G≈B with small spread)
+  const rgb = hexToRgb(hex6);
+  if (!rgb) return true;
+  const [r, g, b] = rgb;
+  const spread = Math.max(r, g, b) - Math.min(r, g, b);
+  if (spread < 12) return true; // near-gray
+  return false;
+}
+
+function extractColorsFromSvgFiles(slugDir, discovered, isFlat) {
+  const colorCounts = new Map(); // hex6 → count
+
+  // Collect all SVG file paths
+  const svgPaths = [];
+  for (const layout of LAYOUTS) {
+    const files = discovered[layout];
+    if (!files) continue;
+    for (const file of files) {
+      if (!file.endsWith('.svg')) continue;
+      const svgPath = isFlat
+        ? path.join(slugDir, file)
+        : path.join(slugDir, layout, file);
+      svgPaths.push(svgPath);
+    }
+  }
+
+  if (svgPaths.length === 0) return null;
+
+  // Prefer "color.svg" variants — read those first so their colors rank higher
+  svgPaths.sort((a, b) => {
+    const aIsColor = path.basename(a, '.svg').toLowerCase() === 'color';
+    const bIsColor = path.basename(b, '.svg').toLowerCase() === 'color';
+    if (aIsColor && !bIsColor) return -1;
+    if (!aIsColor && bIsColor) return 1;
+    return 0;
+  });
+
+  // Regex matches hex colors in SVG attributes:
+  //   fill="#2C2C76"  stroke="#B42059"  stop-color="#003DA5"
+  //   Also inline styles: fill:#2C2C76  stroke:#B42059
+  const hexInAttrPattern = /(?:fill|stroke|stop-color|flood-color|lighting-color)\s*[:=]\s*"?\s*#([0-9A-Fa-f]{3,6})\b/gi;
+
+  for (const svgPath of svgPaths) {
+    if (!fs.existsSync(svgPath)) continue;
+    const content = fs.readFileSync(svgPath, 'utf-8');
+    let match;
+    hexInAttrPattern.lastIndex = 0;
+
+    while ((match = hexInAttrPattern.exec(content)) !== null) {
+      let rawHex = match[1];
+      // Expand 3-char to 6-char
+      if (rawHex.length === 3) rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
+      if (rawHex.length !== 6) continue;
+      const hex6 = rawHex.toUpperCase();
+
+      if (isIgnoredColor(hex6)) continue;
+
+      colorCounts.set(hex6, (colorCounts.get(hex6) || 0) + 1);
+    }
+  }
+
+  if (colorCounts.size === 0) return null;
+
+  // Sort by frequency (descending), take top 8
+  const sorted = [...colorCounts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 8);
+
+  const colors = sorted.map((entry, idx) => {
+    const hex6 = entry[0];
+    const rgb = hexToRgb(hex6);
+    let usage = null;
+    if (idx === 0) usage = 'primary';
+    else if (idx === 1) usage = 'secondary';
+
+    return {
+      name: 'Color #' + hex6,
+      hex: '#' + hex6,
+      rgb: rgb,
+      cmyk: null,
+      pantone: null,
+      usage: usage,
+    };
+  });
+
+  return colors;
+}
+
 // ── Extract typography from metadata text ────────────────────────────────────
 //
 // Detects font references in metadata.md body text:
@@ -739,6 +848,18 @@ function normalizeAiResponse(data, slug) {
   // Remove assets  they will be built programmatically
   delete d.assets;
 
+  // Strip any extra properties the AI may have hallucinated (e.g. "logos", "logo", "institution")
+  const ALLOWED_TOP_KEYS = new Set([
+    'id', 'slug', 'name', 'shortname', 'category',
+    'meta', 'location', 'description', 'usage_notes',
+    'colors', 'typography', 'assets', 'resources',
+  ]);
+  for (const key of Object.keys(d)) {
+    if (!ALLOWED_TOP_KEYS.has(key)) {
+      delete d[key];
+    }
+  }
+
   return d;
 }
 
@@ -799,7 +920,7 @@ async function processSlug(slug, apiKey) {
   if (fs.existsSync(mdPath)) {
     const rawMd = fs.readFileSync(mdPath, 'utf-8');
 
-    // Colors
+    // Colors (metadata.md first, then SVG fallback)
     const extractedColors = extractColorsFromMetadata(rawMd);
     if (extractedColors) {
       log(slug + ': extracted ' + extractedColors.length + ' color(s) from metadata.md');
@@ -819,6 +940,15 @@ async function processSlug(slug, apiKey) {
       log(slug + ': extracted website ("' + extractedUrl + '") from metadata.md');
       if (!normalized.resources) normalized.resources = { website: null, branding_manual: null, social_media: null };
       normalized.resources.website = extractedUrl;
+    }
+  }
+
+  // SVG color fallback — if no colors from metadata.md or AI, scan SVG files
+  if (!normalized.colors || normalized.colors.length === 0) {
+    const svgColors = extractColorsFromSvgFiles(slugDir, discovered, isFlat);
+    if (svgColors) {
+      log(slug + ': extracted ' + svgColors.length + ' color(s) from SVG files');
+      normalized.colors = svgColors;
     }
   }
 

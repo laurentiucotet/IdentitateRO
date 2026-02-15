@@ -50,10 +50,17 @@
       "usage": "secondary"
     }
   ],
-  "typography": null,
+  "typography": {
+    "primary": {
+      "family": "Trajan Pro"
+    },
+    "secondary": {
+      "family": "Trebuchet MS"
+    }
+  },
   "resources": {
-    "website": "https://www.gov.ro/",
-    "branding_manual": "https://mfinante.gov.ro/static/10/Mfp/Licitatii/ghid-identitate-vizualasi682878_18062024.pdf",
+    "website": null,
+    "branding_manual": null,
     "social_media": null
   },
   "assets": {
