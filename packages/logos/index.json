@@ -1,9 +1,17 @@
 {
   "version": "1.1.0",
-  "generated": "2026-02-12T17:49:25.335Z",
-  "count": 8,
+  "generated": "2026-02-15T10:53:44.780Z",
+  "count": 36,
   "totalLogos": 42,
   "institutions": [
+    {
+      "id": "eu-flag",
+      "slug": "eu-flag",
+      "name": "Eu Flag",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
     {
       "id": "ro-anaf",
       "slug": "ro-anaf",
@@ -65,6 +73,30 @@
       }
     },
     {
+      "id": "ro-camera-deputatilor",
+      "slug": "ro-camera-deputatilor",
+      "name": "Camera Deputatilor",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-cfr",
+      "slug": "ro-cfr",
+      "name": "Cfr",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-cfr-marfa",
+      "slug": "ro-cfr-marfa",
+      "name": "Cfr Marfa",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
       "id": "ro-cnair",
       "slug": "ro-cnair",
       "name": "Compania Națională de Administrare a Infrastructurii Rutiere",
@@ -115,6 +147,30 @@
       }
     },
     {
+      "id": "ro-consiliul-timis",
+      "slug": "ro-consiliul-timis",
+      "name": "Consiliul Timis",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-dna",
+      "slug": "ro-dna",
+      "name": "Dna",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-finantat-de-ue",
+      "slug": "ro-finantat-de-ue",
+      "name": "Finantat De Ue",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
       "id": "ro-guvern",
       "slug": "ro-guvern",
       "name": "Guvernul României",
@@ -153,6 +209,134 @@
       }
     },
     {
+      "id": "ro-ministerul-afacerilor-externe",
+      "slug": "ro-ministerul-afacerilor-externe",
+      "name": "Ministerul Afacerilor Externe",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-afacerilor-interne",
+      "slug": "ro-ministerul-afacerilor-interne",
+      "name": "Ministerul Afacerilor Interne",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-agriculturii",
+      "slug": "ro-ministerul-agriculturii",
+      "name": "Ministerul Agriculturii",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-apararii",
+      "slug": "ro-ministerul-apararii",
+      "name": "Ministerul Apararii",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-culturii",
+      "slug": "ro-ministerul-culturii",
+      "name": "Ministerul Culturii",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-dezvoltarii",
+      "slug": "ro-ministerul-dezvoltarii",
+      "name": "Ministerul Dezvoltarii",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-economiei",
+      "slug": "ro-ministerul-economiei",
+      "name": "Ministerul Economiei",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-educatiei",
+      "slug": "ro-ministerul-educatiei",
+      "name": "Ministerul Educatiei",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-energiei",
+      "slug": "ro-ministerul-energiei",
+      "name": "Ministerul Energiei",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-finantelor",
+      "slug": "ro-ministerul-finantelor",
+      "name": "Ministerul Finantelor",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-investitiilor-europene",
+      "slug": "ro-ministerul-investitiilor-europene",
+      "name": "Ministerul Investitiilor Europene",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-justitiei",
+      "slug": "ro-ministerul-justitiei",
+      "name": "Ministerul Justitiei",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-mediului",
+      "slug": "ro-ministerul-mediului",
+      "name": "Ministerul Mediului",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-muncii",
+      "slug": "ro-ministerul-muncii",
+      "name": "Ministerul Muncii",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-sanatatii",
+      "slug": "ro-ministerul-sanatatii",
+      "name": "Ministerul Sanatatii",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-ministerul-transporturilor",
+      "slug": "ro-ministerul-transporturilor",
+      "name": "Ministerul Transporturilor",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
       "id": "ro-monitorul-oficial",
       "slug": "ro-monitorul-oficial",
       "name": "Monitorul Oficial al României",
@@ -167,6 +351,46 @@
           "white": "/logos/ro-monitorul-oficial/symbol/white.svg"
         }
       }
+    },
+    {
+      "id": "ro-pnrr",
+      "slug": "ro-pnrr",
+      "name": "Pnrr",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-registrul-comertului",
+      "slug": "ro-registrul-comertului",
+      "name": "Registrul Comertului",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-sie",
+      "slug": "ro-sie",
+      "name": "Sie",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-sri",
+      "slug": "ro-sri",
+      "name": "Sri",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
+    },
+    {
+      "id": "ro-stema",
+      "slug": "ro-stema",
+      "name": "Stema",
+      "layouts": [],
+      "logoCount": 0,
+      "logos": {}
     }
   ]
 }
