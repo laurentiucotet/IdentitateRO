@@ -366,30 +366,6 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
           </svg>
           Descarcă toate ca ZIP
         </button>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {downloadables.map((asset: any) => (
-            <a
-              href={asset.path}
-              download
-              class="flex items-center justify-between p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors group"
-            >
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-primary-50 rounded flex items-center justify-center">
-                  <span class="text-[10px] font-bold text-primary-600">{asset.format.toUpperCase()}</span>
-                </div>
-                <div>
-                  <div class="font-medium text-sm text-primary-900">{asset.label}</div>
-                  {asset.width && asset.height && (
-                    <div class="text-xs text-surface-500">{asset.width} × {asset.height}px</div>
-                  )}
-                </div>
-              </div>
-              <svg class="w-4 h-4 text-surface-400 group-hover:text-primary-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </a>
-          ))}
-        </div>
       </section>
     )}
 
