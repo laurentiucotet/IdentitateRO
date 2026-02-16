@@ -1,13 +1,13 @@
 {
   "version": "1.1.0",
-  "generated": "2026-02-15T12:41:12.137Z",
-  "count": 36,
-  "totalLogos": 133,
+  "generated": "2026-02-16T06:31:41.234Z",
+  "count": 37,
+  "totalLogos": 136,
   "institutions": [
     {
       "id": "eu-flag",
       "slug": "eu-flag",
-      "name": "Eu Flag",
+      "name": "Steagul Uniunii Europene",
       "layouts": [
         "symbol"
       ],
@@ -83,7 +83,7 @@
     {
       "id": "ro-camera-deputatilor",
       "slug": "ro-camera-deputatilor",
-      "name": "Camera Deputatilor",
+      "name": "Camera Deputaților",
       "layouts": [
         "symbol"
       ],
@@ -97,7 +97,7 @@
     {
       "id": "ro-cfr",
       "slug": "ro-cfr",
-      "name": "Cfr",
+      "name": "Căile Ferate Române",
       "layouts": [
         "symbol"
       ],
@@ -113,7 +113,7 @@
     {
       "id": "ro-cfr-marfa",
       "slug": "ro-cfr-marfa",
-      "name": "Cfr Marfa",
+      "name": "CFR Marfă SA",
       "layouts": [
         "symbol"
       ],
@@ -177,7 +177,7 @@
     {
       "id": "ro-consiliul-timis",
       "slug": "ro-consiliul-timis",
-      "name": "Consiliul Timis",
+      "name": "Consiliul Județean Timiș",
       "layouts": [
         "horizontal",
         "vertical",
@@ -203,9 +203,25 @@
       }
     },
     {
+      "id": "ro-diicot",
+      "slug": "ro-diicot",
+      "name": "Direcția de Investigare a Infracțiunilor de Criminalitate Organizată și Terorism",
+      "layouts": [
+        "symbol"
+      ],
+      "logoCount": 3,
+      "logos": {
+        "symbol": {
+          "black": "/logos/ro-diicot/symbol/black.svg",
+          "color": "/logos/ro-diicot/symbol/color.svg",
+          "white": "/logos/ro-diicot/symbol/white.svg"
+        }
+      }
+    },
+    {
       "id": "ro-dna",
       "slug": "ro-dna",
-      "name": "Dna",
+      "name": "Direcția Națională Anticorupție",
       "layouts": [
         "vertical",
         "symbol"
@@ -227,7 +243,7 @@
     {
       "id": "ro-finantat-de-ue",
       "slug": "ro-finantat-de-ue",
-      "name": "Finantat De Ue",
+      "name": "Finanțat de Uniunea Europeană",
       "layouts": [
         "horizontal",
         "vertical"
@@ -317,7 +333,7 @@
     {
       "id": "ro-ministerul-agriculturii",
       "slug": "ro-ministerul-agriculturii",
-      "name": "Ministerul Agriculturii",
+      "name": "Ministerul Agriculturii şi Dezvoltării Rurale",
       "layouts": [
         "horizontal"
       ],
@@ -333,7 +349,7 @@
     {
       "id": "ro-ministerul-apararii",
       "slug": "ro-ministerul-apararii",
-      "name": "Ministerul Apararii",
+      "name": "Ministerul Apărării Naționale",
       "layouts": [
         "horizontal"
       ],
@@ -365,7 +381,7 @@
     {
       "id": "ro-ministerul-dezvoltarii",
       "slug": "ro-ministerul-dezvoltarii",
-      "name": "Ministerul Dezvoltarii",
+      "name": "Ministerul Dezvoltării",
       "layouts": [
         "horizontal"
       ],
@@ -397,7 +413,7 @@
     {
       "id": "ro-ministerul-educatiei",
       "slug": "ro-ministerul-educatiei",
-      "name": "Ministerul Educatiei",
+      "name": "Ministerul Educației",
       "layouts": [
         "horizontal"
       ],
@@ -429,7 +445,7 @@
     {
       "id": "ro-ministerul-finantelor",
       "slug": "ro-ministerul-finantelor",
-      "name": "Ministerul Finantelor",
+      "name": "Ministerul Finanțelor",
       "layouts": [
         "horizontal"
       ],
@@ -445,7 +461,7 @@
     {
       "id": "ro-ministerul-investitiilor-europene",
       "slug": "ro-ministerul-investitiilor-europene",
-      "name": "Ministerul Investitiilor Europene",
+      "name": "Ministerul Investițiilor și Proiectelor Europene",
       "layouts": [
         "horizontal"
       ],
@@ -461,7 +477,7 @@
     {
       "id": "ro-ministerul-justitiei",
       "slug": "ro-ministerul-justitiei",
-      "name": "Ministerul Justitiei",
+      "name": "Ministerul Justiției",
       "layouts": [
         "horizontal"
       ],
@@ -507,7 +523,7 @@
     {
       "id": "ro-ministerul-sanatatii",
       "slug": "ro-ministerul-sanatatii",
-      "name": "Ministerul Sanatatii",
+      "name": "Ministerul Sănătății",
       "layouts": [
         "horizontal"
       ],
@@ -555,7 +571,7 @@
     {
       "id": "ro-pnrr",
       "slug": "ro-pnrr",
-      "name": "Pnrr",
+      "name": "Planul Național de Redresare și Reziliență",
       "layouts": [
         "horizontal"
       ],
@@ -570,7 +586,7 @@
     {
       "id": "ro-registrul-comertului",
       "slug": "ro-registrul-comertului",
-      "name": "Registrul Comertului",
+      "name": "Oficiul Național al Registrului Comerțului",
       "layouts": [
         "vertical",
         "symbol"
@@ -592,7 +608,7 @@
     {
       "id": "ro-sie",
       "slug": "ro-sie",
-      "name": "Sie",
+      "name": "Serviciul de Informații Externe",
       "layouts": [
         "symbol"
       ],
@@ -608,7 +624,7 @@
     {
       "id": "ro-sri",
       "slug": "ro-sri",
-      "name": "Sri",
+      "name": "Serviciul Român de Informații",
       "layouts": [
         "vertical",
         "symbol"
@@ -630,7 +646,7 @@
     {
       "id": "ro-stema",
       "slug": "ro-stema",
-      "name": "Stema",
+      "name": "Stema României",
       "layouts": [
         "symbol"
       ],
