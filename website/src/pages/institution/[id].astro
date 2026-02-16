@@ -163,7 +163,7 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
       {inst.meta.keywords && inst.meta.keywords.length > 0 && (
         <div class="flex flex-wrap gap-1.5 mt-4">
           {inst.meta.keywords.map((keyword: string) => (
-            <span class="px-2 py-0.5 bg-surface-50 border border-surface-200 rounded-full text-[10px] text-surface-500">
+            <span class="px-2 py-1 bg-surface-50 border border-surface-200 rounded-full text-[11px] text-surface-500">
               {keyword}
             </span>
           ))}
@@ -230,17 +230,17 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
                   <div class="p-2 bg-white flex items-center justify-between">
                     <div>
                       <span class="text-xs font-medium text-primary-900">{LOGO_VARIANT_LABELS[variant] || variant}</span>
-                      <span class="text-[10px] text-surface-400 ml-1">SVG</span>
+                      <span class="text-[11px] text-surface-400 ml-1">SVG</span>
                     </div>
-                    <div class="flex items-center gap-1">
-                      <a href={path} download class="p-1 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă">
+                    <div class="flex items-center gap-0.5">
+                      <a href={path} download class="p-2 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                       </a>
                       <button
                         type="button"
-                        class="copy-btn p-1 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors"
+                        class="copy-btn p-2 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors"
                         data-asset-path={path}
                         data-asset-format="svg"
                         title="Copiază SVG"
@@ -272,9 +272,9 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
                     <div class="p-2 bg-white flex items-center justify-between">
                       <div>
                         <span class="text-xs font-medium text-primary-900">PNG</span>
-                        <span class="text-[10px] text-surface-400 ml-1">{group.png.width} × {group.png.height}px</span>
+                        <span class="text-[11px] text-surface-400 ml-1">{group.png.width} × {group.png.height}px</span>
                       </div>
-                      <a href={pngPath} download class="p-1 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă PNG">
+                      <a href={pngPath} download class="p-2 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă PNG">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
@@ -321,7 +321,7 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
                   <div class="flex items-center gap-2 mb-1">
                     <span class="font-medium text-sm text-primary-900">{color.name}</span>
                     {color.usage && (
-                      <span class="px-1.5 py-0.5 bg-surface-100 rounded text-[10px] text-surface-500">
+                      <span class="px-1.5 py-0.5 bg-surface-100 rounded text-[11px] text-surface-500">
                         {COLOR_USAGE_LABELS[color.usage] || color.usage}
                       </span>
                     )}
@@ -330,11 +330,11 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
                     <div class="font-mono flex items-center gap-1">
                       {color.hex}
                       <button
-                        class="copy-color-btn p-0.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors max-sm:opacity-100 opacity-0 group-hover:opacity-100"
+                        class="copy-color-btn p-1.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors max-sm:opacity-100 opacity-0 group-hover:opacity-100"
                         data-value={color.hex}
                         title="Copiază HEX"
                       >
-                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
                       </button>
@@ -343,11 +343,11 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
                       <div class="flex items-center gap-1">
                         RGB: {color.rgb.join(', ')}
                         <button
-                          class="copy-color-btn p-0.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors max-sm:opacity-100 opacity-0 group-hover:opacity-100"
+                          class="copy-color-btn p-1.5 rounded hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors max-sm:opacity-100 opacity-0 group-hover:opacity-100"
                           data-value={`rgb(${color.rgb.join(', ')})`}
                           title="Copiază RGB"
                         >
-                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                           </svg>
                         </button>
@@ -454,8 +454,8 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
           <p class="text-sm text-surface-600 mb-3">Include logo-ul direct în HTML:</p>
           <div class="relative bg-gray-50 p-3 rounded font-mono text-sm overflow-x-auto border">
             <span class="text-pink-600">&lt;img</span> <span class="text-blue-600">src</span>=<span class="text-green-600">"{cdnLogoPath}"</span> <span class="text-blue-600">alt</span>=<span class="text-green-600">"{inst.name}"</span><span class="text-pink-600">&gt;</span>
-            <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`<img src="${cdnLogoPath}" alt="${inst.name}">`} title="Copiază">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`<img src="${cdnLogoPath}" alt="${inst.name}">`} title="Copiază">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
             </button>
           </div>
         </div>
@@ -465,15 +465,15 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
           <div class="space-y-2">
             <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border">
               <span class="text-surface-500">$</span> npm install @identitate-ro/logos
-              <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value="npm install @identitate-ro/logos" title="Copiază">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value="npm install @identitate-ro/logos" title="Copiază">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
               </button>
             </div>
             <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border overflow-x-auto">
               <span class="text-pink-600">import</span> logos <span class="text-pink-600">from</span> <span class="text-green-600">'@identitate-ro/logos'</span>;<br>
               <span class="text-pink-600">const</span> logo = logos.institutions.<span class="text-blue-600">find</span>(i =&gt; i.id === <span class="text-green-600">'{inst.id}'</span>);
-              <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`import logos from '@identitate-ro/logos';\nconst logo = logos.institutions.find(i => i.id === '${inst.id}');`} title="Copiază">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`import logos from '@identitate-ro/logos';\nconst logo = logos.institutions.find(i => i.id === '${inst.id}');`} title="Copiază">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
               </button>
             </div>
           </div>
@@ -483,8 +483,8 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
           <p class="text-sm text-surface-600 mb-3">Copiază URL-ul pentru Figma, Canva sau alte aplicații:</p>
           <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border break-all">
             {cdnLogoPath}
-            <button type="button" class="copy-code-btn absolute top-2 right-2 p-1 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={cdnLogoPath} title="Copiază URL">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={cdnLogoPath} title="Copiază URL">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
             </button>
           </div>
         </div>
@@ -545,7 +545,7 @@ const cdnLogoPath = `${cdnBasePath}/${mainLayout}/color.svg`;
           <button
             type="button"
             id="meta-info-btn"
-            class="p-1.5 rounded-full text-surface-400 hover:text-surface-600 hover:bg-surface-100 transition-colors"
+            class="p-2 rounded-full text-surface-400 hover:text-surface-600 hover:bg-surface-100 transition-colors"
             title="Detalii tehnice"
             aria-expanded="false"
             aria-controls="meta-info-popover"

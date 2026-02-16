@@ -40,13 +40,15 @@
   .logo-card {
     @apply bg-white rounded shadow-card border border-surface-200 
            transition-all duration-200 cursor-pointer
-           hover:shadow-card-hover hover:border-primary-500/30 hover:-translate-y-0.5;
+           hover:shadow-card-hover hover:border-primary-500/30 hover:-translate-y-0.5
+           active:scale-[0.98] active:shadow-card;
   }
 
   /* Category chip/filter */
   .category-chip {
-    @apply px-3 py-1.5 rounded text-xs font-medium transition-all duration-150
-           border cursor-pointer select-none;
+    @apply px-3.5 py-2 rounded text-xs font-medium transition-all duration-150
+           border cursor-pointer select-none min-h-[40px] flex items-center
+           active:scale-95;
   }
   .category-chip--active {
     @apply bg-primary-500 text-white border-primary-500;
@@ -95,9 +97,9 @@
     @apply badge bg-amber-100 text-amber-800;
   }
 
-  /* Search input */
+  /* Search input — text-base on mobile prevents iOS auto-zoom */
   .search-input {
-    @apply w-full px-5 py-3 text-sm rounded border border-surface-200 
+    @apply w-full px-5 py-3 text-base sm:text-sm rounded border border-surface-200 
            bg-white placeholder-surface-400 
            focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/10
            transition-all duration-200;
@@ -108,5 +110,14 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Hide scrollbar but keep scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

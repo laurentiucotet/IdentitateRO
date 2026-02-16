@@ -17,6 +17,9 @@ for (const cat of CATEGORY_ORDER) {
 
 // Categoriile active (cele care au cel puțin o instituție)
 const activeCategories = [...grouped.keys()];
+
+// Build category labels map for JS
+const categoryLabelsJson = JSON.stringify(CATEGORY_LABELS);
 ---
 
 <BaseLayout>
@@ -27,7 +30,7 @@ const activeCategories = [...grouped.keys()];
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 text-center">
       <!-- Beta badge -->
       <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-primary-50 border border-primary-100 mb-4">
-        <span class="text-[10px] font-medium text-primary-700">Versiune Beta &middot; Proiect Civic</span>
+        <span class="text-[11px] font-medium text-primary-700">Versiune Beta &middot; Proiect Civic</span>
       </div>
 
       <!-- Title -->
@@ -42,21 +45,20 @@ const activeCategories = [...grouped.keys()];
 
       <!-- NPM / CDN quick access -->
       <div class="mb-6 max-w-xl mx-auto">
-        <div class="inline-flex items-center gap-3 bg-surface-900 rounded-lg px-4 py-2.5 font-mono text-sm">
-          <code class="text-green-400">npm i</code>
-          <code class="text-white">@identitate-ro/logos</code>
+        <div class="inline-flex items-center gap-2 sm:gap-3 bg-surface-900 rounded-lg px-3 sm:px-4 py-2.5 font-mono text-xs sm:text-sm max-w-full overflow-hidden">
+          <code class="text-green-400 shrink-0">npm i</code>
+          <code class="text-white truncate">@identitate-ro/logos</code>
           <button
             type="button"
-            class="copy-npm-btn p-1 rounded hover:bg-gray-700 text-gray-400 hover:text-gray-200 transition-colors"
+            class="copy-npm-btn p-2 -mr-1 rounded hover:bg-gray-700 text-gray-400 hover:text-gray-200 transition-colors shrink-0"
             data-value="npm install @identitate-ro/logos"
             title="Copiază comanda"
           >
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
             </svg>
           </button>
         </div>
-
       </div>
 
       <!-- Search Input -->
@@ -70,58 +72,68 @@ const activeCategories = [...grouped.keys()];
           type="search"
           id="search-input"
           class="search-input pl-12 pr-12"
-          placeholder={'Caută „Consiliul Judențean Timiș", „Ministerul Educației"...'}
+          placeholder="Caută instituții..."
+          data-placeholder-long={'Caută „Consiliul Judențean Timiș", „Ministerul Educației"...'}
+          data-placeholder-short="Caută instituții..."
           autocomplete="off"
         />
-        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none" id="search-shortcut">
-          <kbd class="px-1.5 py-0.5 bg-surface-100 border border-surface-200 rounded text-[10px] text-surface-400 font-mono">/</kbd>
+        <!-- Keyboard shortcut hint — hidden on mobile (no physical keyboard) -->
+        <div class="absolute inset-y-0 right-0 pr-4 hidden md:flex items-center pointer-events-none" id="search-shortcut">
+          <kbd class="px-1.5 py-0.5 bg-surface-100 border border-surface-200 rounded text-[11px] text-surface-400 font-mono">/</kbd>
         </div>
         <div id="search-hint" class="mt-2 text-xs text-surface-400 hidden">
-          <kbd class="px-1.5 py-0.5 bg-surface-100 rounded text-surface-500 font-mono">ESC</kbd> pentru a reseta
+          <span class="hidden md:inline"><kbd class="px-1.5 py-0.5 bg-surface-100 rounded text-surface-500 font-mono">ESC</kbd> pentru a reseta</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Filter Bar -->
-  <section class="sticky top-12 z-30 bg-white/80 backdrop-blur-md border-b border-surface-200">
+  <!-- Filter Bar — sticky on md+, scrolls away on mobile -->
+  <section class="md:sticky md:top-12 z-30 bg-white/80 backdrop-blur-md border-b border-surface-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" id="filter-bar" role="tablist" aria-label="Filtrare după categorie">
-        <button
-          class="category-chip category-chip--active shrink-0"
-          data-category="all"
-        >
-          Toate ({institutions.length})
-        </button>
-        {activeCategories.map(cat => (
+      <!-- Overflow container with gradient hint -->
+      <div class="relative">
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide" id="filter-bar" role="tablist" aria-label="Filtrare după categorie">
           <button
-            class="category-chip category-chip--inactive shrink-0"
-            data-category={cat}
+            class="category-chip category-chip--active shrink-0"
+            data-category="all"
           >
-            {CATEGORY_LABELS[cat] || cat} ({grouped.get(cat)?.length || 0})
+            Toate ({institutions.length})
           </button>
-        ))}
+          {activeCategories.map(cat => (
+            <button
+              class="category-chip category-chip--inactive shrink-0"
+              data-category={cat}
+            >
+              {CATEGORY_LABELS[cat] || cat} ({grouped.get(cat)?.length || 0})
+            </button>
+          ))}
+        </div>
+        <!-- Right gradient overlay to signal more chips -->
+        <div class="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white/90 to-transparent md:hidden" id="filter-gradient"></div>
       </div>
     </div>
   </section>
 
-  <!-- Logo Grid — Grouped by Category -->
+  <!-- Active Filters Summary — removed: duplicates the filter chips bar above -->
+
+  <!-- Logo Grid -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Results info -->
     <div class="flex items-center justify-between mb-4">
       <p id="results-count" class="text-xs text-surface-500">
         {institutions.length} instituții disponibile
       </p>
-      <div class="text-xs text-surface-400">
+      <div class="text-xs text-surface-400 hidden sm:block">
         Apasă pe un card pentru detalii și download
       </div>
     </div>
 
-    <!-- Category Sections -->
+    <!-- Single DOM: Category Sections (cards are shown/hidden in-place) -->
     <div id="category-sections">
       {[...grouped.entries()].map(([cat, items]) => (
         <div class="category-section mb-8" data-category-section={cat}>
-          <h2 class="text-lg font-semibold text-primary-900 mb-3">
+          <h2 class="category-heading text-lg font-semibold text-primary-900 mb-3">
             {CATEGORY_LABELS[cat] || cat}
           </h2>
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
@@ -145,54 +157,40 @@ const activeCategories = [...grouped.keys()];
       ))}
     </div>
 
-    <!-- Flat Grid (hidden by default, used when filtering/searching) -->
-    <div id="logo-grid" class="hidden grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-      {institutions.map((inst) => {
-        const logoPath = getPrimaryLogoPath(inst) || '';
-        const hasSvgFlag = hasSvg(inst);
-        return (
-          <LogoCard
-            slug={inst.slug}
-            name={inst.name}
-            shortname={inst.shortname}
-            category={inst.category}
-            logoPath={logoPath}
-            hasSvg={hasSvgFlag}
-            keywords={inst.meta.keywords}
-          />
-        );
-      })}
-    </div>
-
-    <!-- Empty state -->
+    <!-- Empty state (dynamic content set via JS) -->
     <div id="empty-state" class="hidden py-20 text-center">
       <svg class="w-16 h-16 mx-auto mb-4 text-surface-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
-      <h3 class="text-sm font-semibold text-primary-900 mb-2">Niciun rezultat</h3>
-      <p class="text-surface-500 text-xs mb-3">Nu am găsit nicio instituție care să corespundă căutării tale.</p>
-      <a href="/solicita" class="btn-primary">Solicită adăugarea</a>
+      <h3 class="text-sm font-semibold text-primary-900 mb-2" id="empty-title">Niciun rezultat</h3>
+      <p class="text-surface-500 text-xs mb-4" id="empty-message">Nu am găsit nicio instituție care să corespundă căutării tale.</p>
+      <div id="empty-actions" class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button type="button" id="empty-search-all" class="btn-secondary hidden">Caută în toate categoriile</button>
+        <a href="/solicita" class="btn-primary">Solicită adăugarea</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <!-- Inline JSON data for client-side search & filter -->
-<script define:vars={{ institutions: institutionIndex.institutions }}>
+<script define:vars={{ institutions: institutionIndex.institutions, categoryLabelsJson }}>
   window.__IDENTITATE_DATA__ = institutions;
+  window.__CATEGORY_LABELS__ = JSON.parse(categoryLabelsJson);
 </script>
 
 <script>
   /**
-   * IdentitateRO — Client-side interactivity (v3.0)
-   * Fuzzy search via Fuse.js, category filter cu suport pentru schema v3.0
+   * IdentitateRO — Client-side interactivity (v4.0 — Mobile-first rewrite)
+   * Single DOM, active filter pills, URL persistence, smart empty state
    */
   import Fuse from 'fuse.js';
 
   document.addEventListener('DOMContentLoaded', () => {
 
   const data = (window as any).__IDENTITATE_DATA__ as Array<{slug: string; name: string; shortname?: string; category: string; meta: {keywords: string[]}; description?: string}>;
+  const LABELS: Record<string, string> = (window as any).__CATEGORY_LABELS__;
 
-  // Initialize Fuse.js for fuzzy search with diacritics support
+  // Initialize Fuse.js for fuzzy search
   const fuse = new Fuse(data, {
     keys: [
       { name: 'name', weight: 0.4 },
@@ -207,13 +205,27 @@ const activeCategories = [...grouped.keys()];
 
   // DOM elements
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
-  const searchHint = document.getElementById('search-hint')!;
   const searchShortcut = document.getElementById('search-shortcut')!;
   const filterBar = document.getElementById('filter-bar')!;
   const categorySections = document.getElementById('category-sections')!;
-  const logoGrid = document.getElementById('logo-grid')!;
   const emptyState = document.getElementById('empty-state')!;
   const resultsCount = document.getElementById('results-count')!;
+  const filterGradient = document.getElementById('filter-gradient');
+
+  // Empty state elements
+  const emptyTitle = document.getElementById('empty-title')!;
+  const emptyMessage = document.getElementById('empty-message')!;
+  const emptySearchAll = document.getElementById('empty-search-all')!;
+
+  // Responsive placeholder
+  function updatePlaceholder() {
+    const isWide = window.innerWidth >= 640;
+    searchInput.placeholder = isWide
+      ? (searchInput.dataset.placeholderLong || searchInput.placeholder)
+      : (searchInput.dataset.placeholderShort || searchInput.placeholder);
+  }
+  updatePlaceholder();
+  window.addEventListener('resize', updatePlaceholder);
 
   // Hide / shortcut indicator when input is focused
   searchInput.addEventListener('focus', () => searchShortcut.classList.add('hidden'));
@@ -225,71 +237,121 @@ const activeCategories = [...grouped.keys()];
   let activeCategory = 'all';
   let searchQuery = '';
 
-  /**
-   * Modul de afișare:
-   * - "grouped"  → secțiuni pe categorii (default, "Toate" fără search)
-   * - "flat"     → grid plat (când se filtrează sau se caută)
-   */
-  function getViewMode(): 'grouped' | 'flat' {
-    return (activeCategory === 'all' && !searchQuery.trim()) ? 'grouped' : 'flat';
+  // ── URL State ───────────────────────────────────────────────────────
+  function readUrlState() {
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('categorie') || params.get('cat');
+    const q = params.get('q');
+    if (cat && cat !== 'all') activeCategory = cat;
+    if (q) {
+      searchQuery = q;
+      searchInput.value = q;
+    }
   }
 
+  function writeUrlState() {
+    const params = new URLSearchParams();
+    if (activeCategory !== 'all') params.set('categorie', activeCategory);
+    if (searchQuery.trim()) params.set('q', searchQuery.trim());
+    const qs = params.toString();
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    history.replaceState(null, '', url);
+  }
+
+  // ── Core filter/search ─────────────────────────────────────────────
   function filterAndSearch() {
     const query = searchQuery.toLowerCase().trim();
-    const mode = getViewMode();
 
-    if (mode === 'grouped') {
-      // Afișăm secțiuni pe categorii, ascundem flat grid
-      categorySections.classList.remove('hidden');
-      logoGrid.classList.add('hidden');
-      logoGrid.classList.remove('grid');
-      emptyState.classList.add('hidden');
-      resultsCount.textContent = `${data.length} instituții disponibile`;
-      searchHint.classList.add('hidden');
-
-      // Afișăm toate secțiunile
-      categorySections.querySelectorAll<HTMLElement>('[data-category-section]').forEach(section => {
-        section.classList.remove('hidden');
-      });
-      return;
-    }
-
-    // Mod flat — ascundem secțiunile, arătăm grid-ul plat
-    categorySections.classList.add('hidden');
-    logoGrid.classList.remove('hidden');
-    logoGrid.classList.add('grid');
-
-    const cards = logoGrid.querySelectorAll<HTMLElement>('[data-institution-id]');
-    let visibleCount = 0;
-
-    // Get search results via Fuse.js (or all data if no query)
+    // Get matching slugs from search
     const matchingSlugs = query
       ? new Set(fuse.search(query).map(r => r.item.slug))
       : null;
 
-    cards.forEach(card => {
-      const instSlug = card.dataset.institutionId!;
-      const inst = data.find(d => d.slug === instSlug);
-      if (!inst) return;
+    let totalVisible = 0;
 
-      const matchesCategory = activeCategory === 'all' || inst.category === activeCategory;
-      const matchesSearch = !query || (matchingSlugs && matchingSlugs.has(instSlug));
+    // Iterate over each category section
+    categorySections.querySelectorAll<HTMLElement>('[data-category-section]').forEach(section => {
+      const sectionCat = section.dataset.categorySection!;
+      const cards = section.querySelectorAll<HTMLElement>('[data-institution-id]');
+      const heading = section.querySelector('.category-heading') as HTMLElement;
 
-      if (matchesCategory && matchesSearch) {
-        card.classList.remove('hidden');
-        visibleCount++;
-      } else {
-        card.classList.add('hidden');
+      // If a specific category is selected and this isn't it, hide entire section
+      if (activeCategory !== 'all' && sectionCat !== activeCategory) {
+        section.classList.add('hidden');
+        return;
       }
+
+      let sectionVisible = 0;
+
+      cards.forEach(card => {
+        const slug = card.dataset.institutionId!;
+        const matchesSearch = !query || (matchingSlugs && matchingSlugs.has(slug));
+
+        if (matchesSearch) {
+          card.classList.remove('hidden');
+          sectionVisible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Hide section if no visible cards, show otherwise
+      section.classList.toggle('hidden', sectionVisible === 0);
+
+      // Hide category headings when a specific category is selected (no need to show heading for only one category)
+      if (heading) {
+        heading.classList.toggle('hidden', activeCategory !== 'all');
+      }
+
+      totalVisible += sectionVisible;
     });
 
-    // Update UI
-    resultsCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'instituție disponibilă' : 'instituții disponibile'}`;
-    emptyState.classList.toggle('hidden', visibleCount > 0);
-    logoGrid.classList.toggle('hidden', visibleCount === 0);
-    logoGrid.classList.toggle('grid', visibleCount > 0);
-    searchHint.classList.toggle('hidden', !query);
+    // Update UI counts
+    resultsCount.textContent = `${totalVisible} ${totalVisible === 1 ? 'instituție disponibilă' : 'instituții disponibile'}`;
+
+    // Empty state
+    if (totalVisible === 0) {
+      emptyState.classList.remove('hidden');
+      categorySections.classList.add('hidden');
+
+      // Smart empty state message
+      const hasCategory = activeCategory !== 'all';
+      const catLabel = LABELS[activeCategory] || activeCategory;
+      if (hasCategory && query) {
+        emptyTitle.textContent = 'Niciun rezultat';
+        emptyMessage.textContent = `Nu am găsit „${searchQuery.trim()}" în categoria ${catLabel}.`;
+        emptySearchAll.classList.remove('hidden');
+        emptySearchAll.textContent = 'Caută în toate categoriile';
+      } else if (query) {
+        emptyTitle.textContent = 'Niciun rezultat';
+        emptyMessage.textContent = `Nu am găsit nicio instituție pentru „${searchQuery.trim()}".`;
+        emptySearchAll.classList.add('hidden');
+      } else {
+        emptyTitle.textContent = 'Niciun rezultat';
+        emptyMessage.textContent = 'Nu am găsit nicio instituție care să corespundă căutării tale.';
+        emptySearchAll.classList.add('hidden');
+      }
+    } else {
+      emptyState.classList.add('hidden');
+      categorySections.classList.remove('hidden');
+    }
+
+    // Update filter pills and URL
+    writeUrlState();
+
+    // Update filter bar active chip
+    filterBar.querySelectorAll<HTMLElement>('[data-category]').forEach(chip => {
+      if (chip.dataset.category === activeCategory) {
+        chip.classList.remove('category-chip--inactive');
+        chip.classList.add('category-chip--active');
+      } else {
+        chip.classList.remove('category-chip--active');
+        chip.classList.add('category-chip--inactive');
+      }
+    });
   }
+
+  // ── Event listeners ────────────────────────────────────────────────
 
   // Search input
   searchInput.addEventListener('input', (e) => {
@@ -302,6 +364,7 @@ const activeCategories = [...grouped.keys()];
     if (e.key === 'Escape') {
       searchInput.value = '';
       searchQuery = '';
+      activeCategory = 'all';
       filterAndSearch();
       searchInput.blur();
     }
@@ -311,20 +374,13 @@ const activeCategories = [...grouped.keys()];
   filterBar.addEventListener('click', (e) => {
     const btn = (e.target as HTMLElement).closest('[data-category]') as HTMLElement;
     if (!btn) return;
-
     activeCategory = btn.dataset.category!;
+    filterAndSearch();
+  });
 
-    // Update active states
-    filterBar.querySelectorAll('[data-category]').forEach(chip => {
-      if (chip === btn) {
-        chip.classList.remove('category-chip--inactive');
-        chip.classList.add('category-chip--active');
-      } else {
-        chip.classList.remove('category-chip--active');
-        chip.classList.add('category-chip--inactive');
-      }
-    });
-
+  // "Search in all categories" from empty state
+  emptySearchAll.addEventListener('click', () => {
+    activeCategory = 'all';
     filterAndSearch();
   });
 
@@ -336,8 +392,22 @@ const activeCategories = [...grouped.keys()];
     }
   });
 
-  // Initial state
+  // Filter bar gradient visibility (hide when scrolled to end)
+  if (filterGradient) {
+    const filterScroll = filterBar;
+    function checkGradient() {
+      if (!filterScroll) return;
+      const atEnd = filterScroll.scrollLeft + filterScroll.clientWidth >= filterScroll.scrollWidth - 4;
+      filterGradient!.classList.toggle('hidden', atEnd);
+    }
+    filterScroll.addEventListener('scroll', checkGradient, { passive: true });
+    checkGradient();
+  }
+
+  // Read initial state from URL and apply
+  readUrlState();
   filterAndSearch();
+
   });
 </script>
 
