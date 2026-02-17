@@ -13,8 +13,8 @@ interface Props {
 
 const { title, description, ogImage, ogType, noindex }: Props = Astro.props;
 
-const pageTitle = title || 'IdentitateRO — Registrul Vizual al Instituțiilor Publice';
-const pageDescription = description || 'Registru digital open-source pentru logo-uri vectoriale (SVG) ale instituțiilor publice din România. O singură sursă de adevăr.';
+const pageTitle = title || 'Identitate.EU — Registrul Siglelor Instituțiilor Publice';
+const pageDescription = description || 'Registru digital pentru logo-uri vectoriale ale instituțiilor publice din România.';
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = ogImage || new URL('/og-image.png', Astro.site).href;
 ---
