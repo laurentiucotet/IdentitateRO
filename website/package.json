@@ -17,6 +17,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/vercel": "^9.0.4",
     "@vercel/analytics": "^1.6.1",
     "astro": "^5.2.0",
     "fuse.js": "^7.0.0",
