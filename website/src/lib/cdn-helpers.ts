@@ -4,12 +4,26 @@
  * Funcții pentru gestionarea URL-urilor CDN și fallback-uri
  */
 
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import type { AssetUrls } from '../types/institution';
 
 /**
- * Versiunea pachetului npm pentru CDN URLs
+ * Versiunea pachetului npm — citită automat din packages/logos/package.json la build time.
+ * Nu mai trebuie actualizată manual.
  */
-export const CDN_VERSION = '1.3.1';
+function readLogosVersion(): string {
+  try {
+    const pkgPath = resolve(process.cwd(), '..', 'packages', 'logos', 'package.json');
+    const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+    return pkg.version;
+  } catch {
+    // Fallback dacă fișierul nu e găsit (ex: CI izolat)
+    return 'latest';
+  }
+}
+
+export const CDN_VERSION: string = readLogosVersion();
 
 /**
  * Pattern-uri CDN
