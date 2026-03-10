@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "generated": "2026-02-20T18:48:56.161Z",
+  "generated": "2026-03-10T07:45:34.022Z",
   "count": 33,
   "totalLogos": 118,
   "institutions": [
@@ -540,8 +540,8 @@
       "logoCount": 2,
       "logos": {
         "horizontal": {
-          "color": "/logos/ro-pnrr/horizontal/color.svg",
-          "white": "/logos/ro-pnrr/horizontal/white.svg"
+          "black": "/logos/ro-pnrr/horizontal/black.svg",
+          "color": "/logos/ro-pnrr/horizontal/color.svg"
         }
       }
     },

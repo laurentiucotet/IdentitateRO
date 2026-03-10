@@ -1,0 +1,1347 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Generator Identitate Vizuală — IdentitateRO" description="Creați un manual de identitate vizuală complet pentru instituția dvs., direct în browser.">
+  
+  <!-- CDN libraries for PDF generation and ZIP download (loaded in head) -->
+  <Fragment slot="head">
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  </Fragment>
+
+  <!-- Print-only styles -->
+  <style is:global>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    @media print {
+      html, body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+      }
+      header, footer, nav, .print\\:hidden, #wizard-header { display: none !important; }
+      .print\\:block { display: block !important; }
+      .pdf-page {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        height: 297mm !important;
+        max-height: 297mm !important;
+        page-break-after: always !important;
+        break-after: page !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+      }
+      .pdf-page:last-child {
+        page-break-after: auto !important;
+        break-after: auto !important;
+      }
+      #pdf-content {
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        max-width: none !important;
+        width: 210mm !important;
+      }
+      main {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: none !important;
+      }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .animate-spinner { animation: spin 1s linear infinite; }
+    
+    /* PDF generation progress bar */
+    .pdf-progress-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+    .pdf-progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      transition: width 0.3s ease;
+    }
+  </style>
+
+  <!-- Wizard Header (steps indicator) -->
+  <div id="wizard-header" class="bg-white border-b border-surface-200 px-4 sm:px-8 py-4 flex flex-wrap items-center justify-between gap-4 print:hidden">
+    <div class="flex items-center gap-3 text-primary-500">
+      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+      <h1 class="text-lg font-bold tracking-tight">Generator Identitate Vizuală</h1>
+    </div>
+    <nav class="flex flex-wrap items-center gap-2 text-xs font-medium text-surface-500" id="step-nav">
+      <span data-step-indicator="1">1. Instituție & Simboluri</span>
+      <span class="text-surface-300">/</span>
+      <span data-step-indicator="3">2. Culori</span>
+      <span class="text-surface-300">/</span>
+      <span data-step-indicator="4">3. Fonturi</span>
+      <span class="text-surface-300">/</span>
+      <span data-step-indicator="5">4. Previzualizare</span>
+      <span class="text-surface-300">/</span>
+      <span data-step-indicator="6">5. Descărcare</span>
+    </nav>
+  </div>
+
+  <main class="max-w-5xl mx-auto p-4 md:p-8 print:p-0 print:max-w-none">
+
+    <!-- ==================== STEP 1: Institution Name + Symbol Upload (Combined) ==================== -->
+    <section id="step-1" class="step-panel bg-white rounded shadow-card border border-surface-200 p-6 md:p-10 animate-fade-in print:hidden">
+      <div class="mb-10 flex items-center gap-4 border-b border-surface-200 pb-6">
+        <div class="bg-primary-50 p-3 rounded text-primary-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-primary-900">Informații Instituție & Simboluri</h2>
+          <p class="text-surface-500 text-sm">Introduceți denumirea oficială și încărcați simbolurile SVG.</p>
+        </div>
+      </div>
+
+      <!-- Institution Name -->
+      <div class="mb-10">
+        <label for="brand-name" class="block text-sm font-semibold text-primary-900 mb-3">Numele Oficial al Instituției</label>
+        <input 
+          type="text" 
+          id="brand-name"
+          value="MINISTERUL DEZVOLTĂRII"
+          class="w-full border border-surface-200 rounded py-4 px-5 text-lg font-medium focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 uppercase"
+          placeholder="EX: GUVERNUL ROMÂNIEI"
+        />
+        <div class="mt-6 p-6 bg-surface-50 border border-surface-200 rounded">
+          <p class="text-xs text-surface-500 mb-3 font-semibold uppercase tracking-wider">Previzualizare Așezare Text</p>
+          <div id="name-preview" class="flex flex-col text-xl font-bold text-primary-900 leading-tight"></div>
+        </div>
+      </div>
+
+      <!-- Symbol Upload -->
+      <div class="mb-10">
+        <h3 class="text-sm font-semibold text-primary-900 mb-4">Încărcare Simboluri SVG</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Light symbol upload -->
+          <div class="relative group">
+            <input type="file" accept=".svg" id="upload-light" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+            <div id="upload-light-zone" class="border-2 border-dashed rounded p-8 flex flex-col items-center justify-center text-center transition-colors h-56 border-surface-300 hover:border-primary-500 bg-surface-50">
+              <div id="upload-light-empty" class="flex flex-col items-center gap-3 text-surface-500 group-hover:text-primary-500 transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span class="font-medium text-lg">Simbol Fundal Deschis</span>
+                <span class="text-xs">Formă colorată sau închisă la culoare</span>
+              </div>
+              <div id="upload-light-preview" class="hidden flex-col items-center gap-4 w-full h-full">
+                <div id="upload-light-svg" class="w-full flex-1 flex items-center justify-center p-4 bg-white rounded border border-surface-100 [&>svg]:max-w-full [&>svg]:max-h-full"></div>
+                <span class="text-sm font-semibold text-green-600 flex items-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  Optimizat pentru fundal deschis
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dark symbol upload -->
+          <div class="relative group">
+            <input type="file" accept=".svg" id="upload-dark" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
+            <div id="upload-dark-zone" class="border-2 border-dashed rounded p-8 flex flex-col items-center justify-center text-center transition-colors h-56 border-surface-300 hover:border-primary-500 bg-surface-800">
+              <div id="upload-dark-empty" class="flex flex-col items-center gap-3 text-surface-400 group-hover:text-primary-300 transition-colors">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                <span class="font-medium text-lg text-white">Simbol Fundal Închis</span>
+                <span class="text-xs">Formă albă sau în culori luminoase</span>
+              </div>
+              <div id="upload-dark-preview" class="hidden flex-col items-center gap-4 w-full h-full">
+                <div id="upload-dark-svg" class="w-full flex-1 flex items-center justify-center p-4 bg-surface-900 rounded [&>svg]:max-w-full [&>svg]:max-h-full"></div>
+                <span class="text-sm font-semibold text-primary-300 flex items-center gap-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  Optimizat pentru fundal închis
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end">
+        <button id="btn-analyze" onclick="analyzeAndExtract()" disabled class="btn-primary px-8 py-3 text-sm rounded flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+          Continuă — Analizare Culori
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==================== STEP 2: Analyzing (loading) ==================== -->
+    <section id="step-2" class="step-panel bg-white rounded shadow-card border border-surface-200 p-20 flex-col items-center justify-center text-center animate-fade-in print:hidden hidden">
+      <div class="w-16 h-16 border-4 border-primary-100 border-t-primary-500 rounded-full animate-spinner mb-6"></div>
+      <h2 class="text-2xl font-bold text-primary-900 mb-2">Se extrag datele...</h2>
+      <p class="text-surface-500">Analizăm fișierele SVG pentru a identifica paleta de culori.</p>
+    </section>
+
+    <!-- ==================== STEP 3: Colors ==================== -->
+    <section id="step-3" class="step-panel bg-white rounded shadow-card border border-surface-200 p-6 md:p-10 animate-fade-in print:hidden hidden">
+      <div class="mb-10 flex items-center gap-4 border-b border-surface-200 pb-6">
+        <div class="bg-primary-50 p-3 rounded text-primary-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-primary-900">Paleta de Culori</h2>
+          <p class="text-surface-500 text-sm">Culorile extrase din SVG. Ajustați-le conform nevoilor.</p>
+        </div>
+      </div>
+
+      <div id="colors-grid" class="flex flex-col gap-6 mb-10">
+        <!-- Colors injected by JS (rich format with HEX, RGB, CMYK, optional name/pantone) -->
+      </div>
+
+      <div class="flex justify-between">
+        <button onclick="goToStep(1)" class="btn-ghost px-6 py-3 text-sm">Înapoi</button>
+        <button onclick="goToStep(4)" class="btn-primary px-8 py-3 text-sm rounded">Continuă</button>
+      </div>
+    </section>
+
+    <!-- ==================== STEP 4: Typography ==================== -->
+    <section id="step-4" class="step-panel bg-white rounded shadow-card border border-surface-200 p-6 md:p-10 animate-fade-in print:hidden hidden">
+      <div class="mb-10 flex items-center gap-4 border-b border-surface-200 pb-6">
+        <div class="bg-primary-50 p-3 rounded text-primary-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-primary-900">Tipografie</h2>
+          <p class="text-surface-500 text-sm">Specificați fonturile utilizate pentru textul logo-ului și comunicarea oficială.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        <div class="space-y-4">
+          <label for="font-primary" class="block text-sm font-semibold text-primary-900">Font Principal (Nume Instituție)</label>
+          <input 
+            type="text" 
+            id="font-primary"
+            value="Trajan Pro"
+            class="w-full border border-surface-200 rounded py-4 px-5 text-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
+          />
+          <div class="p-6 bg-surface-50 rounded border border-surface-200 mt-4 flex items-center justify-center min-h-[120px]">
+            <p id="font-primary-preview" class="text-2xl text-center uppercase tracking-wide leading-tight"></p>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <label for="font-secondary" class="block text-sm font-semibold text-primary-900">Font Secundar (Texte uzuale)</label>
+          <input 
+            type="text" 
+            id="font-secondary"
+            value="Trebuchet MS"
+            class="w-full border border-surface-200 rounded py-4 px-5 text-lg focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 transition-all"
+          />
+          <div class="p-6 bg-surface-50 rounded border border-surface-200 mt-4 min-h-[120px]">
+            <p id="font-secondary-preview" class="text-lg text-surface-600 leading-relaxed">Acesta este un text de previzualizare a fontului secundar ales pentru documente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between">
+        <button onclick="goToStep(3)" class="btn-ghost px-6 py-3 text-sm">Înapoi</button>
+        <button onclick="goToStep(5)" class="btn-primary px-8 py-3 text-sm rounded">Continuă</button>
+      </div>
+    </section>
+
+    <!-- ==================== STEP 5: Preview & Safe Zone ==================== -->
+    <section id="step-5" class="step-panel bg-white rounded shadow-card border border-surface-200 p-6 md:p-10 animate-fade-in print:hidden hidden">
+      <div class="mb-10 flex items-center gap-4 border-b border-surface-200 pb-6">
+        <div class="bg-primary-50 p-3 rounded text-primary-500">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold text-primary-900">Previzualizare și Protecție</h2>
+          <p class="text-surface-500 text-sm">Verificați variantele și ajustați spațiul de siguranță.</p>
+        </div>
+      </div>
+
+      <div class="space-y-10 mb-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+          <!-- Light previews -->
+          <div class="bg-white border border-surface-200 rounded p-6 md:p-10 flex flex-col items-center justify-center gap-8 shadow-card overflow-hidden">
+            <h3 class="text-xs font-bold text-surface-400 uppercase tracking-widest mb-2">Orizontal & Vertical — Deschis</h3>
+            <div id="preview-light-h" class="flex flex-row items-center w-full overflow-hidden justify-center [&>div]:max-w-full [&>div]:scale-[0.65] [&>div]:origin-center md:[&>div]:scale-75 lg:[&>div]:scale-90"></div>
+            <div class="h-px w-full bg-surface-100"></div>
+            <div id="preview-light-v" class="flex flex-col items-center text-center w-full overflow-hidden justify-center [&>div]:max-w-full [&>div]:scale-[0.65] [&>div]:origin-center md:[&>div]:scale-75 lg:[&>div]:scale-90"></div>
+          </div>
+          <!-- Dark previews -->
+          <div class="bg-surface-900 border border-surface-800 rounded p-6 md:p-10 flex flex-col items-center justify-center gap-8 shadow-card overflow-hidden">
+            <h3 class="text-xs font-bold text-surface-600 uppercase tracking-widest mb-2">Orizontal & Vertical — Închis</h3>
+            <div id="preview-dark-h" class="flex flex-row items-center w-full overflow-hidden justify-center [&>div]:max-w-full [&>div]:scale-[0.65] [&>div]:origin-center md:[&>div]:scale-75 lg:[&>div]:scale-90"></div>
+            <div class="h-px w-full bg-surface-800"></div>
+            <div id="preview-dark-v" class="flex flex-col items-center text-center w-full overflow-hidden justify-center [&>div]:max-w-full [&>div]:scale-[0.65] [&>div]:origin-center md:[&>div]:scale-75 lg:[&>div]:scale-90"></div>
+          </div>
+        </div>
+
+        <!-- Safe zone slider -->
+        <div class="bg-surface-50 rounded p-8 border border-surface-200 flex flex-col justify-center">
+          <h3 class="text-lg font-bold text-primary-900 mb-6">Setare Zonă de Protecție</h3>
+          <div class="mb-8">
+            <label for="safe-zone-range" class="block text-sm font-semibold text-primary-900 mb-4">Ajustare Proporție (<span id="safe-zone-label">20</span>%)</label>
+            <input 
+              type="range" 
+              id="safe-zone-range"
+              min="0.1" 
+              max="1.0" 
+              step="0.05" 
+              value="0.2"
+              class="w-full h-2 bg-surface-200 rounded-lg appearance-none cursor-pointer accent-primary-500"
+            />
+          </div>
+          
+          <div class="flex justify-center">
+            <div id="safe-zone-demo" class="relative border-2 border-dashed border-primary-500 bg-white inline-flex items-center justify-center transition-all" style="padding: 20px;">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 text-[10px] font-bold text-primary-500 uppercase whitespace-nowrap">Zonă Liberă</div>
+              <div id="safe-zone-symbol" class="w-[100px] h-[100px] [&>svg]:w-full [&>svg]:h-full"></div>
+            </div>
+          </div>
+          <p class="text-sm text-surface-500 text-center mt-6">Protejează lizibilitatea siglei pe documente oficiale.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-between border-t border-surface-200 pt-8 gap-4">
+        <button onclick="goToStep(4)" class="btn-ghost px-6 py-3 text-sm">Înapoi</button>
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="downloadSVGPack()" class="bg-indigo-600 text-white px-6 py-3 rounded font-medium text-sm flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-md">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+            Descarcă Pachet SVG
+          </button>
+          <button onclick="goToStep(6)" class="bg-green-600 text-white px-8 py-3 rounded font-medium text-sm flex items-center gap-2 hover:bg-green-700 transition-all shadow-md">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+            Generează Manualul PDF
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== STEP 6: Generated PDF Manual ==================== -->
+    <section id="step-6" class="step-panel animate-fade-in hidden">
+      
+      <!-- Toolbar (print:hidden) -->
+      <div class="bg-white p-6 rounded shadow-card border border-surface-200 mb-8 print:hidden">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-0" id="toolbar-main">
+          <div class="flex items-center gap-4">
+            <button onclick="goToStep(5)" class="text-surface-500 p-3 hover:bg-surface-100 rounded transition-colors" title="Înapoi">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 18-6-6 6-6" /></svg>
+            </button>
+            <div>
+              <h3 class="font-bold text-primary-900">Proiect Finalizat</h3>
+              <p class="text-sm text-surface-500">Documentația vizuală este pregătită.</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- SVG Pack Download -->
+            <button onclick="downloadSVGPack()" class="bg-indigo-600 text-white px-5 py-3 text-sm rounded flex items-center gap-2 hover:bg-indigo-700 transition-all shadow-md font-medium">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              Pachet SVG (.zip)
+            </button>
+            <!-- Real PDF Download -->
+            <button id="btn-download-pdf" onclick="generateRealPDF()" class="bg-green-600 text-white px-5 py-3 text-sm rounded flex items-center gap-2 hover:bg-green-700 transition-all shadow-md font-medium">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+              Descarcă PDF
+            </button>
+            <!-- Print fallback -->
+            <button onclick="downloadPDF()" class="btn-outline px-5 py-3 text-sm rounded flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
+              Tipărește
+            </button>
+          </div>
+        </div>
+        <!-- Progress bar (hidden by default) -->
+        <div id="pdf-progress-container" class="hidden mt-4">
+          <div class="flex items-center justify-between mb-2">
+            <span id="pdf-progress-label" class="text-sm font-medium text-primary-900">Se generează PDF-ul...</span>
+            <span id="pdf-progress-percent" class="text-sm font-semibold text-primary-500">0%</span>
+          </div>
+          <div class="pdf-progress-bar">
+            <div id="pdf-progress-fill" class="pdf-progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pdf-content" class="bg-white md:rounded shadow-lg border border-surface-200 print:shadow-none print:border-none print:rounded-none overflow-hidden">
+        
+        <!-- PDF Page 1: Cover -->
+        <div class="pdf-page min-h-[297mm] w-full flex flex-col justify-center items-center p-20 relative bg-white text-primary-900">
+          <div id="pdf-cover-watermark" class="absolute top-20 right-20 opacity-5 w-96 h-96 [&>svg]:w-full [&>svg]:h-full"></div>
+          <div class="z-10 text-center max-w-4xl flex flex-col items-center">
+            <div id="pdf-cover-logo" class="mb-16"></div>
+            <h1 id="pdf-cover-title" class="text-4xl md:text-5xl font-bold mb-6 tracking-wide uppercase mt-12">Manual de Identitate Vizuală</h1>
+            <p class="text-xl text-surface-500 font-light tracking-widest uppercase">Reglementări și Standarde de Utilizare</p>
+            <div class="w-24 h-1 bg-primary-500 mx-auto mt-16 rounded-full"></div>
+            <p class="text-sm text-surface-400 mt-8 font-light tracking-wide" id="pdf-cover-date"></p>
+          </div>
+        </div>
+
+        <!-- PDF Page 2: Light Variants -->
+        <div class="pdf-page p-20 min-h-[297mm] bg-white flex flex-col justify-center items-center text-center">
+          <h2 id="pdf-p2-title" class="text-2xl font-bold mb-24 text-surface-400 uppercase tracking-widest self-start">Versiuni pe Fundal Deschis</h2>
+          <div class="flex flex-col items-center gap-24 w-full">
+            <div id="pdf-light-h" class="flex flex-row items-center"></div>
+            <div class="flex flex-wrap items-end justify-center gap-16 md:gap-32 w-full">
+              <div id="pdf-light-v" class="flex flex-col items-center text-center"></div>
+              <div class="flex flex-col items-center gap-6">
+                <div id="pdf-light-s" class="w-[128px] h-[128px] [&>svg]:w-full [&>svg]:h-full"></div>
+                <span id="pdf-light-s-label" class="text-sm text-surface-400 font-bold uppercase tracking-wider">Simbol</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Page 3: Dark Variants -->
+        <div class="pdf-page p-20 min-h-[297mm] bg-surface-900 flex flex-col justify-center items-center text-center text-white">
+          <h2 id="pdf-p3-title" class="text-2xl font-bold mb-24 text-surface-500 uppercase tracking-widest self-start">Versiuni pe Fundal Închis</h2>
+          <div class="flex flex-col items-center gap-24 w-full">
+            <div id="pdf-dark-h" class="flex flex-row items-center"></div>
+            <div class="flex flex-wrap items-end justify-center gap-16 md:gap-32 w-full">
+              <div id="pdf-dark-v" class="flex flex-col items-center text-center"></div>
+              <div class="flex flex-col items-center gap-6">
+                <div id="pdf-dark-s" class="w-[128px] h-[128px] [&>svg]:w-full [&>svg]:h-full"></div>
+                <span class="text-sm text-surface-500 font-bold uppercase tracking-wider">Simbol</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Page 4: Architecture & Protection -->
+        <div class="pdf-page p-20 min-h-[297mm] bg-surface-50 flex flex-col justify-center">
+          <h2 id="pdf-p4-title" class="text-4xl font-bold mb-10 text-primary-900 uppercase tracking-wide">Arhitectură și Protecție</h2>
+          <p id="pdf-p4-desc" class="text-lg text-surface-600 mb-16 max-w-3xl leading-relaxed">Construcția logo-ului se bazează pe o proporție clară între simbol și text. Pentru a asigura un impact vizual puternic am definit o zonă de siguranță pe care o menținem liberă de alte elemente grafice.</p>
+          
+          <div class="bg-white p-16 rounded shadow-card border border-surface-200 flex flex-col items-center">
+            <div id="pdf-safezone-box" class="relative border border-dashed border-primary-500 bg-primary-50/30 inline-flex items-center justify-center" style="padding: 24px;">
+              <div class="absolute top-4 left-4 text-primary-500 font-bold uppercase tracking-widest text-sm whitespace-nowrap">Spațiu Liber Obligatoriu</div>
+              <div id="pdf-safezone-symbol" class="w-[120px] h-[120px] [&>svg]:w-full [&>svg]:h-full"></div>
+            </div>
+            <div class="mt-16 text-center max-w-2xl">
+              <p class="text-surface-600 text-lg leading-relaxed">Mențineți permanent spațiul delimitat intact. Acest perimetru invizibil protejează identitatea vizuală de interferențe nedorite.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Page 5: Colors -->
+        <div class="pdf-page p-20 min-h-[297mm] bg-white flex flex-col justify-center">
+          <h2 id="pdf-p5-title" class="text-4xl font-bold mb-10 text-primary-900 uppercase tracking-wide">Cromatică</h2>
+          <p id="pdf-p5-desc" class="text-lg text-surface-600 mb-12 max-w-3xl leading-relaxed">Reproducerea fidelă a culorilor garantează recunoașterea imediată a brandului. Folosiți exclusiv valorile prezentate pentru toate materialele vizuale corporative.</p>
+          <div id="pdf-colors-list" class="flex flex-col gap-8 mt-8 max-w-3xl">
+            <!-- Colors injected by JS -->
+          </div>
+        </div>
+
+        <!-- PDF Page 6: Typography -->
+        <div class="pdf-page p-20 min-h-[297mm] bg-surface-50 flex flex-col justify-center">
+          <h2 id="pdf-p6-title" class="text-4xl font-bold mb-10 text-primary-900 uppercase tracking-wide">Tipografie</h2>
+          <p id="pdf-p6-desc" class="text-lg text-surface-600 mb-12 max-w-3xl leading-relaxed">Ierarhia vizuală clară susține comunicarea eficientă. Utilizați aceste fonturi oficiale pentru a menține coerența.</p>
+          
+          <div class="space-y-12 mt-8 max-w-4xl">
+            <div class="bg-white p-12 rounded shadow-card border border-surface-200">
+              <span class="text-surface-500 text-xs font-bold uppercase tracking-wider block mb-4">Font Principal</span>
+              <h3 id="pdf-font-primary-name" class="text-4xl font-bold text-primary-900 mb-8"></h3>
+              <div id="pdf-font-primary-sample">
+                <p class="text-5xl text-primary-900 mb-6">Aa Bb Cc Dd Ee Ff Gg</p>
+                <p class="text-3xl text-surface-500">0 1 2 3 4 5 6 7 8 9</p>
+              </div>
+            </div>
+            <div class="bg-white p-12 rounded shadow-card border border-surface-200">
+              <span class="text-surface-500 text-xs font-bold uppercase tracking-wider block mb-4">Font Secundar</span>
+              <h3 id="pdf-font-secondary-name" class="text-4xl font-bold text-primary-900 mb-8"></h3>
+              <div id="pdf-font-secondary-sample">
+                <p class="text-4xl text-primary-900 mb-6">Aa Bb Cc Dd Ee Ff Gg</p>
+                <p class="text-2xl text-surface-500">0 1 2 3 4 5 6 7 8 9</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF Page 7: Usage Rules (Do / Don't) -->
+        <div class="pdf-page p-20 min-h-[297mm] bg-white flex flex-col justify-center">
+          <h2 id="pdf-p7-title" class="text-4xl font-bold mb-10 text-primary-900 uppercase tracking-wide">Reguli de Utilizare</h2>
+          <p id="pdf-p7-desc" class="text-lg text-surface-600 mb-16 max-w-3xl leading-relaxed">Garantarea consistenței vizuale solicită respectarea unor principii stricte. Prezentăm modalitățile corecte și cele incorecte de utilizare.</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Correct -->
+            <div class="bg-surface-50 p-10 rounded border border-green-200 shadow-card flex flex-col items-center text-center">
+              <div class="text-green-600 mb-8 flex flex-col items-center">
+                <svg class="w-10 h-10 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="font-bold text-lg uppercase tracking-wide">Utilizare Corectă</span>
+              </div>
+              <div id="pdf-rule-correct" class="flex-1 flex items-center justify-center w-full overflow-hidden [&>div]:max-w-full [&>div]:scale-[0.55] [&>div]:origin-center md:[&>div]:scale-[0.65]"></div>
+              <p class="mt-8 text-surface-600 font-medium">Păstrați proporțiile și culorile originale în orice aplicare.</p>
+            </div>
+
+            <!-- Distorted -->
+            <div class="bg-surface-50 p-10 rounded border border-red-200 shadow-card flex flex-col items-center text-center overflow-hidden">
+              <div class="text-red-500 mb-8 flex flex-col items-center">
+                <svg class="w-10 h-10 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="font-bold text-lg uppercase tracking-wide">Utilizare Incorectă</span>
+              </div>
+              <div id="pdf-rule-distorted" class="flex-1 flex items-center justify-center w-full overflow-hidden [&>div]:max-w-full [&>div]:scale-[0.55] [&>div]:origin-center md:[&>div]:scale-[0.65]" style="transform: scaleX(1.4) scaleY(0.6);"></div>
+              <p class="mt-8 text-surface-600 font-medium">Evitați întinderea sau alterarea proporțiilor.</p>
+            </div>
+
+            <!-- Wrong colors -->
+            <div class="bg-surface-50 p-10 rounded border border-red-200 shadow-card flex flex-col items-center text-center overflow-hidden">
+              <div class="text-red-500 mb-8 flex flex-col items-center">
+                <svg class="w-10 h-10 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="font-bold text-lg uppercase tracking-wide">Utilizare Incorectă</span>
+              </div>
+              <div id="pdf-rule-wrongcolor" class="flex-1 flex items-center justify-center w-full overflow-hidden [&>div]:max-w-full [&>div]:scale-[0.55] [&>div]:origin-center md:[&>div]:scale-[0.65]" style="filter: hue-rotate(150deg) saturate(2);"></div>
+              <p class="mt-8 text-surface-600 font-medium">Evitați modificarea culorilor aprobate.</p>
+            </div>
+
+            <!-- Tilted -->
+            <div class="bg-surface-50 p-10 rounded border border-red-200 shadow-card flex flex-col items-center text-center overflow-hidden">
+              <div class="text-red-500 mb-8 flex flex-col items-center">
+                <svg class="w-10 h-10 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span class="font-bold text-lg uppercase tracking-wide">Utilizare Incorectă</span>
+              </div>
+              <div id="pdf-rule-tilted" class="flex-1 flex items-center justify-center w-full overflow-hidden [&>div]:max-w-full [&>div]:scale-[0.55] [&>div]:origin-center md:[&>div]:scale-[0.65]" style="transform: rotate(-15deg);"></div>
+              <p class="mt-8 text-surface-600 font-medium">Evitați înclinarea siglei sau repoziționarea elementelor.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // ===== STATE =====
+    const state = {
+      step: 1,
+      brandName: 'MINISTERUL DEZVOLTĂRII',
+      symbols: { light: '', dark: '' },
+      /** @type {{ hex: string, name: string, pantone: string }[]} */
+      colors: [],
+      fonts: { primary: 'Trajan Pro', secondary: 'Trebuchet MS' },
+      safeZone: 0.2,
+    };
+
+    // ===== DOM REFS =====
+    const $ = (/** @type {string} */ sel) => document.querySelector(sel);
+    const $$ = (/** @type {string} */ sel) => document.querySelectorAll(sel);
+
+    // ===== COLOR CONVERSION UTILITIES =====
+    function hexToRgb(hex) {
+      const h = hex.replace('#', '');
+      const full = h.length === 3 ? h.split('').map(c => c + c).join('') : h;
+      const r = parseInt(full.substring(0, 2), 16);
+      const g = parseInt(full.substring(2, 4), 16);
+      const b = parseInt(full.substring(4, 6), 16);
+      return { r, g, b };
+    }
+
+    function rgbToCmyk(r, g, b) {
+      if (r === 0 && g === 0 && b === 0) return { c: 0, m: 0, y: 0, k: 100 };
+      const rr = r / 255, gg = g / 255, bb = b / 255;
+      const k = 1 - Math.max(rr, gg, bb);
+      const c = Math.round(((1 - rr - k) / (1 - k)) * 100);
+      const m = Math.round(((1 - gg - k) / (1 - k)) * 100);
+      const y = Math.round(((1 - bb - k) / (1 - k)) * 100);
+      return { c, m, y, k: Math.round(k * 100) };
+    }
+
+    function getColorData(hex) {
+      const { r, g, b } = hexToRgb(hex);
+      const cmyk = rgbToCmyk(r, g, b);
+      return {
+        hex: hex.toUpperCase(),
+        rgb: `${r}, ${g}, ${b}`,
+        cmyk: `${cmyk.c}, ${cmyk.m}, ${cmyk.y}, ${cmyk.k}`,
+      };
+    }
+
+    // ===== UTILITIES =====
+    function splitInstitutionName(name) {
+      if (!name) return [''];
+      if (name.length <= 30) return [name];
+      
+      const words = name.split(' ');
+      if (words.length === 1) return [name];
+
+      let currentLength = 0;
+      const targetLength = name.length / 2;
+      let splitIndex = 1;
+
+      for (let i = 0; i < words.length; i++) {
+        currentLength += words[i].length + 1;
+        if (currentLength >= targetLength && i > 0 && i < words.length - 1) {
+          splitIndex = i + 1;
+          break;
+        }
+      }
+
+      const prepositions = ['ȘI', 'A', 'AL', 'ALE', 'AI', 'DE', 'PENTRU'];
+      if (splitIndex < words.length && prepositions.includes(words[splitIndex].toUpperCase())) {
+        splitIndex += 1;
+      }
+
+      const line1 = words.slice(0, splitIndex).join(' ');
+      const line2 = words.slice(splitIndex).join(' ');
+      return line2 ? [line1, line2] : [line1];
+    }
+
+    function buildLogoHTML(theme, orientation, { safeZone = 0.2 } = {}) {
+      const symbolSvg = theme === 'light' ? state.symbols.light : state.symbols.dark;
+      const textColor = theme === 'light' ? '#0F172A' : '#FFFFFF';
+      const lines = splitInstitutionName(state.brandName);
+      
+      const symbolBaseSize = orientation === 'horizontal' ? 64 : 80;
+      const dynamicGap = symbolBaseSize * safeZone;
+      
+      const symbolWrapperSize = orientation === 'horizontal' ? 'width:64px;height:64px;' : 'width:80px;height:80px;';
+
+      if (orientation === 'symbol') {
+        return `<div style="${symbolWrapperSize}" class="shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">${symbolSvg}</div>`;
+      }
+
+      const wrapperClass = orientation === 'horizontal' 
+        ? 'flex flex-row items-center' 
+        : 'flex flex-col items-center text-center';
+      
+      const textContainerClass = orientation === 'horizontal' 
+        ? 'flex flex-col justify-center text-left' 
+        : 'flex flex-col items-center text-center';
+
+      const textHTML = lines.map((line, idx) => {
+        const sizeClass = orientation === 'horizontal' 
+          ? (idx === 0 ? 'text-lg' : 'text-base')
+          : (idx === 0 ? 'text-xl' : 'text-lg mt-1');
+        return `<span class="font-bold uppercase tracking-wide leading-tight whitespace-nowrap ${sizeClass}" style="font-family: ${state.fonts.primary}; color: ${textColor};">${line}</span>`;
+      }).join('');
+
+      return `
+        <div class="${wrapperClass}" style="gap: ${dynamicGap}px;">
+          <div style="${symbolWrapperSize}" class="shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">${symbolSvg}</div>
+          <div class="${textContainerClass}">${textHTML}</div>
+        </div>
+      `;
+    }
+
+    // Larger logo for PDF pages (keeps original sizes)
+    function buildLogoPdfHTML(theme, orientation, { safeZone = 0.2 } = {}) {
+      const symbolSvg = theme === 'light' ? state.symbols.light : state.symbols.dark;
+      const textColor = theme === 'light' ? '#0F172A' : '#FFFFFF';
+      const lines = splitInstitutionName(state.brandName);
+      
+      const symbolBaseSize = orientation === 'horizontal' ? 96 : 128;
+      const dynamicGap = symbolBaseSize * safeZone;
+      
+      const symbolWrapperSize = orientation === 'horizontal' ? 'width:96px;height:96px;' : 'width:128px;height:128px;';
+
+      if (orientation === 'symbol') {
+        return `<div style="${symbolWrapperSize}" class="shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">${symbolSvg}</div>`;
+      }
+
+      const wrapperClass = orientation === 'horizontal' 
+        ? 'flex flex-row items-center' 
+        : 'flex flex-col items-center text-center';
+      
+      const textContainerClass = orientation === 'horizontal' 
+        ? 'flex flex-col justify-center text-left' 
+        : 'flex flex-col items-center text-center';
+
+      const textHTML = lines.map((line, idx) => {
+        const sizeClass = orientation === 'horizontal' 
+          ? (idx === 0 ? 'text-2xl' : 'text-xl')
+          : (idx === 0 ? 'text-3xl' : 'text-2xl mt-1');
+        return `<span class="font-bold uppercase tracking-wide leading-tight whitespace-nowrap ${sizeClass}" style="font-family: ${state.fonts.primary}; color: ${textColor};">${line}</span>`;
+      }).join('');
+
+      return `
+        <div class="${wrapperClass}" style="gap: ${dynamicGap}px;">
+          <div style="${symbolWrapperSize}" class="shrink-0 flex items-center justify-center [&>svg]:w-full [&>svg]:h-full">${symbolSvg}</div>
+          <div class="${textContainerClass}">${textHTML}</div>
+        </div>
+      `;
+    }
+
+    // ===== NAVIGATION =====
+    // Steps: 1 (info+symbols), 2 (loading), 3 (colors), 4 (fonts), 5 (preview), 6 (PDF)
+    function goToStep(step) {
+      state.step = step;
+
+      // Hide all panels
+      $$('.step-panel').forEach(el => {
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      });
+
+      // Show target panel
+      const panel = $(`#step-${step}`);
+      if (panel) {
+        panel.classList.remove('hidden');
+        if (step === 2) panel.classList.add('flex');
+      }
+
+      // Update step indicators
+      $$('[data-step-indicator]').forEach(el => {
+        const s = parseInt(el.getAttribute('data-step-indicator') || '0');
+        el.classList.toggle('text-primary-500', state.step >= s);
+        el.classList.toggle('font-semibold', state.step >= s);
+      });
+
+      // Render step-specific content
+      if (step === 4) renderTypographyPreview();
+      if (step === 5) renderPreviews();
+      if (step === 6) renderPDF();
+
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // @ts-ignore
+    window.goToStep = goToStep;
+
+    // ===== FILE UPLOAD =====
+    function setupUpload(type) {
+      const input = $(`#upload-${type}`);
+      if (!input) return;
+      input.addEventListener('change', (e) => {
+        const file = /** @type {HTMLInputElement} */ (e.target).files?.[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          const content = /** @type {string} */ (ev.target?.result);
+          state.symbols[type] = content;
+
+          // Update UI
+          const zone = $(`#upload-${type}-zone`);
+          const empty = $(`#upload-${type}-empty`);
+          const preview = $(`#upload-${type}-preview`);
+          const svgContainer = $(`#upload-${type}-svg`);
+
+          if (zone) zone.classList.add('border-primary-500');
+          if (empty) empty.classList.add('hidden');
+          if (preview) { preview.classList.remove('hidden'); preview.classList.add('flex'); }
+          if (svgContainer) svgContainer.innerHTML = content;
+
+          // Enable analyze button if both loaded
+          const btn = $('#btn-analyze');
+          if (btn && state.symbols.light && state.symbols.dark) {
+            /** @type {HTMLButtonElement} */ (btn).disabled = false;
+          }
+        };
+        reader.readAsText(file);
+      });
+    }
+
+    // ===== COLOR EXTRACTION =====
+    function analyzeAndExtract() {
+      goToStep(2);
+      setTimeout(() => {
+        const allSvgContent = state.symbols.light + state.symbols.dark;
+        const hexRegex = /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\b/g;
+        const matches = allSvgContent.match(hexRegex) || [];
+        const uniqueColors = [...new Set(matches.map(c => c.toUpperCase()))];
+        
+        // Filter out pure white/black
+        const filtered = uniqueColors.filter(c => c !== '#FFFFFF' && c !== '#FFF' && c !== '#000000' && c !== '#000');
+        
+        const hexList = filtered.length > 0 ? filtered : ['#004990', '#0079C1'];
+        state.colors = hexList.map(hex => ({ hex, name: '', pantone: '' }));
+        renderColors();
+        goToStep(3);
+      }, 1500);
+    }
+    // @ts-ignore
+    window.analyzeAndExtract = analyzeAndExtract;
+
+    // ===== RENDER: Colors (Rich format) =====
+    function renderColors() {
+      const grid = $('#colors-grid');
+      if (!grid) return;
+
+      let html = state.colors.map((colorObj, index) => {
+        const data = getColorData(colorObj.hex);
+        return `
+        <div class="bg-surface-50 border border-surface-200 rounded p-0 overflow-hidden" data-color-idx="${index}">
+          <div class="flex flex-col sm:flex-row">
+            <!-- Color swatch -->
+            <div class="w-full sm:w-36 h-28 sm:h-auto shrink-0 relative" style="background-color: ${colorObj.hex};">
+              <input type="color" value="${colorObj.hex}" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer color-picker" data-idx="${index}" />
+            </div>
+            <!-- Color details -->
+            <div class="flex-1 p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div>
+                <label class="text-[10px] font-bold text-surface-400 uppercase tracking-wider">HEX</label>
+                <input type="text" value="${data.hex}" class="w-full border border-surface-200 rounded px-2 py-1.5 text-sm font-mono font-semibold uppercase focus:outline-none focus:border-primary-500 color-hex" data-idx="${index}" />
+              </div>
+              <div>
+                <label class="text-[10px] font-bold text-surface-400 uppercase tracking-wider">RGB</label>
+                <p class="text-sm font-mono text-surface-700 py-1.5">${data.rgb}</p>
+              </div>
+              <div>
+                <label class="text-[10px] font-bold text-surface-400 uppercase tracking-wider">CMYK</label>
+                <p class="text-sm font-mono text-surface-700 py-1.5">${data.cmyk}</p>
+              </div>
+              <div>
+                <label class="text-[10px] font-bold text-surface-400 uppercase tracking-wider">Nume culoare <span class="text-surface-300">(opțional)</span></label>
+                <input type="text" value="${colorObj.name}" placeholder="ex: Albastru instituțional" class="w-full border border-surface-200 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-primary-500 color-name" data-idx="${index}" />
+              </div>
+              <div>
+                <label class="text-[10px] font-bold text-surface-400 uppercase tracking-wider">Pantone <span class="text-surface-300">(opțional)</span></label>
+                <input type="text" value="${colorObj.pantone}" placeholder="ex: Pantone 7462 C" class="w-full border border-surface-200 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-primary-500 color-pantone" data-idx="${index}" />
+              </div>
+              <div class="flex items-end">
+                <button class="text-red-400 hover:text-red-600 text-xs font-medium py-1.5 px-2 transition-colors color-remove" data-idx="${index}">✕ Elimină</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+      }).join('');
+
+      html += `
+        <button id="add-color-btn" class="w-full rounded border-2 border-dashed border-surface-300 flex items-center justify-center text-surface-400 hover:text-primary-500 hover:border-primary-500 transition-colors py-6">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl leading-none">+</span>
+            <span class="text-sm font-medium">Adaugă culoare</span>
+          </div>
+        </button>
+      `;
+
+      grid.innerHTML = html;
+
+      // Bind events
+      grid.querySelectorAll('.color-picker').forEach(el => {
+        el.addEventListener('input', (e) => {
+          const idx = parseInt(/** @type {HTMLInputElement} */ (e.target).dataset.idx || '0');
+          state.colors[idx].hex = /** @type {HTMLInputElement} */ (e.target).value.toUpperCase();
+          renderColors();
+        });
+      });
+      grid.querySelectorAll('.color-hex').forEach(el => {
+        el.addEventListener('change', (e) => {
+          const idx = parseInt(/** @type {HTMLInputElement} */ (e.target).dataset.idx || '0');
+          const val = /** @type {HTMLInputElement} */ (e.target).value.toUpperCase();
+          if (/^#[A-Fa-f0-9]{3,6}$/.test(val)) {
+            state.colors[idx].hex = val;
+            renderColors();
+          }
+        });
+      });
+      grid.querySelectorAll('.color-name').forEach(el => {
+        el.addEventListener('change', (e) => {
+          const idx = parseInt(/** @type {HTMLInputElement} */ (e.target).dataset.idx || '0');
+          state.colors[idx].name = /** @type {HTMLInputElement} */ (e.target).value;
+        });
+      });
+      grid.querySelectorAll('.color-pantone').forEach(el => {
+        el.addEventListener('change', (e) => {
+          const idx = parseInt(/** @type {HTMLInputElement} */ (e.target).dataset.idx || '0');
+          state.colors[idx].pantone = /** @type {HTMLInputElement} */ (e.target).value;
+        });
+      });
+      grid.querySelectorAll('.color-remove').forEach(el => {
+        el.addEventListener('click', (e) => {
+          const idx = parseInt(/** @type {HTMLElement} */ (e.currentTarget).dataset.idx || '0');
+          if (state.colors.length > 1) {
+            state.colors.splice(idx, 1);
+            renderColors();
+          }
+        });
+      });
+      const addBtn = $('#add-color-btn');
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          state.colors.push({ hex: '#CCCCCC', name: '', pantone: '' });
+          renderColors();
+        });
+      }
+    }
+
+    // ===== RENDER: Typography =====
+    function renderTypographyPreview() {
+      const primaryPreview = $('#font-primary-preview');
+      const secondaryPreview = $('#font-secondary-preview');
+      if (primaryPreview) {
+        primaryPreview.textContent = state.brandName;
+        primaryPreview.style.fontFamily = state.fonts.primary;
+      }
+      if (secondaryPreview) {
+        secondaryPreview.style.fontFamily = state.fonts.secondary;
+      }
+    }
+
+    // ===== RENDER: Step 5 Previews =====
+    function renderPreviews() {
+      const sz = state.safeZone;
+      const targets = [
+        { id: 'preview-light-h', theme: 'light', orientation: 'horizontal' },
+        { id: 'preview-light-v', theme: 'light', orientation: 'vertical' },
+        { id: 'preview-dark-h', theme: 'dark', orientation: 'horizontal' },
+        { id: 'preview-dark-v', theme: 'dark', orientation: 'vertical' },
+      ];
+      targets.forEach(({ id, theme, orientation }) => {
+        const el = $(`#${id}`);
+        if (el) el.innerHTML = buildLogoHTML(theme, orientation, { safeZone: sz });
+      });
+
+      // Safe zone demo
+      const safeSymbol = $('#safe-zone-symbol');
+      if (safeSymbol) safeSymbol.innerHTML = state.symbols.light;
+      const safeDemo = $('#safe-zone-demo');
+      if (safeDemo) safeDemo.style.padding = `${sz * 100}px`;
+    }
+
+    // ===== RENDER: Step 6 PDF =====
+    function renderPDF() {
+      const sz = state.safeZone;
+
+      // Cover
+      const coverWatermark = $('#pdf-cover-watermark');
+      if (coverWatermark) coverWatermark.innerHTML = state.symbols.light;
+
+      const coverLogo = $('#pdf-cover-logo');
+      if (coverLogo) coverLogo.innerHTML = buildLogoPdfHTML('light', 'vertical', { safeZone: sz });
+
+      const coverTitle = $('#pdf-cover-title');
+      if (coverTitle) coverTitle.style.fontFamily = state.fonts.primary;
+
+      // Cover date
+      const coverDate = $('#pdf-cover-date');
+      if (coverDate) {
+        const d = new Date();
+        coverDate.textContent = d.toLocaleDateString('ro-RO', { year: 'numeric', month: 'long' });
+      }
+
+      // Add page numbers to all pages
+      const pdfPages = document.querySelectorAll('#pdf-content .pdf-page');
+      pdfPages.forEach((page, idx) => {
+        // Remove existing page numbers
+        const existing = page.querySelector('.pdf-page-number');
+        if (existing) existing.remove();
+        
+        const pageNum = document.createElement('div');
+        pageNum.className = 'pdf-page-number absolute bottom-8 right-10 text-xs font-medium opacity-40';
+        pageNum.textContent = `${idx + 1} / ${pdfPages.length}`;
+        // Ensure the page is relative for absolute positioning
+        /** @type {HTMLElement} */ (page).style.position = 'relative';
+        page.appendChild(pageNum);
+      });
+
+      // Page 2: Light variants
+      const p2Title = $('#pdf-p2-title');
+      if (p2Title) p2Title.style.fontFamily = state.fonts.primary;
+      const pdfLightH = $('#pdf-light-h');
+      if (pdfLightH) pdfLightH.innerHTML = buildLogoPdfHTML('light', 'horizontal', { safeZone: sz });
+      const pdfLightV = $('#pdf-light-v');
+      if (pdfLightV) pdfLightV.innerHTML = buildLogoPdfHTML('light', 'vertical', { safeZone: sz });
+      const pdfLightS = $('#pdf-light-s');
+      if (pdfLightS) pdfLightS.innerHTML = state.symbols.light;
+      const pdfLightSLabel = $('#pdf-light-s-label');
+      if (pdfLightSLabel) pdfLightSLabel.style.fontFamily = state.fonts.primary;
+
+      // Page 3: Dark variants
+      const p3Title = $('#pdf-p3-title');
+      if (p3Title) p3Title.style.fontFamily = state.fonts.primary;
+      const pdfDarkH = $('#pdf-dark-h');
+      if (pdfDarkH) pdfDarkH.innerHTML = buildLogoPdfHTML('dark', 'horizontal', { safeZone: sz });
+      const pdfDarkV = $('#pdf-dark-v');
+      if (pdfDarkV) pdfDarkV.innerHTML = buildLogoPdfHTML('dark', 'vertical', { safeZone: sz });
+      const pdfDarkS = $('#pdf-dark-s');
+      if (pdfDarkS) pdfDarkS.innerHTML = state.symbols.dark;
+
+      // Page 4: Architecture
+      const p4Title = $('#pdf-p4-title');
+      if (p4Title) p4Title.style.fontFamily = state.fonts.primary;
+      const p4Desc = $('#pdf-p4-desc');
+      if (p4Desc) p4Desc.style.fontFamily = state.fonts.secondary;
+      const safeBox = $('#pdf-safezone-box');
+      if (safeBox) safeBox.style.padding = `${sz * 120}px`;
+      const safeSymbol = $('#pdf-safezone-symbol');
+      if (safeSymbol) safeSymbol.innerHTML = state.symbols.light;
+
+      // Page 5: Colors (rich format in PDF)
+      const p5Title = $('#pdf-p5-title');
+      if (p5Title) p5Title.style.fontFamily = state.fonts.primary;
+      const p5Desc = $('#pdf-p5-desc');
+      if (p5Desc) p5Desc.style.fontFamily = state.fonts.secondary;
+      const colorsList = $('#pdf-colors-list');
+      if (colorsList) {
+        colorsList.innerHTML = state.colors.map(colorObj => {
+          const data = getColorData(colorObj.hex);
+          const nameRow = colorObj.name ? `<p class="text-lg font-semibold text-primary-900 mb-2">${colorObj.name}</p>` : '';
+          const pantoneRow = colorObj.pantone ? `<span class="inline-block bg-surface-200 text-surface-700 text-xs font-medium px-2 py-1 rounded mr-2">${colorObj.pantone}</span>` : '';
+          return `
+          <div class="flex items-stretch bg-surface-50 rounded overflow-hidden border border-surface-200 shadow-card">
+            <div class="w-36 shrink-0" style="background-color: ${colorObj.hex};"></div>
+            <div class="p-6 flex-1">
+              ${nameRow}
+              <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
+                <div><span class="font-bold text-surface-400 text-xs uppercase">HEX</span><p class="font-mono font-semibold text-primary-900">${data.hex}</p></div>
+                <div><span class="font-bold text-surface-400 text-xs uppercase">RGB</span><p class="font-mono text-surface-700">${data.rgb}</p></div>
+                <div><span class="font-bold text-surface-400 text-xs uppercase">CMYK</span><p class="font-mono text-surface-700">${data.cmyk}</p></div>
+                <div>${pantoneRow}</div>
+              </div>
+            </div>
+          </div>
+        `;
+        }).join('');
+      }
+
+      // Page 6: Typography
+      const p6Title = $('#pdf-p6-title');
+      if (p6Title) p6Title.style.fontFamily = state.fonts.primary;
+      const p6Desc = $('#pdf-p6-desc');
+      if (p6Desc) p6Desc.style.fontFamily = state.fonts.secondary;
+      const fontPrimaryName = $('#pdf-font-primary-name');
+      if (fontPrimaryName) fontPrimaryName.textContent = state.fonts.primary;
+      const fontPrimarySample = $('#pdf-font-primary-sample');
+      if (fontPrimarySample) fontPrimarySample.style.fontFamily = state.fonts.primary;
+      const fontSecondaryName = $('#pdf-font-secondary-name');
+      if (fontSecondaryName) fontSecondaryName.textContent = state.fonts.secondary;
+      const fontSecondarySample = $('#pdf-font-secondary-sample');
+      if (fontSecondarySample) fontSecondarySample.style.fontFamily = state.fonts.secondary;
+
+      // Page 7: Usage Rules — use smaller logos
+      const p7Title = $('#pdf-p7-title');
+      if (p7Title) p7Title.style.fontFamily = state.fonts.primary;
+      const p7Desc = $('#pdf-p7-desc');
+      if (p7Desc) p7Desc.style.fontFamily = state.fonts.secondary;
+      const ruleCorrect = $('#pdf-rule-correct');
+      if (ruleCorrect) ruleCorrect.innerHTML = buildLogoHTML('light', 'horizontal', { safeZone: sz });
+      const ruleDistorted = $('#pdf-rule-distorted');
+      if (ruleDistorted) ruleDistorted.innerHTML = buildLogoHTML('light', 'horizontal', { safeZone: sz });
+      const ruleWrongColor = $('#pdf-rule-wrongcolor');
+      if (ruleWrongColor) ruleWrongColor.innerHTML = buildLogoHTML('light', 'horizontal', { safeZone: sz });
+      const ruleTilted = $('#pdf-rule-tilted');
+      if (ruleTilted) ruleTilted.innerHTML = buildLogoHTML('light', 'horizontal', { safeZone: sz });
+    }
+
+    // ===== DOWNLOAD PDF (Print fallback) =====
+    function downloadPDF() {
+      const slug = state.brandName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const filename = `manual-identitate-${slug || 'vizuala'}.pdf`;
+      
+      const msg = document.createElement('div');
+      msg.id = 'pdf-download-msg';
+      msg.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4';
+      msg.innerHTML = `
+        <div class="bg-white rounded-lg p-8 max-w-md text-center shadow-2xl">
+          <svg class="w-12 h-12 text-primary-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>
+          <h3 class="text-lg font-bold text-primary-900 mb-2">Tipărire / Save as PDF</h3>
+          <p class="text-sm text-surface-600 mb-4">În fereastra de printare, selectați <strong>„Save as PDF"</strong> ca destinație pentru a salva ca PDF, sau alegeți o imprimantă.</p>
+          <p class="text-xs text-surface-400 mb-6">Nume sugerat: <span class="font-mono font-semibold">${filename}</span></p>
+          <div class="flex gap-3 justify-center">
+            <button id="pdf-cancel-btn" class="btn-ghost px-6 py-2 text-sm rounded">Anulează</button>
+            <button id="pdf-proceed-btn" class="btn-primary px-6 py-2 text-sm rounded">Continuă</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(msg);
+      
+      const cancel = () => { const el = $('#pdf-download-msg'); if (el) el.remove(); };
+      $('#pdf-cancel-btn')?.addEventListener('click', cancel);
+      $('#pdf-proceed-btn')?.addEventListener('click', () => {
+        cancel();
+        window.print();
+      });
+    }
+    // @ts-ignore
+    window.downloadPDF = downloadPDF;
+
+    // ===== GENERATE REAL PDF (html2canvas + jsPDF) =====
+    async function generateRealPDF() {
+      const btn = /** @type {HTMLButtonElement} */ ($('#btn-download-pdf'));
+      const progressContainer = $('#pdf-progress-container');
+      const progressFill = $('#pdf-progress-fill');
+      const progressLabel = $('#pdf-progress-label');
+      const progressPercent = $('#pdf-progress-percent');
+      
+      if (btn) btn.disabled = true;
+      if (progressContainer) progressContainer.classList.remove('hidden');
+      
+      const setProgress = (/** @type {number} */ pct, /** @type {string} */ label) => {
+        if (progressFill) progressFill.style.width = `${pct}%`;
+        if (progressPercent) progressPercent.textContent = `${Math.round(pct)}%`;
+        if (progressLabel) progressLabel.textContent = label;
+      };
+
+      try {
+        setProgress(5, 'Se inițializează...');
+        
+        // @ts-ignore
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+        
+        const pages = /** @type {NodeListOf<HTMLElement>} */ (document.querySelectorAll('#pdf-content .pdf-page'));
+        const totalPages = pages.length;
+        
+        for (let i = 0; i < totalPages; i++) {
+          const page = pages[i];
+          setProgress(10 + (i / totalPages) * 80, `Se renderizează pagina ${i + 1} din ${totalPages}...`);
+          
+          // Wait a tick for UI update
+          await new Promise(r => setTimeout(r, 50));
+          
+          // @ts-ignore
+          const canvas = await html2canvas(page, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: null,
+            logging: false,
+            width: page.scrollWidth,
+            height: page.scrollHeight,
+          });
+          
+          const imgData = canvas.toDataURL('image/jpeg', 0.95);
+          const pdfWidth = 210; // A4 width in mm
+          const pdfHeight = 297; // A4 height in mm
+          
+          if (i > 0) pdf.addPage();
+          pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        }
+        
+        setProgress(95, 'Se finalizează fișierul...');
+        await new Promise(r => setTimeout(r, 100));
+        
+        const slug = state.brandName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        const filename = `manual-identitate-${slug || 'vizuala'}.pdf`;
+        
+        pdf.save(filename);
+        setProgress(100, 'Descărcare completă!');
+        
+        setTimeout(() => {
+          if (progressContainer) progressContainer.classList.add('hidden');
+          if (progressFill) progressFill.style.width = '0%';
+        }, 2000);
+        
+      } catch (err) {
+        console.error('PDF generation error:', err);
+        setProgress(0, 'Eroare la generare. Încercați varianta Tipărește.');
+        setTimeout(() => {
+          if (progressContainer) progressContainer.classList.add('hidden');
+        }, 4000);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+    // @ts-ignore
+    window.generateRealPDF = generateRealPDF;
+
+    // ===== BUILD COMPOSITE SVG (symbol + text in a single SVG) =====
+    function buildCompositeLogoSVG(theme, orientation) {
+      const symbolSvg = theme === 'light' ? state.symbols.light : state.symbols.dark;
+      const textColor = theme === 'light' ? '#0F172A' : '#FFFFFF';
+      const lines = splitInstitutionName(state.brandName);
+      const sz = state.safeZone;
+      
+      // Parse original SVG to extract viewBox and content
+      const parser = new DOMParser();
+      const svgDoc = parser.parseFromString(symbolSvg, 'image/svg+xml');
+      const origSvg = svgDoc.querySelector('svg');
+      if (!origSvg) return symbolSvg;
+      
+      const vb = origSvg.getAttribute('viewBox') || '0 0 100 100';
+      const [, , vbW, vbH] = vb.split(/[\s,]+/).map(Number);
+      const symbolContent = origSvg.innerHTML;
+      
+      // Symbol-only variant
+      if (orientation === 'symbol') {
+        return symbolSvg;
+      }
+      
+      const symbolSize = 100;
+      const gap = symbolSize * sz;
+      const fontSize1 = 22;
+      const fontSize2 = 18;
+      const lineGap = 6;
+      
+      if (orientation === 'horizontal') {
+        // Calculate approximate text width
+        const maxTextLen = Math.max(...lines.map(l => l.length));
+        const textBlockWidth = maxTextLen * fontSize1 * 0.6;
+        const totalW = symbolSize + gap + textBlockWidth + 20;
+        const totalH = Math.max(symbolSize, lines.length * (fontSize1 + lineGap) + 20);
+        const symbolY = (totalH - symbolSize) / 2;
+        const textX = symbolSize + gap;
+        const textStartY = totalH / 2 - ((lines.length - 1) * (fontSize1 + lineGap)) / 2;
+        
+        let textElements = lines.map((line, idx) => {
+          const fs = idx === 0 ? fontSize1 : fontSize2;
+          const y = textStartY + idx * (fontSize1 + lineGap);
+          return `<text x="${textX}" y="${y}" font-family="${state.fonts.primary}, serif" font-size="${fs}" font-weight="700" fill="${textColor}" letter-spacing="1" dominant-baseline="middle">${escapeXml(line)}</text>`;
+        }).join('\n      ');
+        
+        return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}">
+      <svg x="0" y="${symbolY}" width="${symbolSize}" height="${symbolSize}" viewBox="${vb}">${symbolContent}</svg>
+      ${textElements}
+    </svg>`;
+      }
+      
+      // vertical
+      const maxTextLen = Math.max(...lines.map(l => l.length));
+      const textBlockWidth = maxTextLen * fontSize1 * 0.65;
+      const totalW = Math.max(symbolSize, textBlockWidth) + 40;
+      const textBlockH = lines.length * (fontSize1 + lineGap);
+      const totalH = symbolSize + gap + textBlockH + 20;
+      const symbolX = (totalW - symbolSize) / 2;
+      const textStartY = symbolSize + gap + fontSize1;
+      
+      let textElements = lines.map((line, idx) => {
+        const fs = idx === 0 ? fontSize1 : fontSize2;
+        const y = textStartY + idx * (fontSize1 + lineGap);
+        return `<text x="${totalW / 2}" y="${y}" font-family="${state.fonts.primary}, serif" font-size="${fs}" font-weight="700" fill="${textColor}" text-anchor="middle" letter-spacing="1">${escapeXml(line)}</text>`;
+      }).join('\n      ');
+      
+      return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}">
+      <svg x="${symbolX}" y="0" width="${symbolSize}" height="${symbolSize}" viewBox="${vb}">${symbolContent}</svg>
+      ${textElements}
+    </svg>`;
+    }
+    
+    function escapeXml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+    }
+
+    // ===== DOWNLOAD SVG PACK AS ZIP =====
+    async function downloadSVGPack() {
+      // @ts-ignore
+      const zip = new JSZip();
+      const slug = state.brandName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'identitate';
+      
+      const folderName = `identitate-vizuala-${slug}`;
+      const root = zip.folder(folderName);
+      
+      // Raw symbols
+      const symbolsFolder = root.folder('simboluri');
+      if (state.symbols.light) {
+        symbolsFolder.file('simbol-fundal-deschis.svg', state.symbols.light);
+      }
+      if (state.symbols.dark) {
+        symbolsFolder.file('simbol-fundal-inchis.svg', state.symbols.dark);
+      }
+      
+      // Composite logos — light theme
+      const lightFolder = root.folder('logo-fundal-deschis');
+      lightFolder.file('orizontal.svg', buildCompositeLogoSVG('light', 'horizontal'));
+      lightFolder.file('vertical.svg', buildCompositeLogoSVG('light', 'vertical'));
+      lightFolder.file('simbol.svg', buildCompositeLogoSVG('light', 'symbol'));
+      
+      // Composite logos — dark theme
+      const darkFolder = root.folder('logo-fundal-inchis');
+      darkFolder.file('orizontal.svg', buildCompositeLogoSVG('dark', 'horizontal'));
+      darkFolder.file('vertical.svg', buildCompositeLogoSVG('dark', 'vertical'));
+      darkFolder.file('simbol.svg', buildCompositeLogoSVG('dark', 'symbol'));
+      
+      // Color palette info file
+      const colorsInfo = state.colors.map(c => {
+        const data = getColorData(c.hex);
+        let line = `${c.name || 'Fără nume'}\n  HEX: ${data.hex}\n  RGB: ${data.rgb}\n  CMYK: ${data.cmyk}`;
+        if (c.pantone) line += `\n  Pantone: ${c.pantone}`;
+        return line;
+      }).join('\n\n');
+      
+      root.file('paleta-culori.txt', `Paleta de Culori — ${state.brandName}\n${'='.repeat(50)}\n\n${colorsInfo}\n`);
+      
+      // Metadata / README
+      const readmeContent = `# ${state.brandName}
+## Pachet Identitate Vizuală
+
+Generat automat de IdentitateRO Generator
+Data: ${new Date().toLocaleDateString('ro-RO')}
+
+### Structură Fișiere
+
+- simboluri/ — SVG-urile originale ale simbolului
+  - simbol-fundal-deschis.svg
+  - simbol-fundal-inchis.svg
+- logo-fundal-deschis/ — Logo-uri compuse pe fundal deschis
+  - orizontal.svg
+  - vertical.svg
+  - simbol.svg
+- logo-fundal-inchis/ — Logo-uri compuse pe fundal închis
+  - orizontal.svg
+  - vertical.svg
+  - simbol.svg
+- paleta-culori.txt — Valorile cromatice (HEX, RGB, CMYK, Pantone)
+
+### Fonturi Utilizate
+
+- Font Principal: ${state.fonts.primary}
+- Font Secundar: ${state.fonts.secondary}
+
+### Zonă de Protecție
+
+Proporție: ${Math.round(state.safeZone * 100)}%
+`;
+      root.file('README.md', readmeContent);
+      
+      // Generate and download ZIP
+      const content = await zip.generateAsync({ type: 'blob' });
+      // @ts-ignore
+      saveAs(content, `${folderName}.zip`);
+    }
+    // @ts-ignore
+    window.downloadSVGPack = downloadSVGPack;
+
+    // ===== INIT =====
+    function init() {
+      // File upload handlers
+      setupUpload('light');
+      setupUpload('dark');
+
+      // Brand name input
+      const nameInput = /** @type {HTMLInputElement} */ ($('#brand-name'));
+      if (nameInput) {
+        nameInput.addEventListener('input', (e) => {
+          state.brandName = /** @type {HTMLInputElement} */ (e.target).value.toUpperCase();
+          updateNamePreview();
+        });
+        updateNamePreview();
+      }
+
+      // Font inputs
+      const fontPrimary = /** @type {HTMLInputElement} */ ($('#font-primary'));
+      const fontSecondary = /** @type {HTMLInputElement} */ ($('#font-secondary'));
+      if (fontPrimary) {
+        fontPrimary.addEventListener('input', (e) => {
+          state.fonts.primary = /** @type {HTMLInputElement} */ (e.target).value;
+          renderTypographyPreview();
+        });
+      }
+      if (fontSecondary) {
+        fontSecondary.addEventListener('input', (e) => {
+          state.fonts.secondary = /** @type {HTMLInputElement} */ (e.target).value;
+          renderTypographyPreview();
+        });
+      }
+
+      // Safe zone range
+      const safeRange = /** @type {HTMLInputElement} */ ($('#safe-zone-range'));
+      if (safeRange) {
+        safeRange.addEventListener('input', (e) => {
+          state.safeZone = parseFloat(/** @type {HTMLInputElement} */ (e.target).value);
+          const label = $('#safe-zone-label');
+          if (label) label.textContent = String(Math.round(state.safeZone * 100));
+          renderPreviews();
+        });
+      }
+
+      // Initial step
+      goToStep(1);
+    }
+
+    function updateNamePreview() {
+      const preview = $('#name-preview');
+      if (!preview) return;
+      const lines = splitInstitutionName(state.brandName);
+      preview.innerHTML = lines.map(line => `<span>${line}</span>`).join('');
+    }
+
+    // Run on DOM ready
+    document.addEventListener('DOMContentLoaded', init);
+    if (document.readyState !== 'loading') init();
+  </script>
+</BaseLayout>

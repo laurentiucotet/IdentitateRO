@@ -26,18 +26,32 @@
     <inkscape:page
        x="0"
        y="0"
-       inkscape:label="3"
-       id="page37"
+       inkscape:label="2"
+       id="page19"
        width="1122.6667"
        height="793.33331"
-       margin="314.53201 60.318668 314.53201 60.319065"
+       margin="314.53201 60.318668 314.53201 60.319332"
        bleed="0" />
   </sodipodi:namedview>
   <g
      id="layer-MC0"
      inkscape:groupmode="layer"
      inkscape:label="Logo PNRR"
-     transform="translate(-2285.3334)">
+     transform="translate(-1142.6668)">
+    <text
+       id="text1"
+       xml:space="preserve"
+       transform="matrix(1.3333333,0,0,1.3333333,385.4408,382.80213)"><tspan
+         id="tspan1"
+         style="font-variant:normal;font-weight:bold;font-stretch:normal;font-size:48px;font-family:Calibri-Bold;writing-mode:lr-tb;fill:#102178;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         dx="0 0 0 0 0 0 0 0 0 -0.55199999"
+         y="0">Planul Naţional</tspan><tspan
+         id="tspan2"
+         style="font-variant:normal;font-weight:bold;font-stretch:normal;font-size:48px;font-family:Calibri-Bold;writing-mode:lr-tb;fill:#102178;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         x="0"
+         dx="0 0 0 0 -0.7008 0 0 -0.51359999 0 0 0 -0.51359999 0 0 0 0 0 -0.7008 -0.44639999 0 0 0 0 0 -0.47999999 -0.48480001"
+         y="52.608002">de Redresare și Rezilienţă</tspan></text>
     <text
        id="text19"
        xml:space="preserve"
@@ -52,109 +66,95 @@
          x="0"
          dx="0 0 0 0 -0.7008 0 0 -0.51359999 0 0 0 -0.51359999 0 0 0 0 0 -0.7008 -0.44639999 0 0 0 0 0 -0.47999999 -0.48480001"
          y="52.608002">de Redresare și Rezilienţă</tspan></text>
-    <text
-       id="text37"
-       xml:space="preserve"
-       transform="matrix(1.3333333,0,0,1.3333333,2670.7741,382.80213)"><tspan
-         id="tspan37"
-         style="font-variant:normal;font-weight:bold;font-stretch:normal;font-size:48px;font-family:Calibri-Bold;writing-mode:lr-tb;fill:#003399;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         dx="0 0 0 0 0 0 0 0 0 -0.55199999"
-         y="0">Planul Naţional</tspan><tspan
-         id="tspan38"
-         style="font-variant:normal;font-weight:bold;font-stretch:normal;font-size:48px;font-family:Calibri-Bold;writing-mode:lr-tb;fill:#003399;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         x="0"
-         dx="0 0 0 0 -0.7008 0 0 -0.51359999 0 0 0 -0.51359999 0 0 0 0 0 -0.7008 -0.44639999 0 0 0 0 0 -0.47999999 -0.48480001"
-         y="52.608002">de Redresare și Rezilienţă</tspan></text>
     <path
-       id="path38"
+       id="path20"
        d="M 0,0 117.698,-61.187 0,-122.852 Z"
-       style="fill:#002b7f;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2485.0697,314.53173)" />
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,1342.4032,314.53173)" />
     <path
-       id="path39"
-       d="M 0,0 77.681,-40.384 0,-81.082 Z"
-       style="fill:#fcd116;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2538.426,342.37813)" />
+       id="path21"
+       d="M 0,0 69.435,-36.097 0,-72.476 Z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,1401.2565,348.11573)" />
     <path
-       id="path40"
+       id="path22"
        d="M 0,0 38.84,-20.192 0,-40.541 Z"
-       style="fill:#ce1126;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2590.2131,369.40547)" />
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,1447.5465,369.40547)" />
     <path
-       id="path41"
+       id="path23"
        d="M 0,0 117.698,-61.187 0,-122.852 Z"
-       style="fill:#003399;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2345.6525,314.9992)" />
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,1202.986,314.9992)" />
     <path
-       id="path42"
+       id="path24"
        d="M 0,0 H 3.432 L 0.667,-2.073 1.742,-5.361 -1.012,-3.336 -3.763,-5.361 -2.679,-2.073 -5.466,0 h 3.419 l 1.035,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2395.9923,360.1056)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1253.3257,360.1056)" />
     <path
-       id="path43"
+       id="path25"
        d="m 0,0 h 3.432 l -2.765,-2.076 1.071,-3.285 -2.75,2.025 -2.752,-2.025 1.085,3.285 L -5.467,0 h 3.419 l 1.036,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2396.1925,430.82133)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1253.526,430.82133)" />
     <path
-       id="path44"
+       id="path26"
        d="M 0,0 H 3.429 L 0.668,-2.076 1.739,-5.361 -1.012,-3.338 -3.766,-5.361 -2.68,-2.076 -5.468,0 h 3.417 l 1.039,3.202 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2413.7027,426.1288)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1271.0361,426.1288)" />
     <path
-       id="path45"
+       id="path27"
        d="M 0,0 H 3.429 L 0.668,-2.073 1.739,-5.361 -1.012,-3.336 -3.766,-5.361 -2.68,-2.073 -5.468,0 h 3.417 l 1.039,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2413.7027,364.7608)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1271.0361,364.7608)" />
     <path
-       id="path46"
+       id="path28"
        d="M 0,0 H 3.432 L 0.667,-2.073 1.739,-5.362 -1.012,-3.339 -3.763,-5.362 -2.679,-2.073 -5.466,0 h 3.419 l 1.035,3.202 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2426.6963,377.75547)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1284.0297,377.75547)" />
     <path
-       id="path47"
+       id="path29"
        d="M 0,0 H 3.432 L 0.667,-2.073 1.739,-5.361 -1.012,-3.336 -3.763,-5.361 -2.679,-2.073 -5.466,0 h 3.419 l 1.035,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2426.6963,413.31547)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1284.0297,413.31547)" />
     <path
-       id="path48"
+       id="path30"
        d="M 0,0 H 3.432 L 0.667,-2.073 1.739,-5.361 -1.014,-3.336 -3.765,-5.361 -2.679,-2.073 -5.469,0 h 3.42 l 1.035,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2431.5712,395.2656)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1288.9047,395.2656)" />
     <path
-       id="path49"
+       id="path31"
        d="M 0,0 H 3.432 L 0.668,-2.073 1.74,-5.361 -1.011,-3.336 -3.764,-5.361 -2.678,-2.073 -5.465,0 h 3.417 l 1.037,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2378.1411,364.8048)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1235.4745,364.8048)" />
     <path
-       id="path50"
+       id="path32"
        d="M 0,0 H 3.432 L 0.667,-2.071 1.739,-5.362 -1.012,-3.336 -3.766,-5.362 -2.681,-2.071 -5.469,0 h 3.419 l 1.038,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2365.5083,377.80267)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1222.8417,377.80267)" />
     <path
-       id="path51"
+       id="path33"
        d="M 0,0 H 3.431 L 0.668,-2.072 1.742,-5.361 -1.011,-3.336 -3.763,-5.361 -2.679,-2.072 -5.467,0 h 3.419 l 1.037,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2360.8125,395.3096)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1218.146,395.3096)" />
     <path
-       id="path52"
+       id="path34"
        d="M 0,0 H 3.432 L 0.667,-2.076 1.739,-5.361 -1.012,-3.336 -3.766,-5.361 -2.681,-2.076 -5.469,0 h 3.419 l 1.038,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2365.5083,413.3584)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1222.8417,413.3584)" />
     <path
-       id="path53"
+       id="path35"
        d="m 0,0 h 3.432 l -2.764,-2.073 1.07,-3.288 -2.75,2.025 -2.752,-2.025 1.082,3.288 L -5.469,0 h 3.419 l 1.038,3.205 z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2378.324,426.17573)" />
+       transform="matrix(1.3333333,0,0,-1.3333333,1235.6575,426.17573)" />
     <path
-       id="path54"
+       id="path36"
        d="M 0,0 V 111.901 Z"
-       style="fill:#003399;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       transform="matrix(1.3333333,0,0,-1.3333333,2659.0073,471.26773)" />
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       transform="matrix(1.3333333,0,0,-1.3333333,1516.3407,471.26773)" />
     <path
-       id="path55"
+       id="path37"
        d="M 0,0 V -111.902"
-       style="fill:none;stroke:#003399;stroke-width:1.417;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(1.3333333,0,0,-1.3333333,2659.0069,322.06533)" />
+       style="fill:none;stroke:#000000;stroke-width:1.417;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="matrix(1.3333333,0,0,-1.3333333,1516.3404,322.06533)" />
   </g>
 </svg>
