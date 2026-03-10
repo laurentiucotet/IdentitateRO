@@ -140,6 +140,7 @@ export interface Resources {
   };
   wikidata_id?: string;                          // Wikidata entity ID (e.g., "Q12345")
   wikipedia_url?: string;                        // Romanian Wikipedia URL
+  official_resources?: string;                   // additional download/archive link (zip, assets, etc.)
 }
 
 /**

@@ -429,7 +429,7 @@ function buildDetail(inst) {
   }
 
   let resourcesHtml = '';
-  if (inst.resources?.website || inst.resources?.branding_manual) {
+  if (inst.resources?.website || inst.resources?.branding_manual || inst.resources?.official_resources) {
     resourcesHtml = `
       <section class="mb-8">
         <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
@@ -446,6 +446,11 @@ function buildDetail(inst) {
             <a href="${escHtml(inst.resources.branding_manual)}" target="_blank" rel="noopener"
                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
               ${ICONS.book} Manual de Identitate Vizuală
+            </a>` : ''}
+          ${inst.resources.official_resources ? `
+            <a href="${escHtml(inst.resources.official_resources)}" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
+              ${ICONS.download} Resurse oficiale
             </a>` : ''}
         </div>
       </section>`;

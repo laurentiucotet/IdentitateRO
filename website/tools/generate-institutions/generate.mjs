@@ -727,6 +727,7 @@ function buildSystemPrompt() {
 '  If no website found, set to null.\n' +
 '- "resources.branding_manual": URL if provided, else null\n' +
 '- "resources.social_media": null\n' +
+'- "resources.official_resources": null\n' +
 '\n' +
 'Return ONLY the JSON object (without "assets"). No explanations, no markdown fences, no extra text.';
 }
@@ -822,6 +823,7 @@ function normalizeAiResponse(data, slug) {
     if (!('website' in d.resources)) d.resources.website = null;
     if (!('branding_manual' in d.resources)) d.resources.branding_manual = null;
     if (!('social_media' in d.resources)) d.resources.social_media = null;
+    if (!('official_resources' in d.resources)) d.resources.official_resources = null;
 
     // Normalize website URL — add protocol if missing
     if (d.resources.website && typeof d.resources.website === 'string') {
@@ -831,8 +833,16 @@ function normalizeAiResponse(data, slug) {
       }
       d.resources.website = url || null;
     }
+    // Normalize official_resources URL
+    if (d.resources.official_resources && typeof d.resources.official_resources === 'string') {
+      let url = d.resources.official_resources.trim();
+      if (url && !/^https?:\/\//i.test(url)) {
+        url = 'https://' + url;
+      }
+      d.resources.official_resources = url || null;
+    }
   } else {
-    d.resources = { website: null, branding_manual: null, social_media: null };
+    d.resources = { website: null, branding_manual: null, social_media: null, official_resources: null };
   }
 
   // Map alternate AI font keys ("font", "fonts") → typography.primary.family
