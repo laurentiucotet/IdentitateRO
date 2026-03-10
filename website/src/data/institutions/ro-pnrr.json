@@ -6,7 +6,7 @@
   "category": "proiect-ue",
   "meta": {
     "version": "1.0",
-    "last_updated": "2026-02-15",
+    "last_updated": "2026-03-10",
     "keywords": [
       "pnrr",
       "plan național",
@@ -100,17 +100,18 @@
   ],
   "typography": null,
   "resources": {
-    "website": null,
-    "branding_manual": null,
-    "social_media": null
+    "website": "https://mfe.gov.ro/pnrr/",
+    "branding_manual": "https://mfe.gov.ro/mipe-publica-manualul-de-identitate-vizuala-pentru-planul-national-de-redresare-si-rezilienta/manual-identitate-vizuala-pnrr/",
+    "social_media": null,
+    "official_resources": "https://mfe.gov.ro/wp-content/uploads/2024/07/8c51672dc800f447bc9c586c415f21a1.zip"
   },
   "assets": {
     "main": {
       "type": "horizontal",
       "color": "/logos/ro-pnrr/horizontal/color.svg",
       "dark_mode": null,
-      "white": "/logos/ro-pnrr/horizontal/white.svg",
-      "black": null,
+      "white": null,
+      "black": "/logos/ro-pnrr/horizontal/black.svg",
       "monochrome": null,
       "png": null
     },
@@ -118,8 +119,8 @@
       "type": "horizontal",
       "color": "/logos/ro-pnrr/horizontal/color.svg",
       "dark_mode": null,
-      "white": "/logos/ro-pnrr/horizontal/white.svg",
-      "black": null,
+      "white": null,
+      "black": "/logos/ro-pnrr/horizontal/black.svg",
       "monochrome": null,
       "png": null
     },
