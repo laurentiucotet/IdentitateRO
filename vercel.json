@@ -5,11 +5,11 @@
   "rewrites": [
     {
       "source": "/loader.js",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.4/identity-loader.js"
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.5/identity-loader.js"
     },
     {
       "source": "/logos/:path*",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.4/logos/:path*"
+      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.5/logos/:path*"
     }
   ],
   "headers": [
