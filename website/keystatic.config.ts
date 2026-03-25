@@ -23,7 +23,7 @@ export default config({
     process.env.KEYSTATIC_GITHUB_CLIENT_ID
       ? {
           kind: 'github',
-          repo: 'laurentiucotet/identitatero',
+          repo: 'laurentiucotet/IdentitateRO',
           branchPrefix: 'keystatic/',
         }
       : { kind: 'local' },
