@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-cnas",
+    "slug": "ro-cnas"
+  },
   "id": "ro-cnas",
   "slug": "cnas",
   "name": "Casa Națională de Asigurări de Sănătate",

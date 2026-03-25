@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "eu-flag",
+    "slug": "eu-flag"
+  },
   "id": "ro-eu-flag",
   "slug": "eu-flag",
   "name": "Steagul Uniunii Europene",

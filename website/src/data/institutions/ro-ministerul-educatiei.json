@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-ministerul-educatiei",
+    "slug": "ro-ministerul-educatiei"
+  },
   "id": "ro-ministerul-educatiei",
   "slug": "ministerul-educatiei",
   "name": "Ministerul Educației",

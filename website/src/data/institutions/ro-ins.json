@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-ins",
+    "slug": "ro-ins"
+  },
   "id": "ro-ins",
   "slug": "ins",
   "name": "Institutul Național de Statistică",

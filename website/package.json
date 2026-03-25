@@ -12,13 +12,16 @@
     "check": "astro check",
     "astro": "astro",
     "data:generate": "node scripts/generate-index.js",
-    "data:generate:from-md": "node tools/generate-institutions/generate.mjs"
+    "data:generate:from-md": "node tools/generate-institutions/generate.mjs",
+    "cms:migrate": "node scripts/migrate-keystatic-id.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/tailwind": "^6.0.0",
     "@astrojs/vercel": "^9.0.4",
+    "@keystatic/astro": "^5.0.6",
+    "@keystatic/core": "^0.5.49",
     "@vercel/analytics": "^1.6.1",
     "astro": "^5.2.0",
     "fuse.js": "^7.0.0",

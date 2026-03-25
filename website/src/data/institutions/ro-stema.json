@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-stema",
+    "slug": "ro-stema"
+  },
   "id": "ro-stema",
   "slug": "stema",
   "name": "Stema României",

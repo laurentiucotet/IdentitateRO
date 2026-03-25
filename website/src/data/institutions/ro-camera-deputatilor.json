@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-camera-deputatilor",
+    "slug": "ro-camera-deputatilor"
+  },
   "id": "ro-camera-deputatilor",
   "slug": "camera-deputatilor",
   "name": "Camera Deputaților",

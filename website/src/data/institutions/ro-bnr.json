@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-bnr",
+    "slug": "ro-bnr"
+  },
   "id": "ro-bnr",
   "slug": "bnr",
   "name": "Banca Națională a României",

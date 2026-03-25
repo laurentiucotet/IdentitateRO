@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-guvern",
+    "slug": "ro-guvern"
+  },
   "id": "ro-guvern",
   "slug": "guvern",
   "name": "Guvernul României",
