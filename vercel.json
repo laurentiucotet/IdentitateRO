@@ -1,31 +1,4 @@
 {
   "installCommand": "npm --prefix website install",
-  "buildCommand": "npm --prefix website run data:generate && npm --prefix website run build",
-  "outputDirectory": "website/dist",
-  "rewrites": [
-    {
-      "source": "/loader.js",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.7/identity-loader.js"
-    },
-    {
-      "source": "/logos/:path*",
-      "destination": "https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.3.7/logos/:path*"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/logos/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=3600" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
-      ]
-    },
-    {
-      "source": "/loader.js",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=3600" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
-      ]
-    }
-  ]
+  "buildCommand": "npm --prefix website run data:generate && npm --prefix website run build && node scripts/vercel-postbuild.mjs"
 }
