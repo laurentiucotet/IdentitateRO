@@ -23,7 +23,7 @@ export default config({
     process.env.KEYSTATIC_GITHUB_CLIENT_ID
       ? {
           kind: 'github',
-          repo: 'laurentiucotet/identitatero',
+          repo: 'laurentiucotet/IdentitateRO',
           branchPrefix: 'keystatic/',
         }
       : { kind: 'local' },
@@ -31,7 +31,7 @@ export default config({
   ui: {
     brand: { name: 'IdentitateRO' },
     navigation: {
-      Conținut: ['institutions'],
+      Continut: ['institutions'],
     },
   },
 
@@ -103,29 +103,29 @@ export default config({
             quality: fields.select({
               label: 'Calitate date',
               options: [
-                { label: '✓ Verificat oficial', value: 'verified' },
-                { label: '👥 Comunitate', value: 'community' },
-                { label: '📝 Draft', value: 'draft' },
+                { label: 'Verificat oficial', value: 'verified' },
+                { label: 'Comunitate', value: 'community' },
+                { label: 'Draft', value: 'draft' },
               ],
               defaultValue: 'draft',
             }),
-            seo_title: fields.text({ label: 'SEO title (opțional)' }),
+            seo_title: fields.text({ label: 'SEO title (optional)' }),
             seo_description: fields.text({
-              label: 'SEO description (opțional)',
+              label: 'SEO description (optional)',
               multiline: true,
             }),
           },
           { label: 'Metadata' }
         ),
 
-        // --- Locație ---
+        // --- Locatie ---
         location: fields.object(
           {
-            country_code: fields.text({ label: 'Cod țară', defaultValue: 'RO' }),
-            county: fields.text({ label: 'Județ (ex: B, CJ)' }),
-            city: fields.text({ label: 'Oraș' }),
+            country_code: fields.text({ label: 'Cod tara', defaultValue: 'RO' }),
+            county: fields.text({ label: 'Judet (ex: B, CJ)' }),
+            city: fields.text({ label: 'Oras' }),
           },
-          { label: 'Locație' }
+          { label: 'Locatie' }
         ),
 
         // --- Descriere ---
@@ -134,7 +134,7 @@ export default config({
           multiline: true,
         }),
         usage_notes: fields.text({
-          label: 'Note de utilizare / restricții',
+          label: 'Note de utilizare / restrictii',
           multiline: true,
         }),
 
@@ -173,11 +173,11 @@ export default config({
             }),
           }),
           {
-            label: 'Culori identitate vizuală',
+            label: 'Culori identitate vizuala',
             itemLabel: (props) =>
               props.fields.name.value
-                ? `${props.fields.name.value} (${props.fields.hex.value || 'fără HEX'})`
-                : 'Culoare nouă',
+                ? `${props.fields.name.value} (${props.fields.hex.value || 'fara HEX'})`
+                : 'Culoare noua',
           }
         ),
 
@@ -210,7 +210,7 @@ export default config({
                   }
                 ),
               },
-              { label: 'Font secundar (opțional)' }
+              { label: 'Font secundar (optional)' }
             ),
           },
           { label: 'Tipografie' }
@@ -222,7 +222,7 @@ export default config({
             main: fields.object(logoAssetGroupFields, { label: 'Logo principal (shortcut)' }),
             horizontal: fields.object(logoAssetGroupFields, { label: 'Layout orizontal' }),
             vertical: fields.object(logoAssetGroupFields, { label: 'Layout vertical' }),
-            symbol: fields.object(logoAssetGroupFields, { label: 'Simbol / emblemă' }),
+            symbol: fields.object(logoAssetGroupFields, { label: 'Simbol / emblema' }),
             favicon: fields.text({ label: 'Favicon (cale SVG/PNG)' }),
           },
           { label: 'Assets logo' }
@@ -235,7 +235,7 @@ export default config({
             branding_manual: fields.url({ label: 'Manual de identitate (URL PDF)' }),
             wikidata_id: fields.text({ label: 'Wikidata ID (ex: Q12345)' }),
             wikipedia_url: fields.url({ label: 'Wikipedia RO (URL)' }),
-            official_resources: fields.url({ label: 'Resurse oficiale (arhivă, ZIP etc.)' }),
+            official_resources: fields.url({ label: 'Resurse oficiale (arhiva, ZIP etc.)' }),
             social_media: fields.object(
               {
                 facebook: fields.url({ label: 'Facebook' }),
