@@ -187,7 +187,7 @@ export default config({
             primary: fields.object(
               {
                 family: fields.text({ label: 'Familie font' }),
-                url: fields.url({ label: 'URL font (Google Fonts, MyFonts etc.)' }),
+                url: fields.text({ label: 'URL font (Google Fonts, MyFonts etc.)' }),
                 weights: fields.array(
                   fields.integer({ label: 'Weight (ex: 400, 700)' }),
                   {
@@ -201,7 +201,7 @@ export default config({
             secondary: fields.object(
               {
                 family: fields.text({ label: 'Familie font' }),
-                url: fields.url({ label: 'URL font' }),
+                url: fields.text({ label: 'URL font' }),
                 weights: fields.array(
                   fields.integer({ label: 'Weight' }),
                   {
@@ -231,18 +231,18 @@ export default config({
         // --- Resurse ---
         resources: fields.object(
           {
-            website: fields.url({ label: 'Website oficial' }),
-            branding_manual: fields.url({ label: 'Manual de identitate (URL PDF)' }),
+            website: fields.text({ label: 'Website oficial' }),
+            branding_manual: fields.text({ label: 'Manual de identitate (URL PDF)' }),
             wikidata_id: fields.text({ label: 'Wikidata ID (ex: Q12345)' }),
-            wikipedia_url: fields.url({ label: 'Wikipedia RO (URL)' }),
-            official_resources: fields.url({ label: 'Resurse oficiale (arhiva, ZIP etc.)' }),
+            wikipedia_url: fields.text({ label: 'Wikipedia RO (URL)' }),
+            official_resources: fields.text({ label: 'Resurse oficiale (arhiva, ZIP etc.)' }),
             social_media: fields.object(
               {
-                facebook: fields.url({ label: 'Facebook' }),
-                twitter: fields.url({ label: 'Twitter / X' }),
-                linkedin: fields.url({ label: 'LinkedIn' }),
-                instagram: fields.url({ label: 'Instagram' }),
-                youtube: fields.url({ label: 'YouTube' }),
+                facebook: fields.text({ label: 'Facebook' }),
+                twitter: fields.text({ label: 'Twitter / X' }),
+                linkedin: fields.text({ label: 'LinkedIn' }),
+                instagram: fields.text({ label: 'Instagram' }),
+                youtube: fields.text({ label: 'YouTube' }),
               },
               { label: 'Social media' }
             ),
