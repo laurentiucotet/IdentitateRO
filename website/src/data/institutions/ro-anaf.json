@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-anaf",
+    "slug": "ro-anaf"
+  },
   "id": "ro-anaf",
   "slug": "anaf",
   "name": "Agenția Națională de Administrare Fiscală",

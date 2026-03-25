@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-ministerul-afacerilor-externe",
+    "slug": "ro-ministerul-afacerilor-externe"
+  },
   "id": "ro-ministerul-afacerilor-externe",
   "slug": "ministerul-afacerilor-externe",
   "name": "Ministerul Afacerilor Externe",

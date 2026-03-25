@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-cfr",
+    "slug": "ro-cfr"
+  },
   "id": "ro-cfr",
   "slug": "cfr",
   "name": "Căile Ferate Române",

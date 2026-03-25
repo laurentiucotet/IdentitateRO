@@ -1,4 +1,8 @@
 {
+  "_id": {
+    "name": "ro-registrul-comertului",
+    "slug": "ro-registrul-comertului"
+  },
   "id": "ro-registrul-comertului",
   "slug": "registrul-comertului",
   "name": "Oficiul Național al Registrului Comerțului",
