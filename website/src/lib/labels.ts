@@ -75,6 +75,7 @@ export const COLOR_USAGE_LABELS: Record<string, string> = {
 
 export const QUALITY_LABELS: Record<string, { label: string; class: string }> = {
   'verified': { label: 'Confirmat oficial', class: 'badge-verified' },
+  'official_source': { label: 'Din surse oficiale', class: 'badge-official-source' },
   'unverified': { label: 'Neconfirmat oficial', class: 'badge-unverified' },
 };
 
