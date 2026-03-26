@@ -16,15 +16,12 @@
       "fonduri europene",
       "investiții"
     ],
-    "quality": "unverified"
+    "quality": "verified"
   },
   "location": {
-    "country_code": "RO",
-    "county": null,
-    "city": null
+    "country_code": "RO"
   },
   "description": "Planul Național de Redresare și Reziliență (PNRR) este strategia națională pentru gestionarea fondurilor europene destinate redresării și consolidării rezilienței economice după crize. Coordonează reformele și investițiile finanțate prin Mecanismul de Redresare și Reziliență.",
-  "usage_notes": null,
   "colors": [
     {
       "name": "Color #FBCA07",
@@ -34,8 +31,7 @@
         202,
         7
       ],
-      "cmyk": null,
-      "pantone": null,
+      "cmyk": [],
       "usage": "primary"
     },
     {
@@ -46,8 +42,7 @@
         43,
         127
       ],
-      "cmyk": null,
-      "pantone": null,
+      "cmyk": [],
       "usage": "secondary"
     },
     {
@@ -58,9 +53,8 @@
         17,
         38
       ],
-      "cmyk": null,
-      "pantone": null,
-      "usage": null
+      "cmyk": [],
+      "usage": "primary"
     },
     {
       "name": "Color #FFCE00",
@@ -70,9 +64,8 @@
         206,
         0
       ],
-      "cmyk": null,
-      "pantone": null,
-      "usage": null
+      "cmyk": [],
+      "usage": "primary"
     },
     {
       "name": "Color #003399",
@@ -82,9 +75,8 @@
         51,
         153
       ],
-      "cmyk": null,
-      "pantone": null,
-      "usage": null
+      "cmyk": [],
+      "usage": "primary"
     },
     {
       "name": "Color #004990",
@@ -94,37 +86,40 @@
         73,
         144
       ],
-      "cmyk": null,
-      "pantone": null,
-      "usage": null
+      "cmyk": [],
+      "usage": "primary"
     }
   ],
-  "typography": null,
-  "resources": {
-    "website": "https://mfe.gov.ro/pnrr/",
-    "branding_manual": "https://mfe.gov.ro/mipe-publica-manualul-de-identitate-vizuala-pentru-planul-national-de-redresare-si-rezilienta/manual-identitate-vizuala-pnrr/",
-    "social_media": null,
-    "official_resources": "https://mfe.gov.ro/wp-content/uploads/2024/07/8c51672dc800f447bc9c586c415f21a1.zip"
+  "typography": {
+    "primary": {
+      "weights": []
+    },
+    "secondary": {
+      "weights": []
+    }
   },
   "assets": {
     "main": {
       "type": "horizontal",
       "color": "/logos/ro-pnrr/horizontal/color.svg",
-      "dark_mode": null,
-      "white": null,
-      "black": "/logos/ro-pnrr/horizontal/black.svg",
-      "monochrome": null
+      "black": "/logos/ro-pnrr/horizontal/black.svg"
     },
     "horizontal": {
       "type": "horizontal",
       "color": "/logos/ro-pnrr/horizontal/color.svg",
-      "dark_mode": null,
-      "white": null,
-      "black": "/logos/ro-pnrr/horizontal/black.svg",
-      "monochrome": null
+      "black": "/logos/ro-pnrr/horizontal/black.svg"
     },
-    "vertical": null,
-    "symbol": null,
-    "favicon": null
+    "vertical": {
+      "type": "horizontal"
+    },
+    "symbol": {
+      "type": "horizontal"
+    }
+  },
+  "resources": {
+    "website": "https://mfe.gov.ro/pnrr/",
+    "branding_manual": "https://mfe.gov.ro/mipe-publica-manualul-de-identitate-vizuala-pentru-planul-national-de-redresare-si-rezilienta/manual-identitate-vizuala-pnrr/",
+    "official_resources": "https://mfe.gov.ro/wp-content/uploads/2024/07/8c51672dc800f447bc9c586c415f21a1.zip",
+    "social_media": {}
   }
 }
