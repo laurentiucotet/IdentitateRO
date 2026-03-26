@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "eu-flag",
-    "slug": "eu-flag"
-  },
+  "_id": "eu-flag",
   "id": "ro-eu-flag",
   "slug": "eu-flag",
   "name": "Steagul Uniunii Europene",
@@ -66,8 +63,7 @@
       "dark_mode": null,
       "white": "/logos/eu-flag/symbol/white.svg",
       "black": "/logos/eu-flag/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -77,8 +73,7 @@
       "dark_mode": null,
       "white": "/logos/eu-flag/symbol/white.svg",
       "black": "/logos/eu-flag/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

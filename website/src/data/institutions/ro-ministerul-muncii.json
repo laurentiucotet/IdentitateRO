@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-muncii",
-    "slug": "ro-ministerul-muncii"
-  },
+  "_id": "ro-ministerul-muncii",
   "id": "ro-ministerul-muncii",
   "slug": "ministerul-muncii",
   "name": "Ministerul Muncii",
@@ -55,8 +52,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -64,8 +60,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

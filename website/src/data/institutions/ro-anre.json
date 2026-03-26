@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-anre",
-    "slug": "ro-anre"
-  },
+  "_id": "ro-anre",
   "id": "ro-anre",
   "slug": "anre",
   "name": "Autoritatea Națională de Reglementare în Domeniul Energiei",
@@ -86,8 +83,7 @@
       "dark_mode": null,
       "white": "/logos/ro-anre/symbol_white.svg",
       "black": "/logos/ro-anre/symbol_black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -97,8 +93,7 @@
       "dark_mode": null,
       "white": "/logos/ro-anre/symbol_white.svg",
       "black": "/logos/ro-anre/symbol_black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

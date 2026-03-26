@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-bnr",
-    "slug": "ro-bnr"
-  },
+  "_id": "ro-bnr",
   "id": "ro-bnr",
   "slug": "bnr",
   "name": "Banca Națională a României",
@@ -54,8 +51,7 @@
       "dark_mode": null,
       "white": "/logos/ro-bnr/horizontal/white.svg",
       "black": "/logos/ro-bnr/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -63,8 +59,7 @@
       "dark_mode": null,
       "white": "/logos/ro-bnr/horizontal/white.svg",
       "black": "/logos/ro-bnr/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": {
@@ -73,8 +68,7 @@
       "dark_mode": null,
       "white": "/logos/ro-bnr/symbol/white.svg",
       "black": "/logos/ro-bnr/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

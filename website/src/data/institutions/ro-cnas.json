@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-cnas",
-    "slug": "ro-cnas"
-  },
+  "_id": "ro-cnas",
   "id": "ro-cnas",
   "slug": "cnas",
   "name": "Casa Națională de Asigurări de Sănătate",
@@ -67,8 +64,7 @@
       "dark_mode": null,
       "white": "/logos/ro-cnas/horizontal/white.svg",
       "black": "/logos/ro-cnas/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -76,8 +72,7 @@
       "dark_mode": null,
       "white": "/logos/ro-cnas/horizontal/white.svg",
       "black": "/logos/ro-cnas/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": {
@@ -86,8 +81,7 @@
       "dark_mode": null,
       "white": "/logos/ro-cnas/symbol/white.svg",
       "black": "/logos/ro-cnas/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

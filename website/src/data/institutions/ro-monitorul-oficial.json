@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-monitorul-oficial",
-    "slug": "ro-monitorul-oficial"
-  },
+  "_id": "ro-monitorul-oficial",
   "id": "ro-monitorul-oficial",
   "slug": "monitorul-oficial",
   "name": "Monitorul Oficial al României",
@@ -53,8 +50,7 @@
       "dark_mode": null,
       "white": "/logos/ro-monitorul-oficial/symbol/white.svg",
       "black": "/logos/ro-monitorul-oficial/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -64,8 +60,7 @@
       "dark_mode": null,
       "white": "/logos/ro-monitorul-oficial/symbol/white.svg",
       "black": "/logos/ro-monitorul-oficial/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

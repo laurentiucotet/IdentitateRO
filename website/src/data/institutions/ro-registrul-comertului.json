@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-registrul-comertului",
-    "slug": "ro-registrul-comertului"
-  },
+  "_id": "ro-registrul-comertului",
   "id": "ro-registrul-comertului",
   "slug": "registrul-comertului",
   "name": "Oficiul Național al Registrului Comerțului",
@@ -55,8 +52,7 @@
       "dark_mode": null,
       "white": "/logos/ro-registrul-comertului/symbol/white.svg",
       "black": "/logos/ro-registrul-comertului/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": {
@@ -65,8 +61,7 @@
       "dark_mode": null,
       "white": "/logos/ro-registrul-comertului/vertical/white.svg",
       "black": "/logos/ro-registrul-comertului/vertical/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "symbol": {
       "type": "symbol",
@@ -74,8 +69,7 @@
       "dark_mode": null,
       "white": "/logos/ro-registrul-comertului/symbol/white.svg",
       "black": "/logos/ro-registrul-comertului/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

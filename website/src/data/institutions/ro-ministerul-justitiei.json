@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-justitiei",
-    "slug": "ro-ministerul-justitiei"
-  },
+  "_id": "ro-ministerul-justitiei",
   "id": "ro-ministerul-justitiei",
   "slug": "ministerul-justitiei",
   "name": "Ministerul Justiției",
@@ -66,8 +63,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-justitiei/horizontal/white.svg",
       "black": "/logos/ro-ministerul-justitiei/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -75,8 +71,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-justitiei/horizontal/white.svg",
       "black": "/logos/ro-ministerul-justitiei/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

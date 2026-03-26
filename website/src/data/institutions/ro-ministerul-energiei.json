@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-energiei",
-    "slug": "ro-ministerul-energiei"
-  },
+  "_id": "ro-ministerul-energiei",
   "id": "ro-ministerul-energiei",
   "slug": "ministerul-energiei",
   "name": "Ministerul Energiei",
@@ -54,8 +51,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-energiei/horizontal/white.svg",
       "black": "/logos/ro-ministerul-energiei/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -63,8 +59,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-energiei/horizontal/white.svg",
       "black": "/logos/ro-ministerul-energiei/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

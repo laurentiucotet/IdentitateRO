@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-sanatatii",
-    "slug": "ro-ministerul-sanatatii"
-  },
+  "_id": "ro-ministerul-sanatatii",
   "id": "ro-ministerul-sanatatii",
   "slug": "ministerul-sanatatii",
   "name": "Ministerul Sănătății",
@@ -54,8 +51,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-sanatatii/horizontal/white.svg",
       "black": "/logos/ro-ministerul-sanatatii/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -63,8 +59,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-sanatatii/horizontal/white.svg",
       "black": "/logos/ro-ministerul-sanatatii/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

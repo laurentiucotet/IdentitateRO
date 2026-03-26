@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-cfr-marfa",
-    "slug": "ro-cfr-marfa"
-  },
+  "_id": "ro-cfr-marfa",
   "id": "ro-cfr-marfa",
   "slug": "cfr-marfa",
   "name": "CFR Marfă SA",
@@ -102,8 +99,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -113,8 +109,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

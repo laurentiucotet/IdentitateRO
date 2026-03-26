@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-afacerilor-externe",
-    "slug": "ro-ministerul-afacerilor-externe"
-  },
+  "_id": "ro-ministerul-afacerilor-externe",
   "id": "ro-ministerul-afacerilor-externe",
   "slug": "ministerul-afacerilor-externe",
   "name": "Ministerul Afacerilor Externe",
@@ -54,8 +51,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-afacerilor-externe/horizontal/white.svg",
       "black": "/logos/ro-ministerul-afacerilor-externe/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -63,8 +59,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-afacerilor-externe/horizontal/white.svg",
       "black": "/logos/ro-ministerul-afacerilor-externe/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

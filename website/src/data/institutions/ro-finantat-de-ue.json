@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-finantat-de-ue",
-    "slug": "ro-finantat-de-ue"
-  },
+  "_id": "ro-finantat-de-ue",
   "id": "ro-finantat-de-ue",
   "slug": "finantat-de-ue",
   "name": "Finanțat de Uniunea Europeană",
@@ -66,8 +63,7 @@
       "dark_mode": null,
       "white": "/logos/ro-finantat-de-ue/horizontal/white.svg",
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -75,8 +71,7 @@
       "dark_mode": null,
       "white": "/logos/ro-finantat-de-ue/horizontal/white.svg",
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": {
       "type": "vertical",
@@ -84,8 +79,7 @@
       "dark_mode": null,
       "white": "/logos/ro-finantat-de-ue/vertical/white.svg",
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "symbol": null,
     "favicon": null

@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-camera-deputatilor",
-    "slug": "ro-camera-deputatilor"
-  },
+  "_id": "ro-camera-deputatilor",
   "id": "ro-camera-deputatilor",
   "slug": "camera-deputatilor",
   "name": "Camera Deputaților",
@@ -126,8 +123,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -137,8 +133,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }
