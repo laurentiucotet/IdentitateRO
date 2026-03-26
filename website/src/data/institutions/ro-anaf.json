@@ -19,11 +19,9 @@
   },
   "location": {
     "country_code": "RO",
-    "county": null,
     "city": "București"
   },
   "description": "Agenția Națională de Administrare Fiscală (ANAF) este un organ de specialitate al administrației publice centrale responsabil cu administrarea veniturilor statului și colectarea taxelor. A fost înființată în 2003 și funcționează în subordinea Ministerului Finanțelor.",
-  "usage_notes": null,
   "colors": [
     {
       "name": "Principala",
@@ -33,8 +31,7 @@
         44,
         118
       ],
-      "cmyk": null,
-      "pantone": null,
+      "cmyk": [],
       "usage": "primary"
     },
     {
@@ -45,8 +42,7 @@
         21,
         21
       ],
-      "cmyk": null,
-      "pantone": null,
+      "cmyk": [],
       "usage": "secondary"
     }
   ],
@@ -56,39 +52,36 @@
       "url": "https://www.myfonts.com/collections/neue-helvetica-font-linotype",
       "weights": []
     },
-    "secondary": null
-  },
-  "resources": {
-    "website": "https://www.anaf.ro/",
-    "branding_manual": null,
-    "social_media": null
+    "secondary": {
+      "weights": []
+    }
   },
   "assets": {
     "main": {
       "type": "horizontal",
       "color": "/logos/ro-anaf/horizontal/color.svg",
-      "dark_mode": null,
       "white": "/logos/ro-anaf/horizontal/white.svg",
-      "black": "/logos/ro-anaf/horizontal/black.svg",
-      "monochrome": null
+      "black": "/logos/ro-anaf/horizontal/black.svg"
     },
     "horizontal": {
       "type": "horizontal",
       "color": "/logos/ro-anaf/horizontal/color.svg",
-      "dark_mode": null,
       "white": "/logos/ro-anaf/horizontal/white.svg",
-      "black": "/logos/ro-anaf/horizontal/black.svg",
-      "monochrome": null
+      "black": "/logos/ro-anaf/horizontal/black.svg"
     },
-    "vertical": null,
+    "vertical": {
+      "type": "horizontal"
+    },
     "symbol": {
       "type": "symbol",
       "color": "/logos/ro-anaf/symbol/color.svg",
-      "dark_mode": null,
       "white": "/logos/ro-anaf/symbol/white.svg",
-      "black": "/logos/ro-anaf/symbol/black.svg",
-      "monochrome": null
-    },
-    "favicon": null
+      "black": "/logos/ro-anaf/symbol/black.svg"
+    }
+  },
+  "resources": {
+    "website": "https://www.anaf.ro/",
+    "wikipedia_url": "https://ro.wikipedia.org/wiki/Agen%C8%9Bia_Na%C8%9Bional%C4%83_de_Administrare_Fiscal%C4%83",
+    "social_media": {}
   }
 }
