@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ins",
-    "slug": "ro-ins"
-  },
+  "_id": "ro-ins",
   "id": "ro-ins",
   "slug": "ins",
   "name": "Institutul Național de Statistică",
@@ -85,8 +82,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ins/horizontal/white.svg",
       "black": "/logos/ro-ins/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -94,8 +90,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ins/horizontal/white.svg",
       "black": "/logos/ro-ins/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": {
@@ -104,8 +99,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ins/symbol/white.svg",
       "black": "/logos/ro-ins/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

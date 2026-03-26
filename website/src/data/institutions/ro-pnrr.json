@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-pnrr",
-    "slug": "ro-pnrr"
-  },
+  "_id": "ro-pnrr",
   "id": "ro-pnrr",
   "slug": "pnrr",
   "name": "Planul Național de Redresare și Reziliență",
@@ -116,8 +113,7 @@
       "dark_mode": null,
       "white": null,
       "black": "/logos/ro-pnrr/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -125,8 +121,7 @@
       "dark_mode": null,
       "white": null,
       "black": "/logos/ro-pnrr/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

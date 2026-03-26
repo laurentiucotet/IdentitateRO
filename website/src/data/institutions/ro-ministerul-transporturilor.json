@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-transporturilor",
-    "slug": "ro-ministerul-transporturilor"
-  },
+  "_id": "ro-ministerul-transporturilor",
   "id": "ro-ministerul-transporturilor",
   "slug": "ministerul-transporturilor",
   "name": "Ministerul Transporturilor",
@@ -55,8 +52,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-transporturilor/horizontal/white.svg",
       "black": "/logos/ro-ministerul-transporturilor/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -64,8 +60,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-transporturilor/horizontal/white.svg",
       "black": "/logos/ro-ministerul-transporturilor/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

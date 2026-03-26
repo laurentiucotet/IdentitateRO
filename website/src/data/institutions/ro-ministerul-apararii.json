@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-apararii",
-    "slug": "ro-ministerul-apararii"
-  },
+  "_id": "ro-ministerul-apararii",
   "id": "ro-ministerul-apararii",
   "slug": "ministerul-apararii",
   "name": "Ministerul Apărării Naționale",
@@ -55,8 +52,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-apararii/horizontal/white.svg",
       "black": "/logos/ro-ministerul-apararii/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -64,8 +60,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-apararii/horizontal/white.svg",
       "black": "/logos/ro-ministerul-apararii/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

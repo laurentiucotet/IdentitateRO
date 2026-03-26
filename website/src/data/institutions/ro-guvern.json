@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-guvern",
-    "slug": "ro-guvern"
-  },
+  "_id": "ro-guvern",
   "id": "ro-guvern",
   "slug": "guvern",
   "name": "Guvernul României",
@@ -66,8 +63,7 @@
       "dark_mode": null,
       "white": "/logos/ro-guvern/symbol/white.svg",
       "black": "/logos/ro-guvern/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -77,8 +73,7 @@
       "dark_mode": null,
       "white": "/logos/ro-guvern/symbol/white.svg",
       "black": "/logos/ro-guvern/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-consiliul-timis",
-    "slug": "ro-consiliul-timis"
-  },
+  "_id": "ro-consiliul-timis",
   "id": "ro-consiliul-timis",
   "slug": "consiliul-timis",
   "name": "Consiliul Județean Timiș",
@@ -78,8 +75,7 @@
       "dark_mode": null,
       "white": "/logos/ro-consiliul-timis/horizontal/white.svg",
       "black": "/logos/ro-consiliul-timis/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -87,8 +83,7 @@
       "dark_mode": null,
       "white": "/logos/ro-consiliul-timis/horizontal/white.svg",
       "black": "/logos/ro-consiliul-timis/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": {
       "type": "vertical",
@@ -96,8 +91,7 @@
       "dark_mode": null,
       "white": "/logos/ro-consiliul-timis/vertical/white.svg",
       "black": "/logos/ro-consiliul-timis/vertical/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "symbol": {
       "type": "symbol",
@@ -105,8 +99,7 @@
       "dark_mode": null,
       "white": "/logos/ro-consiliul-timis/symbol/white.svg",
       "black": "/logos/ro-consiliul-timis/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

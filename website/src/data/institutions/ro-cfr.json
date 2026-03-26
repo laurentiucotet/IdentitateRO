@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-cfr",
-    "slug": "ro-cfr"
-  },
+  "_id": "ro-cfr",
   "id": "ro-cfr",
   "slug": "cfr",
   "name": "Căile Ferate Române",
@@ -66,8 +63,7 @@
       "dark_mode": null,
       "white": "/logos/ro-cfr/symbol/white.svg",
       "black": "/logos/ro-cfr/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -77,8 +73,7 @@
       "dark_mode": null,
       "white": "/logos/ro-cfr/symbol/white.svg",
       "black": "/logos/ro-cfr/symbol/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

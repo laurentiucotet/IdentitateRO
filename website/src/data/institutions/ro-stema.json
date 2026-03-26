@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-stema",
-    "slug": "ro-stema"
-  },
+  "_id": "ro-stema",
   "id": "ro-stema",
   "slug": "stema",
   "name": "Stema României",
@@ -138,8 +135,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": null,
     "vertical": null,
@@ -149,8 +145,7 @@
       "dark_mode": null,
       "white": null,
       "black": null,
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "favicon": null
   }

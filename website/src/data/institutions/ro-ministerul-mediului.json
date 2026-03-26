@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-mediului",
-    "slug": "ro-ministerul-mediului"
-  },
+  "_id": "ro-ministerul-mediului",
   "id": "ro-ministerul-mediului",
   "slug": "ministerul-mediului",
   "name": "Ministerul Mediului",
@@ -54,8 +51,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-mediului/horizontal/white.svg",
       "black": "/logos/ro-ministerul-mediului/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -63,8 +59,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-mediului/horizontal/white.svg",
       "black": "/logos/ro-ministerul-mediului/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,

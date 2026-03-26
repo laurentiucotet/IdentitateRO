@@ -1,8 +1,5 @@
 {
-  "_id": {
-    "name": "ro-ministerul-afacerilor-interne",
-    "slug": "ro-ministerul-afacerilor-interne"
-  },
+  "_id": "ro-ministerul-afacerilor-interne",
   "id": "ro-ministerul-afacerilor-interne",
   "slug": "ministerul-afacerilor-interne",
   "name": "Ministerul Afacerilor Interne",
@@ -66,8 +63,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-afacerilor-interne/horizontal/white.svg",
       "black": "/logos/ro-ministerul-afacerilor-interne/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "horizontal": {
       "type": "horizontal",
@@ -75,8 +71,7 @@
       "dark_mode": null,
       "white": "/logos/ro-ministerul-afacerilor-interne/horizontal/white.svg",
       "black": "/logos/ro-ministerul-afacerilor-interne/horizontal/black.svg",
-      "monochrome": null,
-      "png": null
+      "monochrome": null
     },
     "vertical": null,
     "symbol": null,
