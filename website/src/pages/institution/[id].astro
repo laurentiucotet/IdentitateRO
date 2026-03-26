@@ -387,7 +387,7 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
     </section>
 
     <!-- ═══ RESURSE ═══ -->
-    {inst.resources && (inst.resources.website || inst.resources.branding_manual || inst.resources.official_resources) && (
+    {inst.resources && (inst.resources.website || inst.resources.branding_manual || inst.resources.official_resources || inst.resources.wikipedia_url || inst.resources.wikidata_id) && (
       <section class="mt-10">
         <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
           <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -434,6 +434,32 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
               </svg>
               Resurse oficiale
+            </a>
+          )}
+          {inst.resources.wikipedia_url && (
+            <a
+              href={inst.resources.wikipedia_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              Wikipedia
+            </a>
+          )}
+          {inst.resources.wikidata_id && (
+            <a
+              href={`https://www.wikidata.org/wiki/${inst.resources.wikidata_id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h7" />
+              </svg>
+              Wikidata
             </a>
           )}
         </div>
