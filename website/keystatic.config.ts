@@ -101,13 +101,12 @@ export default config({
               }
             ),
             quality: fields.select({
-              label: 'Calitate date',
+              label: 'Status confirmare',
               options: [
-                { label: 'Verificat oficial', value: 'verified' },
-                { label: 'Comunitate', value: 'community' },
-                { label: 'Draft', value: 'draft' },
+                { label: 'Confirmat oficial', value: 'verified' },
+                { label: 'Neconfirmat oficial', value: 'unverified' },
               ],
-              defaultValue: 'draft',
+              defaultValue: 'unverified',
             }),
             seo_title: fields.text({ label: 'SEO title (optional)' }),
             seo_description: fields.text({
