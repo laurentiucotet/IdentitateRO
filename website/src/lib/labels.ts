@@ -74,9 +74,8 @@ export const COLOR_USAGE_LABELS: Record<string, string> = {
 // ─── Calitate date ───────────────────────────────
 
 export const QUALITY_LABELS: Record<string, { label: string; class: string }> = {
-  'verified': { label: 'Verificat', class: 'badge-verified' },
-  'community': { label: 'Comunitate', class: 'badge-community' },
-  'draft': { label: 'Draft', class: 'badge-draft' },
+  'verified': { label: 'Confirmat oficial', class: 'badge-verified' },
+  'unverified': { label: 'Neconfirmat oficial', class: 'badge-unverified' },
 };
 
 // ─── Tipografie roluri ───────────────────────────
