@@ -104,6 +104,7 @@ export default config({
               label: 'Status confirmare',
               options: [
                 { label: 'Confirmat oficial', value: 'verified' },
+                { label: 'Din surse oficiale', value: 'official_source' },
                 { label: 'Neconfirmat oficial', value: 'unverified' },
               ],
               defaultValue: 'unverified',
