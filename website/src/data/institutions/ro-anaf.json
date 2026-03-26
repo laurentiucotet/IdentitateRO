@@ -83,6 +83,8 @@
   "resources": {
     "website": "https://www.anaf.ro/",
     "wikipedia_url": "https://ro.wikipedia.org/wiki/Agen%C8%9Bia_Na%C8%9Bional%C4%83_de_Administrare_Fiscal%C4%83",
-    "social_media": {}
+    "social_media": {
+      "facebook": "https://www.facebook.com/www.ANAF.ro/?locale=ro_RO"
+    }
   }
 }
