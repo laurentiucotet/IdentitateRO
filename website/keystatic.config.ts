@@ -20,7 +20,7 @@ const logoAssetGroupFields = {
 
 export default config({
   storage:
-    process.env.KEYSTATIC_GITHUB_CLIENT_ID
+    import.meta.env.PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID
       ? {
           kind: 'github',
           repo: 'laurentiucotet/IdentitateRO',
