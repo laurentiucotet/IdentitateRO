@@ -1,5 +1,4 @@
 ---
-import Logo from './Logo.astro';
 // Header component - Navbar-ul aplicației
 const currentPath = Astro.url.pathname;
 
@@ -18,10 +17,10 @@ function isActive(href: string): boolean {
 
 <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-surface-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <nav class="flex items-center justify-between h-12">
+    <nav class="flex items-center justify-between h-16">
       <!-- Logo -->
       <a href="/" class="flex items-center group">
-        <Logo class="h-7 max-w-[201px]" />
+        <img src="/logo-identitate.svg" alt="Identitate.ro" class="w-32 h-full" loading="eager">
       </a>
 
       <!-- Navigation Links (Desktop) -->
@@ -55,6 +54,9 @@ function isActive(href: string): boolean {
       <div class="flex items-center gap-2">
         <a href="/solicita" class="btn-outline text-xs sm:text-sm py-2 px-3">
           Solicită Logo
+        </a>
+        <a href="/catalog" class="hidden sm:inline-flex btn-primary text-xs py-2 px-3">
+          Vezi catalog
         </a>
         <!-- Mobile Hamburger -->
         <button
