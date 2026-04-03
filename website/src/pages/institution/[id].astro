@@ -8,8 +8,6 @@ import { resolveAssetPath } from '../../lib/cdn-helpers';
 import {
   CATEGORY_LABELS_SINGULAR,
   LOGO_LAYOUT_LABELS,
-  LOGO_VARIANT_LABELS,
-  COLOR_USAGE_LABELS,
   QUALITY_LABELS,
 } from '../../lib/labels';
 
@@ -97,8 +95,8 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
 
 <BaseLayout title={title} description={description} ogImage={absoluteLogo} ogType="website">
   {/* JSON-LD structured data */}
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} slot="head" />
 
   <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12" itemscope itemtype="https://schema.org/GovernmentOrganization">
     <!-- Header -->
@@ -733,9 +731,9 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
       const hex = badge.dataset.hex;
       if (!hex) return;
       const contrastWhite = getContrastRatio(hex, '#FFFFFF');
-      let level = '';
-      let textClass = '';
-      let title = '';
+      let level;
+      let textClass;
+      let title;
       let showInfo = true;
       if (contrastWhite >= 7) {
         level = 'AAA';
@@ -775,7 +773,7 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
         const slug = downloadZipBtn.dataset.slug || 'logos';
 
         // Lazy-load JSZip
-        // @ts-ignore - CDN dynamic import
+        // @ts-expect-error -- CDN dynamic import, not in type definitions
         const { default: JSZip } = await import('https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm');
 
         // Show loading state

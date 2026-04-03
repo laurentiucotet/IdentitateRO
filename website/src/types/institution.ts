@@ -150,7 +150,7 @@ export interface Meta {
   version: string;                               // Data version (e.g., "1.2.0")
   last_updated: string;                          // ISO 8601 date
   keywords: string[];                            // Keywords for search (was 'tags' in v2)
-  quality?: 'verified' | 'community' | 'draft';  // Optional quality level
+  quality?: 'verified' | 'official_source' | 'unverified' | 'community' | 'draft';  // Optional quality level
   seo_title?: string;                            // Custom SEO title override
   seo_description?: string;                      // Custom meta description override
 }
@@ -194,6 +194,7 @@ export interface Institution {
 /**
  * Check if an object is a valid Institution
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isInstitution(obj: any): obj is Institution {
   return (
     obj &&
@@ -216,6 +217,7 @@ export function isInstitution(obj: any): obj is Institution {
 /**
  * Check if data has current schema markers
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function hasCurrentSchema(obj: any): boolean {
   return (
     obj &&

@@ -2,7 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import institutionIndex from '../data/institutions-index.json';
 
-const institutions = institutionIndex.institutions as any[];
+import type { Institution } from '../types/institution';
+const institutions = institutionIndex.institutions as unknown as Institution[];
 ---
 
 <BaseLayout title="Cum să folosești — IdentitateRO" description="Ghid complet de utilizare pentru pachetul npm @identitate-ro/logos și CDN.">
@@ -98,7 +99,7 @@ const institutions = institutionIndex.institutions as any[];
       <section>
         <h2 class="text-2xl font-bold text-primary-900 mb-4">Instituții Disponibile ({institutions.length})</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {institutions.map((inst: any) => (
+          {institutions.map((inst) => (
             <a href={`/institution/${inst.slug}`} class="bg-surface-50 border border-surface-200 rounded-lg p-3 hover:border-primary-300 transition-colors">
               <code class="text-sm text-primary-700">{inst.id}</code>
               <p class="text-xs text-surface-600 mt-1">{inst.name}</p>

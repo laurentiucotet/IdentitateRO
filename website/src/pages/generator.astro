@@ -515,6 +515,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </main>
 
   <script>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-nocheck — script JS cu JSDoc, nu TypeScript; tipurile se adaugă ulterior
+    /* global html2canvas, JSZip, saveAs */
     // ===== STATE =====
     const state = {
       step: 1,
@@ -698,7 +701,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    // @ts-ignore
     window.goToStep = goToStep;
 
     // ===== FILE UPLOAD =====
@@ -752,7 +754,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         goToStep(3);
       }, 1500);
     }
-    // @ts-ignore
     window.analyzeAndExtract = analyzeAndExtract;
 
     // ===== RENDER: Colors (Rich format) =====
@@ -1047,7 +1048,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         window.print();
       });
     }
-    // @ts-ignore
     window.downloadPDF = downloadPDF;
 
     // ===== GENERATE REAL PDF (html2canvas + jsPDF) =====
@@ -1070,7 +1070,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       try {
         setProgress(5, 'Se inițializează...');
         
-        // @ts-ignore
         const { jsPDF } = window.jspdf;
         const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
         
@@ -1084,7 +1083,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           // Wait a tick for UI update
           await new Promise(r => setTimeout(r, 50));
           
-          // @ts-ignore
           const canvas = await html2canvas(page, {
             scale: 2,
             useCORS: true,
@@ -1127,7 +1125,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         if (btn) btn.disabled = false;
       }
     }
-    // @ts-ignore
     window.generateRealPDF = generateRealPDF;
 
     // ===== BUILD COMPOSITE SVG (symbol + text in a single SVG) =====
@@ -1144,7 +1141,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if (!origSvg) return symbolSvg;
       
       const vb = origSvg.getAttribute('viewBox') || '0 0 100 100';
-      const [, , vbW, vbH] = vb.split(/[\s,]+/).map(Number);
+      const [, , _vbW, _vbH] = vb.split(/[\s,]+/).map(Number); // rezervate pentru viitor
       const symbolContent = origSvg.innerHTML;
       
       // Symbol-only variant
@@ -1168,7 +1165,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         const textX = symbolSize + gap;
         const textStartY = totalH / 2 - ((lines.length - 1) * (fontSize1 + lineGap)) / 2;
         
-        let textElements = lines.map((line, idx) => {
+        const textElements = lines.map((line, idx) => {
           const fs = idx === 0 ? fontSize1 : fontSize2;
           const y = textStartY + idx * (fontSize1 + lineGap);
           return `<text x="${textX}" y="${y}" font-family="${state.fonts.primary}, serif" font-size="${fs}" font-weight="700" fill="${textColor}" letter-spacing="1" dominant-baseline="middle">${escapeXml(line)}</text>`;
@@ -1189,7 +1186,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const symbolX = (totalW - symbolSize) / 2;
       const textStartY = symbolSize + gap + fontSize1;
       
-      let textElements = lines.map((line, idx) => {
+      const textElements = lines.map((line, idx) => {
         const fs = idx === 0 ? fontSize1 : fontSize2;
         const y = textStartY + idx * (fontSize1 + lineGap);
         return `<text x="${totalW / 2}" y="${y}" font-family="${state.fonts.primary}, serif" font-size="${fs}" font-weight="700" fill="${textColor}" text-anchor="middle" letter-spacing="1">${escapeXml(line)}</text>`;
@@ -1207,7 +1204,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     // ===== DOWNLOAD SVG PACK AS ZIP =====
     async function downloadSVGPack() {
-      // @ts-ignore
       const zip = new JSZip();
       const slug = state.brandName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'identitate';
       
@@ -1280,10 +1276,8 @@ Proporție: ${Math.round(state.safeZone * 100)}%
       
       // Generate and download ZIP
       const content = await zip.generateAsync({ type: 'blob' });
-      // @ts-ignore
       saveAs(content, `${folderName}.zip`);
     }
-    // @ts-ignore
     window.downloadSVGPack = downloadSVGPack;
 
     // ===== INIT =====

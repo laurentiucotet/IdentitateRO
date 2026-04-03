@@ -65,10 +65,10 @@ export function hasSvg(inst: Institution): boolean {
  */
 export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[] {
   const assets: DownloadableAsset[] = [];
-  const { main, horizontal, vertical, symbol } = inst.assets;
-  
+  const { horizontal, vertical, symbol } = inst.assets;
+
   // Process each layout type
-  const layouts: Array<{ key: string; group: typeof main; layout: LogoLayout }> = [];
+  const layouts: Array<{ key: string; group: LogoAssetGroup; layout: LogoLayout }> = [];
   
   if (horizontal) layouts.push({ key: 'horizontal', group: horizontal, layout: 'horizontal' });
   if (vertical) layouts.push({ key: 'vertical', group: vertical, layout: 'vertical' });

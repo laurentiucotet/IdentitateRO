@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import institutionIndex from '../data/institutions-index.json';
-import { resolveAssetPath, CDN_VERSION } from '../lib/cdn-helpers';
+import { CDN_VERSION } from '../lib/cdn-helpers';
 import {
   CATEGORY_LABELS,
   CATEGORY_LABELS_SINGULAR,
@@ -195,7 +195,6 @@ const detail         = document.getElementById('institution-detail');
 const placeholder    = document.getElementById('catalog-placeholder');
 
 let currentCategory  = null; // null = all
-let currentSlug      = null;
 let currentSort      = 'az';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -612,7 +611,6 @@ function setActiveCategory(value) {
 }
 
 function setActiveInstitution(slug) {
-  currentSlug = slug;
   document.querySelectorAll('.institution-btn').forEach(b => {
     const active = b.dataset.institutionBtn === slug;
     b.classList.toggle('bg-primary-50', active);
@@ -730,7 +728,6 @@ function applySortAndFilter(query) {
     const btns = [...group.querySelectorAll('.institution-btn')];
 
     // Sort
-    const container = group; // buttons are direct children or inside
     btns.sort((a, b) => {
       const an = (a.dataset.name || '').toLowerCase();
       const bn = (b.dataset.name || '').toLowerCase();

@@ -25,7 +25,9 @@ jobs:
 
       - name: Lint
         run: npm --prefix website run lint
-        continue-on-error: true  # warnings pre-existente; scoate flag-ul dupa ce codebase-ul e curat
+
+      - name: Type check
+        run: npm --prefix website run check
 
       - name: Run unit tests
         run: npm --prefix website run test

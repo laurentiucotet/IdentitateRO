@@ -61,7 +61,7 @@ const ogImageUrl = ogImage || new URL('/og-image.png', Astro.site).href;
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" /></noscript>
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "IdentitateEU",
@@ -80,7 +80,7 @@ const ogImageUrl = ogImage || new URL('/og-image.png', Astro.site).href;
 
     <title>{pageTitle}</title>
 
-    <script type="module">
+    <script is:inline type="module">
       import { inject } from "@vercel/analytics";
       inject();
     </script>

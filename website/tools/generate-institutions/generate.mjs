@@ -128,7 +128,7 @@ async function askQuestion(question) {
 //  Save API key to .env 
 
 function saveApiKeyToEnv(key) {
-  let content = '';
+  let content;
   if (fs.existsSync(ENV_PATH)) {
     content = fs.readFileSync(ENV_PATH, 'utf-8');
     if (content.includes('OPENROUTER_API_KEY=')) {
@@ -208,7 +208,7 @@ async function callOpenRouter(apiKey, systemPrompt, userPrompt, attempt = 1) {
 
   try {
     return JSON.parse(cleaned);
-  } catch (e) {
+  } catch {
     if (attempt < MAX_RETRIES) {
       warn('Attempt ' + attempt + '/' + MAX_RETRIES + ' — AI returned invalid JSON, retrying...');
       // Wait a bit before retrying
@@ -503,7 +503,7 @@ function extractColorsFromSvgFiles(slugDir, discovered, isFlat) {
 
 function extractTypographyFromMetadata(rawContent) {
   // Pattern 1: "font: FAMILY url: URL" or "font: FAMILY URL"
-  const withUrlPattern = /font\s*:?\s+([a-zA-Z0-9][a-zA-Z0-9 +\-]*)(?:\s+url\s*:\s*|\s+)(https?:\/\/\S+)/i;
+  const withUrlPattern = /font\s*:?\s+([a-zA-Z0-9][a-zA-Z0-9 +-]*)(?:\s+url\s*:\s*|\s+)(https?:\/\/\S+)/i;
   const withUrlMatch = rawContent.match(withUrlPattern);
   if (withUrlMatch) {
     const family = withUrlMatch[1].trim();
@@ -515,7 +515,7 @@ function extractTypographyFromMetadata(rawContent) {
   }
 
   // Pattern 2: "font: FAMILY" or "font FAMILY" (no URL)
-  const familyOnlyPattern = /font\s*:?\s+([a-zA-Z][a-zA-Z0-9 +\-]{1,40})(?:\s*$|\s*\n)/im;
+  const familyOnlyPattern = /font\s*:?\s+([a-zA-Z][a-zA-Z0-9 +-]{1,40})(?:\s*$|\s*\n)/im;
   const familyOnlyMatch = rawContent.match(familyOnlyPattern);
   if (familyOnlyMatch) {
     const family = familyOnlyMatch[1].trim();
