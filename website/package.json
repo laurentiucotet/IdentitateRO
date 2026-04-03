@@ -12,6 +12,7 @@
     "check": "astro check",
     "test": "vitest run",
     "test:watch": "vitest",
+    "lint": "eslint .",
     "astro": "astro",
     "data:generate": "node scripts/generate-index.js",
     "data:generate:from-md": "node tools/generate-institutions/generate.mjs",
@@ -33,11 +34,16 @@
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "ajv": "^8.17.1",
+    "eslint": "^10.1.0",
+    "eslint-plugin-astro": "^1.6.0",
+    "globals": "^17.4.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.58.0",
     "vitest": "^2.1.9"
   }
 }
