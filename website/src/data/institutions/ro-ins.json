@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
-    "keywords": [
-      "statistică",
-      "date",
-      "populație",
-      "cercetare",
-      "institut"
-    ],
+    "keywords": ["statistică", "date", "populație", "cercetare", "institut"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Galben",
       "hex": "#F6C014",
-      "rgb": [
-        246,
-        192,
-        20
-      ],
+      "rgb": [246, 192, 20],
       "cmyk": null,
       "pantone": null,
       "usage": "accent"
@@ -40,11 +30,7 @@
     {
       "name": "Gri inchis",
       "hex": "#34495E",
-      "rgb": [
-        52,
-        73,
-        94
-      ],
+      "rgb": [52, 73, 94],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"
@@ -52,11 +38,7 @@
     {
       "name": "Color #FFFFFF",
       "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
+      "rgb": [255, 255, 255],
       "cmyk": null,
       "pantone": null,
       "usage": null

@@ -28,11 +28,7 @@
     {
       "name": "Color #004990",
       "hex": "#004990",
-      "rgb": [
-        0,
-        73,
-        144
-      ],
+      "rgb": [0, 73, 144],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"

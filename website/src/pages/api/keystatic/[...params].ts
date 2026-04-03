@@ -15,7 +15,8 @@ export const prerender = false;
 export async function ALL(context: APIContext) {
   const handler = makeHandler({
     config,
-    clientId: process.env.KEYSTATIC_GITHUB_CLIENT_ID ?? import.meta.env.PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID,
+    clientId:
+      process.env.KEYSTATIC_GITHUB_CLIENT_ID ?? import.meta.env.PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID,
     clientSecret: process.env.KEYSTATIC_GITHUB_CLIENT_SECRET,
     secret: process.env.KEYSTATIC_SECRET,
   });

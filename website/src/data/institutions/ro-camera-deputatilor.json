@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "parlament",
-      "legislativ",
-      "deputați",
-      "camera deputaților",
-      "bucurești"
-    ],
+    "keywords": ["parlament", "legislativ", "deputați", "camera deputaților", "bucurești"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Color #F5CE67",
       "hex": "#F5CE67",
-      "rgb": [
-        245,
-        206,
-        103
-      ],
+      "rgb": [245, 206, 103],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +30,7 @@
     {
       "name": "Color #F5CE66",
       "hex": "#F5CE66",
-      "rgb": [
-        245,
-        206,
-        102
-      ],
+      "rgb": [245, 206, 102],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"
@@ -52,11 +38,7 @@
     {
       "name": "Color #E31E24",
       "hex": "#E31E24",
-      "rgb": [
-        227,
-        30,
-        36
-      ],
+      "rgb": [227, 30, 36],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -64,11 +46,7 @@
     {
       "name": "Color #505E5F",
       "hex": "#505E5F",
-      "rgb": [
-        80,
-        94,
-        95
-      ],
+      "rgb": [80, 94, 95],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -76,11 +54,7 @@
     {
       "name": "Color #0777CF",
       "hex": "#0777CF",
-      "rgb": [
-        7,
-        119,
-        207
-      ],
+      "rgb": [7, 119, 207],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -88,11 +62,7 @@
     {
       "name": "Color #AF0000",
       "hex": "#AF0000",
-      "rgb": [
-        175,
-        0,
-        0
-      ],
+      "rgb": [175, 0, 0],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -100,11 +70,7 @@
     {
       "name": "Color #FFED00",
       "hex": "#FFED00",
-      "rgb": [
-        255,
-        237,
-        0
-      ],
+      "rgb": [255, 237, 0],
       "cmyk": null,
       "pantone": null,
       "usage": null

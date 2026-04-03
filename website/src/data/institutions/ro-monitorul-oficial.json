@@ -8,12 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
-    "keywords": [
-      "monitorul oficial",
-      "legi",
-      "publicare",
-      "acte normative"
-    ],
+    "keywords": ["monitorul oficial", "legi", "publicare", "acte normative"],
     "quality": "unverified"
   },
   "location": {
@@ -27,11 +22,7 @@
     {
       "name": "Color #003A81",
       "hex": "#003A81",
-      "rgb": [
-        0,
-        58,
-        129
-      ],
+      "rgb": [0, 58, 129],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"

@@ -3,6 +3,7 @@
 ## Problema: npm necesită 2FA pentru publicare
 
 Ai primit eroarea:
+
 ```
 403 Forbidden - Two-factor authentication or granular access token with bypass 2fa enabled is required to publish packages.
 ```
@@ -12,6 +13,7 @@ Ai primit eroarea:
 ### Pași:
 
 1. **Mergi la pagina de tokens npm**:
+
    ```
    https://www.npmjs.com/settings/YOUR_USERNAME/tokens
    ```
@@ -100,6 +102,7 @@ curl https://cdn.jsdelivr.net/npm/@identitate-ro/logos@1.0.0/logos/anaf/anaf.svg
 ⚠️ **NU commit-ui .npmrc cu tokenul în Git!**
 
 Fișierul `.gitignore` din `packages/logos/` deja conține:
+
 ```
 .npmrc
 ```

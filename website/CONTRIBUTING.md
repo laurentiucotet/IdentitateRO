@@ -76,6 +76,7 @@ ro-primăria-timișoara     ❌ Fără diacritice în slug
 Consultă `src/types/institution.ts` pentru definiția completă.
 
 Câmpuri obligatorii:
+
 - `id` — format `ro-{slug}` (ex: `ro-anaf`)
 - `slug` — slug URL (ex: `anaf`)
 - `name` — numele complet oficial
@@ -86,6 +87,7 @@ Câmpuri obligatorii:
 - `assets.main` — obiect cu logo-ul principal (trebuie să conțină cel puțin `type` și `color`)
 
 Câmpuri opționale:
+
 - `shortname` — nume scurt / acronim
 - `description` — scurtă descriere
 - `location` — `{ country_code, county?, city? }`

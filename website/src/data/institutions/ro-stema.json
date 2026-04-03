@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "stemă",
-      "emblemă",
-      "heraldică",
-      "simbol național",
-      "sigiliu"
-    ],
+    "keywords": ["stemă", "emblemă", "heraldică", "simbol național", "sigiliu"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Color #C40000",
       "hex": "#C40000",
-      "rgb": [
-        196,
-        0,
-        0
-      ],
+      "rgb": [196, 0, 0],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +30,7 @@
     {
       "name": "Color #DA251D",
       "hex": "#DA251D",
-      "rgb": [
-        218,
-        37,
-        29
-      ],
+      "rgb": [218, 37, 29],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"
@@ -52,11 +38,7 @@
     {
       "name": "Color #1C63B7",
       "hex": "#1C63B7",
-      "rgb": [
-        28,
-        99,
-        183
-      ],
+      "rgb": [28, 99, 183],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -64,11 +46,7 @@
     {
       "name": "Color #FCCB06",
       "hex": "#FCCB06",
-      "rgb": [
-        252,
-        203,
-        6
-      ],
+      "rgb": [252, 203, 6],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -76,11 +54,7 @@
     {
       "name": "Color #920000",
       "hex": "#920000",
-      "rgb": [
-        146,
-        0,
-        0
-      ],
+      "rgb": [146, 0, 0],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -88,11 +62,7 @@
     {
       "name": "Color #F8C300",
       "hex": "#F8C300",
-      "rgb": [
-        248,
-        195,
-        0
-      ],
+      "rgb": [248, 195, 0],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -100,11 +70,7 @@
     {
       "name": "Color #F6E078",
       "hex": "#F6E078",
-      "rgb": [
-        246,
-        224,
-        120
-      ],
+      "rgb": [246, 224, 120],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -112,11 +78,7 @@
     {
       "name": "Color #E9001A",
       "hex": "#E9001A",
-      "rgb": [
-        233,
-        0,
-        26
-      ],
+      "rgb": [233, 0, 26],
       "cmyk": null,
       "pantone": null,
       "usage": null

@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "finanțe",
-      "buget",
-      "taxe",
-      "fiscalitate",
-      "minister"
-    ],
+    "keywords": ["finanțe", "buget", "taxe", "fiscalitate", "minister"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Color #004990",
       "hex": "#004990",
-      "rgb": [
-        0,
-        73,
-        144
-      ],
+      "rgb": [0, 73, 144],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"

@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "finanțare",
-      "uniunea europeană",
-      "proiecte",
-      "fonduri",
-      "co-finanțare"
-    ],
+    "keywords": ["finanțare", "uniunea europeană", "proiecte", "fonduri", "co-finanțare"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Color #FBCA07",
       "hex": "#FBCA07",
-      "rgb": [
-        251,
-        202,
-        7
-      ],
+      "rgb": [251, 202, 7],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +30,7 @@
     {
       "name": "Color #2A3C93",
       "hex": "#2A3C93",
-      "rgb": [
-        42,
-        60,
-        147
-      ],
+      "rgb": [42, 60, 147],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"

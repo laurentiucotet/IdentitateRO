@@ -91,8 +91,16 @@ Fiecare instituție are un fișier JSON în `src/data/institutions/`:
     { "name": "Silver", "hex": "#A7A9AC" }
   ],
   "assets": [
-    { "variant": "principal", "format": "svg", "path": "/logos/primaria-timisoara/primaria-timisoara.svg" },
-    { "variant": "monocrom-alb", "format": "svg", "path": "/logos/primaria-timisoara/primaria-timisoara-alb.svg" }
+    {
+      "variant": "principal",
+      "format": "svg",
+      "path": "/logos/primaria-timisoara/primaria-timisoara.svg"
+    },
+    {
+      "variant": "monocrom-alb",
+      "format": "svg",
+      "path": "/logos/primaria-timisoara/primaria-timisoara-alb.svg"
+    }
   ],
   "resources": {
     "website": "https://www.pfrcluj.ro",
@@ -106,29 +114,29 @@ Fiecare instituție are un fișier JSON în `src/data/institutions/`:
 
 ### Categorii disponibile
 
-| Categorie | Descriere |
-|-----------|-----------|
-| `guvern` | Guvernul României, Administrația Prezidențială |
-| `minister` | Ministere |
-| `agentie` | Agenții guvernamentale (ANAF, ANM, etc.) |
-| `autoritate` | Autorități independente |
-| `primarie` | Primării municipale și orășenești |
-| `consiliu-judetean` | Consilii Județene |
-| `prefectura` | Prefecturi |
-| `proiect-ue` | Proiecte UE (PNRR, POCU, etc.) |
-| `institutie-cultura` | Instituții de cultură |
+| Categorie            | Descriere                                      |
+| -------------------- | ---------------------------------------------- |
+| `guvern`             | Guvernul României, Administrația Prezidențială |
+| `minister`           | Ministere                                      |
+| `agentie`            | Agenții guvernamentale (ANAF, ANM, etc.)       |
+| `autoritate`         | Autorități independente                        |
+| `primarie`           | Primării municipale și orășenești              |
+| `consiliu-judetean`  | Consilii Județene                              |
+| `prefectura`         | Prefecturi                                     |
+| `proiect-ue`         | Proiecte UE (PNRR, POCU, etc.)                 |
+| `institutie-cultura` | Instituții de cultură                          |
 
 ### Variante de logo
 
-| Variantă | Descriere |
-|----------|-----------|
-| `principal` | Logo-ul complet, oficial |
-| `vertical` | Layout stivuit vertical |
-| `horizontal` | Layout orizontal |
-| `simbol` | Doar stema/simbolul |
-| `monocrom` | Varianta monocromă (negru) |
+| Variantă       | Descriere                     |
+| -------------- | ----------------------------- |
+| `principal`    | Logo-ul complet, oficial      |
+| `vertical`     | Layout stivuit vertical       |
+| `horizontal`   | Layout orizontal              |
+| `simbol`       | Doar stema/simbolul           |
+| `monocrom`     | Varianta monocromă (negru)    |
 | `monocrom-alb` | Varianta albă (fundal închis) |
-| `inversata` | Varianta inversată |
+| `inversata`    | Varianta inversată            |
 
 ## CDN Usage
 
@@ -136,12 +144,14 @@ Logo-urile se accesează direct ca fișiere statice:
 
 ```html
 <!-- SVG direct -->
-<img src="https://identitate.eu/logos/guvernul-romaniei/guvernul-romaniei.svg"
-     alt="Guvernul României" width="200" />
+<img
+  src="https://identitate.eu/logos/guvernul-romaniei/guvernul-romaniei.svg"
+  alt="Guvernul României"
+  width="200"
+/>
 
 <!-- PNG -->
-<img src="https://identitate.eu/logos/pnrr/pnrr.png"
-     alt="PNRR" width="400" />
+<img src="https://identitate.eu/logos/pnrr/pnrr.png" alt="PNRR" width="400" />
 ```
 
 ## Cum Contribui
@@ -173,17 +183,17 @@ Logo-urile se accesează direct ca fișiere statice:
 
 Proiectul este _inspirat conceptual_ de [LogoHub](https://github.com/saeedreza/logohub), dar complet diferit:
 
-| Aspect | LogoHub | IdentitateRO |
-|--------|---------|--------------|
-| Target | Companii tech | Instituții publice RO |
-| Framework | VitePress (Vue) | Astro |
-| API | Express.js server | Static files (no server) |
-| Schema | Simplă (name, colors) | Complexă (Pantone, brand manual, categorii admin) |
-| Categorii | Tech categories | Ierarhie administrativă RO |
-| Pachete npm | @logohub/core, @logohub/react | N/A (doar CDN) |
-| Limbă | Engleză | Română |
-| Conversie dinamică | SVG→PNG/WebP via Sharp | Pre-generate doar |
-| Licență | MIT | MIT |
+| Aspect             | LogoHub                       | IdentitateRO                                      |
+| ------------------ | ----------------------------- | ------------------------------------------------- |
+| Target             | Companii tech                 | Instituții publice RO                             |
+| Framework          | VitePress (Vue)               | Astro                                             |
+| API                | Express.js server             | Static files (no server)                          |
+| Schema             | Simplă (name, colors)         | Complexă (Pantone, brand manual, categorii admin) |
+| Categorii          | Tech categories               | Ierarhie administrativă RO                        |
+| Pachete npm        | @logohub/core, @logohub/react | N/A (doar CDN)                                    |
+| Limbă              | Engleză                       | Română                                            |
+| Conversie dinamică | SVG→PNG/WebP via Sharp        | Pre-generate doar                                 |
+| Licență            | MIT                           | MIT                                               |
 
 ## Licență
 

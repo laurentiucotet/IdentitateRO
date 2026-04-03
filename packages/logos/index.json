@@ -8,9 +8,7 @@
       "id": "eu-flag",
       "slug": "eu-flag",
       "name": "Steagul Uniunii Europene",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 3,
       "logos": {
         "symbol": {
@@ -24,10 +22,7 @@
       "id": "ro-anaf",
       "slug": "ro-anaf",
       "name": "Agenția Națională de Administrare Fiscală",
-      "layouts": [
-        "horizontal",
-        "symbol"
-      ],
+      "layouts": ["horizontal", "symbol"],
       "logoCount": 6,
       "logos": {
         "horizontal": {
@@ -46,9 +41,7 @@
       "id": "ro-anre",
       "slug": "ro-anre",
       "name": "Autoritatea Națională de Reglementare în Domeniul Energiei",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 3,
       "logos": {
         "symbol": {
@@ -62,10 +55,7 @@
       "id": "ro-bnr",
       "slug": "ro-bnr",
       "name": "Banca Națională a României",
-      "layouts": [
-        "horizontal",
-        "symbol"
-      ],
+      "layouts": ["horizontal", "symbol"],
       "logoCount": 6,
       "logos": {
         "horizontal": {
@@ -84,9 +74,7 @@
       "id": "ro-camera-deputatilor",
       "slug": "ro-camera-deputatilor",
       "name": "Camera Deputaților",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 1,
       "logos": {
         "symbol": {
@@ -98,9 +86,7 @@
       "id": "ro-cfr",
       "slug": "ro-cfr",
       "name": "Căile Ferate Române",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 3,
       "logos": {
         "symbol": {
@@ -114,9 +100,7 @@
       "id": "ro-cfr-marfa",
       "slug": "ro-cfr-marfa",
       "name": "CFR Marfă SA",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 1,
       "logos": {
         "symbol": {
@@ -128,11 +112,7 @@
       "id": "ro-cnair",
       "slug": "ro-cnair",
       "name": "Compania Națională de Administrare a Infrastructurii Rutiere",
-      "layouts": [
-        "horizontal",
-        "vertical",
-        "symbol"
-      ],
+      "layouts": ["horizontal", "vertical", "symbol"],
       "logoCount": 9,
       "logos": {
         "horizontal": {
@@ -156,10 +136,7 @@
       "id": "ro-cnas",
       "slug": "ro-cnas",
       "name": "Casa Națională de Asigurări de Sănătate",
-      "layouts": [
-        "horizontal",
-        "symbol"
-      ],
+      "layouts": ["horizontal", "symbol"],
       "logoCount": 6,
       "logos": {
         "horizontal": {
@@ -178,11 +155,7 @@
       "id": "ro-consiliul-timis",
       "slug": "ro-consiliul-timis",
       "name": "Consiliul Județean Timiș",
-      "layouts": [
-        "horizontal",
-        "vertical",
-        "symbol"
-      ],
+      "layouts": ["horizontal", "vertical", "symbol"],
       "logoCount": 9,
       "logos": {
         "horizontal": {
@@ -206,10 +179,7 @@
       "id": "ro-finantat-de-ue",
       "slug": "ro-finantat-de-ue",
       "name": "Finanțat de Uniunea Europeană",
-      "layouts": [
-        "horizontal",
-        "vertical"
-      ],
+      "layouts": ["horizontal", "vertical"],
       "logoCount": 4,
       "logos": {
         "horizontal": {
@@ -226,9 +196,7 @@
       "id": "ro-guvern",
       "slug": "ro-guvern",
       "name": "Guvernul României",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 3,
       "logos": {
         "symbol": {
@@ -242,10 +210,7 @@
       "id": "ro-ins",
       "slug": "ro-ins",
       "name": "Institutul Național de Statistică",
-      "layouts": [
-        "horizontal",
-        "symbol"
-      ],
+      "layouts": ["horizontal", "symbol"],
       "logoCount": 6,
       "logos": {
         "horizontal": {
@@ -264,9 +229,7 @@
       "id": "ro-ministerul-afacerilor-externe",
       "slug": "ro-ministerul-afacerilor-externe",
       "name": "Ministerul Afacerilor Externe",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -280,9 +243,7 @@
       "id": "ro-ministerul-afacerilor-interne",
       "slug": "ro-ministerul-afacerilor-interne",
       "name": "Ministerul Afacerilor Interne",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -296,9 +257,7 @@
       "id": "ro-ministerul-agriculturii",
       "slug": "ro-ministerul-agriculturii",
       "name": "Ministerul Agriculturii şi Dezvoltării Rurale",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -312,9 +271,7 @@
       "id": "ro-ministerul-apararii",
       "slug": "ro-ministerul-apararii",
       "name": "Ministerul Apărării Naționale",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -328,9 +285,7 @@
       "id": "ro-ministerul-culturii",
       "slug": "ro-ministerul-culturii",
       "name": "Ministerul Culturii",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -344,9 +299,7 @@
       "id": "ro-ministerul-dezvoltarii",
       "slug": "ro-ministerul-dezvoltarii",
       "name": "Ministerul Dezvoltării",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -360,9 +313,7 @@
       "id": "ro-ministerul-economiei",
       "slug": "ro-ministerul-economiei",
       "name": "Ministerul Economiei",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -376,9 +327,7 @@
       "id": "ro-ministerul-educatiei",
       "slug": "ro-ministerul-educatiei",
       "name": "Ministerul Educației",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -392,9 +341,7 @@
       "id": "ro-ministerul-energiei",
       "slug": "ro-ministerul-energiei",
       "name": "Ministerul Energiei",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -408,9 +355,7 @@
       "id": "ro-ministerul-finantelor",
       "slug": "ro-ministerul-finantelor",
       "name": "Ministerul Finanțelor",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -424,9 +369,7 @@
       "id": "ro-ministerul-investitiilor-europene",
       "slug": "ro-ministerul-investitiilor-europene",
       "name": "Ministerul Investițiilor și Proiectelor Europene",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -440,9 +383,7 @@
       "id": "ro-ministerul-justitiei",
       "slug": "ro-ministerul-justitiei",
       "name": "Ministerul Justiției",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -456,9 +397,7 @@
       "id": "ro-ministerul-mediului",
       "slug": "ro-ministerul-mediului",
       "name": "Ministerul Mediului",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -472,9 +411,7 @@
       "id": "ro-ministerul-muncii",
       "slug": "ro-ministerul-muncii",
       "name": "Ministerul Muncii",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 1,
       "logos": {
         "horizontal": {
@@ -486,9 +423,7 @@
       "id": "ro-ministerul-sanatatii",
       "slug": "ro-ministerul-sanatatii",
       "name": "Ministerul Sănătății",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -502,9 +437,7 @@
       "id": "ro-ministerul-transporturilor",
       "slug": "ro-ministerul-transporturilor",
       "name": "Ministerul Transporturilor",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 3,
       "logos": {
         "horizontal": {
@@ -518,9 +451,7 @@
       "id": "ro-monitorul-oficial",
       "slug": "ro-monitorul-oficial",
       "name": "Monitorul Oficial al României",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 3,
       "logos": {
         "symbol": {
@@ -534,9 +465,7 @@
       "id": "ro-pnrr",
       "slug": "ro-pnrr",
       "name": "Planul Național de Redresare și Reziliență",
-      "layouts": [
-        "horizontal"
-      ],
+      "layouts": ["horizontal"],
       "logoCount": 2,
       "logos": {
         "horizontal": {
@@ -549,10 +478,7 @@
       "id": "ro-registrul-comertului",
       "slug": "ro-registrul-comertului",
       "name": "Oficiul Național al Registrului Comerțului",
-      "layouts": [
-        "vertical",
-        "symbol"
-      ],
+      "layouts": ["vertical", "symbol"],
       "logoCount": 6,
       "logos": {
         "vertical": {
@@ -571,9 +497,7 @@
       "id": "ro-stema",
       "slug": "ro-stema",
       "name": "Stema României",
-      "layouts": [
-        "symbol"
-      ],
+      "layouts": ["symbol"],
       "logoCount": 1,
       "logos": {
         "symbol": {
