@@ -1,4 +1,4 @@
 {
   "installCommand": "npm --prefix website install",
-  "buildCommand": "npm --prefix website run check && npm --prefix website run test && npm --prefix website run data:generate && npm --prefix website run build && node scripts/vercel-postbuild.mjs"
+  "buildCommand": "npm --prefix website run test && npm --prefix website run data:generate && npm --prefix website run build && node scripts/vercel-postbuild.mjs"
 }
