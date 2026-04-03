@@ -21,29 +21,36 @@ const INSTITUTIONS_DIR = join(__dirname, '../src/data/institutions');
 const OUTPUT_FILE = join(__dirname, '../src/data/institutions-index.json');
 
 const CATEGORY_LABELS = {
-  'guvern': 'Guvern',
-  'minister': 'Ministere',
-  'primarie': 'Primării',
+  guvern: 'Guvern',
+  minister: 'Ministere',
+  primarie: 'Primării',
   'consiliu-judetean': 'Consilii Județene',
-  'prefectura': 'Prefecturi',
-  'agentie': 'Agenții',
-  'autoritate': 'Autorități',
+  prefectura: 'Prefecturi',
+  agentie: 'Agenții',
+  autoritate: 'Autorități',
   'proiect-ue': 'Proiecte UE / PNRR',
   'institutie-cultura': 'Cultură',
-  'altele': 'Altele',
+  altele: 'Altele',
 };
 
 const CATEGORY_ORDER = [
-  'guvern', 'minister', 'agentie', 'autoritate',
-  'primarie', 'consiliu-judetean', 'prefectura',
-  'proiect-ue', 'institutie-cultura', 'altele',
+  'guvern',
+  'minister',
+  'agentie',
+  'autoritate',
+  'primarie',
+  'consiliu-judetean',
+  'prefectura',
+  'proiect-ue',
+  'institutie-cultura',
+  'altele',
 ];
 
 async function generateIndex() {
   console.log('📊 Generare index instituții (v3.0)...\n');
 
   const files = await readdir(INSTITUTIONS_DIR);
-  const jsonFiles = files.filter(f => f.endsWith('.json'));
+  const jsonFiles = files.filter((f) => f.endsWith('.json'));
 
   const institutions = [];
   const categoryStats = {};
@@ -63,7 +70,9 @@ async function generateIndex() {
 
       // Validate v3 schema markers
       if (!data.id.startsWith('ro-') || !data.meta?.keywords || !data.assets?.main) {
-        console.error(`  ⚠️  ${file}: nu respectă schema v3.0 (lipsește ro- prefix, keywords sau assets.main)`);
+        console.error(
+          `  ⚠️  ${file}: nu respectă schema v3.0 (lipsește ro- prefix, keywords sau assets.main)`,
+        );
         continue;
       }
 
@@ -78,8 +87,10 @@ async function generateIndex() {
       // Verifică dacă are cel puțin un SVG (v3: verifică assets.main și layouturi)
       const { main, horizontal, vertical, symbol } = data.assets;
       const groups = [main, horizontal, vertical, symbol].filter(Boolean);
-      const hasSvg = groups.some(group => 
-        group && (group.color || group.dark_mode || group.white || group.black || group.monochrome)
+      const hasSvg = groups.some(
+        (group) =>
+          group &&
+          (group.color || group.dark_mode || group.white || group.black || group.monochrome),
       );
       if (hasSvg) withSvg++;
 
@@ -90,18 +101,14 @@ async function generateIndex() {
   }
 
   // Sortare alfabetică după numele instituției
-  institutions.sort((a, b) =>
-    a.name.localeCompare(b.name, 'ro')
-  );
+  institutions.sort((a, b) => a.name.localeCompare(b.name, 'ro'));
 
   // Generare rezumat categorii (doar cele active, sortate)
-  const categories = CATEGORY_ORDER
-    .filter(cat => categoryStats[cat])
-    .map(cat => ({
-      id: cat,
-      label: CATEGORY_LABELS[cat] || cat,
-      count: categoryStats[cat],
-    }));
+  const categories = CATEGORY_ORDER.filter((cat) => categoryStats[cat]).map((cat) => ({
+    id: cat,
+    label: CATEGORY_LABELS[cat] || cat,
+    count: categoryStats[cat],
+  }));
 
   const index = {
     schemaVersion: '3.0.0',

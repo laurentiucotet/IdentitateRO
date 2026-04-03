@@ -55,7 +55,10 @@ describe('getDisplayName', () => {
 
 describe('getFullName', () => {
   it('returnează întotdeauna name complet', () => {
-    const inst = makeInstitution({ shortname: 'anaf', name: 'Agenția Națională de Administrare Fiscală' });
+    const inst = makeInstitution({
+      shortname: 'anaf',
+      name: 'Agenția Națională de Administrare Fiscală',
+    });
     expect(getFullName(inst)).toBe('Agenția Națională de Administrare Fiscală');
   });
 });
@@ -167,7 +170,9 @@ describe('getWebsiteUrl', () => {
 
 describe('getBrandManualUrl', () => {
   it('returnează URL-ul manualului când există', () => {
-    const inst = makeInstitution({ resources: { branding_manual: 'https://example.com/manual.pdf' } });
+    const inst = makeInstitution({
+      resources: { branding_manual: 'https://example.com/manual.pdf' },
+    });
     expect(getBrandManualUrl(inst)).toBe('https://example.com/manual.pdf');
   });
 

@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "justiție",
-      "minister",
-      "drept",
-      "legislație",
-      "sistem judiciar"
-    ],
+    "keywords": ["justiție", "minister", "drept", "legislație", "sistem judiciar"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "negru",
       "hex": "#000000",
-      "rgb": [
-        0,
-        0,
-        0
-      ],
+      "rgb": [0, 0, 0],
       "cmyk": null,
       "pantone": null,
       "usage": "neutral"
@@ -40,11 +30,7 @@
     {
       "name": "alb",
       "hex": "#FFFFFF",
-      "rgb": [
-        255,
-        255,
-        255
-      ],
+      "rgb": [255, 255, 255],
       "cmyk": null,
       "pantone": null,
       "usage": "neutral"

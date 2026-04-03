@@ -42,12 +42,12 @@ describe('isInstitution', () => {
   });
 
   it('returnează false dacă lipsește slug', () => {
-    const { slug, ...rest } = validInstitution;
+    const { slug: _slug, ...rest } = validInstitution;
     expect(isInstitution(rest)).toBe(false);
   });
 
   it('returnează false dacă lipsește name', () => {
-    const { name, ...rest } = validInstitution;
+    const { name: _name, ...rest } = validInstitution;
     expect(isInstitution(rest)).toBe(false);
   });
 
@@ -93,7 +93,7 @@ describe('hasCurrentSchema', () => {
   });
 
   it('returnează false dacă slug lipsește', () => {
-    const { slug, ...rest } = validInstitution;
+    const { slug: _slug, ...rest } = validInstitution;
     expect(hasCurrentSchema(rest)).toBe(false);
   });
 });

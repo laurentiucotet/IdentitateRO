@@ -8,14 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
-    "keywords": [
-      "anaf",
-      "taxe",
-      "fiscal",
-      "administrare fiscală",
-      "venituri",
-      "impozite"
-    ],
+    "keywords": ["anaf", "taxe", "fiscal", "administrare fiscală", "venituri", "impozite"],
     "quality": "unverified"
   },
   "location": {
@@ -27,22 +20,14 @@
     {
       "name": "Principala",
       "hex": "#2C2C76",
-      "rgb": [
-        44,
-        44,
-        118
-      ],
+      "rgb": [44, 44, 118],
       "cmyk": [],
       "usage": "primary"
     },
     {
       "name": "Text",
       "hex": "#151515",
-      "rgb": [
-        21,
-        21,
-        21
-      ],
+      "rgb": [21, 21, 21],
       "cmyk": [],
       "usage": "secondary"
     }

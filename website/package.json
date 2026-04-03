@@ -13,6 +13,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
     "astro": "astro",
     "data:generate": "node scripts/generate-index.js",
     "data:generate:from-md": "node tools/generate-institutions/generate.mjs",
@@ -42,6 +44,8 @@
     "eslint": "^10.1.0",
     "eslint-plugin-astro": "^1.6.0",
     "globals": "^17.4.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.0",
     "vitest": "^2.1.9"

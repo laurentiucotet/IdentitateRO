@@ -62,13 +62,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
-        "keywords": [
-          "anaf",
-          "taxe",
-          "fiscal",
-          "administrare fiscală",
-          "venituri"
-        ],
+        "keywords": ["anaf", "taxe", "fiscal", "administrare fiscală", "venituri"],
         "quality": "draft"
       },
       "location": {
@@ -82,11 +76,7 @@
         {
           "name": "Principala",
           "hex": "#2C2C76",
-          "rgb": [
-            44,
-            44,
-            118
-          ],
+          "rgb": [44, 44, 118],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -94,11 +84,7 @@
         {
           "name": "Text",
           "hex": "#151515",
-          "rgb": [
-            21,
-            21,
-            21
-          ],
+          "rgb": [21, 21, 21],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -158,14 +144,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
-        "keywords": [
-          "energie",
-          "reglementare",
-          "anre",
-          "electricitate",
-          "gaze",
-          "consumatori"
-        ],
+        "keywords": ["energie", "reglementare", "anre", "electricitate", "gaze", "consumatori"],
         "quality": "draft"
       },
       "location": {
@@ -179,11 +158,7 @@
         {
           "name": "Albastru",
           "hex": "#374990",
-          "rgb": [
-            55,
-            73,
-            144
-          ],
+          "rgb": [55, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -191,11 +166,7 @@
         {
           "name": "Rosu",
           "hex": "#E03544",
-          "rgb": [
-            224,
-            53,
-            68
-          ],
+          "rgb": [224, 53, 68],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -203,11 +174,7 @@
         {
           "name": "Galben",
           "hex": "#F3EC44",
-          "rgb": [
-            243,
-            236,
-            68
-          ],
+          "rgb": [243, 236, 68],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -279,11 +246,7 @@
         {
           "name": "Color #1C449C",
           "hex": "#1C449C",
-          "rgb": [
-            28,
-            68,
-            156
-          ],
+          "rgb": [28, 68, 156],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -336,13 +299,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "parlament",
-          "legislativ",
-          "deputați",
-          "camera deputaților",
-          "bucurești"
-        ],
+        "keywords": ["parlament", "legislativ", "deputați", "camera deputaților", "bucurești"],
         "quality": "draft"
       },
       "location": {
@@ -356,11 +313,7 @@
         {
           "name": "Color #F5CE67",
           "hex": "#F5CE67",
-          "rgb": [
-            245,
-            206,
-            103
-          ],
+          "rgb": [245, 206, 103],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -368,11 +321,7 @@
         {
           "name": "Color #F5CE66",
           "hex": "#F5CE66",
-          "rgb": [
-            245,
-            206,
-            102
-          ],
+          "rgb": [245, 206, 102],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -380,11 +329,7 @@
         {
           "name": "Color #E31E24",
           "hex": "#E31E24",
-          "rgb": [
-            227,
-            30,
-            36
-          ],
+          "rgb": [227, 30, 36],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -392,11 +337,7 @@
         {
           "name": "Color #505E5F",
           "hex": "#505E5F",
-          "rgb": [
-            80,
-            94,
-            95
-          ],
+          "rgb": [80, 94, 95],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -404,11 +345,7 @@
         {
           "name": "Color #0777CF",
           "hex": "#0777CF",
-          "rgb": [
-            7,
-            119,
-            207
-          ],
+          "rgb": [7, 119, 207],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -416,11 +353,7 @@
         {
           "name": "Color #AF0000",
           "hex": "#AF0000",
-          "rgb": [
-            175,
-            0,
-            0
-          ],
+          "rgb": [175, 0, 0],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -428,11 +361,7 @@
         {
           "name": "Color #FFED00",
           "hex": "#FFED00",
-          "rgb": [
-            255,
-            237,
-            0
-          ],
+          "rgb": [255, 237, 0],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -498,11 +427,7 @@
         {
           "name": "Color #232048",
           "hex": "#232048",
-          "rgb": [
-            35,
-            32,
-            72
-          ],
+          "rgb": [35, 32, 72],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -510,11 +435,7 @@
         {
           "name": "Color #C2423A",
           "hex": "#C2423A",
-          "rgb": [
-            194,
-            66,
-            58
-          ],
+          "rgb": [194, 66, 58],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -567,13 +488,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "cale ferată",
-          "transport feroviar",
-          "infrastructură",
-          "trenuri",
-          "cfr"
-        ],
+        "keywords": ["cale ferată", "transport feroviar", "infrastructură", "trenuri", "cfr"],
         "quality": "draft"
       },
       "location": {
@@ -587,11 +502,7 @@
         {
           "name": "primară",
           "hex": "#1B1918",
-          "rgb": [
-            27,
-            25,
-            24
-          ],
+          "rgb": [27, 25, 24],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -599,11 +510,7 @@
         {
           "name": "accent",
           "hex": "#B42059",
-          "rgb": [
-            180,
-            32,
-            89
-          ],
+          "rgb": [180, 32, 89],
           "cmyk": null,
           "pantone": null,
           "usage": "accent"
@@ -648,13 +555,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "cfr",
-          "transport",
-          "feroviar",
-          "marfă",
-          "logistică"
-        ],
+        "keywords": ["cfr", "transport", "feroviar", "marfă", "logistică"],
         "quality": "draft"
       },
       "location": {
@@ -668,11 +569,7 @@
         {
           "name": "Color #0D3567",
           "hex": "#0D3567",
-          "rgb": [
-            13,
-            53,
-            103
-          ],
+          "rgb": [13, 53, 103],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -680,11 +577,7 @@
         {
           "name": "Color #972B2D",
           "hex": "#972B2D",
-          "rgb": [
-            151,
-            43,
-            45
-          ],
+          "rgb": [151, 43, 45],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -692,11 +585,7 @@
         {
           "name": "Color #1D3766",
           "hex": "#1D3766",
-          "rgb": [
-            29,
-            55,
-            102
-          ],
+          "rgb": [29, 55, 102],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -704,11 +593,7 @@
         {
           "name": "Color #D82927",
           "hex": "#D82927",
-          "rgb": [
-            216,
-            41,
-            39
-          ],
+          "rgb": [216, 41, 39],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -716,11 +601,7 @@
         {
           "name": "Color #FAE600",
           "hex": "#FAE600",
-          "rgb": [
-            250,
-            230,
-            0
-          ],
+          "rgb": [250, 230, 0],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -765,13 +646,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
-        "keywords": [
-          "infrastructură",
-          "drumuri",
-          "autostrăzi",
-          "transport",
-          "administrare"
-        ],
+        "keywords": ["infrastructură", "drumuri", "autostrăzi", "transport", "administrare"],
         "quality": "draft"
       },
       "location": {
@@ -785,11 +660,7 @@
         {
           "name": "Color #0772AF",
           "hex": "#0772AF",
-          "rgb": [
-            7,
-            114,
-            175
-          ],
+          "rgb": [7, 114, 175],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -877,11 +748,7 @@
         {
           "name": "Color #D2AC67",
           "hex": "#D2AC67",
-          "rgb": [
-            210,
-            172,
-            103
-          ],
+          "rgb": [210, 172, 103],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -889,11 +756,7 @@
         {
           "name": "Color #ED1C24",
           "hex": "#ED1C24",
-          "rgb": [
-            237,
-            28,
-            36
-          ],
+          "rgb": [237, 28, 36],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -901,11 +764,7 @@
         {
           "name": "Color #16547C",
           "hex": "#16547C",
-          "rgb": [
-            22,
-            84,
-            124
-          ],
+          "rgb": [22, 84, 124],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -966,13 +825,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "finanțare",
-          "uniunea europeană",
-          "proiecte",
-          "fonduri",
-          "co-finanțare"
-        ],
+        "keywords": ["finanțare", "uniunea europeană", "proiecte", "fonduri", "co-finanțare"],
         "quality": "draft"
       },
       "location": {
@@ -986,11 +839,7 @@
         {
           "name": "Color #FBCA07",
           "hex": "#FBCA07",
-          "rgb": [
-            251,
-            202,
-            7
-          ],
+          "rgb": [251, 202, 7],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -998,11 +847,7 @@
         {
           "name": "Color #2A3C93",
           "hex": "#2A3C93",
-          "rgb": [
-            42,
-            60,
-            147
-          ],
+          "rgb": [42, 60, 147],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -1075,11 +920,7 @@
         {
           "name": "S",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1087,11 +928,7 @@
         {
           "name": "Color #58595B",
           "hex": "#58595B",
-          "rgb": [
-            88,
-            89,
-            91
-          ],
+          "rgb": [88, 89, 91],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -1136,13 +973,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
-        "keywords": [
-          "statistică",
-          "date",
-          "populație",
-          "cercetare",
-          "institut"
-        ],
+        "keywords": ["statistică", "date", "populație", "cercetare", "institut"],
         "quality": "draft"
       },
       "location": {
@@ -1156,11 +987,7 @@
         {
           "name": "Galben",
           "hex": "#F6C014",
-          "rgb": [
-            246,
-            192,
-            20
-          ],
+          "rgb": [246, 192, 20],
           "cmyk": null,
           "pantone": null,
           "usage": "accent"
@@ -1168,11 +995,7 @@
         {
           "name": "Gri inchis",
           "hex": "#34495E",
-          "rgb": [
-            52,
-            73,
-            94
-          ],
+          "rgb": [52, 73, 94],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -1180,11 +1003,7 @@
         {
           "name": "Color #FFFFFF",
           "hex": "#FFFFFF",
-          "rgb": [
-            255,
-            255,
-            255
-          ],
+          "rgb": [255, 255, 255],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -1264,11 +1083,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1313,13 +1128,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "minister",
-          "ordine publică",
-          "securitate",
-          "poliție",
-          "jandarmerie"
-        ],
+        "keywords": ["minister", "ordine publică", "securitate", "poliție", "jandarmerie"],
         "quality": "draft"
       },
       "location": {
@@ -1333,11 +1142,7 @@
         {
           "name": "black",
           "hex": "#000000",
-          "rgb": [
-            0,
-            0,
-            0
-          ],
+          "rgb": [0, 0, 0],
           "cmyk": null,
           "pantone": null,
           "usage": "neutral"
@@ -1345,11 +1150,7 @@
         {
           "name": "white",
           "hex": "#FFFFFF",
-          "rgb": [
-            255,
-            255,
-            255
-          ],
+          "rgb": [255, 255, 255],
           "cmyk": null,
           "pantone": null,
           "usage": "neutral"
@@ -1414,11 +1215,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1463,14 +1260,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "apărare",
-          "minister",
-          "armată",
-          "securitate",
-          "forțe",
-          "național"
-        ],
+        "keywords": ["apărare", "minister", "armată", "securitate", "forțe", "național"],
         "quality": "draft"
       },
       "location": {
@@ -1484,11 +1274,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1533,13 +1319,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "minister",
-          "cultură",
-          "patrimoniu",
-          "arte",
-          "guvern"
-        ],
+        "keywords": ["minister", "cultură", "patrimoniu", "arte", "guvern"],
         "quality": "draft"
       },
       "location": {
@@ -1553,11 +1333,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1622,11 +1398,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1671,13 +1443,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "minister",
-          "economie",
-          "politici economice",
-          "industrie",
-          "antreprenoriat"
-        ],
+        "keywords": ["minister", "economie", "politici economice", "industrie", "antreprenoriat"],
         "quality": "draft"
       },
       "location": {
@@ -1691,11 +1457,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1740,13 +1502,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "educație",
-          "minister",
-          "învățământ",
-          "politici-educaționale",
-          "guvern"
-        ],
+        "keywords": ["educație", "minister", "învățământ", "politici-educaționale", "guvern"],
         "quality": "draft"
       },
       "location": {
@@ -1760,11 +1516,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1809,13 +1561,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "energie",
-          "minister",
-          "guvern",
-          "energie-electrică",
-          "resurse-energetice"
-        ],
+        "keywords": ["energie", "minister", "guvern", "energie-electrică", "resurse-energetice"],
         "quality": "draft"
       },
       "location": {
@@ -1829,11 +1575,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1878,13 +1620,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "finanțe",
-          "buget",
-          "taxe",
-          "fiscalitate",
-          "minister"
-        ],
+        "keywords": ["finanțe", "buget", "taxe", "fiscalitate", "minister"],
         "quality": "draft"
       },
       "location": {
@@ -1898,11 +1634,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -1968,11 +1700,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2017,13 +1745,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "justiție",
-          "minister",
-          "drept",
-          "legislație",
-          "sistem judiciar"
-        ],
+        "keywords": ["justiție", "minister", "drept", "legislație", "sistem judiciar"],
         "quality": "draft"
       },
       "location": {
@@ -2037,11 +1759,7 @@
         {
           "name": "negru",
           "hex": "#000000",
-          "rgb": [
-            0,
-            0,
-            0
-          ],
+          "rgb": [0, 0, 0],
           "cmyk": null,
           "pantone": null,
           "usage": "neutral"
@@ -2049,11 +1767,7 @@
         {
           "name": "alb",
           "hex": "#FFFFFF",
-          "rgb": [
-            255,
-            255,
-            255
-          ],
+          "rgb": [255, 255, 255],
           "cmyk": null,
           "pantone": null,
           "usage": "neutral"
@@ -2098,13 +1812,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "mediu",
-          "protecția mediului",
-          "conservare",
-          "poluare",
-          "resurse naturale"
-        ],
+        "keywords": ["mediu", "protecția mediului", "conservare", "poluare", "resurse naturale"],
         "quality": "draft"
       },
       "location": {
@@ -2118,11 +1826,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2188,11 +1892,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2237,13 +1937,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "minister",
-          "sănătate",
-          "sănătate publică",
-          "politici",
-          "servicii medicale"
-        ],
+        "keywords": ["minister", "sănătate", "sănătate publică", "politici", "servicii medicale"],
         "quality": "draft"
       },
       "location": {
@@ -2257,11 +1951,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2327,11 +2017,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2376,12 +2062,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-10",
-        "keywords": [
-          "monitorul oficial",
-          "legi",
-          "publicare",
-          "acte normative"
-        ],
+        "keywords": ["monitorul oficial", "legi", "publicare", "acte normative"],
         "quality": "draft"
       },
       "location": {
@@ -2395,11 +2076,7 @@
         {
           "name": "Color #003A81",
           "hex": "#003A81",
-          "rgb": [
-            0,
-            58,
-            129
-          ],
+          "rgb": [0, 58, 129],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2465,11 +2142,7 @@
         {
           "name": "Color #972B2D",
           "hex": "#972B2D",
-          "rgb": [
-            151,
-            43,
-            45
-          ],
+          "rgb": [151, 43, 45],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2543,11 +2216,7 @@
         {
           "name": "Color #FBCA07",
           "hex": "#FBCA07",
-          "rgb": [
-            251,
-            202,
-            7
-          ],
+          "rgb": [251, 202, 7],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2555,11 +2224,7 @@
         {
           "name": "Color #002B7F",
           "hex": "#002B7F",
-          "rgb": [
-            0,
-            43,
-            127
-          ],
+          "rgb": [0, 43, 127],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -2567,11 +2232,7 @@
         {
           "name": "Color #CE1126",
           "hex": "#CE1126",
-          "rgb": [
-            206,
-            17,
-            38
-          ],
+          "rgb": [206, 17, 38],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2579,11 +2240,7 @@
         {
           "name": "Color #FFCE00",
           "hex": "#FFCE00",
-          "rgb": [
-            255,
-            206,
-            0
-          ],
+          "rgb": [255, 206, 0],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2591,11 +2248,7 @@
         {
           "name": "Color #003399",
           "hex": "#003399",
-          "rgb": [
-            0,
-            51,
-            153
-          ],
+          "rgb": [0, 51, 153],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2603,11 +2256,7 @@
         {
           "name": "Color #004990",
           "hex": "#004990",
-          "rgb": [
-            0,
-            73,
-            144
-          ],
+          "rgb": [0, 73, 144],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2653,13 +2302,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "uniunea europeană",
-          "steag",
-          "steagul european",
-          "simbol",
-          "ue"
-        ],
+        "keywords": ["uniunea europeană", "steag", "steagul european", "simbol", "ue"],
         "quality": "draft"
       },
       "location": {
@@ -2673,11 +2316,7 @@
         {
           "name": "Color #FFCC00",
           "hex": "#FFCC00",
-          "rgb": [
-            255,
-            204,
-            0
-          ],
+          "rgb": [255, 204, 0],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2685,11 +2324,7 @@
         {
           "name": "Color #003399",
           "hex": "#003399",
-          "rgb": [
-            0,
-            51,
-            153
-          ],
+          "rgb": [0, 51, 153],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -2734,13 +2369,7 @@
       "meta": {
         "version": "1.0",
         "last_updated": "2026-02-15",
-        "keywords": [
-          "stemă",
-          "emblemă",
-          "heraldică",
-          "simbol național",
-          "sigiliu"
-        ],
+        "keywords": ["stemă", "emblemă", "heraldică", "simbol național", "sigiliu"],
         "quality": "draft"
       },
       "location": {
@@ -2754,11 +2383,7 @@
         {
           "name": "Color #C40000",
           "hex": "#C40000",
-          "rgb": [
-            196,
-            0,
-            0
-          ],
+          "rgb": [196, 0, 0],
           "cmyk": null,
           "pantone": null,
           "usage": "primary"
@@ -2766,11 +2391,7 @@
         {
           "name": "Color #DA251D",
           "hex": "#DA251D",
-          "rgb": [
-            218,
-            37,
-            29
-          ],
+          "rgb": [218, 37, 29],
           "cmyk": null,
           "pantone": null,
           "usage": "secondary"
@@ -2778,11 +2399,7 @@
         {
           "name": "Color #1C63B7",
           "hex": "#1C63B7",
-          "rgb": [
-            28,
-            99,
-            183
-          ],
+          "rgb": [28, 99, 183],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2790,11 +2407,7 @@
         {
           "name": "Color #FCCB06",
           "hex": "#FCCB06",
-          "rgb": [
-            252,
-            203,
-            6
-          ],
+          "rgb": [252, 203, 6],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2802,11 +2415,7 @@
         {
           "name": "Color #920000",
           "hex": "#920000",
-          "rgb": [
-            146,
-            0,
-            0
-          ],
+          "rgb": [146, 0, 0],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2814,11 +2423,7 @@
         {
           "name": "Color #F8C300",
           "hex": "#F8C300",
-          "rgb": [
-            248,
-            195,
-            0
-          ],
+          "rgb": [248, 195, 0],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2826,11 +2431,7 @@
         {
           "name": "Color #F6E078",
           "hex": "#F6E078",
-          "rgb": [
-            246,
-            224,
-            120
-          ],
+          "rgb": [246, 224, 120],
           "cmyk": null,
           "pantone": null,
           "usage": null
@@ -2838,11 +2439,7 @@
         {
           "name": "Color #E9001A",
           "hex": "#E9001A",
-          "rgb": [
-            233,
-            0,
-            26
-          ],
+          "rgb": [233, 0, 26],
           "cmyk": null,
           "pantone": null,
           "usage": null

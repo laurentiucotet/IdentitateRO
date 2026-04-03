@@ -8,14 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
-    "keywords": [
-      "guvern",
-      "administratie",
-      "executiv",
-      "românia",
-      "politică",
-      "servicii publice"
-    ],
+    "keywords": ["guvern", "administratie", "executiv", "românia", "politică", "servicii publice"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +21,7 @@
     {
       "name": "S",
       "hex": "#004990",
-      "rgb": [
-        0,
-        73,
-        144
-      ],
+      "rgb": [0, 73, 144],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +29,7 @@
     {
       "name": "Color #58595B",
       "hex": "#58595B",
-      "rgb": [
-        88,
-        89,
-        91
-      ],
+      "rgb": [88, 89, 91],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"

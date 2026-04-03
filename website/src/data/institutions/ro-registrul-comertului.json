@@ -29,11 +29,7 @@
     {
       "name": "Color #972B2D",
       "hex": "#972B2D",
-      "rgb": [
-        151,
-        43,
-        45
-      ],
+      "rgb": [151, 43, 45],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"

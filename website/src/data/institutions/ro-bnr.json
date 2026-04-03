@@ -28,11 +28,7 @@
     {
       "name": "Color #1C449C",
       "hex": "#1C449C",
-      "rgb": [
-        28,
-        68,
-        156
-      ],
+      "rgb": [28, 68, 156],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"

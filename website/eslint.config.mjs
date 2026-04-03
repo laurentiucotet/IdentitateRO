@@ -7,9 +7,17 @@ export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   ...astro.configs.recommended,
-  // Node globals for lib/, scripts/, config files
+  // Node globals for lib/, scripts/, config files, api routes, and tools
   {
-    files: ['src/lib/**/*.ts', 'src/types/**/*.ts', 'scripts/**/*.{js,mjs}', '*.{js,mjs,ts}', 'tests/**/*.ts'],
+    files: [
+      'src/lib/**/*.ts',
+      'src/types/**/*.ts',
+      'scripts/**/*.{js,mjs}',
+      '*.{js,mjs,ts}',
+      'tests/**/*.ts',
+      'src/pages/api/**/*.ts',
+      'tools/**/*.mjs',
+    ],
     languageOptions: {
       globals: { ...globals.node },
     },
@@ -18,14 +26,24 @@ export default [
   {
     files: ['src/pages/**/*.astro', 'src/components/**/*.astro', 'src/layouts/**/*.astro'],
     languageOptions: {
-      globals: { ...globals.browser },
+      globals: {
+        ...globals.browser,
+        // CDN globals loaded via is:inline scripts in generator.astro
+        html2canvas: 'readonly',
+        JSZip: 'readonly',
+        saveAs: 'readonly',
+        jsPDF: 'readonly',
+      },
     },
   },
   {
     rules: {
       // Downgrade pre-existing issues to warn — promote to error once codebase is clean
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { varsIgnorePattern: '^_', argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
       '@typescript-eslint/ban-ts-comment': 'warn',
       'no-undef': 'warn',
       'prefer-const': 'warn',

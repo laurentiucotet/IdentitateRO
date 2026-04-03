@@ -19,14 +19,13 @@ const logoAssetGroupFields = {
 };
 
 export default config({
-  storage:
-    import.meta.env.PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID
-      ? {
-          kind: 'github',
-          repo: 'laurentiucotet/IdentitateRO',
-          branchPrefix: 'keystatic/',
-        }
-      : { kind: 'local' },
+  storage: import.meta.env.PUBLIC_KEYSTATIC_GITHUB_CLIENT_ID
+    ? {
+        kind: 'github',
+        repo: 'laurentiucotet/IdentitateRO',
+        branchPrefix: 'keystatic/',
+      }
+    : { kind: 'local' },
 
   ui: {
     brand: { name: 'IdentitateRO' },
@@ -93,13 +92,10 @@ export default config({
           {
             version: fields.text({ label: 'Versiune date (ex: 1.0)' }),
             last_updated: fields.date({ label: 'Ultima actualizare' }),
-            keywords: fields.array(
-              fields.text({ label: 'Cuvânt cheie' }),
-              {
-                label: 'Cuvinte cheie (pentru căutare)',
-                itemLabel: (props) => props.value || 'Keyword nou',
-              }
-            ),
+            keywords: fields.array(fields.text({ label: 'Cuvânt cheie' }), {
+              label: 'Cuvinte cheie (pentru căutare)',
+              itemLabel: (props) => props.value || 'Keyword nou',
+            }),
             quality: fields.select({
               label: 'Status confirmare',
               options: [
@@ -115,7 +111,7 @@ export default config({
               multiline: true,
             }),
           },
-          { label: 'Metadata' }
+          { label: 'Metadata' },
         ),
 
         // --- Locatie ---
@@ -125,7 +121,7 @@ export default config({
             county: fields.text({ label: 'Judet (ex: B, CJ)' }),
             city: fields.text({ label: 'Oras' }),
           },
-          { label: 'Locatie' }
+          { label: 'Locatie' },
         ),
 
         // --- Descriere ---
@@ -147,18 +143,24 @@ export default config({
               description: 'Ex: #2C2C76',
             }),
             rgb: fields.array(
-              fields.integer({ label: 'Valoare (0-255)', validation: { isRequired: true, min: 0, max: 255 } }),
+              fields.integer({
+                label: 'Valoare (0-255)',
+                validation: { isRequired: true, min: 0, max: 255 },
+              }),
               {
                 label: 'RGB [R, G, B]',
                 itemLabel: (props) => String(props.value ?? ''),
-              }
+              },
             ),
             cmyk: fields.array(
-              fields.integer({ label: 'Valoare (0-100)', validation: { isRequired: true, min: 0, max: 100 } }),
+              fields.integer({
+                label: 'Valoare (0-100)',
+                validation: { isRequired: true, min: 0, max: 100 },
+              }),
               {
                 label: 'CMYK [C, M, Y, K]',
                 itemLabel: (props) => String(props.value ?? ''),
-              }
+              },
             ),
             pantone: fields.text({ label: 'Pantone (ex: 2758 C)' }),
             usage: fields.select({
@@ -178,7 +180,7 @@ export default config({
               props.fields.name.value
                 ? `${props.fields.name.value} (${props.fields.hex.value || 'fara HEX'})`
                 : 'Culoare noua',
-          }
+          },
         ),
 
         // --- Tipografie ---
@@ -188,32 +190,26 @@ export default config({
               {
                 family: fields.text({ label: 'Familie font' }),
                 url: fields.text({ label: 'URL font (Google Fonts, MyFonts etc.)' }),
-                weights: fields.array(
-                  fields.integer({ label: 'Weight (ex: 400, 700)' }),
-                  {
-                    label: 'Weights disponibili',
-                    itemLabel: (props) => String(props.value ?? ''),
-                  }
-                ),
+                weights: fields.array(fields.integer({ label: 'Weight (ex: 400, 700)' }), {
+                  label: 'Weights disponibili',
+                  itemLabel: (props) => String(props.value ?? ''),
+                }),
               },
-              { label: 'Font primar' }
+              { label: 'Font primar' },
             ),
             secondary: fields.object(
               {
                 family: fields.text({ label: 'Familie font' }),
                 url: fields.text({ label: 'URL font' }),
-                weights: fields.array(
-                  fields.integer({ label: 'Weight' }),
-                  {
-                    label: 'Weights disponibili',
-                    itemLabel: (props) => String(props.value ?? ''),
-                  }
-                ),
+                weights: fields.array(fields.integer({ label: 'Weight' }), {
+                  label: 'Weights disponibili',
+                  itemLabel: (props) => String(props.value ?? ''),
+                }),
               },
-              { label: 'Font secundar (optional)' }
+              { label: 'Font secundar (optional)' },
             ),
           },
-          { label: 'Tipografie' }
+          { label: 'Tipografie' },
         ),
 
         // --- Assets ---
@@ -225,7 +221,7 @@ export default config({
             symbol: fields.object(logoAssetGroupFields, { label: 'Simbol / emblema' }),
             favicon: fields.text({ label: 'Favicon (cale SVG/PNG)' }),
           },
-          { label: 'Assets logo' }
+          { label: 'Assets logo' },
         ),
 
         // --- Resurse ---
@@ -244,10 +240,10 @@ export default config({
                 instagram: fields.text({ label: 'Instagram' }),
                 youtube: fields.text({ label: 'YouTube' }),
               },
-              { label: 'Social media' }
+              { label: 'Social media' },
             ),
           },
-          { label: 'Resurse externe' }
+          { label: 'Resurse externe' },
         ),
       },
     }),

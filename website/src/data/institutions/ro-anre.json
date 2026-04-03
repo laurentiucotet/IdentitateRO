@@ -8,14 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
-    "keywords": [
-      "energie",
-      "reglementare",
-      "anre",
-      "electricitate",
-      "gaze",
-      "consumatori"
-    ],
+    "keywords": ["energie", "reglementare", "anre", "electricitate", "gaze", "consumatori"],
     "quality": "unverified"
   },
   "location": {
@@ -29,11 +22,7 @@
     {
       "name": "Albastru",
       "hex": "#374990",
-      "rgb": [
-        55,
-        73,
-        144
-      ],
+      "rgb": [55, 73, 144],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -41,11 +30,7 @@
     {
       "name": "Rosu",
       "hex": "#E03544",
-      "rgb": [
-        224,
-        53,
-        68
-      ],
+      "rgb": [224, 53, 68],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"
@@ -53,11 +38,7 @@
     {
       "name": "Galben",
       "hex": "#F3EC44",
-      "rgb": [
-        243,
-        236,
-        68
-      ],
+      "rgb": [243, 236, 68],
       "cmyk": null,
       "pantone": null,
       "usage": null

@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "uniunea europeană",
-      "steag",
-      "steagul european",
-      "simbol",
-      "ue"
-    ],
+    "keywords": ["uniunea europeană", "steag", "steagul european", "simbol", "ue"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Color #FFCC00",
       "hex": "#FFCC00",
-      "rgb": [
-        255,
-        204,
-        0
-      ],
+      "rgb": [255, 204, 0],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +30,7 @@
     {
       "name": "Color #003399",
       "hex": "#003399",
-      "rgb": [
-        0,
-        51,
-        153
-      ],
+      "rgb": [0, 51, 153],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import institutionIndex from '../data/institutions-index.json';
-import { resolveAssetPath, CDN_VERSION } from '../lib/cdn-helpers';
+import { CDN_VERSION } from '../lib/cdn-helpers';
 import {
   CATEGORY_LABELS,
   CATEGORY_LABELS_SINGULAR,
@@ -13,27 +13,36 @@ import {
 import type { Institution } from '../types/institution';
 
 const CATEGORY_ORDER = [
-  'guvern', 'minister', 'agentie', 'autoritate', 'primarie',
-  'consiliu-judetean', 'prefectura', 'proiect-ue', 'institutie-cultura', 'altele',
+  'guvern',
+  'minister',
+  'agentie',
+  'autoritate',
+  'primarie',
+  'consiliu-judetean',
+  'prefectura',
+  'proiect-ue',
+  'institutie-cultura',
+  'altele',
 ];
 
 const allInstitutions = institutionIndex.institutions as unknown as Institution[];
 
-const categories = CATEGORY_ORDER
-  .map(value => ({
-    value,
-    label: CATEGORY_LABELS[value] || value,
-    count: allInstitutions.filter(i => i.category === value).length,
-  }))
-  .filter(c => c.count > 0);
+const categories = CATEGORY_ORDER.map((value) => ({
+  value,
+  label: CATEGORY_LABELS[value] || value,
+  count: allInstitutions.filter((i) => i.category === value).length,
+})).filter((c) => c.count > 0);
 
-const institutionsByCategory = categories.reduce((acc, cat) => {
-  acc[cat.value] = allInstitutions.filter(i => i.category === cat.value);
-  return acc;
-}, {} as Record<string, Institution[]>);
+const institutionsByCategory = categories.reduce(
+  (acc, cat) => {
+    acc[cat.value] = allInstitutions.filter((i) => i.category === cat.value);
+    return acc;
+  },
+  {} as Record<string, Institution[]>,
+);
 
-const title = "Catalog — IdentitateRO";
-const description = "Explorează toate logo-urile instituțiilor publice din România";
+const title = 'Catalog — IdentitateRO';
+const description = 'Explorează toate logo-urile instituțiilor publice din România';
 
 const institutionsJson = JSON.stringify(allInstitutions);
 const categoryLabelsSingularJson = JSON.stringify(CATEGORY_LABELS_SINGULAR);
@@ -47,17 +56,27 @@ const cdnVersion = CDN_VERSION;
 <BaseLayout title={title} description={description} ogType="website">
   <!-- Catalog: three-pane layout: categories | institutions | detail -->
   <div class="flex h-[calc(100vh-3rem)] overflow-hidden">
-
     <!-- ═══ SIDEBAR 1: Categories ═══ -->
     <aside
       id="sidebar-categories"
       class="w-48 shrink-0 border-r border-surface-200 bg-surface-50 hidden lg:flex lg:flex-col"
     >
       <div class="px-3 py-3 border-b border-surface-100 space-y-2">
-        <span class="text-[11px] font-semibold text-surface-400 uppercase tracking-wider">Categorii</span>
+        <span class="text-[11px] font-semibold text-surface-400 uppercase tracking-wider"
+          >Categorii</span
+        >
         <div class="relative">
-          <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-surface-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          <svg
+            class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-surface-400 pointer-events-none"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
           <input
             type="text"
@@ -71,26 +90,34 @@ const cdnVersion = CDN_VERSION;
             class="absolute right-2 top-1/2 -translate-y-1/2 text-surface-300 hover:text-surface-500 hidden"
             aria-label="Golește căutarea"
           >
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path></svg
+            >
           </button>
         </div>
       </div>
       <nav class="flex-1 overflow-y-auto py-2 space-y-0.5 px-2">
-        {categories.map((cat, i) => (
-          <button
-            type="button"
-            data-category-btn={cat.value}
-            class:list={[
-              "category-btn w-full text-left px-3 py-2 rounded text-sm transition-colors flex items-center justify-between",
-              i === 0
-                ? "bg-primary-50 text-primary-700 font-medium"
-                : "text-surface-700 hover:bg-surface-100"
-            ]}
-          >
-            <span class="truncate">{cat.label}</span>
-            <span class="text-xs text-surface-400 tabular-nums">{cat.count}</span>
-          </button>
-        ))}
+        {
+          categories.map((cat, i) => (
+            <button
+              type="button"
+              data-category-btn={cat.value}
+              class:list={[
+                'category-btn w-full text-left px-3 py-2 rounded text-sm transition-colors flex items-center justify-between',
+                i === 0
+                  ? 'bg-primary-50 text-primary-700 font-medium'
+                  : 'text-surface-700 hover:bg-surface-100',
+              ]}
+            >
+              <span class="truncate">{cat.label}</span>
+              <span class="text-xs text-surface-400 tabular-nums">{cat.count}</span>
+            </button>
+          ))
+        }
       </nav>
     </aside>
 
@@ -103,52 +130,80 @@ const cdnVersion = CDN_VERSION;
       <div class="px-3 py-2 border-b border-surface-100">
         <div class="flex items-center gap-1">
           <span class="text-[11px] text-surface-400 flex-1" id="sidebar-count"></span>
-          <button type="button" id="sort-az" data-sort="az" class="sort-btn px-2 py-0.5 rounded text-[11px] font-medium bg-primary-50 text-primary-600" title="Sortare A→Z">A–Z</button>
-          <button type="button" id="sort-za" data-sort="za" class="sort-btn px-2 py-0.5 rounded text-[11px] font-medium text-surface-400 hover:bg-surface-100" title="Sortare Z→A">Z–A</button>
+          <button
+            type="button"
+            id="sort-az"
+            data-sort="az"
+            class="sort-btn px-2 py-0.5 rounded text-[11px] font-medium bg-primary-50 text-primary-600"
+            title="Sortare A→Z">A–Z</button
+          >
+          <button
+            type="button"
+            id="sort-za"
+            data-sort="za"
+            class="sort-btn px-2 py-0.5 rounded text-[11px] font-medium text-surface-400 hover:bg-surface-100"
+            title="Sortare Z→A">Z–A</button
+          >
         </div>
       </div>
       <!-- Institution list -->
       <nav id="institutions-list" class="flex-1 overflow-y-auto py-1">
-        {categories.map((cat) => (
-          <div data-category-group={cat.value} class="institution-group">
-            <div class="px-3 py-1.5 text-[10px] font-semibold text-surface-400 uppercase tracking-wider sticky top-0 bg-white/95 backdrop-blur-sm z-10">
-              {cat.label}
+        {
+          categories.map((cat) => (
+            <div data-category-group={cat.value} class="institution-group">
+              <div class="px-3 py-1.5 text-[10px] font-semibold text-surface-400 uppercase tracking-wider sticky top-0 bg-white/95 backdrop-blur-sm z-10">
+                {cat.label}
+              </div>
+              {institutionsByCategory[cat.value].map((inst: Institution) => {
+                const logoSrc = inst.assets?.main?.color
+                  ? `https://cdn.jsdelivr.net/npm/@identitate-ro/logos@${cdnVersion}${inst.assets.main.color}`
+                  : null;
+                return (
+                  <button
+                    type="button"
+                    data-institution-btn={inst.slug}
+                    class="institution-btn w-full text-left px-3 py-2 hover:bg-surface-50 transition-colors flex items-center gap-2 group"
+                    data-name={`${inst.name} ${inst.shortname || ''}`}
+                    data-category={inst.category}
+                  >
+                    <span class="w-7 h-7 rounded border border-surface-100 bg-white flex items-center justify-center shrink-0 overflow-hidden">
+                      {logoSrc ? (
+                        <img src={logoSrc} alt="" class="w-6 h-6 object-contain" loading="lazy" />
+                      ) : (
+                        <span class="text-surface-300 text-[10px]">?</span>
+                      )}
+                    </span>
+                    <span class="truncate text-sm text-surface-700 group-hover:text-primary-700">
+                      {inst.shortname?.toUpperCase() || inst.name}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-            {institutionsByCategory[cat.value].map((inst: Institution) => {
-              const logoSrc = inst.assets?.main?.color
-                ? `https://cdn.jsdelivr.net/npm/@identitate-ro/logos@${cdnVersion}${inst.assets.main.color}`
-                : null;
-              return (
-                <button
-                  type="button"
-                  data-institution-btn={inst.slug}
-                  class="institution-btn w-full text-left px-3 py-2 hover:bg-surface-50 transition-colors flex items-center gap-2 group"
-                  data-name={`${inst.name} ${inst.shortname || ''}`}
-                  data-category={inst.category}
-                >
-                  <span class="w-7 h-7 rounded border border-surface-100 bg-white flex items-center justify-center shrink-0 overflow-hidden">
-                    {logoSrc
-                      ? <img src={logoSrc} alt="" class="w-6 h-6 object-contain" loading="lazy" />
-                      : <span class="text-surface-300 text-[10px]">?</span>
-                    }
-                  </span>
-                  <span class="truncate text-sm text-surface-700 group-hover:text-primary-700">
-                    {inst.shortname?.toUpperCase() || inst.name}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        ))}
+          ))
+        }
       </nav>
     </aside>
 
     <!-- ═══ MAIN: Institution Detail ═══ -->
     <main id="catalog-main" class="flex-1 min-w-0 overflow-y-auto bg-white">
       <!-- Placeholder while no institution is loaded -->
-      <div id="catalog-placeholder" class="flex-col items-center justify-center h-full text-center p-12 hidden">
-        <svg class="w-16 h-16 text-surface-200 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      <div
+        id="catalog-placeholder"
+        class="flex-col items-center justify-center h-full text-center p-12 hidden"
+      >
+        <svg
+          class="w-16 h-16 text-surface-200 mb-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          ></path>
         </svg>
         <p class="text-surface-400 text-sm">Selectează o instituție din listă</p>
       </div>
@@ -158,141 +213,175 @@ const cdnVersion = CDN_VERSION;
   </div>
 </BaseLayout>
 
-<script define:vars={{
-  institutionsJson,
-  categoryLabelsSingularJson,
-  logoLayoutLabelsJson,
-  logoVariantLabelsJson,
-  colorUsageLabelsJson,
-  qualityLabelsJson,
-  cdnVersion,
-}}>
-// ─── Bootstrap ──────────────────────────────────────────────────────────────
-const institutions = JSON.parse(institutionsJson);
-const CATEGORY_LABELS_SINGULAR = JSON.parse(categoryLabelsSingularJson);
-const LAYOUT_LABELS  = JSON.parse(logoLayoutLabelsJson);
-const VARIANT_LABELS = JSON.parse(logoVariantLabelsJson);
-const USAGE_LABELS   = JSON.parse(colorUsageLabelsJson);
-const QUALITY_LABELS = JSON.parse(qualityLabelsJson);
+<script
+  define:vars={{
+    institutionsJson,
+    categoryLabelsSingularJson,
+    logoLayoutLabelsJson,
+    logoVariantLabelsJson,
+    colorUsageLabelsJson,
+    qualityLabelsJson,
+    cdnVersion,
+  }}
+>
+  // ─── Bootstrap ──────────────────────────────────────────────────────────────
+  const institutions = JSON.parse(institutionsJson);
+  const CATEGORY_LABELS_SINGULAR = JSON.parse(categoryLabelsSingularJson);
+  const LAYOUT_LABELS = JSON.parse(logoLayoutLabelsJson);
+  const VARIANT_LABELS = JSON.parse(logoVariantLabelsJson);
+  const USAGE_LABELS = JSON.parse(colorUsageLabelsJson);
+  const QUALITY_LABELS = JSON.parse(qualityLabelsJson);
 
-const CDN_BASE = `https://cdn.jsdelivr.net/npm/@identitate-ro/logos@${cdnVersion}`;
-const SITE = 'https://identitate.eu';
+  const CDN_BASE = `https://cdn.jsdelivr.net/npm/@identitate-ro/logos@${cdnVersion}`;
+  const SITE = 'https://identitate.eu';
 
-/** Build an index map by slug */
-const bySlug = {};
-institutions.forEach(i => { bySlug[i.slug] = i; });
+  /** Build an index map by slug */
+  const bySlug = {};
+  institutions.forEach((i) => {
+    bySlug[i.slug] = i;
+  });
 
-// ─── DOM refs ────────────────────────────────────────────────────────────────
-const categoryBtns   = document.querySelectorAll('.category-btn');
-const institutionBtns = document.querySelectorAll('.institution-btn');
-const institutionGroups = document.querySelectorAll('.institution-group');
-const searchInput    = document.getElementById('catalog-search');
-const searchClear    = document.getElementById('search-clear');
-const sortAZ         = document.getElementById('sort-az');
-const sortZA         = document.getElementById('sort-za');
-const sidebarCount   = document.getElementById('sidebar-count');
-const detail         = document.getElementById('institution-detail');
-const placeholder    = document.getElementById('catalog-placeholder');
+  // ─── DOM refs ────────────────────────────────────────────────────────────────
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const institutionBtns = document.querySelectorAll('.institution-btn');
+  const institutionGroups = document.querySelectorAll('.institution-group');
+  const searchInput = document.getElementById('catalog-search');
+  const searchClear = document.getElementById('search-clear');
+  const sortAZ = document.getElementById('sort-az');
+  const sortZA = document.getElementById('sort-za');
+  const sidebarCount = document.getElementById('sidebar-count');
+  const detail = document.getElementById('institution-detail');
+  const placeholder = document.getElementById('catalog-placeholder');
 
-let currentCategory  = null; // null = all
-let currentSlug      = null;
-let currentSort      = 'az';
+  let currentCategory = null; // null = all
+  let currentSort = 'az';
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-function escHtml(str) {
-  return String(str ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-function resolveUrl(path) {
-  if (!path) return '';
-  if (typeof path === 'object') path = path.cdn_primary || path.local || '';
-  if (!path) return '';
-  if (path.startsWith('http')) return path;
-  if (path.startsWith('/logos/')) return `${CDN_BASE}${path}`;
-  return `${SITE}${path}`;
-}
-
-function getCdnLogoUrl(inst) {
-  const main = inst.assets?.main;
-  if (!main) return null;
-  const layout = main.type || 'horizontal';
-  const variant = main.color ? 'color' : main.dark_mode ? 'dark_mode' : main.black ? 'black' : main.white ? 'white' : null;
-  if (!variant) return null;
-  return `${CDN_BASE}/logos/${inst.id}/${layout}/${variant}.svg`;
-}
-
-function getPrimaryLogo(inst) {
-  const main = inst.assets?.main;
-  if (!main) return null;
-  if (main.color) return resolveUrl(main.color);
-  if (main.dark_mode) return resolveUrl(main.dark_mode);
-  if (main.black) return resolveUrl(main.black);
-  if (main.white) return resolveUrl(main.white);
-  if (main.monochrome) return resolveUrl(main.monochrome);
-  if (main.png?.path) return resolveUrl(main.png.path);
-  return null;
-}
-
-function getDownloadables(inst) {
-  const assets = [];
-  for (const layout of ['horizontal', 'vertical', 'symbol']) {
-    const group = inst.assets?.[layout];
-    if (!group) continue;
-    for (const variant of ['color', 'dark_mode', 'white', 'black', 'monochrome']) {
-      const p = group[variant];
-      if (!p) continue;
-      assets.push({ label: `${layout}-${variant}`, format: 'svg', path: resolveUrl(p), layout, variant });
-    }
-    if (group.png?.path) {
-      assets.push({ label: `${layout}-png`, format: 'png', path: resolveUrl(group.png.path), layout, variant: 'png', width: group.png.width, height: group.png.height });
-    }
+  // ─── Helpers ─────────────────────────────────────────────────────────────────
+  function escHtml(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
-  return assets;
-}
 
-// ─── Accessibility contrast ──────────────────────────────────────────────────
-function hexToRgb(hex) {
-  const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return r ? [parseInt(r[1],16), parseInt(r[2],16), parseInt(r[3],16)] : null;
-}
-function luminance(r,g,b) {
-  return [r,g,b].reduce((acc, c, i) => {
-    c /= 255;
-    return acc + (c <= 0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055,2.4)) * [0.2126, 0.7152, 0.0722][i];
-  }, 0);
-}
-function contrastVsWhite(hex) {
-  const rgb = hexToRgb(hex);
-  if (!rgb) return 1;
-  const l = luminance(...rgb);
-  return (1.05) / (l + 0.05);
-}
-function wcagBadge(hex) {
-  const c = contrastVsWhite(hex);
-  if (c >= 7)   return { level: 'AAA', cls: 'text-blue-600',  icon: 'info',    title: 'AAA (≥7:1)' };
-  if (c >= 4.5) return { level: 'AA',  cls: 'text-green-600', icon: 'info',    title: 'AA (≥4.5:1)' };
-  return             { level: 'N/A', cls: 'text-red-500',   icon: 'warning', title: '<4.5:1 — contrast insuficient' };
-}
+  function resolveUrl(path) {
+    if (!path) return '';
+    if (typeof path === 'object') path = path.cdn_primary || path.local || '';
+    if (!path) return '';
+    if (path.startsWith('http')) return path;
+    if (path.startsWith('/logos/')) return `${CDN_BASE}${path}`;
+    return `${SITE}${path}`;
+  }
 
-const ICONS = {
-  download: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
-  copy: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`,
-  copySm: `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`,
-  web: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>`,
-  book: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>`,
-};
+  function getCdnLogoUrl(inst) {
+    const main = inst.assets?.main;
+    if (!main) return null;
+    const layout = main.type || 'horizontal';
+    const variant = main.color
+      ? 'color'
+      : main.dark_mode
+        ? 'dark_mode'
+        : main.black
+          ? 'black'
+          : main.white
+            ? 'white'
+            : null;
+    if (!variant) return null;
+    return `${CDN_BASE}/logos/${inst.id}/${layout}/${variant}.svg`;
+  }
 
-// ─── HTML Builders ────────────────────────────────────────────────────────────
-function buildVariantCard(inst, variant, path, layoutLabel) {
-  const isWhite = variant === 'white';
-  const isDark  = variant === 'dark_mode';
-  const label   = VARIANT_LABELS[variant] || variant;
-  const bg      = isWhite ? 'bg-gray-800' : isDark ? 'checkerboard-dark' : 'checkerboard';
-  return `
+  function getPrimaryLogo(inst) {
+    const main = inst.assets?.main;
+    if (!main) return null;
+    if (main.color) return resolveUrl(main.color);
+    if (main.dark_mode) return resolveUrl(main.dark_mode);
+    if (main.black) return resolveUrl(main.black);
+    if (main.white) return resolveUrl(main.white);
+    if (main.monochrome) return resolveUrl(main.monochrome);
+    if (main.png?.path) return resolveUrl(main.png.path);
+    return null;
+  }
+
+  function getDownloadables(inst) {
+    const assets = [];
+    for (const layout of ['horizontal', 'vertical', 'symbol']) {
+      const group = inst.assets?.[layout];
+      if (!group) continue;
+      for (const variant of ['color', 'dark_mode', 'white', 'black', 'monochrome']) {
+        const p = group[variant];
+        if (!p) continue;
+        assets.push({
+          label: `${layout}-${variant}`,
+          format: 'svg',
+          path: resolveUrl(p),
+          layout,
+          variant,
+        });
+      }
+      if (group.png?.path) {
+        assets.push({
+          label: `${layout}-png`,
+          format: 'png',
+          path: resolveUrl(group.png.path),
+          layout,
+          variant: 'png',
+          width: group.png.width,
+          height: group.png.height,
+        });
+      }
+    }
+    return assets;
+  }
+
+  // ─── Accessibility contrast ──────────────────────────────────────────────────
+  function hexToRgb(hex) {
+    const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return r ? [parseInt(r[1], 16), parseInt(r[2], 16), parseInt(r[3], 16)] : null;
+  }
+  function luminance(r, g, b) {
+    return [r, g, b].reduce((acc, c, i) => {
+      c /= 255;
+      return (
+        acc +
+        (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)) *
+          [0.2126, 0.7152, 0.0722][i]
+      );
+    }, 0);
+  }
+  function contrastVsWhite(hex) {
+    const rgb = hexToRgb(hex);
+    if (!rgb) return 1;
+    const l = luminance(...rgb);
+    return 1.05 / (l + 0.05);
+  }
+  function wcagBadge(hex) {
+    const c = contrastVsWhite(hex);
+    if (c >= 7) return { level: 'AAA', cls: 'text-blue-600', icon: 'info', title: 'AAA (≥7:1)' };
+    if (c >= 4.5) return { level: 'AA', cls: 'text-green-600', icon: 'info', title: 'AA (≥4.5:1)' };
+    return {
+      level: 'N/A',
+      cls: 'text-red-500',
+      icon: 'warning',
+      title: '<4.5:1 — contrast insuficient',
+    };
+  }
+
+  const ICONS = {
+    download: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>`,
+    copy: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`,
+    copySm: `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>`,
+    web: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>`,
+    book: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>`,
+  };
+
+  // ─── HTML Builders ────────────────────────────────────────────────────────────
+  function buildVariantCard(inst, variant, path, layoutLabel) {
+    const isWhite = variant === 'white';
+    const isDark = variant === 'dark_mode';
+    const label = VARIANT_LABELS[variant] || variant;
+    const bg = isWhite ? 'bg-gray-800' : isDark ? 'checkerboard-dark' : 'checkerboard';
+    return `
     <div class="border border-surface-200 rounded overflow-hidden hover:shadow-md hover:border-surface-300 transition-all duration-200">
       <div class="aspect-[3/2] flex items-center justify-center p-6 ${bg}">
         <img src="${escHtml(path)}" alt="Logo ${escHtml(inst.name)} — ${escHtml(layoutLabel)} ${escHtml(label)}"
@@ -309,11 +398,11 @@ function buildVariantCard(inst, variant, path, layoutLabel) {
         </div>
       </div>
     </div>`;
-}
+  }
 
-function buildPngCard(inst, group, layoutLabel) {
-  const path = resolveUrl(group.png.path);
-  return `
+  function buildPngCard(inst, group, layoutLabel) {
+    const path = resolveUrl(group.png.path);
+    return `
     <div class="border border-surface-200 rounded overflow-hidden hover:shadow-md hover:border-surface-300 transition-all duration-200">
       <div class="aspect-[3/2] flex items-center justify-center p-6 checkerboard">
         <img src="${escHtml(path)}" alt="Logo ${escHtml(inst.name)} — ${escHtml(layoutLabel)} PNG"
@@ -327,15 +416,16 @@ function buildPngCard(inst, group, layoutLabel) {
         <a href="${escHtml(path)}" download class="p-2 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă PNG">${ICONS.download}</a>
       </div>
     </div>`;
-}
+  }
 
-function buildColorsSection(colors) {
-  if (!colors?.length) return '';
-  const swatches = colors.map(c => {
-    const {level, cls, title} = wcagBadge(c.hex);
-    const usageLabel = c.usage ? (USAGE_LABELS[c.usage] || c.usage) : '';
-    const rgbStr = c.rgb ? c.rgb.join(', ') : '';
-    return `
+  function buildColorsSection(colors) {
+    if (!colors?.length) return '';
+    const swatches = colors
+      .map((c) => {
+        const { level, cls, title } = wcagBadge(c.hex);
+        const usageLabel = c.usage ? USAGE_LABELS[c.usage] || c.usage : '';
+        const rgbStr = c.rgb ? c.rgb.join(', ') : '';
+        return `
       <div class="bg-white border border-surface-200 rounded p-3 flex items-start gap-3 group">
         <div class="relative w-12 h-12 rounded border border-surface-200 shrink-0">
           <div class="w-full h-full rounded" style="background-color:${escHtml(c.hex)}"></div>
@@ -357,8 +447,9 @@ function buildColorsSection(colors) {
           </div>
         </div>
       </div>`;
-  }).join('');
-  return `
+      })
+      .join('');
+    return `
     <section class="mb-8">
       <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
         <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
@@ -366,43 +457,43 @@ function buildColorsSection(colors) {
       </h2>
       <div class="space-y-3">${swatches}</div>
     </section>`;
-}
+  }
 
-function buildDetail(inst) {
-  const primaryLogo = getPrimaryLogo(inst);
-  const cdnLogo     = getCdnLogoUrl(inst) ?? '';
-  const downloadables = getDownloadables(inst);
-  const catLabel    = CATEGORY_LABELS_SINGULAR[inst.category] || inst.category;
-  const qualityInfo = inst.meta?.quality ? QUALITY_LABELS[inst.meta.quality] : null;
+  function buildDetail(inst) {
+    const primaryLogo = getPrimaryLogo(inst);
+    const cdnLogo = getCdnLogoUrl(inst) ?? '';
+    const downloadables = getDownloadables(inst);
+    const catLabel = CATEGORY_LABELS_SINGULAR[inst.category] || inst.category;
+    const qualityInfo = inst.meta?.quality ? QUALITY_LABELS[inst.meta.quality] : null;
 
-  // ── Logo sections ──────────────────────────────────────────────────────────
-  let logoSectionsHtml = '';
-  for (const layout of ['horizontal', 'vertical', 'symbol']) {
-    const group = inst.assets?.[layout];
-    if (!group) continue;
-    const layoutLabel = LAYOUT_LABELS[layout] || layout;
-    let cards = '';
-    for (const variant of ['color', 'dark_mode', 'white', 'black', 'monochrome']) {
-      const p = group[variant];
-      if (!p) continue;
-      cards += buildVariantCard(inst, variant, resolveUrl(p), layoutLabel);
-    }
-    if (group.png?.path) cards += buildPngCard(inst, group, layoutLabel);
-    if (!cards) continue;
-    logoSectionsHtml += `
+    // ── Logo sections ──────────────────────────────────────────────────────────
+    let logoSectionsHtml = '';
+    for (const layout of ['horizontal', 'vertical', 'symbol']) {
+      const group = inst.assets?.[layout];
+      if (!group) continue;
+      const layoutLabel = LAYOUT_LABELS[layout] || layout;
+      let cards = '';
+      for (const variant of ['color', 'dark_mode', 'white', 'black', 'monochrome']) {
+        const p = group[variant];
+        if (!p) continue;
+        cards += buildVariantCard(inst, variant, resolveUrl(p), layoutLabel);
+      }
+      if (group.png?.path) cards += buildPngCard(inst, group, layoutLabel);
+      if (!cards) continue;
+      logoSectionsHtml += `
       <div class="mb-6">
         <h3 class="text-sm font-medium text-primary-800 mb-3">${escHtml(layoutLabel)}</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">${cards}</div>
       </div>`;
-  }
+    }
 
-  // ── Colors, Typography, Resources ─────────────────────────────────────────
-  const colorsHtml = buildColorsSection(inst.colors);
+    // ── Colors, Typography, Resources ─────────────────────────────────────────
+    const colorsHtml = buildColorsSection(inst.colors);
 
-  let typographyHtml = '';
-  if (inst.typography?.primary) {
-    const sec = inst.typography.secondary;
-    typographyHtml = `
+    let typographyHtml = '';
+    if (inst.typography?.primary) {
+      const sec = inst.typography.secondary;
+      typographyHtml = `
       <section class="mb-8">
         <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
           <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/></svg>
@@ -416,49 +507,69 @@ function buildDetail(inst) {
             </div>
             ${inst.typography.primary.url ? `<a href="${escHtml(inst.typography.primary.url)}" target="_blank" rel="noopener" class="text-xs text-primary-500 hover:text-primary-600">Vezi font &rarr;</a>` : ''}
           </div>
-          ${sec ? `
+          ${
+            sec
+              ? `
           <div class="bg-white border border-surface-200 rounded p-3 flex items-center justify-between">
             <div>
               <div class="font-medium text-sm text-primary-900">${escHtml(sec.family)}</div>
               <div class="text-xs text-surface-500">Font secundar</div>
             </div>
             ${sec.url ? `<a href="${escHtml(sec.url)}" target="_blank" rel="noopener" class="text-xs text-primary-500 hover:text-primary-600">Vezi font &rarr;</a>` : ''}
-          </div>` : ''}
+          </div>`
+              : ''
+          }
         </div>
       </section>`;
-  }
+    }
 
-  let resourcesHtml = '';
-  if (inst.resources?.website || inst.resources?.branding_manual || inst.resources?.official_resources) {
-    resourcesHtml = `
+    let resourcesHtml = '';
+    if (
+      inst.resources?.website ||
+      inst.resources?.branding_manual ||
+      inst.resources?.official_resources
+    ) {
+      resourcesHtml = `
       <section class="mb-8">
         <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
           <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
           Resurse
         </h2>
         <div class="space-y-2">
-          ${inst.resources.website ? `
+          ${
+            inst.resources.website
+              ? `
             <a href="${escHtml(inst.resources.website)}" target="_blank" rel="noopener noreferrer"
                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
               ${ICONS.web} Website Oficial
-            </a>` : ''}
-          ${inst.resources.branding_manual ? `
+            </a>`
+              : ''
+          }
+          ${
+            inst.resources.branding_manual
+              ? `
             <a href="${escHtml(inst.resources.branding_manual)}" target="_blank" rel="noopener"
                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
               ${ICONS.book} Manual de Identitate Vizuală
-            </a>` : ''}
-          ${inst.resources.official_resources ? `
+            </a>`
+              : ''
+          }
+          ${
+            inst.resources.official_resources
+              ? `
             <a href="${escHtml(inst.resources.official_resources)}" target="_blank" rel="noopener noreferrer"
                class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
               ${ICONS.download} Resurse oficiale
-            </a>` : ''}
+            </a>`
+              : ''
+          }
         </div>
       </section>`;
-  }
+    }
 
-  // ── Integration tabs ───────────────────────────────────────────────────────
-  const npmSnippet = `import logos from '@identitate-ro/logos';\\nconst logo = logos.institutions.find(i => i.id === '${inst.id}');`;
-  const integrationHtml = `
+    // ── Integration tabs ───────────────────────────────────────────────────────
+    const npmSnippet = `import logos from '@identitate-ro/logos';\\nconst logo = logos.institutions.find(i => i.id === '${inst.id}');`;
+    const integrationHtml = `
     <section class="mb-8">
       <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
         <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
@@ -501,30 +612,32 @@ function buildDetail(inst) {
       </div>
     </section>`;
 
-  // ── Downloads ZIP ──────────────────────────────────────────────────────────
-  let downloadsHtml = '';
-  if (downloadables.length > 0) {
-    downloadsHtml = `
+    // ── Downloads ZIP ──────────────────────────────────────────────────────────
+    let downloadsHtml = '';
+    if (downloadables.length > 0) {
+      downloadsHtml = `
       <section class="mb-8">
         <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
           <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           Toate Descărcările
         </h2>
-        <button id="download-zip" data-downloadables='${JSON.stringify(downloadables).replace(/'/g, "&#39;")}' data-slug="${escHtml(inst.slug)}"
+        <button id="download-zip" data-downloadables='${JSON.stringify(downloadables).replace(/'/g, '&#39;')}' data-slug="${escHtml(inst.slug)}"
                 class="px-4 py-2 bg-primary-500 text-white rounded hover:bg-primary-600 transition-colors flex items-center gap-2 text-sm">
           ${ICONS.download} Descarcă toate ca ZIP
         </button>
       </section>`;
-  }
+    }
 
-  // ── Keywords ───────────────────────────────────────────────────────────────
-  const keywordsHtml = inst.meta?.keywords?.length ? `
+    // ── Keywords ───────────────────────────────────────────────────────────────
+    const keywordsHtml = inst.meta?.keywords?.length
+      ? `
     <div class="flex flex-wrap gap-1.5 mt-4">
-      ${inst.meta.keywords.map(k => `<span class="px-2 py-1 bg-surface-50 border border-surface-200 rounded-full text-[11px] text-surface-500">${escHtml(k)}</span>`).join('')}
-    </div>` : '';
+      ${inst.meta.keywords.map((k) => `<span class="px-2 py-1 bg-surface-50 border border-surface-200 rounded-full text-[11px] text-surface-500">${escHtml(k)}</span>`).join('')}
+    </div>`
+      : '';
 
-  // ── Assemble full detail ───────────────────────────────────────────────────
-  return `
+    // ── Assemble full detail ───────────────────────────────────────────────────
+    return `
     <article>
       <!-- Header -->
       <header class="mb-8">
@@ -542,17 +655,25 @@ function buildDetail(inst) {
               ${qualityInfo ? `<span class="px-2 py-0.5 rounded text-xs" style="background:${qualityInfo.bg || '#f1f5f9'};color:${qualityInfo.color || '#64748b'}">${escHtml(qualityInfo.label || inst.meta.quality)}</span>` : ''}
             </div>
             ${inst.description ? `<p class="text-sm text-surface-500 mb-2">${escHtml(inst.description)}</p>` : ''}
-            ${inst.location?.city || inst.location?.county ? `
+            ${
+              inst.location?.city || inst.location?.county
+                ? `
               <p class="text-xs text-surface-400 flex items-center gap-1">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                 ${escHtml([inst.location.city, inst.location.county].filter(Boolean).join(', '))}
-              </p>` : ''}
+              </p>`
+                : ''
+            }
             ${inst.usage_notes ? `<div class="mt-3 p-3 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800"><strong>Note de utilizare:</strong> ${escHtml(inst.usage_notes)}</div>` : ''}
           </div>
-          ${primaryLogo ? `
+          ${
+            primaryLogo
+              ? `
           <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-white border border-surface-200 rounded p-3 flex items-center justify-center">
             <img src="${escHtml(primaryLogo)}" alt="Logo ${escHtml(inst.name)}" class="max-w-full max-h-full object-contain" loading="eager" />
-          </div>` : ''}
+          </div>`
+              : ''
+          }
         </div>
         ${keywordsHtml}
       </header>
@@ -587,241 +708,263 @@ function buildDetail(inst) {
         </div>
       </section>
     </article>`;
-}
+  }
 
-// ─── Sidebar helpers ──────────────────────────────────────────────────────────
-function updateSidebarCount() {
-  const visible = [...document.querySelectorAll('.institution-btn')]
-    .filter(b => !b.classList.contains('hidden')).length;
-  if (sidebarCount) sidebarCount.textContent = `${visible} instituții`;
-}
+  // ─── Sidebar helpers ──────────────────────────────────────────────────────────
+  function updateSidebarCount() {
+    const visible = [...document.querySelectorAll('.institution-btn')].filter(
+      (b) => !b.classList.contains('hidden'),
+    ).length;
+    if (sidebarCount) sidebarCount.textContent = `${visible} instituții`;
+  }
 
-function setActiveCategory(value) {
-  currentCategory = value;
-  categoryBtns.forEach(b => {
-    const active = b.dataset.categoryBtn === value;
-    b.classList.toggle('bg-primary-50',  active);
-    b.classList.toggle('text-primary-700', active);
-    b.classList.toggle('font-medium',    active);
-    b.classList.toggle('text-surface-700', !active);
-  });
-  institutionGroups.forEach(g => {
-    g.classList.toggle('hidden', !!value && g.dataset.categoryGroup !== value);
-  });
-  updateSidebarCount();
-}
-
-function setActiveInstitution(slug) {
-  currentSlug = slug;
-  document.querySelectorAll('.institution-btn').forEach(b => {
-    const active = b.dataset.institutionBtn === slug;
-    b.classList.toggle('bg-primary-50', active);
-    b.classList.toggle('text-primary-700', active);
-    b.classList.toggle('font-medium', active);
-  });
-  // Auto-scroll active button into view
-  const activeBtn = document.querySelector(`.institution-btn[data-institution-btn="${slug}"]`);
-  activeBtn?.scrollIntoView({ block: 'nearest' });
-}
-
-// ─── Load institution detail ──────────────────────────────────────────────────
-function loadInstitution(slug) {
-  const inst = bySlug[slug];
-  if (!inst || !detail) return;
-  setActiveInstitution(slug);
-  detail.innerHTML = buildDetail(inst);
-  if (placeholder) placeholder.classList.add('hidden');
-  detail.classList.remove('hidden');
-  detail.scrollTop = 0;
-  // Scroll main pane to top
-  document.getElementById('catalog-main')?.scrollTo({ top: 0 });
-  // Wire up copy + tabs + ZIP after inject
-  wireDetail();
-}
-
-// ─── Wire events inside injected detail ──────────────────────────────────────
-function wireDetail() {
-  // Copy: svg assets
-  detail.querySelectorAll('.copy-asset-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const path = btn.dataset.path;
-      try {
-        const text = await fetch(path).then(r => r.text());
-        await navigator.clipboard.writeText(text);
-        flashCheck(btn);
-      } catch { flashX(btn); }
+  function setActiveCategory(value) {
+    currentCategory = value;
+    categoryBtns.forEach((b) => {
+      const active = b.dataset.categoryBtn === value;
+      b.classList.toggle('bg-primary-50', active);
+      b.classList.toggle('text-primary-700', active);
+      b.classList.toggle('font-medium', active);
+      b.classList.toggle('text-surface-700', !active);
     });
-  });
-  // Copy: color / code snippets
-  detail.querySelectorAll('.copy-color-btn, .copy-code-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const val = btn.dataset.value || '';
-      // decode HTML entities back to plain text
-      const txt = new DOMParser().parseFromString(val, 'text/html').documentElement.textContent;
-      try { await navigator.clipboard.writeText(txt); flashCheck(btn); }
-      catch { flashX(btn); }
+    institutionGroups.forEach((g) => {
+      g.classList.toggle('hidden', !!value && g.dataset.categoryGroup !== value);
     });
-  });
-  // Integration tabs
-  const tabs   = detail.querySelectorAll('.intg-tab');
-  const panels = detail.querySelectorAll('.intg-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const id = tab.dataset.tab;
-      tabs.forEach(t => {
-        const active = t.dataset.tab === id;
-        t.classList.toggle('border-primary-500', active);
-        t.classList.toggle('text-primary-700', active);
-        t.classList.toggle('border-transparent', !active);
-        t.classList.toggle('text-surface-500', !active);
-      });
-      panels.forEach(p => p.classList.toggle('hidden', p.dataset.panel !== id));
+    updateSidebarCount();
+  }
+
+  function setActiveInstitution(slug) {
+    document.querySelectorAll('.institution-btn').forEach((b) => {
+      const active = b.dataset.institutionBtn === slug;
+      b.classList.toggle('bg-primary-50', active);
+      b.classList.toggle('text-primary-700', active);
+      b.classList.toggle('font-medium', active);
     });
-  });
-  // ZIP download
-  const zipBtn = detail.querySelector('#download-zip');
-  if (zipBtn) {
-    zipBtn.addEventListener('click', async () => {
-      const items = JSON.parse(zipBtn.dataset.downloadables || '[]');
-      const slug  = zipBtn.dataset.slug || 'logos';
-      const orig  = zipBtn.innerHTML;
-      zipBtn.disabled = true;
-      zipBtn.innerHTML = `<svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Se pregătește ZIP...`;
-      try {
-        const { default: JSZip } = await import('https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm');
-        const zip = new JSZip();
-        for (const a of items) {
-          const blob = await fetch(a.path).then(r => r.blob());
-          zip.file(`${a.label}.${a.format}`, blob);
+    // Auto-scroll active button into view
+    const activeBtn = document.querySelector(`.institution-btn[data-institution-btn="${slug}"]`);
+    activeBtn?.scrollIntoView({ block: 'nearest' });
+  }
+
+  // ─── Load institution detail ──────────────────────────────────────────────────
+  function loadInstitution(slug) {
+    const inst = bySlug[slug];
+    if (!inst || !detail) return;
+    setActiveInstitution(slug);
+    detail.innerHTML = buildDetail(inst);
+    if (placeholder) placeholder.classList.add('hidden');
+    detail.classList.remove('hidden');
+    detail.scrollTop = 0;
+    // Scroll main pane to top
+    document.getElementById('catalog-main')?.scrollTo({ top: 0 });
+    // Wire up copy + tabs + ZIP after inject
+    wireDetail();
+  }
+
+  // ─── Wire events inside injected detail ──────────────────────────────────────
+  function wireDetail() {
+    // Copy: svg assets
+    detail.querySelectorAll('.copy-asset-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const path = btn.dataset.path;
+        try {
+          const text = await fetch(path).then((r) => r.text());
+          await navigator.clipboard.writeText(text);
+          flashCheck(btn);
+        } catch {
+          flashX(btn);
         }
-        const content = await zip.generateAsync({ type: 'blob' });
-        const url = URL.createObjectURL(content);
-        const a = document.createElement('a');
-        a.href = url; a.download = `${slug}-logos.zip`; a.click();
-        URL.revokeObjectURL(url);
-        zipBtn.innerHTML = `<svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> ZIP descărcat!`;
-        setTimeout(() => { zipBtn.innerHTML = orig; zipBtn.disabled = false; }, 2000);
-      } catch {
-        zipBtn.innerHTML = `<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> Eroare`;
-        setTimeout(() => { zipBtn.innerHTML = orig; zipBtn.disabled = false; }, 2000);
-      }
+      });
+    });
+    // Copy: color / code snippets
+    detail.querySelectorAll('.copy-color-btn, .copy-code-btn').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const val = btn.dataset.value || '';
+        // decode HTML entities back to plain text
+        const txt = new DOMParser().parseFromString(val, 'text/html').documentElement.textContent;
+        try {
+          await navigator.clipboard.writeText(txt);
+          flashCheck(btn);
+        } catch {
+          flashX(btn);
+        }
+      });
+    });
+    // Integration tabs
+    const tabs = detail.querySelectorAll('.intg-tab');
+    const panels = detail.querySelectorAll('.intg-panel');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const id = tab.dataset.tab;
+        tabs.forEach((t) => {
+          const active = t.dataset.tab === id;
+          t.classList.toggle('border-primary-500', active);
+          t.classList.toggle('text-primary-700', active);
+          t.classList.toggle('border-transparent', !active);
+          t.classList.toggle('text-surface-500', !active);
+        });
+        panels.forEach((p) => p.classList.toggle('hidden', p.dataset.panel !== id));
+      });
+    });
+    // ZIP download
+    const zipBtn = detail.querySelector('#download-zip');
+    if (zipBtn) {
+      zipBtn.addEventListener('click', async () => {
+        const items = JSON.parse(zipBtn.dataset.downloadables || '[]');
+        const slug = zipBtn.dataset.slug || 'logos';
+        const orig = zipBtn.innerHTML;
+        zipBtn.disabled = true;
+        zipBtn.innerHTML = `<svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Se pregătește ZIP...`;
+        try {
+          const { default: JSZip } = await import('https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm');
+          const zip = new JSZip();
+          for (const a of items) {
+            const blob = await fetch(a.path).then((r) => r.blob());
+            zip.file(`${a.label}.${a.format}`, blob);
+          }
+          const content = await zip.generateAsync({ type: 'blob' });
+          const url = URL.createObjectURL(content);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `${slug}-logos.zip`;
+          a.click();
+          URL.revokeObjectURL(url);
+          zipBtn.innerHTML = `<svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> ZIP descărcat!`;
+          setTimeout(() => {
+            zipBtn.innerHTML = orig;
+            zipBtn.disabled = false;
+          }, 2000);
+        } catch {
+          zipBtn.innerHTML = `<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg> Eroare`;
+          setTimeout(() => {
+            zipBtn.innerHTML = orig;
+            zipBtn.disabled = false;
+          }, 2000);
+        }
+      });
+    }
+  }
+
+  function flashCheck(btn) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = `<svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
+    setTimeout(() => {
+      btn.innerHTML = orig;
+    }, 1800);
+  }
+  function flashX(btn) {
+    const orig = btn.innerHTML;
+    btn.innerHTML = `<svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>`;
+    setTimeout(() => {
+      btn.innerHTML = orig;
+    }, 1800);
+  }
+
+  // ─── Sidebar 2 sorting ────────────────────────────────────────────────────────
+  function applySortAndFilter(query) {
+    const q = (query || '').toLowerCase().trim();
+    // Update visibility of each institution button based on query + category
+    document.querySelectorAll('.institution-group').forEach((group) => {
+      const cat = group.dataset.categoryGroup;
+      const catHidden = !!currentCategory && cat !== currentCategory;
+      const btns = [...group.querySelectorAll('.institution-btn')];
+
+      // Sort
+      btns.sort((a, b) => {
+        const an = (a.dataset.name || '').toLowerCase();
+        const bn = (b.dataset.name || '').toLowerCase();
+        return currentSort === 'az' ? an.localeCompare(bn) : bn.localeCompare(an);
+      });
+      btns.forEach((b) => group.appendChild(b));
+
+      let groupVisible = false;
+      btns.forEach((b) => {
+        const name = (b.dataset.name || '').toLowerCase();
+        const match = !q || name.includes(q);
+        b.classList.toggle('hidden', !match || catHidden);
+        if (match && !catHidden) groupVisible = true;
+      });
+      // Hide group header when nothing visible
+      const hdr = group.querySelector('div');
+      if (hdr) hdr.classList.toggle('hidden', !groupVisible);
+      group.classList.toggle('hidden', !groupVisible);
+    });
+    updateSidebarCount();
+  }
+
+  // ─── Events ───────────────────────────────────────────────────────────────────
+  categoryBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.categoryBtn;
+      setActiveCategory(cat === currentCategory ? null : cat);
+      applySortAndFilter(searchInput?.value);
+      // Auto-load first visible institution in selected category
+      const firstVisible = [...document.querySelectorAll('.institution-btn')].find(
+        (b) => !b.classList.contains('hidden'),
+      );
+      if (firstVisible) loadInstitution(firstVisible.dataset.institutionBtn);
+    });
+  });
+
+  institutionBtns.forEach((btn) => {
+    btn.addEventListener('click', () => loadInstitution(btn.dataset.institutionBtn));
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value;
+      searchClear?.classList.toggle('hidden', !q);
+      if (q) setActiveCategory(null);
+      applySortAndFilter(q);
     });
   }
-}
-
-function flashCheck(btn) {
-  const orig = btn.innerHTML;
-  btn.innerHTML = `<svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>`;
-  setTimeout(() => { btn.innerHTML = orig; }, 1800);
-}
-function flashX(btn) {
-  const orig = btn.innerHTML;
-  btn.innerHTML = `<svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>`;
-  setTimeout(() => { btn.innerHTML = orig; }, 1800);
-}
-
-// ─── Sidebar 2 sorting ────────────────────────────────────────────────────────
-function applySortAndFilter(query) {
-  const q = (query || '').toLowerCase().trim();
-  // Update visibility of each institution button based on query + category
-  document.querySelectorAll('.institution-group').forEach(group => {
-    const cat = group.dataset.categoryGroup;
-    const catHidden = !!currentCategory && cat !== currentCategory;
-    const btns = [...group.querySelectorAll('.institution-btn')];
-
-    // Sort
-    const container = group; // buttons are direct children or inside
-    btns.sort((a, b) => {
-      const an = (a.dataset.name || '').toLowerCase();
-      const bn = (b.dataset.name || '').toLowerCase();
-      return currentSort === 'az' ? an.localeCompare(bn) : bn.localeCompare(an);
+  if (searchClear) {
+    searchClear.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      searchClear.classList.add('hidden');
+      applySortAndFilter('');
     });
-    btns.forEach(b => group.appendChild(b));
+  }
 
-    let groupVisible = false;
-    btns.forEach(b => {
-      const name = (b.dataset.name || '').toLowerCase();
-      const match = !q || name.includes(q);
-      b.classList.toggle('hidden', !match || catHidden);
-      if (match && !catHidden) groupVisible = true;
+  [sortAZ, sortZA].forEach((btn) => {
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      currentSort = btn.dataset.sort;
+      sortAZ?.classList.toggle('bg-primary-50', currentSort === 'az');
+      sortAZ?.classList.toggle('text-primary-600', currentSort === 'az');
+      sortAZ?.classList.toggle('text-surface-400', currentSort !== 'az');
+      sortZA?.classList.toggle('bg-primary-50', currentSort === 'za');
+      sortZA?.classList.toggle('text-primary-600', currentSort === 'za');
+      sortZA?.classList.toggle('text-surface-400', currentSort !== 'za');
+      applySortAndFilter(searchInput?.value);
     });
-    // Hide group header when nothing visible
-    const hdr = group.querySelector('div');
-    if (hdr) hdr.classList.toggle('hidden', !groupVisible);
-    group.classList.toggle('hidden', !groupVisible);
   });
-  updateSidebarCount();
-}
 
-// ─── Events ───────────────────────────────────────────────────────────────────
-categoryBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const cat = btn.dataset.categoryBtn;
-    setActiveCategory(cat === currentCategory ? null : cat);
-    applySortAndFilter(searchInput?.value);
-    // Auto-load first visible institution in selected category
-    const firstVisible = [...document.querySelectorAll('.institution-btn')]
-      .find(b => !b.classList.contains('hidden'));
-    if (firstVisible) loadInstitution(firstVisible.dataset.institutionBtn);
-  });
-});
+  // ─── Initialise ───────────────────────────────────────────────────────────────
+  (function init() {
+    const params = new URLSearchParams(window.location.search);
+    const startSlug = params.get('institution');
+    const startCat = params.get('categorie');
 
-institutionBtns.forEach(btn => {
-  btn.addEventListener('click', () => loadInstitution(btn.dataset.institutionBtn));
-});
+    // Activate first category or requested one
+    const firstCat =
+      startCat || document.querySelector('.category-btn')?.dataset.categoryBtn || null;
+    if (firstCat) setActiveCategory(firstCat);
 
-if (searchInput) {
-  searchInput.addEventListener('input', () => {
-    const q = searchInput.value;
-    searchClear?.classList.toggle('hidden', !q);
-    if (q) setActiveCategory(null);
-    applySortAndFilter(q);
-  });
-}
-if (searchClear) {
-  searchClear.addEventListener('click', () => {
-    if (searchInput) searchInput.value = '';
-    searchClear.classList.add('hidden');
     applySortAndFilter('');
-  });
-}
 
-[sortAZ, sortZA].forEach(btn => {
-  if (!btn) return;
-  btn.addEventListener('click', () => {
-    currentSort = btn.dataset.sort;
-    sortAZ?.classList.toggle('bg-primary-50',     currentSort === 'az');
-    sortAZ?.classList.toggle('text-primary-600',  currentSort === 'az');
-    sortAZ?.classList.toggle('text-surface-400',  currentSort !== 'az');
-    sortZA?.classList.toggle('bg-primary-50',     currentSort === 'za');
-    sortZA?.classList.toggle('text-primary-600',  currentSort === 'za');
-    sortZA?.classList.toggle('text-surface-400',  currentSort !== 'za');
-    applySortAndFilter(searchInput?.value);
-  });
-});
-
-// ─── Initialise ───────────────────────────────────────────────────────────────
-(function init() {
-  const params = new URLSearchParams(window.location.search);
-  const startSlug = params.get('institution');
-  const startCat  = params.get('categorie');
-
-  // Activate first category or requested one
-  const firstCat = startCat
-    || document.querySelector('.category-btn')?.dataset.categoryBtn
-    || null;
-  if (firstCat) setActiveCategory(firstCat);
-
-  applySortAndFilter('');
-
-  // Load starting institution
-  const slugToLoad = startSlug
-    || document.querySelector('.institution-btn:not(.hidden)')?.dataset.institutionBtn;
-  if (slugToLoad) loadInstitution(slugToLoad);
-  else if (placeholder) { placeholder.classList.remove('hidden'); placeholder.style.display = 'flex'; }
-})();
+    // Load starting institution
+    const slugToLoad =
+      startSlug || document.querySelector('.institution-btn:not(.hidden)')?.dataset.institutionBtn;
+    if (slugToLoad) loadInstitution(slugToLoad);
+    else if (placeholder) {
+      placeholder.classList.remove('hidden');
+      placeholder.style.display = 'flex';
+    }
+  })();
 </script>
 
 <style>
-  .institution-btn.hidden { display: none; }
+  .institution-btn.hidden {
+    display: none;
+  }
 </style>
