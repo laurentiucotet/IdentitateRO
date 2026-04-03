@@ -29,11 +29,7 @@
     {
       "name": "Color #232048",
       "hex": "#232048",
-      "rgb": [
-        35,
-        32,
-        72
-      ],
+      "rgb": [35, 32, 72],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -41,11 +37,7 @@
     {
       "name": "Color #C2423A",
       "hex": "#C2423A",
-      "rgb": [
-        194,
-        66,
-        58
-      ],
+      "rgb": [194, 66, 58],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"

@@ -14,19 +14,26 @@ import {
 
 describe('CATEGORY_LABELS', () => {
   const expectedCategories = [
-    'guvern', 'minister', 'primarie', 'consiliu-judetean',
-    'prefectura', 'agentie', 'autoritate', 'proiect-ue',
-    'institutie-cultura', 'altele',
+    'guvern',
+    'minister',
+    'primarie',
+    'consiliu-judetean',
+    'prefectura',
+    'agentie',
+    'autoritate',
+    'proiect-ue',
+    'institutie-cultura',
+    'altele',
   ];
 
   it('conține toate cele 10 categorii', () => {
-    expectedCategories.forEach(cat => {
+    expectedCategories.forEach((cat) => {
       expect(CATEGORY_LABELS[cat], `Categoria "${cat}" lipsește`).toBeDefined();
     });
   });
 
   it('fiecare categorie are un label non-gol', () => {
-    expectedCategories.forEach(cat => {
+    expectedCategories.forEach((cat) => {
       expect(typeof CATEGORY_LABELS[cat]).toBe('string');
       expect(CATEGORY_LABELS[cat].length).toBeGreaterThan(0);
     });
@@ -51,7 +58,7 @@ describe('CATEGORY_ORDER', () => {
   });
 
   it('fiecare categorie din ordine are un label definit', () => {
-    CATEGORY_ORDER.forEach(cat => {
+    CATEGORY_ORDER.forEach((cat) => {
       expect(CATEGORY_LABELS[cat], `Categoria din ordine "${cat}" nu are label`).toBeDefined();
     });
   });
@@ -67,13 +74,13 @@ describe('LOGO_LAYOUT_LABELS', () => {
   const expectedLayouts = ['horizontal', 'vertical', 'symbol'];
 
   it('conține toate cele 3 layout-uri', () => {
-    expectedLayouts.forEach(layout => {
+    expectedLayouts.forEach((layout) => {
       expect(LOGO_LAYOUT_LABELS[layout], `Layout "${layout}" lipsește`).toBeDefined();
     });
   });
 
   it('fiecare layout are un label string non-gol', () => {
-    expectedLayouts.forEach(layout => {
+    expectedLayouts.forEach((layout) => {
       expect(typeof LOGO_LAYOUT_LABELS[layout]).toBe('string');
       expect(LOGO_LAYOUT_LABELS[layout].length).toBeGreaterThan(0);
     });
@@ -86,13 +93,13 @@ describe('LOGO_VARIANT_LABELS', () => {
   const expectedVariants = ['color', 'dark_mode', 'white', 'black', 'monochrome'];
 
   it('conține toate cele 5 variante cromatice', () => {
-    expectedVariants.forEach(variant => {
+    expectedVariants.forEach((variant) => {
       expect(LOGO_VARIANT_LABELS[variant], `Varianta "${variant}" lipsește`).toBeDefined();
     });
   });
 
   it('fiecare variantă are un label string non-gol', () => {
-    expectedVariants.forEach(variant => {
+    expectedVariants.forEach((variant) => {
       expect(typeof LOGO_VARIANT_LABELS[variant]).toBe('string');
       expect(LOGO_VARIANT_LABELS[variant].length).toBeGreaterThan(0);
     });
@@ -105,7 +112,7 @@ describe('COLOR_USAGE_LABELS', () => {
   const expectedUsages = ['primary', 'secondary', 'accent', 'neutral'];
 
   it('conține toate tipurile de utilizare culoare', () => {
-    expectedUsages.forEach(usage => {
+    expectedUsages.forEach((usage) => {
       expect(COLOR_USAGE_LABELS[usage], `Utilizarea "${usage}" lipsește`).toBeDefined();
     });
   });
@@ -117,20 +124,20 @@ describe('QUALITY_LABELS', () => {
   const expectedLevels = ['verified', 'official_source', 'unverified'];
 
   it('conține toate cele 3 niveluri de calitate', () => {
-    expectedLevels.forEach(level => {
+    expectedLevels.forEach((level) => {
       expect(QUALITY_LABELS[level], `Nivelul "${level}" lipsește`).toBeDefined();
     });
   });
 
   it('fiecare nivel are câmpul label', () => {
-    expectedLevels.forEach(level => {
+    expectedLevels.forEach((level) => {
       expect(typeof QUALITY_LABELS[level].label).toBe('string');
       expect(QUALITY_LABELS[level].label.length).toBeGreaterThan(0);
     });
   });
 
   it('fiecare nivel are câmpul class', () => {
-    expectedLevels.forEach(level => {
+    expectedLevels.forEach((level) => {
       expect(typeof QUALITY_LABELS[level].class).toBe('string');
       expect(QUALITY_LABELS[level].class.length).toBeGreaterThan(0);
     });

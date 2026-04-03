@@ -29,9 +29,16 @@
     "category": {
       "type": "string",
       "enum": [
-        "guvern", "minister", "primarie", "consiliu-judetean",
-        "prefectura", "agentie", "autoritate", "proiect-ue",
-        "institutie-cultura", "altele"
+        "guvern",
+        "minister",
+        "primarie",
+        "consiliu-judetean",
+        "prefectura",
+        "agentie",
+        "autoritate",
+        "proiect-ue",
+        "institutie-cultura",
+        "altele"
       ]
     },
     "meta": {
@@ -210,10 +217,7 @@
       }
     },
     "logoAssetGroupOrNull": {
-      "oneOf": [
-        { "$ref": "#/$defs/logoAssetGroup" },
-        { "type": "null" }
-      ]
+      "oneOf": [{ "$ref": "#/$defs/logoAssetGroup" }, { "type": "null" }]
     }
   }
 }

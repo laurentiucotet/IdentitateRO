@@ -26,66 +26,42 @@
     {
       "name": "Color #FBCA07",
       "hex": "#FBCA07",
-      "rgb": [
-        251,
-        202,
-        7
-      ],
+      "rgb": [251, 202, 7],
       "cmyk": [],
       "usage": "primary"
     },
     {
       "name": "Color #002B7F",
       "hex": "#002B7F",
-      "rgb": [
-        0,
-        43,
-        127
-      ],
+      "rgb": [0, 43, 127],
       "cmyk": [],
       "usage": "secondary"
     },
     {
       "name": "Color #CE1126",
       "hex": "#CE1126",
-      "rgb": [
-        206,
-        17,
-        38
-      ],
+      "rgb": [206, 17, 38],
       "cmyk": [],
       "usage": "primary"
     },
     {
       "name": "Color #FFCE00",
       "hex": "#FFCE00",
-      "rgb": [
-        255,
-        206,
-        0
-      ],
+      "rgb": [255, 206, 0],
       "cmyk": [],
       "usage": "primary"
     },
     {
       "name": "Color #003399",
       "hex": "#003399",
-      "rgb": [
-        0,
-        51,
-        153
-      ],
+      "rgb": [0, 51, 153],
       "cmyk": [],
       "usage": "primary"
     },
     {
       "name": "Color #004990",
       "hex": "#004990",
-      "rgb": [
-        0,
-        73,
-        144
-      ],
+      "rgb": [0, 73, 144],
       "cmyk": [],
       "usage": "primary"
     }

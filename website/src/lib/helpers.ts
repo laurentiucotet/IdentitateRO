@@ -2,7 +2,12 @@
  * IdentitateRO — Funcții helper
  */
 
-import type { Institution, LogoLayout, LogoColorVariant, LogoAssetGroup } from '../types/institution';
+import type {
+  Institution,
+  LogoLayout,
+  LogoColorVariant,
+  LogoAssetGroup,
+} from '../types/institution';
 import { LOGO_LAYOUT_LABELS, LOGO_VARIANT_LABELS } from './labels';
 import { resolveAssetPath } from './cdn-helpers';
 
@@ -32,9 +37,9 @@ export interface DownloadableAsset {
  */
 export function getPrimaryLogoPath(inst: Institution): string | null {
   const main = inst.assets.main;
-  
+
   if (!main) return null;
-  
+
   // Priority: color → dark_mode → black → white → monochrome → png
   // Rezolvă AssetUrls la string folosind CDN sau local
   if (main.color) return resolveAssetPath(main.color, true);
@@ -43,7 +48,7 @@ export function getPrimaryLogoPath(inst: Institution): string | null {
   if (main.white) return resolveAssetPath(main.white, true);
   if (main.monochrome) return resolveAssetPath(main.monochrome, true);
   if (main.png) return resolveAssetPath(main.png.path, true);
-  
+
   return null;
 }
 
@@ -53,9 +58,10 @@ export function getPrimaryLogoPath(inst: Institution): string | null {
 export function hasSvg(inst: Institution): boolean {
   const { main, horizontal, vertical, symbol } = inst.assets;
   const groups = [main, horizontal, vertical, symbol].filter(Boolean);
-  
-  return groups.some(group => 
-    group && (group.color || group.dark_mode || group.white || group.black || group.monochrome)
+
+  return groups.some(
+    (group) =>
+      group && (group.color || group.dark_mode || group.white || group.black || group.monochrome),
   );
 }
 
@@ -69,16 +75,16 @@ export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[]
 
   // Process each layout type
   const layouts: Array<{ key: string; group: LogoAssetGroup; layout: LogoLayout }> = [];
-  
+
   if (horizontal) layouts.push({ key: 'horizontal', group: horizontal, layout: 'horizontal' });
   if (vertical) layouts.push({ key: 'vertical', group: vertical, layout: 'vertical' });
   if (symbol) layouts.push({ key: 'symbol', group: symbol, layout: 'symbol' });
-  
+
   for (const { key, group, layout } of layouts) {
     if (!group) continue;
-    
+
     const layoutLabel = LOGO_LAYOUT_LABELS[key] || key;
-    
+
     // SVG variants
     const variants: Array<{ variant: LogoColorVariant; asset: typeof group.color }> = [
       { variant: 'color', asset: group.color },
@@ -87,7 +93,7 @@ export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[]
       { variant: 'black', asset: group.black },
       { variant: 'monochrome', asset: group.monochrome },
     ];
-    
+
     for (const { variant, asset } of variants) {
       if (!asset) continue;
       const path = resolveAssetPath(asset, true);
@@ -101,7 +107,7 @@ export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[]
         variant,
       });
     }
-    
+
     // PNG
     if (group.png) {
       const pngPath = resolveAssetPath(group.png.path, true);
@@ -118,7 +124,7 @@ export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[]
       }
     }
   }
-  
+
   return assets;
 }
 
@@ -128,7 +134,7 @@ export function getAllDownloadableAssets(inst: Institution): DownloadableAsset[]
  */
 export function getLogoVariants(group: LogoAssetGroup | undefined): Array<[string, string]> {
   if (!group) return [];
-  
+
   const variantKeys: Array<{ key: string; asset: typeof group.color }> = [
     { key: 'color', asset: group.color },
     { key: 'dark_mode', asset: group.dark_mode },
@@ -136,12 +142,12 @@ export function getLogoVariants(group: LogoAssetGroup | undefined): Array<[strin
     { key: 'black', asset: group.black },
     { key: 'monochrome', asset: group.monochrome },
   ];
-  
+
   return variantKeys
     .filter(({ asset }) => asset)
     .map(({ key, asset }) => {
       const path = resolveAssetPath(asset, true);
-      return path ? [key, path] as [string, string] : null;
+      return path ? ([key, path] as [string, string]) : null;
     })
     .filter((item): item is [string, string] => item !== null);
 }
@@ -150,14 +156,17 @@ export function getLogoVariants(group: LogoAssetGroup | undefined): Array<[strin
  * Construiește URL-ul CDN pentru un logo cu verificare.
  * Returnează null dacă varianta specificată nu există.
  */
-export function getCdnLogoUrl(inst: Institution, preferredVariant: string = 'color'): string | null {
+export function getCdnLogoUrl(
+  inst: Institution,
+  preferredVariant: string = 'color',
+): string | null {
   const cdnBase = `https://cdn.jsdelivr.net/npm/@identitate-ro/logos/logos/${inst.id}`;
   const mainLayout = inst.assets.main?.type || 'horizontal';
-  
+
   // Verificăm dacă varianta există în assets.main
   const main = inst.assets.main;
   if (!main) return null;
-  
+
   // Găsim variantele disponibile
   const availableVariants: string[] = [];
   if (main.color) availableVariants.push('color');
@@ -165,14 +174,14 @@ export function getCdnLogoUrl(inst: Institution, preferredVariant: string = 'col
   if (main.white) availableVariants.push('white');
   if (main.black) availableVariants.push('black');
   if (main.monochrome) availableVariants.push('monochrome');
-  
+
   if (availableVariants.length === 0) return null;
-  
+
   // Folosim varianta preferată sau prima disponibilă
-  const variant = availableVariants.includes(preferredVariant) 
-    ? preferredVariant 
+  const variant = availableVariants.includes(preferredVariant)
+    ? preferredVariant
     : availableVariants[0];
-  
+
   return `${cdnBase}/${mainLayout}/${variant}.svg`;
 }
 

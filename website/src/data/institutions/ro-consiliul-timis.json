@@ -28,11 +28,7 @@
     {
       "name": "Color #D2AC67",
       "hex": "#D2AC67",
-      "rgb": [
-        210,
-        172,
-        103
-      ],
+      "rgb": [210, 172, 103],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +36,7 @@
     {
       "name": "Color #ED1C24",
       "hex": "#ED1C24",
-      "rgb": [
-        237,
-        28,
-        36
-      ],
+      "rgb": [237, 28, 36],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"
@@ -52,11 +44,7 @@
     {
       "name": "Color #16547C",
       "hex": "#16547C",
-      "rgb": [
-        22,
-        84,
-        124
-      ],
+      "rgb": [22, 84, 124],
       "cmyk": null,
       "pantone": null,
       "usage": null

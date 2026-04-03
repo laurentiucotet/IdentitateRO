@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-10",
-    "keywords": [
-      "infrastructură",
-      "drumuri",
-      "autostrăzi",
-      "transport",
-      "administrare"
-    ],
+    "keywords": ["infrastructură", "drumuri", "autostrăzi", "transport", "administrare"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Color #0772AF",
       "hex": "#0772AF",
-      "rgb": [
-        7,
-        114,
-        175
-      ],
+      "rgb": [7, 114, 175],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"

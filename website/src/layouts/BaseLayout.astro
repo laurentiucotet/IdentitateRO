@@ -14,7 +14,9 @@ interface Props {
 const { title, description, ogImage, ogType, noindex }: Props = Astro.props;
 
 const pageTitle = title || 'Identitate.EU — Registrul Siglelor Instituțiilor Publice';
-const pageDescription = description || 'Registru digital pentru logo-uri vectoriale ale instituțiilor publice din România.';
+const pageDescription =
+  description ||
+  'Registru digital pentru logo-uri vectoriale ale instituțiilor publice din România.';
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = ogImage || new URL('/og-image.png', Astro.site).href;
 ---
@@ -56,24 +58,43 @@ const ogImageUrl = ogImage || new URL('/og-image.png', Astro.site).href;
     <!-- Font: Public Sans (preconnect + non-blocking load) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" /></noscript>
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap"
+      /></noscript
+    >
 
     <!-- JSON-LD Structured Data -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "IdentitateEU",
-      "url": "https://identitate.eu",
-      "description": "Registru digital open-source pentru identitatea vizuală a instituțiilor publice din România.",
-      "inLanguage": "ro",
-      "publisher": {
-        "@type": "Organization",
-        "name": "IdentitateEU Community",
-        "url": "https://identitate.eu"
-      }
-    })} />
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'IdentitateEU',
+        url: 'https://identitate.eu',
+        description:
+          'Registru digital open-source pentru identitatea vizuală a instituțiilor publice din România.',
+        inLanguage: 'ro',
+        publisher: {
+          '@type': 'Organization',
+          name: 'IdentitateEU Community',
+          url: 'https://identitate.eu',
+        },
+      })}
+    />
 
     <!-- Page-specific head content (JSON-LD, etc.) -->
     <slot name="head" />
@@ -81,7 +102,7 @@ const ogImageUrl = ogImage || new URL('/og-image.png', Astro.site).href;
     <title>{pageTitle}</title>
 
     <script is:inline type="module">
-      import { inject } from "@vercel/analytics";
+      import { inject } from '@vercel/analytics';
       inject();
     </script>
   </head>

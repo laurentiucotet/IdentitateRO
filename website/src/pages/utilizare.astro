@@ -6,26 +6,33 @@ import type { Institution } from '../types/institution';
 const institutions = institutionIndex.institutions as unknown as Institution[];
 ---
 
-<BaseLayout title="Cum să folosești — IdentitateRO" description="Ghid complet de utilizare pentru pachetul npm @identitate-ro/logos și CDN.">
+<BaseLayout
+  title="Cum să folosești — IdentitateRO"
+  description="Ghid complet de utilizare pentru pachetul npm @identitate-ro/logos și CDN."
+>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="mb-8">
-      <a href="/" class="inline-flex items-center gap-2 text-sm text-primary-600 hover:text-primary-700 mb-4">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-sm text-primary-600 hover:text-primary-700 mb-4"
+      >
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
         </svg>
         Înapoi la pagina principală
       </a>
-      
+
       <h1 class="text-3xl font-bold text-primary-900 mb-3">
         Cum să folosești <span class="text-primary-500">@identitate-ro/logos</span>
       </h1>
-      <p class="text-surface-600">
-        Ghid complet de utilizare pentru pachetul npm și CDN
-      </p>
+      <p class="text-surface-600">Ghid complet de utilizare pentru pachetul npm și CDN</p>
     </div>
 
     <div class="space-y-12">
-      
       <!-- Instalare -->
       <section>
         <h2 class="text-2xl font-bold text-primary-900 mb-4">Instalare</h2>
@@ -55,7 +62,8 @@ const institutions = institutionIndex.institutions as unknown as Institution[];
             </code>
           </div>
           <p class="text-xs text-surface-500">
-            URL-urile de pe identitate.eu sunt redirect-uri către jsDelivr CDN cu caching și CORS headers.
+            URL-urile de pe identitate.eu sunt redirect-uri către jsDelivr CDN cu caching și CORS
+            headers.
           </p>
         </div>
       </section>
@@ -64,24 +72,27 @@ const institutions = institutionIndex.institutions as unknown as Institution[];
       <section>
         <h2 class="text-2xl font-bold text-primary-900 mb-4">Web Component</h2>
         <p class="text-surface-600 mb-4">
-          Folosește componenta <code class="bg-surface-100 px-1.5 py-0.5 rounded text-sm">&lt;identity-icon&gt;</code> pentru încărcare automată cu caching și CSS color control:
+          Folosește componenta <code class="bg-surface-100 px-1.5 py-0.5 rounded text-sm"
+            >&lt;identity-icon&gt;</code
+          > pentru încărcare automată cu caching și CSS color control:
         </p>
         <div class="space-y-3">
           <div class="bg-surface-900 rounded-lg p-4 overflow-x-auto">
             <code class="text-white text-xs font-mono">
-              <span class="text-gray-400">&lt;!-- Include loader-ul --&gt;</span><br>
-              &lt;script src="https://identitate.eu/loader.js"&gt;&lt;/script&gt;<br><br>
-              <span class="text-gray-400">&lt;!-- Folosește componenta --&gt;</span><br>
-              &lt;identity-icon<br>
-              &nbsp;&nbsp;src="https://identitate.eu/logos/ro-anaf/symbol/color.svg"<br>
-              &nbsp;&nbsp;size="64px"&gt;<br>
+              <span class="text-gray-400">&lt;!-- Include loader-ul --&gt;</span><br />
+              &lt;script src="https://identitate.eu/loader.js"&gt;&lt;/script&gt;<br /><br />
+              <span class="text-gray-400">&lt;!-- Folosește componenta --&gt;</span><br />
+              &lt;identity-icon<br />
+              &nbsp;&nbsp;src="https://identitate.eu/logos/ro-anaf/symbol/color.svg"<br />
+              &nbsp;&nbsp;size="64px"&gt;<br />
               &lt;/identity-icon&gt;
             </code>
           </div>
           <p class="text-xs text-surface-500">
-            Componenta suportă atributul <code class="bg-surface-100 px-1 rounded">size</code>, 
-            control CSS prin <code class="bg-surface-100 px-1 rounded">color</code> (via <code class="bg-surface-100 px-1 rounded">currentColor</code>),
-            și path-uri relative sau absolute.
+            Componenta suportă atributul <code class="bg-surface-100 px-1 rounded">size</code>,
+            control CSS prin <code class="bg-surface-100 px-1 rounded">color</code> (via <code
+              class="bg-surface-100 px-1 rounded">currentColor</code
+            >), și path-uri relative sau absolute.
           </p>
         </div>
       </section>
@@ -89,25 +100,43 @@ const institutions = institutionIndex.institutions as unknown as Institution[];
       <!-- Structura fișierelor -->
       <section>
         <h2 class="text-2xl font-bold text-primary-900 mb-4">Structura fișierelor</h2>
-        <p class="text-surface-600 mb-4">Fiecare instituție are logo-uri organizate pe layout-uri și variante cromatice:</p>
+        <p class="text-surface-600 mb-4">
+          Fiecare instituție are logo-uri organizate pe layout-uri și variante cromatice:
+        </p>
         <div class="bg-surface-50 border border-surface-200 rounded-lg p-4 font-mono text-sm">
-          <pre class="text-surface-700">{'logos/\n  ro-{slug}/\n    horizontal/\n      color.svg\n      white.svg\n      black.svg\n    vertical/\n      color.svg\n      white.svg\n      black.svg\n    symbol/\n      color.svg\n      white.svg\n      black.svg'}</pre>
+          <pre
+            class="text-surface-700">{'logos/\n  ro-{slug}/\n    horizontal/\n      color.svg\n      white.svg\n      black.svg\n    vertical/\n      color.svg\n      white.svg\n      black.svg\n    symbol/\n      color.svg\n      white.svg\n      black.svg'}</pre>
         </div>
       </section>
 
       <!-- Instituții disponibile -->
       <section>
-        <h2 class="text-2xl font-bold text-primary-900 mb-4">Instituții Disponibile ({institutions.length})</h2>
+        <h2 class="text-2xl font-bold text-primary-900 mb-4">
+          Instituții Disponibile ({institutions.length})
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {institutions.map((inst) => (
-            <a href={`/institution/${inst.slug}`} class="bg-surface-50 border border-surface-200 rounded-lg p-3 hover:border-primary-300 transition-colors">
-              <code class="text-sm text-primary-700">{inst.id}</code>
-              <p class="text-xs text-surface-600 mt-1">{inst.name}</p>
-            </a>
-          ))}
+          {
+            institutions.map((inst) => (
+              <a
+                href={`/institution/${inst.slug}`}
+                class="bg-surface-50 border border-surface-200 rounded-lg p-3 hover:border-primary-300 transition-colors"
+              >
+                <code class="text-sm text-primary-700">{inst.id}</code>
+                <p class="text-xs text-surface-600 mt-1">{inst.name}</p>
+              </a>
+            ))
+          }
         </div>
         <p class="text-sm text-surface-500 mt-4">
-          Pentru lista completă actualizată, consultă <a href="/" class="text-primary-600 hover:text-primary-700 underline">pagina principală</a> sau <a href="https://www.npmjs.com/package/@identitate-ro/logos" target="_blank" rel="noopener" class="text-primary-600 hover:text-primary-700 underline">README-ul pe NPM</a>.
+          Pentru lista completă actualizată, consultă <a
+            href="/"
+            class="text-primary-600 hover:text-primary-700 underline">pagina principală</a
+          > sau <a
+            href="https://www.npmjs.com/package/@identitate-ro/logos"
+            target="_blank"
+            rel="noopener"
+            class="text-primary-600 hover:text-primary-700 underline">README-ul pe NPM</a
+          >.
         </p>
       </section>
 
@@ -116,23 +145,37 @@ const institutions = institutionIndex.institutions as unknown as Institution[];
         <h2 class="text-2xl font-bold text-primary-900 mb-4">Link-uri Utile</h2>
         <ul class="space-y-2 text-surface-600">
           <li>
-            <a href="https://www.npmjs.com/package/@identitate-ro/logos" target="_blank" rel="noopener" class="text-primary-600 hover:text-primary-700">
+            <a
+              href="https://www.npmjs.com/package/@identitate-ro/logos"
+              target="_blank"
+              rel="noopener"
+              class="text-primary-600 hover:text-primary-700"
+            >
               NPM Package &rarr;
             </a>
           </li>
           <li>
-            <a href="https://github.com/laurentiucotet/IdentitateRO" target="_blank" rel="noopener" class="text-primary-600 hover:text-primary-700">
+            <a
+              href="https://github.com/laurentiucotet/IdentitateRO"
+              target="_blank"
+              rel="noopener"
+              class="text-primary-600 hover:text-primary-700"
+            >
               GitHub Repository &rarr;
             </a>
           </li>
           <li>
-            <a href="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/" target="_blank" rel="noopener" class="text-primary-600 hover:text-primary-700">
+            <a
+              href="https://cdn.jsdelivr.net/npm/@identitate-ro/logos/"
+              target="_blank"
+              rel="noopener"
+              class="text-primary-600 hover:text-primary-700"
+            >
               jsDelivr CDN File Browser &rarr;
             </a>
           </li>
         </ul>
       </section>
-
     </div>
   </div>
 </BaseLayout>

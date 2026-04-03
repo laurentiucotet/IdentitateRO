@@ -47,26 +47,26 @@ import readline from 'node:readline';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
 
-//  Paths 
+//  Paths
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const TOOLS_DIR     = __dirname;
-const WEBSITE_DIR   = path.resolve(TOOLS_DIR, '..', '..');
-const LOGOS_DIR     = path.resolve(WEBSITE_DIR, '..', 'packages', 'logos', 'logos');
-const OUTPUT_DIR    = path.resolve(WEBSITE_DIR, 'src', 'data', 'institutions');
-const SCHEMA_PATH   = path.resolve(TOOLS_DIR, 'institution.schema.json');
-const CACHE_DIR     = path.resolve(TOOLS_DIR, 'ai-cache');
-const ENV_PATH      = path.resolve(TOOLS_DIR, '.env');
+const TOOLS_DIR = __dirname;
+const WEBSITE_DIR = path.resolve(TOOLS_DIR, '..', '..');
+const LOGOS_DIR = path.resolve(WEBSITE_DIR, '..', 'packages', 'logos', 'logos');
+const OUTPUT_DIR = path.resolve(WEBSITE_DIR, 'src', 'data', 'institutions');
+const SCHEMA_PATH = path.resolve(TOOLS_DIR, 'institution.schema.json');
+const CACHE_DIR = path.resolve(TOOLS_DIR, 'ai-cache');
+const ENV_PATH = path.resolve(TOOLS_DIR, '.env');
 
-//  Layout / variant constants 
+//  Layout / variant constants
 
-const LAYOUTS  = ['horizontal', 'vertical', 'symbol'];
+const LAYOUTS = ['horizontal', 'vertical', 'symbol'];
 const VARIANTS = ['color', 'white', 'dark', 'black'];
 const VARIANT_TO_FIELD = { color: 'color', white: 'white', dark: 'dark_mode', black: 'black' };
 
-//  Load .env file 
+//  Load .env file
 
 function loadEnv() {
   if (!fs.existsSync(ENV_PATH)) return;
@@ -77,7 +77,10 @@ function loadEnv() {
     const eqIdx = trimmed.indexOf('=');
     if (eqIdx === -1) continue;
     const key = trimmed.slice(0, eqIdx).trim();
-    const val = trimmed.slice(eqIdx + 1).trim().replace(/^["']|["']$/g, '');
+    const val = trimmed
+      .slice(eqIdx + 1)
+      .trim()
+      .replace(/^["']|["']$/g, '');
     // Don't overwrite existing env vars
     if (!process.env[key]) {
       process.env[key] = val;
@@ -88,12 +91,12 @@ function loadEnv() {
 // Load .env before anything else
 loadEnv();
 
-//  CLI args (simple parser  no deps needed) 
+//  CLI args (simple parser  no deps needed)
 
 const args = process.argv.slice(2);
-const DRY_RUN   = args.includes('--dry-run');
-const NO_CACHE  = args.includes('--no-cache');
-const FORCE     = args.includes('--force');
+const DRY_RUN = args.includes('--dry-run');
+const NO_CACHE = args.includes('--no-cache');
+const FORCE = args.includes('--force');
 
 // Handle slug argument - can be --slug value or just value
 let SLUG_ONLY = null;
@@ -104,28 +107,39 @@ if (args.includes('--slug')) {
   SLUG_ONLY = args[0];
 }
 
-const MODEL     = getArgValue('--model') || 'openai/gpt-5-mini';
+const MODEL = getArgValue('--model') || 'openai/gpt-5-mini';
 
 function getArgValue(flag) {
   const idx = args.indexOf(flag);
   return idx !== -1 && args[idx + 1] ? args[idx + 1] : null;
 }
 
-//  Helpers 
+//  Helpers
 
-function log(msg) { console.log(`\x1b[36m[gen]\x1b[0m ${msg}`); }
-function warn(msg) { console.warn(`\x1b[33m[warn]\x1b[0m ${msg}`); }
-function err(msg)  { console.error(`\x1b[31m[err]\x1b[0m ${msg}`); }
-function ok(msg)   { console.log(`\x1b[32m[ok]\x1b[0m ${msg}`); }
+function log(msg) {
+  console.log(`\x1b[36m[gen]\x1b[0m ${msg}`);
+}
+function warn(msg) {
+  console.warn(`\x1b[33m[warn]\x1b[0m ${msg}`);
+}
+function err(msg) {
+  console.error(`\x1b[31m[err]\x1b[0m ${msg}`);
+}
+function ok(msg) {
+  console.log(`\x1b[32m[ok]\x1b[0m ${msg}`);
+}
 
 async function askQuestion(question) {
   const rl = readline.createInterface({ input: process.stdin, output: process.stderr });
-  return new Promise(resolve => {
-    rl.question(question, answer => { rl.close(); resolve(answer.trim()); });
+  return new Promise((resolve) => {
+    rl.question(question, (answer) => {
+      rl.close();
+      resolve(answer.trim());
+    });
   });
 }
 
-//  Save API key to .env 
+//  Save API key to .env
 
 function saveApiKeyToEnv(key) {
   let content;
@@ -142,7 +156,7 @@ function saveApiKeyToEnv(key) {
   fs.writeFileSync(ENV_PATH, content, 'utf-8');
 }
 
-//  Get API key (env  .env  runtime prompt  save to .env) 
+//  Get API key (env  .env  runtime prompt  save to .env)
 
 async function getApiKey() {
   if (process.env.OPENROUTER_API_KEY) {
@@ -151,7 +165,10 @@ async function getApiKey() {
   }
   log('No OPENROUTER_API_KEY found in environment or .env.');
   const key = await askQuestion(' Enter your OpenRouter API key: ');
-  if (!key) { err('API key is required. Aborting.'); process.exit(1); }
+  if (!key) {
+    err('API key is required. Aborting.');
+    process.exit(1);
+  }
 
   // Save to .env for future runs
   saveApiKeyToEnv(key);
@@ -160,7 +177,7 @@ async function getApiKey() {
   return key;
 }
 
-//  OpenRouter client 
+//  OpenRouter client
 
 const MAX_RETRIES = 3;
 
@@ -169,7 +186,7 @@ async function callOpenRouter(apiKey, systemPrompt, userPrompt, attempt = 1) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
+      Authorization: `Bearer ${apiKey}`,
       'HTTP-Referer': 'https://identitate.eu',
       'X-Title': 'IdentitateRO Generator',
     },
@@ -179,7 +196,7 @@ async function callOpenRouter(apiKey, systemPrompt, userPrompt, attempt = 1) {
       response_format: { type: 'json_object' },
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user',   content: userPrompt },
+        { role: 'user', content: userPrompt },
       ],
     }),
   });
@@ -194,11 +211,16 @@ async function callOpenRouter(apiKey, systemPrompt, userPrompt, attempt = 1) {
   try {
     data = JSON.parse(rawBody);
   } catch {
-    throw new Error('OpenRouter returned non-JSON response (first 200 chars): ' + rawBody.slice(0, 200));
+    throw new Error(
+      'OpenRouter returned non-JSON response (first 200 chars): ' + rawBody.slice(0, 200),
+    );
   }
 
   const content = data.choices?.[0]?.message?.content;
-  if (!content) throw new Error('Empty response from OpenRouter. Full response: ' + JSON.stringify(data).slice(0, 300));
+  if (!content)
+    throw new Error(
+      'Empty response from OpenRouter. Full response: ' + JSON.stringify(data).slice(0, 300),
+    );
 
   // Parse JSON from response (handle markdown code fences)
   let cleaned = content.trim();
@@ -212,14 +234,19 @@ async function callOpenRouter(apiKey, systemPrompt, userPrompt, attempt = 1) {
     if (attempt < MAX_RETRIES) {
       warn('Attempt ' + attempt + '/' + MAX_RETRIES + ' — AI returned invalid JSON, retrying...');
       // Wait a bit before retrying
-      await new Promise(r => setTimeout(r, 2000 * attempt));
+      await new Promise((r) => setTimeout(r, 2000 * attempt));
       return callOpenRouter(apiKey, systemPrompt, userPrompt, attempt + 1);
     }
-    throw new Error('AI returned invalid JSON after ' + MAX_RETRIES + ' attempts. Last response (first 500 chars): ' + cleaned.slice(0, 500));
+    throw new Error(
+      'AI returned invalid JSON after ' +
+        MAX_RETRIES +
+        ' attempts. Last response (first 500 chars): ' +
+        cleaned.slice(0, 500),
+    );
   }
 }
 
-//  Schema validation 
+//  Schema validation
 
 let validateFn = null;
 
@@ -235,7 +262,7 @@ function validate(data) {
   return { valid, errors: validateFn.errors || [] };
 }
 
-//  Parse metadata.md frontmatter (simple parser, no gray-matter dep) 
+//  Parse metadata.md frontmatter (simple parser, no gray-matter dep)
 
 function parseMetadata(content) {
   const frontmatter = {};
@@ -300,8 +327,12 @@ function extractColorsFromMetadata(rawContent) {
 
   // Usage hint keywords
   const USAGE_KEYWORDS = {
-    primary: 'primary', principal: 'primary', principale: 'primary',
-    secondary: 'secondary', secundar: 'secondary', secundara: 'secondary',
+    primary: 'primary',
+    principal: 'primary',
+    principale: 'primary',
+    secondary: 'secondary',
+    secundar: 'secondary',
+    secundara: 'secondary',
     accent: 'accent',
     neutral: 'neutral',
   };
@@ -312,13 +343,15 @@ function extractColorsFromMetadata(rawContent) {
   //   e.g. "rosu:E03544"
   //   e.g. "culori galben: F6C014 de accent"
   // Captures: group1=name, group2=hex (3-6 chars), group3=parenthesized hint, group4=trailing text until comma/newline
-  const namedPattern = /([\w\u00C0-\u024F\u00c0-\u00ff\t -]*):\s*#?([0-9A-Fa-f]{3,6})(?:\s*\(([^)]+)\))?([^,\n]*)?/g;
+  const namedPattern =
+    /([\w\u00C0-\u024F\u00c0-\u00ff\t -]*):\s*#?([0-9A-Fa-f]{3,6})(?:\s*\(([^)]+)\))?([^,\n]*)?/g;
   let match;
 
   while ((match = namedPattern.exec(rawContent)) !== null) {
     let rawHex = match[2];
     // Expand 3-char hex to 6-char
-    if (rawHex.length === 3) rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
+    if (rawHex.length === 3)
+      rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
     // Reject 4 or 5 char hex (only 3 and 6 are valid)
     if (rawHex.length !== 6) continue;
 
@@ -335,7 +368,10 @@ function extractColorsFromMetadata(rawContent) {
     const combinedHint = usageHintParen + ' ' + trailingText;
     let usage = null;
     for (const [kw, val] of Object.entries(USAGE_KEYWORDS)) {
-      if (combinedHint.includes(kw)) { usage = val; break; }
+      if (combinedHint.includes(kw)) {
+        usage = val;
+        break;
+      }
     }
     // Auto-assign first color as primary if no usage specified
     if (!usage && colors.length === 0) usage = 'primary';
@@ -361,7 +397,8 @@ function extractColorsFromMetadata(rawContent) {
   const standalonePattern = /(?:^|[\s,;])#?([0-9A-Fa-f]{3,6})(?=[\s,;]|$)/g;
   while ((match = standalonePattern.exec(rawContent)) !== null) {
     let rawHex = match[1];
-    if (rawHex.length === 3) rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
+    if (rawHex.length === 3)
+      rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
     if (rawHex.length !== 6) continue;
     const hex = rawHex.toUpperCase();
     if (seenHex.has(hex)) continue;
@@ -397,11 +434,20 @@ function extractColorsFromMetadata(rawContent) {
 
 /** Colors considered generic / non-brand (uppercase, no #) */
 const IGNORED_COLORS = new Set([
-  'FFFFFF', '000000', 'NONE',
+  'FFFFFF',
+  '000000',
+  'NONE',
   // near-blacks commonly used for text
-  '1A1A1A', '111111', '222222', '333333', '0D0D0D',
+  '1A1A1A',
+  '111111',
+  '222222',
+  '333333',
+  '0D0D0D',
   // near-white / light grays
-  'FAFAFA', 'F5F5F5', 'EEEEEE', 'E0E0E0',
+  'FAFAFA',
+  'F5F5F5',
+  'EEEEEE',
+  'E0E0E0',
 ]);
 
 function isIgnoredColor(hex6) {
@@ -425,9 +471,7 @@ function extractColorsFromSvgFiles(slugDir, discovered, isFlat) {
     if (!files) continue;
     for (const file of files) {
       if (!file.endsWith('.svg')) continue;
-      const svgPath = isFlat
-        ? path.join(slugDir, file)
-        : path.join(slugDir, layout, file);
+      const svgPath = isFlat ? path.join(slugDir, file) : path.join(slugDir, layout, file);
       svgPaths.push(svgPath);
     }
   }
@@ -446,7 +490,8 @@ function extractColorsFromSvgFiles(slugDir, discovered, isFlat) {
   // Regex matches hex colors in SVG attributes:
   //   fill="#2C2C76"  stroke="#B42059"  stop-color="#003DA5"
   //   Also inline styles: fill:#2C2C76  stroke:#B42059
-  const hexInAttrPattern = /(?:fill|stroke|stop-color|flood-color|lighting-color)\s*[:=]\s*"?\s*#([0-9A-Fa-f]{3,6})\b/gi;
+  const hexInAttrPattern =
+    /(?:fill|stroke|stop-color|flood-color|lighting-color)\s*[:=]\s*"?\s*#([0-9A-Fa-f]{3,6})\b/gi;
 
   for (const svgPath of svgPaths) {
     if (!fs.existsSync(svgPath)) continue;
@@ -457,7 +502,8 @@ function extractColorsFromSvgFiles(slugDir, discovered, isFlat) {
     while ((match = hexInAttrPattern.exec(content)) !== null) {
       let rawHex = match[1];
       // Expand 3-char to 6-char
-      if (rawHex.length === 3) rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
+      if (rawHex.length === 3)
+        rawHex = rawHex[0] + rawHex[0] + rawHex[1] + rawHex[1] + rawHex[2] + rawHex[2];
       if (rawHex.length !== 6) continue;
       const hex6 = rawHex.toUpperCase();
 
@@ -470,9 +516,7 @@ function extractColorsFromSvgFiles(slugDir, discovered, isFlat) {
   if (colorCounts.size === 0) return null;
 
   // Sort by frequency (descending), take top 8
-  const sorted = [...colorCounts.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 8);
+  const sorted = [...colorCounts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8);
 
   const colors = sorted.map((entry, idx) => {
     const hex6 = entry[0];
@@ -503,7 +547,8 @@ function extractColorsFromSvgFiles(slugDir, discovered, isFlat) {
 
 function extractTypographyFromMetadata(rawContent) {
   // Pattern 1: "font: FAMILY url: URL" or "font: FAMILY URL"
-  const withUrlPattern = /font\s*:?\s+([a-zA-Z0-9][a-zA-Z0-9 +-]*)(?:\s+url\s*:\s*|\s+)(https?:\/\/\S+)/i;
+  const withUrlPattern =
+    /font\s*:?\s+([a-zA-Z0-9][a-zA-Z0-9 +-]*)(?:\s+url\s*:\s*|\s+)(https?:\/\/\S+)/i;
   const withUrlMatch = rawContent.match(withUrlPattern);
   if (withUrlMatch) {
     const family = withUrlMatch[1].trim();
@@ -542,7 +587,8 @@ function extractTypographyFromMetadata(rawContent) {
 function extractWebsiteFromMetadata(rawContent) {
   // Pattern 1: "website/site/web" keyword followed by URL
   // Note: deliberately excludes bare "url" to avoid catching font URLs like "url: https://myfonts.com/..."
-  const labelledPattern = /(?:website|site\s+oficial|site|web\s+oficial)\s*[^:]*:\s*(https?:\/\/\S+)/i;
+  const labelledPattern =
+    /(?:website|site\s+oficial|site|web\s+oficial)\s*[^:]*:\s*(https?:\/\/\S+)/i;
   const labelledMatch = rawContent.match(labelledPattern);
   if (labelledMatch) {
     return labelledMatch[1].trim().replace(/[).,;]+$/, '');
@@ -590,8 +636,9 @@ function discoverAssets(slugDir) {
     const layoutDir = path.join(slugDir, layout);
     if (!fs.existsSync(layoutDir)) continue;
 
-    const files = fs.readdirSync(layoutDir)
-      .filter(f => f.endsWith('.svg') || f.endsWith('.png'))
+    const files = fs
+      .readdirSync(layoutDir)
+      .filter((f) => f.endsWith('.svg') || f.endsWith('.png'))
       .sort();
 
     if (files.length > 0) {
@@ -602,8 +649,9 @@ function discoverAssets(slugDir) {
 
   // 2. Fallback: flat files like symbol_color.svg, horizontal_dark.svg
   if (totalFiles === 0) {
-    const rootFiles = fs.readdirSync(slugDir)
-      .filter(f => (f.endsWith('.svg') || f.endsWith('.png')) && f !== 'favicon.svg');
+    const rootFiles = fs
+      .readdirSync(slugDir)
+      .filter((f) => (f.endsWith('.svg') || f.endsWith('.png')) && f !== 'favicon.svg');
 
     for (const file of rootFiles) {
       const baseName = path.basename(file, path.extname(file)).toLowerCase();
@@ -624,7 +672,7 @@ function discoverAssets(slugDir) {
   return { found, totalFiles, isFlat };
 }
 
-//  Build assets object programmatically from discovered files 
+//  Build assets object programmatically from discovered files
 
 function buildAssetsFromFiles(slug, discovered, isFlat = false) {
   const assets = {
@@ -672,71 +720,73 @@ function buildAssetsFromFiles(slug, discovered, isFlat = false) {
   }
 
   // Set main: prefer horizontal → symbol → vertical
-  if (assets.horizontal)      assets.main = { ...assets.horizontal };
-  else if (assets.symbol)     assets.main = { ...assets.symbol, type: 'symbol' };
-  else if (assets.vertical)   assets.main = { ...assets.vertical, type: 'vertical' };
+  if (assets.horizontal) assets.main = { ...assets.horizontal };
+  else if (assets.symbol) assets.main = { ...assets.symbol, type: 'symbol' };
+  else if (assets.vertical) assets.main = { ...assets.vertical, type: 'vertical' };
 
   return assets;
 }
 
-//  Build the LLM prompt 
+//  Build the LLM prompt
 
 function buildSystemPrompt() {
-  return 'You are an expert at structuring data for Romanian public institutions.\n' +
-'You will receive:\n' +
-'  1. A slug (folder name)\n' +
-'  2. Available logo layouts and their SVG/PNG variant files\n' +
-'  3. Optional metadata from a markdown file (frontmatter + body text)\n' +
-'\n' +
-'Your task: produce a SINGLE valid JSON object for this institution following the IdentitateRO v3 schema. Respond in Romanian where appropriate.\n' +
-'\n' +
-'IMPORTANT: Do NOT include the "assets" field — it will be built automatically from the file structure.\n' +
-'\n' +
-'RULES:\n' +
-'- "id" must be "ro-{slug}"\n' +
-'- "slug" must be the folder name as-is\n' +
-'- "name" must be the full official name in Romanian (with diacritics)\n' +
-'- "shortname": lowercase short name or acronym, or null\n' +
-'- "category": one of: guvern, minister, primarie, consiliu-judetean, prefectura, agentie, autoritate, proiect-ue, institutie-cultura, altele\n' +
-'- "meta.version": "1.0"\n' +
-'- "meta.last_updated": today\'s date in YYYY-MM-DD format\n' +
-'- "meta.keywords": array of 3-8 Romanian lowercase keywords for search\n' +
-'- "meta.quality": "draft"\n' +
-'- "location": { "country_code": "RO", "county": county code or null, "city": city name or null }\n' +
-'- "description": 1-2 sentences in Romanian describing the institution\n' +
-'- "usage_notes": null unless explicitly mentioned\n' +
-'\n' +
-'COLORS (IMPORTANT — extract carefully):\n' +
-'- Look for lines containing "culori", "culoare", "color", hex codes (#RRGGBB or RRGGBB without #).\n' +
-'- Formats vary:  "culori: #232048 , #C2423A"  or  "culori albastru: 374990 , rosu:E03544"  or  "culoare: gri inchis: 34495E primara"\n' +
-'- Each color object: { "name": string, "hex": "#RRGGBB" (always 6-digit with #), "rgb": [r,g,b], "cmyk": null, "pantone": null, "usage": "primary"|"secondary"|"accent"|"neutral" }\n' +
-'- If hex is provided WITHOUT #, add the # prefix. Always uppercase hex.\n' +
-'- If no colors found at all, set "colors" to null.\n' +
-'\n' +
-'TYPOGRAPHY (IMPORTANT — extract carefully):\n' +
-'- Look for lines containing "font", "tipografie", "typography", font family names.\n' +
-'- Formats vary:  "font Arial"  or  "font: open sans https://fonts.google.com/..."  or  "font: helvetica neue pro lt url: https://..."\n' +
-'- Structure: { "primary": { "family": "Font Name", "url": "https://..." or null, "weights": [] }, "secondary": null }\n' +
-'- ALWAYS return the typography object if a font name is found, even without a URL.\n' +
-'- If no font/typography info at all, set "typography" to null.\n' +
-'\n' +
-'RESOURCES (IMPORTANT — extract carefully):\n' +
-'- "resources.website": Look for lines containing "website", "site", or standalone https:// URLs that are NOT font URLs.\n' +
-'  Formats:  "website oficial: https://www.anaf.ro/"  or  "site: https://insse.ro/"\n' +
-'  ALWAYS include "https://" protocol. If domain-only found, prepend "https://".\n' +
-'  If no website found, set to null.\n' +
-'- "resources.branding_manual": URL if provided, else null\n' +
-'- "resources.social_media": null\n' +
-'- "resources.official_resources": null\n' +
-'\n' +
-'Return ONLY the JSON object (without "assets"). No explanations, no markdown fences, no extra text.';
+  return (
+    'You are an expert at structuring data for Romanian public institutions.\n' +
+    'You will receive:\n' +
+    '  1. A slug (folder name)\n' +
+    '  2. Available logo layouts and their SVG/PNG variant files\n' +
+    '  3. Optional metadata from a markdown file (frontmatter + body text)\n' +
+    '\n' +
+    'Your task: produce a SINGLE valid JSON object for this institution following the IdentitateRO v3 schema. Respond in Romanian where appropriate.\n' +
+    '\n' +
+    'IMPORTANT: Do NOT include the "assets" field — it will be built automatically from the file structure.\n' +
+    '\n' +
+    'RULES:\n' +
+    '- "id" must be "ro-{slug}"\n' +
+    '- "slug" must be the folder name as-is\n' +
+    '- "name" must be the full official name in Romanian (with diacritics)\n' +
+    '- "shortname": lowercase short name or acronym, or null\n' +
+    '- "category": one of: guvern, minister, primarie, consiliu-judetean, prefectura, agentie, autoritate, proiect-ue, institutie-cultura, altele\n' +
+    '- "meta.version": "1.0"\n' +
+    '- "meta.last_updated": today\'s date in YYYY-MM-DD format\n' +
+    '- "meta.keywords": array of 3-8 Romanian lowercase keywords for search\n' +
+    '- "meta.quality": "draft"\n' +
+    '- "location": { "country_code": "RO", "county": county code or null, "city": city name or null }\n' +
+    '- "description": 1-2 sentences in Romanian describing the institution\n' +
+    '- "usage_notes": null unless explicitly mentioned\n' +
+    '\n' +
+    'COLORS (IMPORTANT — extract carefully):\n' +
+    '- Look for lines containing "culori", "culoare", "color", hex codes (#RRGGBB or RRGGBB without #).\n' +
+    '- Formats vary:  "culori: #232048 , #C2423A"  or  "culori albastru: 374990 , rosu:E03544"  or  "culoare: gri inchis: 34495E primara"\n' +
+    '- Each color object: { "name": string, "hex": "#RRGGBB" (always 6-digit with #), "rgb": [r,g,b], "cmyk": null, "pantone": null, "usage": "primary"|"secondary"|"accent"|"neutral" }\n' +
+    '- If hex is provided WITHOUT #, add the # prefix. Always uppercase hex.\n' +
+    '- If no colors found at all, set "colors" to null.\n' +
+    '\n' +
+    'TYPOGRAPHY (IMPORTANT — extract carefully):\n' +
+    '- Look for lines containing "font", "tipografie", "typography", font family names.\n' +
+    '- Formats vary:  "font Arial"  or  "font: open sans https://fonts.google.com/..."  or  "font: helvetica neue pro lt url: https://..."\n' +
+    '- Structure: { "primary": { "family": "Font Name", "url": "https://..." or null, "weights": [] }, "secondary": null }\n' +
+    '- ALWAYS return the typography object if a font name is found, even without a URL.\n' +
+    '- If no font/typography info at all, set "typography" to null.\n' +
+    '\n' +
+    'RESOURCES (IMPORTANT — extract carefully):\n' +
+    '- "resources.website": Look for lines containing "website", "site", or standalone https:// URLs that are NOT font URLs.\n' +
+    '  Formats:  "website oficial: https://www.anaf.ro/"  or  "site: https://insse.ro/"\n' +
+    '  ALWAYS include "https://" protocol. If domain-only found, prepend "https://".\n' +
+    '  If no website found, set to null.\n' +
+    '- "resources.branding_manual": URL if provided, else null\n' +
+    '- "resources.social_media": null\n' +
+    '- "resources.official_resources": null\n' +
+    '\n' +
+    'Return ONLY the JSON object (without "assets"). No explanations, no markdown fences, no extra text.'
+  );
 }
 
 function buildUserPrompt(slug, discovered, metadata) {
   const { frontmatter, body } = metadata;
 
   let prompt = 'Slug: ' + slug + '\n';
-  prompt += 'Today\'s date: ' + new Date().toISOString().slice(0, 10) + '\n';
+  prompt += "Today's date: " + new Date().toISOString().slice(0, 10) + '\n';
 
   prompt += '\nAvailable logo files:\n';
   for (const layout of LAYOUTS) {
@@ -766,7 +816,7 @@ function buildUserPrompt(slug, discovered, metadata) {
   return prompt;
 }
 
-//  Normalize AI response (fix common LLM quirks) 
+//  Normalize AI response (fix common LLM quirks)
 
 function normalizeAiResponse(data, slug) {
   const d = JSON.parse(JSON.stringify(data));
@@ -775,7 +825,7 @@ function normalizeAiResponse(data, slug) {
   if (d.slug && d.slug.startsWith('ro-')) {
     d.slug = d.slug.replace(/^ro-/, '');
   }
-  
+
   // Fix ID - ensure it's "ro-{slug}"
   d.id = 'ro-' + (d.slug || slug);
   d.slug = d.slug || slug;
@@ -788,20 +838,26 @@ function normalizeAiResponse(data, slug) {
   // Normalize typography weights to integers
   if (d.typography && typeof d.typography === 'object') {
     const WEIGHT_MAP = {
-      'thin': 100, 'hairline': 100,
-      'extralight': 200, 'ultralight': 200,
-      'light': 300,
-      'regular': 400, 'normal': 400,
-      'medium': 500,
-      'semibold': 600, 'demibold': 600,
-      'bold': 700,
-      'extrabold': 800, 'ultrabold': 800,
-      'black': 900, 'heavy': 900
+      thin: 100,
+      hairline: 100,
+      extralight: 200,
+      ultralight: 200,
+      light: 300,
+      regular: 400,
+      normal: 400,
+      medium: 500,
+      semibold: 600,
+      demibold: 600,
+      bold: 700,
+      extrabold: 800,
+      ultrabold: 800,
+      black: 900,
+      heavy: 900,
     };
 
     function normalizeWeights(weights) {
       if (!Array.isArray(weights)) return [];
-      return weights.map(w => {
+      return weights.map((w) => {
         if (typeof w === 'number') return w;
         if (typeof w === 'string') {
           const lower = w.toLowerCase().replace(/\s+/g, '');
@@ -842,7 +898,12 @@ function normalizeAiResponse(data, slug) {
       d.resources.official_resources = url || null;
     }
   } else {
-    d.resources = { website: null, branding_manual: null, social_media: null, official_resources: null };
+    d.resources = {
+      website: null,
+      branding_manual: null,
+      social_media: null,
+      official_resources: null,
+    };
   }
 
   // Map alternate AI font keys ("font", "fonts") → typography.primary.family
@@ -860,9 +921,19 @@ function normalizeAiResponse(data, slug) {
 
   // Strip any extra properties the AI may have hallucinated (e.g. "logos", "logo", "institution")
   const ALLOWED_TOP_KEYS = new Set([
-    'id', 'slug', 'name', 'shortname', 'category',
-    'meta', 'location', 'description', 'usage_notes',
-    'colors', 'typography', 'assets', 'resources',
+    'id',
+    'slug',
+    'name',
+    'shortname',
+    'category',
+    'meta',
+    'location',
+    'description',
+    'usage_notes',
+    'colors',
+    'typography',
+    'assets',
+    'resources',
   ]);
   for (const key of Object.keys(d)) {
     if (!ALLOWED_TOP_KEYS.has(key)) {
@@ -873,7 +944,7 @@ function normalizeAiResponse(data, slug) {
   return d;
 }
 
-//  Process a single slug 
+//  Process a single slug
 
 async function processSlug(slug, apiKey) {
   const slugDir = path.join(LOGOS_DIR, slug);
@@ -889,7 +960,14 @@ async function processSlug(slug, apiKey) {
   const layoutSummary = Object.entries(discovered)
     .map(([layout, files]) => layout + '(' + files.length + ')')
     .join(', ');
-  log(slug + ': found ' + totalFiles + ' asset(s) in ' + layoutSummary + (isFlat ? ' [flat layout]' : ''));
+  log(
+    slug +
+      ': found ' +
+      totalFiles +
+      ' asset(s) in ' +
+      layoutSummary +
+      (isFlat ? ' [flat layout]' : ''),
+  );
 
   // Load metadata.md if present
   const mdPath = path.join(slugDir, 'metadata.md');
@@ -940,7 +1018,9 @@ async function processSlug(slug, apiKey) {
     // Typography
     const extractedTypo = extractTypographyFromMetadata(rawMd);
     if (extractedTypo) {
-      log(slug + ': extracted typography ("' + extractedTypo.primary.family + '") from metadata.md');
+      log(
+        slug + ': extracted typography ("' + extractedTypo.primary.family + '") from metadata.md',
+      );
       normalized.typography = extractedTypo;
     }
 
@@ -948,7 +1028,8 @@ async function processSlug(slug, apiKey) {
     const extractedUrl = extractWebsiteFromMetadata(rawMd);
     if (extractedUrl) {
       log(slug + ': extracted website ("' + extractedUrl + '") from metadata.md');
-      if (!normalized.resources) normalized.resources = { website: null, branding_manual: null, social_media: null };
+      if (!normalized.resources)
+        normalized.resources = { website: null, branding_manual: null, social_media: null };
       normalized.resources.website = extractedUrl;
     }
   }
@@ -965,7 +1046,7 @@ async function processSlug(slug, apiKey) {
   return normalized;
 }
 
-//  Main 
+//  Main
 
 async function main() {
   console.log('');
@@ -991,8 +1072,9 @@ async function main() {
   const apiKey = await getApiKey();
 
   // 4. Discover slugs
-  let slugs = fs.readdirSync(LOGOS_DIR)
-    .filter(f => fs.statSync(path.join(LOGOS_DIR, f)).isDirectory());
+  let slugs = fs
+    .readdirSync(LOGOS_DIR)
+    .filter((f) => fs.statSync(path.join(LOGOS_DIR, f)).isDirectory());
 
   if (SLUG_ONLY) {
     if (!slugs.includes(SLUG_ONLY)) {
@@ -1013,7 +1095,10 @@ async function main() {
       log(' Processing: ' + slug + ' ');
 
       const data = await processSlug(slug, apiKey);
-      if (!data) { results.skipped.push(slug); continue; }
+      if (!data) {
+        results.skipped.push(slug);
+        continue;
+      }
 
       // Validate
       const { valid, errors } = validate(data);
@@ -1048,7 +1133,6 @@ async function main() {
       }
 
       results.success.push(slug);
-
     } catch (ex) {
       err(slug + ': ' + ex.message);
       results.failed.push(slug);
@@ -1062,8 +1146,10 @@ async function main() {
   log('  Summary');
   log('');
   ok('Success:  ' + results.success.length + '  ' + (results.success.join(', ') || '(none)'));
-  if (results.failed.length)  warn('Failed:   ' + results.failed.length + '  ' + results.failed.join(', '));
-  if (results.skipped.length) warn('Skipped:  ' + results.skipped.length + '  ' + results.skipped.join(', '));
+  if (results.failed.length)
+    warn('Failed:   ' + results.failed.length + '  ' + results.failed.join(', '));
+  if (results.skipped.length)
+    warn('Skipped:  ' + results.skipped.length + '  ' + results.skipped.join(', '));
 
   if (DRY_RUN) {
     log('');
@@ -1088,4 +1174,7 @@ async function main() {
   console.log('');
 }
 
-main().catch(ex => { err(ex.message); process.exit(1); });
+main().catch((ex) => {
+  err(ex.message);
+  process.exit(1);
+});

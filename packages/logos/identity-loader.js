@@ -1,19 +1,19 @@
 /**
  * IdentitateRO Web Component Loader
- * 
+ *
  * A custom HTML element for loading Romanian institution logos
  * Framework-agnostic, works with React, Vue, Angular, vanilla HTML, etc.
- * 
+ *
  * Usage:
  *   <identity-icon src="https://cdn.jsdelivr.net/npm/@identitate-ro/logos@latest/logos/anaf/anaf.svg"></identity-icon>
- * 
+ *
  * Features:
  * - Automatic SVG fetching and injection
  * - Built-in caching (loads each SVG only once)
  * - CSS styling support (fill: currentColor)
  * - Error handling with fallback display
  * - Observable attributes (dynamic updates)
- * 
+ *
  * @version 1.0.0
  * @license MIT
  */
@@ -38,7 +38,7 @@ class IdentityIcon extends HTMLElement {
    * Define which attributes to observe for changes
    */
   static get observedAttributes() {
-    return ['src', 'size'];
+    return ["src", "size"];
   }
 
   /**
@@ -54,19 +54,23 @@ class IdentityIcon extends HTMLElement {
    * Main rendering logic
    */
   async render() {
-    let url = this.getAttribute('src');
-    
+    let url = this.getAttribute("src");
+
     if (!url) {
-      this.showError('Missing src attribute');
+      this.showError("Missing src attribute");
       return;
     }
 
     // Resolve relative paths to absolute URLs (for local dev / same-origin usage)
-    if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('data:')) {
+    if (
+      !url.startsWith("http://") &&
+      !url.startsWith("https://") &&
+      !url.startsWith("data:")
+    ) {
       try {
         url = new URL(url, document.baseURI).href;
       } catch (e) {
-        this.showError('Invalid URL: ' + url);
+        this.showError("Invalid URL: " + url);
         return;
       }
     }
@@ -84,15 +88,18 @@ class IdentityIcon extends HTMLElement {
     try {
       // Fetch SVG content
       const response = await fetch(url);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
-      const contentType = response.headers.get('content-type') || '';
-      const isSvg = contentType.includes('svg') || contentType.includes('xml') || url.endsWith('.svg');
+      const contentType = response.headers.get("content-type") || "";
+      const isSvg =
+        contentType.includes("svg") ||
+        contentType.includes("xml") ||
+        url.endsWith(".svg");
       if (!isSvg) {
-        throw new Error('Response is not an SVG file');
+        throw new Error("Response is not an SVG file");
       }
 
       const svgContent = await response.text();
@@ -105,9 +112,8 @@ class IdentityIcon extends HTMLElement {
 
       // Inject into DOM
       this.injectSvg(cleanedSvg);
-
     } catch (error) {
-      console.error('[IdentitateRO] Failed to load logo:', url, error);
+      console.error("[IdentitateRO] Failed to load logo:", url, error);
       this.showError(error.message);
     } finally {
       this._isLoading = false;
@@ -120,9 +126,9 @@ class IdentityIcon extends HTMLElement {
   sanitizeSvg(svgContent) {
     // Remove script tags and event handlers
     return svgContent
-      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-      .replace(/on\w+="[^"]*"/gi, '')
-      .replace(/on\w+='[^']*'/gi, '');
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+      .replace(/on\w+="[^"]*"/gi, "")
+      .replace(/on\w+='[^']*'/gi, "");
   }
 
   /**
@@ -132,32 +138,36 @@ class IdentityIcon extends HTMLElement {
     this.innerHTML = svgContent;
 
     // Configure SVG element for CSS styling
-    const svg = this.querySelector('svg');
+    const svg = this.querySelector("svg");
     if (svg) {
       // Make SVG responsive
-      svg.setAttribute('width', '100%');
-      svg.setAttribute('height', '100%');
-      
+      svg.setAttribute("width", "100%");
+      svg.setAttribute("height", "100%");
+
       // Enable CSS color control
-      svg.style.fill = 'currentColor';
-      
+      svg.style.fill = "currentColor";
+
       // Preserve aspect ratio
-      if (!svg.hasAttribute('viewBox') && svg.hasAttribute('width') && svg.hasAttribute('height')) {
-        const width = svg.getAttribute('width');
-        const height = svg.getAttribute('height');
-        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      if (
+        !svg.hasAttribute("viewBox") &&
+        svg.hasAttribute("width") &&
+        svg.hasAttribute("height")
+      ) {
+        const width = svg.getAttribute("width");
+        const height = svg.getAttribute("height");
+        svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
       }
 
       // Apply size attribute if present
-      const size = this.getAttribute('size');
+      const size = this.getAttribute("size");
       if (size) {
         this.style.width = size;
         this.style.height = size;
       }
 
       // Ensure display is set
-      if (!this.style.display || this.style.display === '') {
-        this.style.display = 'inline-block';
+      if (!this.style.display || this.style.display === "") {
+        this.style.display = "inline-block";
       }
     }
   }
@@ -167,7 +177,7 @@ class IdentityIcon extends HTMLElement {
    */
   showLoading() {
     this.innerHTML = `<span style="opacity: 0.5; font-size: 0.75em;">⏳</span>`;
-    this.setAttribute('aria-busy', 'true');
+    this.setAttribute("aria-busy", "true");
   }
 
   /**
@@ -175,17 +185,17 @@ class IdentityIcon extends HTMLElement {
    */
   showError(message) {
     this.innerHTML = `<span style="opacity: 0.5; font-size: 0.75em;" title="${message}">⚠️</span>`;
-    this.setAttribute('aria-invalid', 'true');
-    this.removeAttribute('aria-busy');
+    this.setAttribute("aria-invalid", "true");
+    this.removeAttribute("aria-busy");
   }
 }
 
 // Register the custom element
-if (!customElements.get('identity-icon')) {
-  customElements.define('identity-icon', IdentityIcon);
+if (!customElements.get("identity-icon")) {
+  customElements.define("identity-icon", IdentityIcon);
 }
 
 // Export for module environments
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = IdentityIcon;
 }

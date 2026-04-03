@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "cale ferată",
-      "transport feroviar",
-      "infrastructură",
-      "trenuri",
-      "cfr"
-    ],
+    "keywords": ["cale ferată", "transport feroviar", "infrastructură", "trenuri", "cfr"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "primară",
       "hex": "#1B1918",
-      "rgb": [
-        27,
-        25,
-        24
-      ],
+      "rgb": [27, 25, 24],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +30,7 @@
     {
       "name": "accent",
       "hex": "#B42059",
-      "rgb": [
-        180,
-        32,
-        89
-      ],
+      "rgb": [180, 32, 89],
       "cmyk": null,
       "pantone": null,
       "usage": "accent"

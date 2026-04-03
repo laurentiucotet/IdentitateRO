@@ -8,13 +8,7 @@
   "meta": {
     "version": "1.0",
     "last_updated": "2026-02-15",
-    "keywords": [
-      "cfr",
-      "transport",
-      "feroviar",
-      "marfă",
-      "logistică"
-    ],
+    "keywords": ["cfr", "transport", "feroviar", "marfă", "logistică"],
     "quality": "unverified"
   },
   "location": {
@@ -28,11 +22,7 @@
     {
       "name": "Color #0D3567",
       "hex": "#0D3567",
-      "rgb": [
-        13,
-        53,
-        103
-      ],
+      "rgb": [13, 53, 103],
       "cmyk": null,
       "pantone": null,
       "usage": "primary"
@@ -40,11 +30,7 @@
     {
       "name": "Color #972B2D",
       "hex": "#972B2D",
-      "rgb": [
-        151,
-        43,
-        45
-      ],
+      "rgb": [151, 43, 45],
       "cmyk": null,
       "pantone": null,
       "usage": "secondary"
@@ -52,11 +38,7 @@
     {
       "name": "Color #1D3766",
       "hex": "#1D3766",
-      "rgb": [
-        29,
-        55,
-        102
-      ],
+      "rgb": [29, 55, 102],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -64,11 +46,7 @@
     {
       "name": "Color #D82927",
       "hex": "#D82927",
-      "rgb": [
-        216,
-        41,
-        39
-      ],
+      "rgb": [216, 41, 39],
       "cmyk": null,
       "pantone": null,
       "usage": null
@@ -76,11 +54,7 @@
     {
       "name": "Color #FAE600",
       "hex": "#FAE600",
-      "rgb": [
-        250,
-        230,
-        0
-      ],
+      "rgb": [250, 230, 0],
       "cmyk": null,
       "pantone": null,
       "usage": null

@@ -4,11 +4,11 @@ export default {
   darkMode: 'class',
   theme: {
     screens: {
-      'xs': '400px',
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
+      xs: '400px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
       '2xl': '1536px',
     },
     extend: {
@@ -28,7 +28,7 @@ export default {
           950: '#020617',
         },
         surface: {
-          50: '#F8FAFC',  // Background
+          50: '#F8FAFC', // Background
           100: '#f1f5f9',
           200: '#E2E8F0', // Border
           300: '#cbd5e1',
@@ -45,13 +45,13 @@ export default {
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       boxShadow: {
-        'card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+        card: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
         'card-hover': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-        'modal': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+        modal: '0 25px 50px -12px rgb(0 0 0 / 0.25)',
       },
       borderRadius: {
-        'card': '4px',
-        'modal': '4px',
+        card: '4px',
+        modal: '4px',
       },
       animation: {
         'fade-in': 'fadeIn 0.2s ease-out',

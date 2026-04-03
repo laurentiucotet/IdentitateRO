@@ -9,23 +9,23 @@
 # Restul pot fi lăsate goale — AI-ul va încerca să le completeze.
 # ═══════════════════════════════════════════════════════════════
 
-name: "Agenția Națională de Administrare Fiscală"
-shortname: "anaf"
-category: "agentie"
+name: 'Agenția Națională de Administrare Fiscală'
+shortname: 'anaf'
+category: 'agentie'
 # categorii posibile:
 #   guvern, minister, primarie, consiliu-judetean, prefectura,
 #   agentie, autoritate, proiect-ue, institutie-cultura, altele
 
 # Locație
-county: "B"          # Cod județ (B = București, CJ = Cluj, etc.)
-city: "București"
+county: 'B' # Cod județ (B = București, CJ = Cluj, etc.)
+city: 'București'
 
 # Website și resurse
-website: "https://www.anaf.ro"
-branding_manual: ""
+website: 'https://www.anaf.ro'
+branding_manual: ''
 
 # Cuvinte cheie (separate prin virgulă)
-keywords: "guvernamental, taxe, fiscalitate, anaf, fisc"
+keywords: 'guvernamental, taxe, fiscalitate, anaf, fisc'
 
 # Culori (opțional — AI-ul poate extrage din SVG)
 # Format: "Nume Culoare: #HEX (usage)" — câte una pe linie
@@ -34,11 +34,11 @@ colors: |
   Negru Text: #151515 (neutral)
 
 # Tipografie (opțional)
-font_primary: ""
-font_secondary: ""
+font_primary: ''
+font_secondary: ''
 
 # Calitate date
-quality: "draft"
+quality: 'draft'
 ---
 
 ## Descriere

@@ -9,7 +9,15 @@ export default [
   ...astro.configs.recommended,
   // Node globals for lib/, scripts/, config files, api routes, and tools
   {
-    files: ['src/lib/**/*.ts', 'src/types/**/*.ts', 'scripts/**/*.{js,mjs}', '*.{js,mjs,ts}', 'tests/**/*.ts', 'src/pages/api/**/*.ts', 'tools/**/*.mjs'],
+    files: [
+      'src/lib/**/*.ts',
+      'src/types/**/*.ts',
+      'scripts/**/*.{js,mjs}',
+      '*.{js,mjs,ts}',
+      'tests/**/*.ts',
+      'src/pages/api/**/*.ts',
+      'tools/**/*.mjs',
+    ],
     languageOptions: {
       globals: { ...globals.node },
     },
@@ -32,7 +40,10 @@ export default [
     rules: {
       // Downgrade pre-existing issues to warn — promote to error once codebase is clean
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { varsIgnorePattern: '^_', argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { varsIgnorePattern: '^_', argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
       '@typescript-eslint/ban-ts-comment': 'warn',
       'no-undef': 'warn',
       'prefer-const': 'warn',

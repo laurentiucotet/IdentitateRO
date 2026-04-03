@@ -3,20 +3,21 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ColorSwatch from '../../components/ColorSwatch.astro';
 import LogoVariantCard from '../../components/LogoVariantCard.astro';
 import institutionIndex from '../../data/institutions-index.json';
-import { getAllDownloadableAssets, getPrimaryLogoPath, getLogoVariants, getCdnLogoUrl } from '../../lib/helpers';
-import { resolveAssetPath } from '../../lib/cdn-helpers';
 import {
-  CATEGORY_LABELS_SINGULAR,
-  LOGO_LAYOUT_LABELS,
-  QUALITY_LABELS,
-} from '../../lib/labels';
+  getAllDownloadableAssets,
+  getPrimaryLogoPath,
+  getLogoVariants,
+  getCdnLogoUrl,
+} from '../../lib/helpers';
+import { resolveAssetPath } from '../../lib/cdn-helpers';
+import { CATEGORY_LABELS_SINGULAR, LOGO_LAYOUT_LABELS, QUALITY_LABELS } from '../../lib/labels';
 
 import type { Institution, LogoLayout, Color } from '../../types/institution';
 
 export async function getStaticPaths() {
-  return (institutionIndex.institutions).map(inst => ({
+  return institutionIndex.institutions.map((inst) => ({
     params: { id: inst.slug },
-    props: { institution: inst as unknown as Institution }
+    props: { institution: inst as unknown as Institution },
   }));
 }
 
@@ -35,21 +36,22 @@ const descParts: string[] = [];
 descParts.push(`Descarcă logo-uri oficiale pentru ${inst.name}`);
 if (inst.shortname) descParts.push(`(${inst.shortname.toUpperCase()})`);
 descParts.push('în format SVG și PNG.');
-if (inst.colors && inst.colors.length > 0) descParts.push(`Paletă de ${inst.colors.length} culori oficiale.`);
+if (inst.colors && inst.colors.length > 0)
+  descParts.push(`Paletă de ${inst.colors.length} culori oficiale.`);
 if (inst.typography?.primary) descParts.push(`Font: ${inst.typography.primary.family}.`);
 descParts.push('Gratuit, open-source.');
 
-const title = inst.meta.seo_title
-  || `${inst.name} — Logo și Identitate Vizuală | IdentitateRO`;
-const description = inst.meta.seo_description
-  || descParts.join(' ');
+const title = inst.meta.seo_title || `${inst.name} — Logo și Identitate Vizuală | IdentitateRO`;
+const description = inst.meta.seo_description || descParts.join(' ');
 
 // JSON-LD: GovernmentOrganization
 const sameAsLinks: string[] = [];
 if (inst.resources?.website) sameAsLinks.push(inst.resources.website);
 if (inst.resources?.wikipedia_url) sameAsLinks.push(inst.resources.wikipedia_url);
 if (inst.resources?.social_media) {
-  Object.values(inst.resources.social_media).forEach(url => { if (url) sameAsLinks.push(url); });
+  Object.values(inst.resources.social_media).forEach((url) => {
+    if (url) sameAsLinks.push(url);
+  });
 }
 
 const jsonLd = {
@@ -76,16 +78,26 @@ const breadcrumbLd = {
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Acasă', item: siteUrl },
-    { '@type': 'ListItem', position: 2, name: CATEGORY_LABELS_SINGULAR[inst.category] || inst.category, item: `${siteUrl}/?categorie=${inst.category}` },
-    { '@type': 'ListItem', position: 3, name: inst.shortname?.toUpperCase() || inst.name, item: canonicalUrl },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: CATEGORY_LABELS_SINGULAR[inst.category] || inst.category,
+      item: `${siteUrl}/?categorie=${inst.category}`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: inst.shortname?.toUpperCase() || inst.name,
+      item: canonicalUrl,
+    },
   ],
 };
 
 // ── Page data ──────────────────────────────────────────────────────────
-const logoLayouts: Array<{key: string; layout: LogoLayout}> = [
+const logoLayouts: Array<{ key: string; layout: LogoLayout }> = [
   { key: 'horizontal', layout: 'horizontal' },
   { key: 'vertical', layout: 'vertical' },
-  { key: 'symbol', layout: 'symbol' }
+  { key: 'symbol', layout: 'symbol' },
 ];
 const qualityInfo = inst.meta.quality ? QUALITY_LABELS[inst.meta.quality] : undefined;
 
@@ -96,9 +108,18 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
 <BaseLayout title={title} description={description} ogImage={absoluteLogo} ogType="website">
   {/* JSON-LD structured data */}
   <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} slot="head" />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumbLd)}
+    slot="head"
+  />
 
-  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12" itemscope itemtype="https://schema.org/GovernmentOrganization">
+  <article
+    class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+    itemscope
+    itemtype="https://schema.org/GovernmentOrganization"
+  >
     <!-- Header -->
     <header class="mb-10">
       {/* Breadcrumb navigation */}
@@ -106,213 +127,303 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
         <ol class="flex items-center gap-1.5 text-sm text-surface-400">
           <li><a href="/" class="text-primary-500 hover:text-primary-600">Acasă</a></li>
           <li aria-hidden="true">&rsaquo;</li>
-          <li><a href={`/?categorie=${inst.category}`} class="text-primary-500 hover:text-primary-600">{CATEGORY_LABELS_SINGULAR[inst.category] || inst.category}</a></li>
+          <li>
+            <a href={`/?categorie=${inst.category}`} class="text-primary-500 hover:text-primary-600"
+              >{CATEGORY_LABELS_SINGULAR[inst.category] || inst.category}</a>
+          </li>
           <li aria-hidden="true">&rsaquo;</li>
-          <li aria-current="page" class="text-surface-600 font-medium">{inst.shortname?.toUpperCase() || inst.name}</li>
+          <li aria-current="page" class="text-surface-600 font-medium">
+            {inst.shortname?.toUpperCase() || inst.name}
+          </li>
         </ol>
       </nav>
 
       <div class="flex flex-wrap items-start gap-4">
         <div class="flex-1 min-w-0">
-          <h1 class="text-2xl sm:text-3xl font-bold text-primary-900 mb-2" itemprop="name">{inst.name}</h1>
+          <h1 class="text-2xl sm:text-3xl font-bold text-primary-900 mb-2" itemprop="name">
+            {inst.name}
+          </h1>
 
           <div class="flex flex-wrap items-center gap-2 mb-3">
-            {inst.shortname && (
-              <span class="px-2 py-0.5 bg-primary-100 text-primary-700 rounded text-xs font-semibold">
-                {inst.shortname.toUpperCase()}
-              </span>
-            )}
+            {
+              inst.shortname && (
+                <span class="px-2 py-0.5 bg-primary-100 text-primary-700 rounded text-xs font-semibold">
+                  {inst.shortname.toUpperCase()}
+                </span>
+              )
+            }
             <span class="px-2 py-0.5 bg-surface-100 text-surface-600 rounded text-xs">
               {CATEGORY_LABELS_SINGULAR[inst.category] || inst.category}
             </span>
-            {inst.meta?.quality === 'verified' && (
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded text-xs font-medium">
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                Confirmat oficial
-              </span>
-            )}
-            {inst.meta?.quality === 'official_source' && (
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded text-xs font-medium">
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-5a1 1 0 112 0v1a1 1 0 11-2 0v-1zm1-9a1 1 0 00-1 1v4a1 1 0 102 0V5a1 1 0 00-1-1z" clip-rule="evenodd" />
-                </svg>
-                Din surse oficiale
-              </span>
-            )}
-            {(!inst.meta?.quality || inst.meta?.quality === 'unverified') && (
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-xs font-medium">
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-                </svg>
-                Neconfirmat oficial
-              </span>
-            )}
+            {
+              inst.meta?.quality === 'verified' && (
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-green-50 text-green-700 border border-green-200 rounded text-xs font-medium">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Confirmat oficial
+                </span>
+              )
+            }
+            {
+              inst.meta?.quality === 'official_source' && (
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 rounded text-xs font-medium">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-5a1 1 0 112 0v1a1 1 0 11-2 0v-1zm1-9a1 1 0 00-1 1v4a1 1 0 102 0V5a1 1 0 00-1-1z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Din surse oficiale
+                </span>
+              )
+            }
+            {
+              (!inst.meta?.quality || inst.meta?.quality === 'unverified') && (
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-amber-50 text-amber-700 border border-amber-200 rounded text-xs font-medium">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Neconfirmat oficial
+                </span>
+              )
+            }
           </div>
 
-          {inst.description && (
-            <p class="text-sm text-surface-500 mb-2" itemprop="description">{inst.description}</p>
-          )}
+          {
+            inst.description && (
+              <p class="text-sm text-surface-500 mb-2" itemprop="description">
+                {inst.description}
+              </p>
+            )
+          }
 
-          {inst.location && (
-            <p class="text-xs text-surface-400 flex items-center gap-1">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              {[inst.location.city, inst.location.county].filter(Boolean).join(', ')}
-            </p>
-          )}
+          {
+            inst.location && (
+              <p class="text-xs text-surface-400 flex items-center gap-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                {[inst.location.city, inst.location.county].filter(Boolean).join(', ')}
+              </p>
+            )
+          }
 
-          {inst.usage_notes && (
-            <div class="mt-3 p-3 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800">
-              <strong>Note de utilizare:</strong> {inst.usage_notes}
-            </div>
-          )}
+          {
+            inst.usage_notes && (
+              <div class="mt-3 p-3 bg-amber-50 border border-amber-200 rounded text-xs text-amber-800">
+                <strong>Note de utilizare:</strong> {inst.usage_notes}
+              </div>
+            )
+          }
         </div>
 
         {/* Mini preview în header */}
-        {primaryLogo && (
-          <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-white border border-surface-200 rounded p-3 flex items-center justify-center">
-            <img src={primaryLogo} alt={`Logo ${inst.name}`} class="max-w-full max-h-full object-contain" itemprop="logo" loading="eager" width="96" height="96" />
-          </div>
-        )}
+        {
+          primaryLogo && (
+            <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-white border border-surface-200 rounded p-3 flex items-center justify-center">
+              <img
+                src={primaryLogo}
+                alt={`Logo ${inst.name}`}
+                class="max-w-full max-h-full object-contain"
+                itemprop="logo"
+                loading="eager"
+                width="96"
+                height="96"
+              />
+            </div>
+          )
+        }
       </div>
 
       {/* Keywords */}
-      {inst.meta.keywords && inst.meta.keywords.length > 0 && (
-        <div class="flex flex-wrap gap-1.5 mt-4">
-          {inst.meta.keywords.map((keyword: string) => (
-            <span class="px-2 py-1 bg-surface-50 border border-surface-200 rounded-full text-[11px] text-surface-500">
-              {keyword}
-            </span>
-          ))}
-        </div>
-      )}
+      {
+        inst.meta.keywords && inst.meta.keywords.length > 0 && (
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            {inst.meta.keywords.map((keyword: string) => (
+              <span class="px-2 py-1 bg-surface-50 border border-surface-200 rounded-full text-[11px] text-surface-500">
+                {keyword}
+              </span>
+            ))}
+          </div>
+        )
+      }
     </header>
 
     <!-- ═══ LOGO-URI ═══ -->
     <section class="mb-10">
       <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
         <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+          ></path>
         </svg>
         Logo-uri
       </h2>
 
-      {logoLayouts.map(({key, layout}) => {
-        const group = inst.assets[layout];
-        if (!group) return null;
+      {
+        logoLayouts.map(({ key, layout }) => {
+          const group = inst.assets[layout];
+          if (!group) return null;
 
-        const layoutLabel = LOGO_LAYOUT_LABELS[key] || key;
-        const variants = getLogoVariants(group);
+          const layoutLabel = LOGO_LAYOUT_LABELS[key] || key;
+          const variants = getLogoVariants(group);
 
-        return (
-          <div class="mb-6">
-            <h3 class="text-sm font-medium text-primary-800 mb-3">{layoutLabel}</h3>
+          return (
+            <div class="mb-6">
+              <h3 class="text-sm font-medium text-primary-800 mb-3">{layoutLabel}</h3>
 
-            {/* Preview-uri variante */}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-3">
-              {variants.map(([variant, path]) => (
-                <LogoVariantCard
-                  variant={variant}
-                  path={path}
-                  layoutLabel={layoutLabel}
-                  institutionName={inst.name}
-                />
-              ))}
+              {/* Preview-uri variante */}
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-3">
+                {variants.map(([variant, path]) => (
+                  <LogoVariantCard
+                    variant={variant}
+                    path={path}
+                    layoutLabel={layoutLabel}
+                    institutionName={inst.name}
+                  />
+                ))}
 
-              {/* PNG variant */}
-              {group.png && (() => {
-                const pngPath = resolveAssetPath(group.png.path, true);
-                if (!pngPath) return null;
-                return (
-                  <div class="border border-surface-200 rounded overflow-hidden hover:shadow-md hover:border-surface-300 transition-all duration-200">
-                    <div class="checkerboard aspect-[3/2] flex items-center justify-center p-6">
-                      <img
-                        src={pngPath}
-                        alt={`Logo ${inst.name} — ${layoutLabel} PNG`}
-                        class="max-w-full max-h-full object-contain"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <div class="p-2 bg-white flex items-center justify-between">
-                      <div>
-                        <span class="text-xs font-medium text-primary-900">PNG</span>
-                        <span class="text-[11px] text-surface-400 ml-1">{group.png.width} × {group.png.height}px</span>
+                {/* PNG variant */}
+                {group.png &&
+                  (() => {
+                    const pngPath = resolveAssetPath(group.png.path, true);
+                    if (!pngPath) return null;
+                    return (
+                      <div class="border border-surface-200 rounded overflow-hidden hover:shadow-md hover:border-surface-300 transition-all duration-200">
+                        <div class="checkerboard aspect-[3/2] flex items-center justify-center p-6">
+                          <img
+                            src={pngPath}
+                            alt={`Logo ${inst.name} — ${layoutLabel} PNG`}
+                            class="max-w-full max-h-full object-contain"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                        <div class="p-2 bg-white flex items-center justify-between">
+                          <div>
+                            <span class="text-xs font-medium text-primary-900">PNG</span>
+                            <span class="text-[11px] text-surface-400 ml-1">
+                              {group.png.width} × {group.png.height}px
+                            </span>
+                          </div>
+                          <a
+                            href={pngPath}
+                            download
+                            class="p-2 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors"
+                            title="Descarcă PNG"
+                          >
+                            <svg
+                              class="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
                       </div>
-                      <a href={pngPath} download class="p-2 rounded hover:bg-primary-50 text-surface-400 hover:text-primary-500 transition-colors" title="Descarcă PNG">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
-                );
-              })()}
+                    );
+                  })()}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      }
     </section>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       <!-- ═══ CULORI OFICIALE ═══ -->
-      {inst.colors && inst.colors.length > 0 && (
-        <section>
-          <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
-            <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-            </svg>
-            Paletă de Culori
-          </h2>
-          <div class="space-y-3">
-            {inst.colors.map((color: Color) => (
-              <ColorSwatch color={color} />
-            ))}
-          </div>
-        </section>
-      )}
+      {
+        inst.colors && inst.colors.length > 0 && (
+          <section>
+            <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-primary-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                />
+              </svg>
+              Paletă de Culori
+            </h2>
+            <div class="space-y-3">
+              {inst.colors.map((color: Color) => (
+                <ColorSwatch color={color} />
+              ))}
+            </div>
+          </section>
+        )
+      }
 
       <!-- ═══ TIPOGRAFIE + RESURSE ═══ -->
       <div class="space-y-8">
         {/* Tipografie */}
-        {inst.typography && inst.typography.primary && (
-          <section>
-            <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
-              <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
-              </svg>
-              Tipografie
-            </h2>
-            <div class="space-y-2">
-              <div class="bg-white border border-surface-200 rounded p-3 flex items-center justify-between">
-                <div>
-                  <div class="font-medium text-sm text-primary-900">{inst.typography.primary.family}</div>
-                  <div class="text-xs text-surface-500">Font principal</div>
-                </div>
-                {inst.typography.primary.url && (
-                  <a
-                    href={inst.typography.primary.url}
-                    target="_blank"
-                    rel="noopener"
-                    class="text-xs text-primary-500 hover:text-primary-600"
-                  >
-                    Vezi font &rarr;
-                  </a>
-                )}
-              </div>
-              {inst.typography.secondary && (
+        {
+          inst.typography && inst.typography.primary && (
+            <section>
+              <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+                <svg
+                  class="w-5 h-5 text-primary-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+                Tipografie
+              </h2>
+              <div class="space-y-2">
                 <div class="bg-white border border-surface-200 rounded p-3 flex items-center justify-between">
                   <div>
-                    <div class="font-medium text-sm text-primary-900">{inst.typography.secondary.family}</div>
-                    <div class="text-xs text-surface-500">Font secundar</div>
+                    <div class="font-medium text-sm text-primary-900">
+                      {inst.typography.primary.family}
+                    </div>
+                    <div class="text-xs text-surface-500">Font principal</div>
                   </div>
-                  {inst.typography.secondary.url && (
+                  {inst.typography.primary.url && (
                     <a
-                      href={inst.typography.secondary.url}
+                      href={inst.typography.primary.url}
                       target="_blank"
                       rel="noopener"
                       class="text-xs text-primary-500 hover:text-primary-600"
@@ -321,44 +432,105 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
                     </a>
                   )}
                 </div>
-              )}
-            </div>
-          </section>
-        )}
+                {inst.typography.secondary && (
+                  <div class="bg-white border border-surface-200 rounded p-3 flex items-center justify-between">
+                    <div>
+                      <div class="font-medium text-sm text-primary-900">
+                        {inst.typography.secondary.family}
+                      </div>
+                      <div class="text-xs text-surface-500">Font secundar</div>
+                    </div>
+                    {inst.typography.secondary.url && (
+                      <a
+                        href={inst.typography.secondary.url}
+                        target="_blank"
+                        rel="noopener"
+                        class="text-xs text-primary-500 hover:text-primary-600"
+                      >
+                        Vezi font &rarr;
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+            </section>
+          )
+        }
       </div>
     </div>
 
     <!-- ═══ DESCĂRCĂRI RAPIDE ═══ -->
-    {downloadables.length > 0 && (
-      <section class="mt-10">
-        <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
-          <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
-          Toate Descărcările
-        </h2>
-        <button id="download-zip" data-downloadables={JSON.stringify(downloadables)} data-slug={inst.slug} class="mb-4 px-4 py-2 bg-primary-500 text-white rounded hover:bg-primary-600 transition-colors flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
-          Descarcă toate ca ZIP
-        </button>
-      </section>
-    )}
+    {
+      downloadables.length > 0 && (
+        <section class="mt-10">
+          <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+            <svg
+              class="w-5 h-5 text-primary-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            Toate Descărcările
+          </h2>
+          <button
+            id="download-zip"
+            data-downloadables={JSON.stringify(downloadables)}
+            data-slug={inst.slug}
+            class="mb-4 px-4 py-2 bg-primary-500 text-white rounded hover:bg-primary-600 transition-colors flex items-center gap-2"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            Descarcă toate ca ZIP
+          </button>
+        </section>
+      )
+    }
 
     <!-- ═══ INTEGRARE (tabs) ═══ -->
     <section class="mt-10">
       <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
         <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
         </svg>
         Integrare
       </h2>
       <!-- Tab buttons -->
       <div class="flex border-b border-surface-200">
-        <button type="button" data-tab-btn="cdn" class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-primary-500 text-primary-700 -mb-px">CDN</button>
-        <button type="button" data-tab-btn="npm" class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-surface-500 hover:text-surface-700 -mb-px">NPM</button>
-        <button type="button" data-tab-btn="direct" class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-surface-500 hover:text-surface-700 -mb-px">URL Direct</button>
+        <button
+          type="button"
+          data-tab-btn="cdn"
+          class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-primary-500 text-primary-700 -mb-px"
+          >CDN</button
+        >
+        <button
+          type="button"
+          data-tab-btn="npm"
+          class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-surface-500 hover:text-surface-700 -mb-px"
+          >NPM</button
+        >
+        <button
+          type="button"
+          data-tab-btn="direct"
+          class="tab-btn px-4 py-2 text-sm font-medium border-b-2 border-transparent text-surface-500 hover:text-surface-700 -mb-px"
+          >URL Direct</button
+        >
       </div>
       <!-- Tab panels -->
       <div class="bg-white border border-t-0 border-surface-200 rounded-b-lg p-4">
@@ -366,9 +538,26 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
         <div data-tab-panel="cdn" class="tab-panel">
           <p class="text-sm text-surface-600 mb-3">Include logo-ul direct în HTML:</p>
           <div class="relative bg-gray-50 p-3 rounded font-mono text-sm overflow-x-auto border">
-            <span class="text-pink-600">&lt;img</span> <span class="text-blue-600">src</span>=<span class="text-green-600">"{cdnLogoPath}"</span> <span class="text-blue-600">alt</span>=<span class="text-green-600">"{inst.name}"</span><span class="text-pink-600">&gt;</span>
-            <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`<img src="${cdnLogoPath}" alt="${inst.name}">`} title="Copiază">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            <span class="text-pink-600">&lt;img</span>
+            <span class="text-blue-600">src</span>=<span class="text-green-600"
+              >"{cdnLogoPath}"</span
+            >
+            <span class="text-blue-600">alt</span>=<span class="text-green-600">"{inst.name}"</span
+            ><span class="text-pink-600">&gt;</span>
+            <button
+              type="button"
+              class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
+              data-value={`<img src="${cdnLogoPath}" alt="${inst.name}">`}
+              title="Copiază"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                ></path></svg
+              >
             </button>
           </div>
         </div>
@@ -378,150 +567,266 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
           <div class="space-y-2">
             <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border">
               <span class="text-surface-500">$</span> npm install @identitate-ro/logos
-              <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value="npm install @identitate-ro/logos" title="Copiază">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              <button
+                type="button"
+                class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
+                data-value="npm install @identitate-ro/logos"
+                title="Copiază"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path></svg
+                >
               </button>
             </div>
             <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border overflow-x-auto">
-              <span class="text-pink-600">import</span> logos <span class="text-pink-600">from</span> <span class="text-green-600">'@identitate-ro/logos'</span>;<br>
-              <span class="text-pink-600">const</span> logo = logos.institutions.<span class="text-blue-600">find</span>(i =&gt; i.id === <span class="text-green-600">'{inst.id}'</span>);
-              <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={`import logos from '@identitate-ro/logos';\nconst logo = logos.institutions.find(i => i.id === '${inst.id}');`} title="Copiază">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              <span class="text-pink-600">import</span> logos <span class="text-pink-600">from</span
+              >
+              <span class="text-green-600">'@identitate-ro/logos'</span>;<br />
+              <span class="text-pink-600">const</span> logo = logos.institutions.<span
+                class="text-blue-600">find</span
+              >(i =&gt; i.id === <span class="text-green-600">'{inst.id}'</span>);
+              <button
+                type="button"
+                class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
+                data-value={`import logos from '@identitate-ro/logos';\nconst logo = logos.institutions.find(i => i.id === '${inst.id}');`}
+                title="Copiază"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  ></path></svg
+                >
               </button>
             </div>
           </div>
         </div>
         <!-- URL Direct Panel -->
         <div data-tab-panel="direct" class="tab-panel hidden">
-          <p class="text-sm text-surface-600 mb-3">Copiază URL-ul pentru Figma, Canva sau alte aplicații:</p>
+          <p class="text-sm text-surface-600 mb-3">
+            Copiază URL-ul pentru Figma, Canva sau alte aplicații:
+          </p>
           <div class="relative bg-gray-50 p-3 rounded font-mono text-sm border break-all">
             {cdnLogoPath}
-            <button type="button" class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors" data-value={cdnLogoPath} title="Copiază URL">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            <button
+              type="button"
+              class="copy-code-btn absolute top-2 right-2 p-2 rounded hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-colors"
+              data-value={cdnLogoPath}
+              title="Copiază URL"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                ></path></svg
+              >
             </button>
           </div>
         </div>
       </div>
       <div class="mt-3 text-right">
-        <a href="/utilizare" class="text-sm text-primary-500 hover:text-primary-600">Documentație completă &rarr;</a>
+        <a href="/utilizare" class="text-sm text-primary-500 hover:text-primary-600"
+          >Documentație completă &rarr;</a
+        >
       </div>
     </section>
 
     <!-- ═══ RESURSE ═══ -->
-    {inst.resources && (inst.resources.website || inst.resources.branding_manual || inst.resources.official_resources || inst.resources.wikipedia_url || inst.resources.wikidata_id) && (
-      <section class="mt-10">
-        <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
-          <svg class="w-5 h-5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-          Resurse
-        </h2>
-        <div class="space-y-2">
-          {inst.resources.website && (
-            <a
-              href={inst.resources.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
-              itemprop="url"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+    {
+      inst.resources &&
+        (inst.resources.website ||
+          inst.resources.branding_manual ||
+          inst.resources.official_resources ||
+          inst.resources.wikipedia_url ||
+          inst.resources.wikidata_id) && (
+          <section class="mt-10">
+            <h2 class="text-lg font-semibold text-primary-900 mb-4 flex items-center gap-2">
+              <svg
+                class="w-5 h-5 text-primary-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
               </svg>
-              Website Oficial
-            </a>
-          )}
-          {inst.resources.branding_manual && (
-            <a
-              href={inst.resources.branding_manual}
-              target="_blank"
-              rel="noopener"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              Manual de Identitate Vizuală
-            </a>
-          )}
-          {inst.resources.official_resources && (
-            <a
-              href={inst.resources.official_resources}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-              </svg>
-              Resurse oficiale
-            </a>
-          )}
-          {inst.resources.wikipedia_url && (
-            <a
-              href={inst.resources.wikipedia_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-              Wikipedia
-            </a>
-          )}
-          {inst.resources.wikidata_id && (
-            <a
-              href={`https://www.wikidata.org/wiki/${inst.resources.wikidata_id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h7" />
-              </svg>
-              Wikidata
-            </a>
-          )}
+              Resurse
+            </h2>
+            <div class="space-y-2">
+              {inst.resources.website && (
+                <a
+                  href={inst.resources.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                  itemprop="url"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    />
+                  </svg>
+                  Website Oficial
+                </a>
+              )}
+              {inst.resources.branding_manual && (
+                <a
+                  href={inst.resources.branding_manual}
+                  target="_blank"
+                  rel="noopener"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                  Manual de Identitate Vizuală
+                </a>
+              )}
+              {inst.resources.official_resources && (
+                <a
+                  href={inst.resources.official_resources}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"
+                    />
+                  </svg>
+                  Resurse oficiale
+                </a>
+              )}
+              {inst.resources.wikipedia_url && (
+                <a
+                  href={inst.resources.wikipedia_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                  Wikipedia
+                </a>
+              )}
+              {inst.resources.wikidata_id && (
+                <a
+                  href={`https://www.wikidata.org/wiki/${inst.resources.wikidata_id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 7h16M4 12h16M4 17h7"
+                    />
+                  </svg>
+                  Wikidata
+                </a>
+              )}
 
-          {inst.resources.social_media?.facebook && (
-            <a href={inst.resources.social_media.facebook} target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              Facebook
-            </a>
-          )}
-          {inst.resources.social_media?.twitter && (
-            <a href={inst.resources.social_media.twitter} target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              X / Twitter
-            </a>
-          )}
-          {inst.resources.social_media?.linkedin && (
-            <a href={inst.resources.social_media.linkedin} target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-          )}
-          {inst.resources.social_media?.instagram && (
-            <a href={inst.resources.social_media.instagram} target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              Instagram
-            </a>
-          )}
-          {inst.resources.social_media?.youtube && (
-            <a href={inst.resources.social_media.youtube} target="_blank" rel="noopener noreferrer"
-              class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              YouTube
-            </a>
-          )}
-        </div>
-      </section>
-    )}
+              {inst.resources.social_media?.facebook && (
+                <a
+                  href={inst.resources.social_media.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                  Facebook
+                </a>
+              )}
+              {inst.resources.social_media?.twitter && (
+                <a
+                  href={inst.resources.social_media.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
+                  X / Twitter
+                </a>
+              )}
+              {inst.resources.social_media?.linkedin && (
+                <a
+                  href={inst.resources.social_media.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
+                  LinkedIn
+                </a>
+              )}
+              {inst.resources.social_media?.instagram && (
+                <a
+                  href={inst.resources.social_media.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                  </svg>
+                  Instagram
+                </a>
+              )}
+              {inst.resources.social_media?.youtube && (
+                <a
+                  href={inst.resources.social_media.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 p-3 bg-white border border-surface-200 rounded hover:border-primary-300 transition-colors text-sm text-primary-600"
+                >
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                  YouTube
+                </a>
+              )}
+            </div>
+          </section>
+        )
+    }
 
     <!-- ═══ METADATA (info popover) ═══ -->
     <section class="mt-10 pt-6 border-t border-surface-200">
@@ -539,7 +844,11 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
             aria-controls="meta-info-popover"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </button>
           <div
@@ -550,14 +859,18 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
               <div class="font-medium text-surface-700 mb-2">Detalii tehnice</div>
               <div class="flex justify-between">
                 <span>Actualizat</span>
-                <span class="text-surface-700">{new Date(inst.meta.last_updated).toLocaleDateString('ro-RO')}</span>
+                <span class="text-surface-700"
+                  >{new Date(inst.meta.last_updated).toLocaleDateString('ro-RO')}</span
+                >
               </div>
-              {inst.meta.quality && (
-                <div class="flex justify-between">
-                  <span>Calitate</span>
-                  <span class="text-surface-700">{qualityInfo?.label || inst.meta.quality}</span>
-                </div>
-              )}
+              {
+                inst.meta.quality && (
+                  <div class="flex justify-between">
+                    <span>Calitate</span>
+                    <span class="text-surface-700">{qualityInfo?.label || inst.meta.quality}</span>
+                  </div>
+                )
+              }
               <div class="flex justify-between">
                 <span>ID</span>
                 <span class="font-mono text-surface-700">{inst.id}</span>
@@ -573,15 +886,27 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
     </section>
 
     <!-- ═══ RIBBON REPREZENTANT ═══ -->
-    <aside class="mt-10 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 flex gap-4 items-start">
-      <svg class="w-5 h-5 text-blue-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    <aside
+      class="mt-10 rounded-lg border border-blue-200 bg-blue-50 px-5 py-4 flex gap-4 items-start"
+    >
+      <svg
+        class="w-5 h-5 text-blue-400 shrink-0 mt-0.5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+        ></path>
       </svg>
       <div class="text-sm text-blue-800">
         <p class="font-medium mb-0.5">Reprezentant al acestei instituții?</p>
         <p class="text-blue-700 leading-relaxed">
-          Dacă doriți să actualizați informațiile, să corectați date incorecte sau să solicitați eliminarea paginii,
-          vă rugăm să ne contactați la{' '}
+          Dacă doriți să actualizați informațiile, să corectați date incorecte sau să solicitați
+          eliminarea paginii, vă rugăm să ne contactați la{' '}
           <a href="mailto:contact@identitate.eu" class="font-medium underline hover:text-blue-900">
             contact@identitate.eu
           </a>.
@@ -614,11 +939,11 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
     // Tab switching for Integrare section
     const tabBtns = document.querySelectorAll('[data-tab-btn]');
     const tabPanels = document.querySelectorAll('[data-tab-panel]');
-    tabBtns.forEach(btn => {
+    tabBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const tabId = (btn as HTMLElement).dataset.tabBtn;
         // Update buttons
-        tabBtns.forEach(b => {
+        tabBtns.forEach((b) => {
           const el = b as HTMLElement;
           if (el.dataset.tabBtn === tabId) {
             el.classList.add('border-primary-500', 'text-primary-700');
@@ -629,7 +954,7 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
           }
         });
         // Update panels
-        tabPanels.forEach(p => {
+        tabPanels.forEach((p) => {
           const el = p as HTMLElement;
           if (el.dataset.tabPanel === tabId) {
             el.classList.remove('hidden');
@@ -642,7 +967,7 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
 
     const copyButtons = document.querySelectorAll('.copy-btn, .copy-color-btn, .copy-code-btn');
 
-    copyButtons.forEach(button => {
+    copyButtons.forEach((button) => {
       button.addEventListener('click', async (e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -650,7 +975,7 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
         const btn = e.currentTarget as HTMLButtonElement;
         const isColorBtn = btn.classList.contains('copy-color-btn');
         const isCodeBtn = btn.classList.contains('copy-code-btn');
-        
+
         try {
           let textToCopy = '';
 
@@ -682,8 +1007,9 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
           `;
-          setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
-
+          setTimeout(() => {
+            btn.innerHTML = originalIcon;
+          }, 2000);
         } catch (err) {
           console.error('Failed to copy:', err);
           const originalIcon = btn.innerHTML;
@@ -692,7 +1018,9 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           `;
-          setTimeout(() => { btn.innerHTML = originalIcon; }, 2000);
+          setTimeout(() => {
+            btn.innerHTML = originalIcon;
+          }, 2000);
         }
       });
     });
@@ -700,15 +1028,13 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
     // Accessibility contrast checker
     function hexToRgb(hex: string): [number, number, number] | null {
       const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? [
-        parseInt(result[1], 16),
-        parseInt(result[2], 16),
-        parseInt(result[3], 16)
-      ] : null;
+      return result
+        ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
+        : null;
     }
 
     function getRelativeLuminance(r: number, g: number, b: number): number {
-      const [rs, gs, bs] = [r, g, b].map(c => {
+      const [rs, gs, bs] = [r, g, b].map((c) => {
         c = c / 255;
         return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
       });
@@ -727,7 +1053,7 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
     }
 
     const badges = document.querySelectorAll<HTMLElement>('.accessibility-badge');
-    badges.forEach(badge => {
+    badges.forEach((badge) => {
       const hex = badge.dataset.hex;
       if (!hex) return;
       const contrastWhite = getContrastRatio(hex, '#FFFFFF');
@@ -830,5 +1156,3 @@ const cdnLogoPath = getCdnLogoUrl(inst) ?? undefined;
     }
   });
 </script>
-
-
